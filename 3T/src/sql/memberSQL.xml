@@ -4,7 +4,7 @@
 <sqlMap namespace="member">
 
 	<!-- 데이터를 꺼낼때 사용할것 설정 -->
-	 <typeAlias alias="member" type="member.memberVO" /> 
+	 <typeAlias alias="member" type="user.member.MemberVO" /> 
 
 	<!-- 리절트 맵 정의: id="memberRes" -->
 	<resultMap id="memberRes" class="member">
@@ -38,16 +38,16 @@
 
 
 	<!-- 회원관리 공통 쿼리문 정의 -->
-	<sql id="select-all">
+	<sql id="select-all1">
 		SELECT * FROM MEMBER
 	</sql>
 
 
-		<select id="selectAll" resultMap="memberRes">
+		<select id="selectAll1" resultMap="memberRes">
 			SELECT * FROM MEMBER ORDER BY M_ID DESC
 		</select>
 	
-	<insert id="mInsert" parameterClass="member">
+	<insert id="mInsert1" parameterClass="member">
 	
 		insert into MEMBER(M_NO,
 		M_ID,
@@ -92,7 +92,7 @@
 		)
 	</insert>
 	
-	<select id="findId" resultMap="memberRes" parameterClass="member">
+	<select id="findId1" resultMap="memberRes" parameterClass="member">
 		select M_ID from MEMBER where M_NAME=#M_NAME# and M_EMAIL1=#M_EMAIL1#
 	</select>
 

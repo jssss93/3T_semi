@@ -2,7 +2,7 @@
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap>
 
-<typeAlias alias="goods" type="admin.goods.GoodsVO"/>
+<typeAlias alias="goods" type="admin.goods.VO.GoodsVO"/>
 
 <resultMap id="goodsRes" class="goods">
 	<result property="goods_no" column="goods_no"/>
@@ -21,17 +21,17 @@
 	<result property="goods_sav_filename" column="goods_sav_filename"/>
 </resultMap>
 
-	<sql id="select-all">
+	<sql id="select-all2">
 		select * from goods
 	</sql>
 	
-	<select id="selectAll" resultMap="goodsRes" parameterClass="int">
-		<include refid="select-all"/>
+	<select id="selectAll2" resultMap="goodsRes" parameterClass="int">
+		<include refid="select-all2"/>
 		order by goods_no desc
 	</select>
 	
-	<select id="selectNew" resultMap="goodsRes" parameterClass="int">
-		<include refid="select-all"/>
+	<select id="selectNew2" resultMap="goodsRes" parameterClass="int">
+		<include refid="select-all2"/>
 		order by goods_reg_date asc
 	</select>
 	

@@ -75,7 +75,7 @@ public class MemberAction extends ActionSupport {
 		paramClass.setACCOUNT_NO(getACCOUNT_NO());
 		paramClass.setM_REGDATE(today.getTime());
 
-		sqlMapper.insert("member.mInsert", paramClass);
+		sqlMapper.insert("member.mInsert1", paramClass);
 		return SUCCESS;
 
 	}
@@ -87,7 +87,7 @@ public class MemberAction extends ActionSupport {
 		paramClass.setM_NAME(getM_NAME());
 		paramClass.setM_EMAIL1(getM_EMAIL1());
 
-		resultClass = (MemberVO) sqlMapper.queryForObject("member.findId", paramClass);
+		resultClass = (MemberVO) sqlMapper.queryForObject("member.findId1", paramClass);
 
 		if (resultClass == null)
 			chkno = 0;

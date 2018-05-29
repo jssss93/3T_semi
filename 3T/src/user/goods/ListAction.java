@@ -36,7 +36,7 @@ public class ListAction extends ActionSupport {
 
 	public String execute() throws Exception {
 		
-		list = sqlMapper.queryForList("selectAll");
+		list = sqlMapper.queryForList("selectAll2");
 		
 		totalCount = list.size();
 		
@@ -53,9 +53,9 @@ public class ListAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
-	public String best() throws Exception{
+	/*public String best() throws Exception{
 		
-		list1 = sqlMapper.queryForList("selectBest");
+		list1 = sqlMapper.queryForList("selectBest2");
 		
 totalCount = list.size();
 		
@@ -70,7 +70,7 @@ totalCount = list.size();
 		list = list.subList(page.getStartCount(), lastCount);
 		
 		return SUCCESS;
-	}
+	}*/
 
 	public List<GoodsVO> getList() {
 		return list;

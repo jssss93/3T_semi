@@ -6,7 +6,7 @@
 
 <struts>
 	<constant name="struts.multipart.maxSize" value="104857600" />
-	<package name="joinForm" extends="struts-default">
+<!-- 	<package name="joinForm" extends="struts-default">
 
 		<action name="member" class="member.memberAction">
 			<result>/member/joinForm.jsp</result>
@@ -23,7 +23,7 @@
 	
 		</action>
 
-	</package>
+	</package> -->
 
 
 </struts>

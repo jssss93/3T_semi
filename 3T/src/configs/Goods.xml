@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.multipart.maxSize" value="104857600" />
+	<package name="user_goods" extends="struts-default">
+
+
+
+		<!-- main -->
+		<action name="main2" class="user.goods.ListAction">
+			<result>/user/goods/List.jsp</result>
+		</action>
+
+		<!-- <action name="list_outer" class="goods.mainAction" method="outer"> 
+			<result name="success" type="tiles"> list_outer </result> </action> -->
+
+	</package>
+</struts>

@@ -54,6 +54,6 @@
 
 
 	</package>
-	<include file="/config/Goods.xml" />
-	<include file="/config/Member.xml" />
+	<include file="/configs/Goods.xml" />
+	<include file="/configs/Member.xml" />
 </struts>
