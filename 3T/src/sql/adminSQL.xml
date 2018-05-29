@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN'
+	'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap>
+	 <typeAlias alias="ad_goods" type="admin.goods.VO.GoodsVO"/>
+	
+	
+	<resultMap id="GoodsRes" class="ad_goods">
+		<result property="goods_no" column="goods_no" />
+		<result property="goods_name" column="goods_name"/>
+		<result property="goods_content" column="goods_content"/>
+		<result property="goods_readcnt" column="goods_readcnt"/>
+		<result property="goods_reg_date" column="goods_reg_date"/>
+		<result property="goods_color" column="goods_color"/>
+		<result property="goods_price" column="goods_price"/>
+		<result property="goods_size" column="goods_size"/>
+		<result property="goods_category" column="goods_category"/>
+		<result property="goods_recommend" column="goods_recommend"/>
+		<result property="goods_totalcount" column="goods_totalcount"/>
+		<result property="goods_related_product" column="goods_related_product"/>
+		<result property="goods_org_filename" column="goods_org_filename"/>
+		<result property="goods_sav_filename" column="goods_sav_filename"/>
+		
+		
+	</resultMap>
+	
+	<sql id="select-all">
+		SELECT * FROM GOODS
+	</sql>
+	
+	<!--  공통으로 사용할 where-no 절 정의-->
+	<sql id="where-no">
+		WHERE Goods_no = #goods_no#
+	</sql>
+	
+	<select id="selectAll" resultMap="GoodsRes" parameterClass="int">
+		<include refid="select-all" />
+		 
+	</select>
+	
+	<select id="selectOne" resultMap="GoodsRes" parameterClass="int">
+		<include refid="select-all" />
+		<include refid="where-no" />
+	</select>
+	
+	<select id="selectLastNo" resultClass="ad_goods" parameterClass="int">
+		SELECT max(goods_no) as goods_no FROM GOODS
+	</select>
+	
+	
+	
+	
+	<insert id="insertGoods" parameterClass="ad_goods">
+		INSERT INTO GOODS(goods_no,goods_name,goods_content,goods_readcnt,goods_reg_date,goods_color,
+		goods_price,goods_size, goods_category,goods_recommend,goods_totalcount,goods_related_product,goods_org_filename,goods_sav_filename)
+		VALUES (goods_NO_SEQ.NEXTVAL, #goods_name#, #goods_content#,#goods_readcnt#, #goods_reg_date#,#goods_color#,
+		#goods_price#,#goods_size#, #goods_category#,#goods_recommend#,#goods_totalcount#,#goods_related_product#,#goods_org_filename#,#goods_sav_filename#)
+	</insert>
+	
+	
+	
+	
+	
+	<update id="updateFile" parameterClass="ad_goods">
+			UPDATE GOODS SET GOODS_ORG_FILENAME = #goods_org_filename#
+			,GOODS_SAV_FILENAME = #goods_sav_filename#
+			<include refid="where-no" />
+	</update>
+	
+	<update id="updateReadcnt" parameterClass="ad_goods">
+		UPDATE GOODS SET GOODS_READCNT = GOODS_READCNT + 1
+		<include refid="where-no" />
+	</update>
+	
+	<update id="updateGoods" parameterClass="ad_goods">
+		UPDATE Goods SET goods_name=#goods_name#, 
+						 goods_content=#goods_content#,
+						 goods_color=#goods_color#,
+						 goods_price=#goods_price#,
+						 goods_size=#goods_size#,
+						 goods_category=#goods_category#,
+						 goods_totalcount=#goods_totalcount#,
+						 goods_related_product=#goods_related_product#,
+						 goods_org_filename=#goods_org_filename#,
+						 goods_sav_filename=#goods_sav_filename# 
+			<include refid = "where-no" />
+	</update>
+	
+	
+	<delete id="deleteGoods" parameterClass="ad_goods">
+		DELETE FROM GOODS
+		<include refid="where-no" />
+	</delete>
+	
+	
+	<!--
+	<typeAlias alias="comment" type="board.cboardVO"/>
+	
+	<resultMap id="commentRes" class="comment">
+		<result property="no" column="no" />
+		<result property="originno" column="originno" />
+		<result property="name" column="name" />
+		<result property="password" column="password" />
+		<result property="content" column="content" />
+		<result property="regdate" column="regdate" />
+	</resultMap>
+	
+	공통으로 사용할 select 절 정의
+	<sql id="select-all">
+		SELECT * FROM SBOARD2
+	</sql>
+	
+	<sql id="select-com">
+		SELECT * FROM BOARDC
+	</sql>
+	
+	공통으로 사용할 where-no 절 정의
+	<sql id="where-no">
+		WHERE no = #no#
+	</sql>
+	
+	
+	select 쿼리문 정의	
+	답변글 로직으로 수정시작
+	<select id="selectAll" resultMap="boardRes" parameterClass="int">
+		<include refid="select-all" />
+		 ORDER BY ref DESC, re_step ASC
+	</select>
+	답변글 로직으로 수정끝
+	<select id="commentSelectAll" resultMap="commentRes" parameterClass="int">
+		SELECT * FROM BOARDC
+		 WHERE originno = #no#
+		 ORDER BY no DESC
+	</select>
+	<select id="selectOne" resultMap="boardRes" parameterClass="int">
+		<include refid="select-all" />
+		<include refid="where-no" />
+	</select>
+	검색로직 추가시작
+	<select id="selectSearchW" resultMap="boardRes" parameterClass="string">
+		<include refid="select-all" />
+		 WHERE name like #searchKeyword#
+		 ORDER BY no DESC
+	</select>
+	<select id="selectSearchS" resultMap="boardRes" parameterClass="string">
+		<include refid="select-all" />
+		 WHERE subject like #searchKeyword#
+		 ORDER BY no DESC
+	</select>
+	<select id="selectSearchC" resultMap="boardRes" parameterClass="string">
+		<include refid="select-all" />
+		 WHERE content like #searchKeyword#
+		 ORDER BY no DESC
+	</select>
+	검색로직 끝
+	<select id="selectLastNo" resultClass="board" parameterClass="int">
+		SELECT max(no) as no FROM SBOARD2
+	</select>
+	
+	<select id="selectPassword" resultMap="boardRes">
+		<include refid="select-all"/>
+		<include refid="where-no" />
+		AND password = #password#
+	</select>
+	
+	<select id="selectPassword2" resultMap="commentRes">
+		<include refid="select-com"/>
+		<include refid="where-no" />
+		AND password = #password#
+	</select>
+	
+	insert 쿼리문 정의
+	<insert id="insertBoard" parameterClass="board">
+		INSERT INTO SBOARD2(NO, SUBJECT, NAME, PASSWORD, CONTENT, REGDATE,RE_STEP,RE_LEVEL,REF)
+		VALUES (SBOARD2_NO_SEQ.NEXTVAL, #subject#, #name#, #password#, #content#, #regdate#, #re_step#, #re_level#,SBOARD2_NO_SEQ.CURRVAL)
+	</insert>
+	
+	<insert id="insertBoardReply" parameterClass="board">
+		INSERT INTO SBOARD2(NO, SUBJECT, NAME, PASSWORD, CONTENT, REGDATE,RE_STEP,RE_LEVEL,REF)
+		VALUES (SBOARD2_NO_SEQ.NEXTVAL, #subject#, #name#, #password#, #content#, #regdate#, #re_step#, #re_level#,#ref#)
+	</insert>
+	
+	<insert id="insertComment" parameterClass="comment">
+		INSERT INTO BOARDC(NO, ORIGINNO, NAME, PASSWORD, CONTENT, REGDATE)
+		VALUES (BOARDC_NO_SEQ.NEXTVAL, #originno#, #name#, #password#, #content#, #regdate#)
+	</insert>
+	
+	update 쿼리문 정의
+	<update id="updateBoard" parameterClass="board">
+	UPDATE SBOARD2 SET SUBJECT = 	#subject#, 
+					NAME = #name#,
+					PASSWORD = #password#,
+					CONTENT = #content#
+	<include refid = "where-no" />
+	</update>
+	
+	<update id="updateFile" parameterClass="board">
+			UPDATE SBOARD2 SET FILE_ORGNAME = #file_orgname#
+				,FILE_SAVNAME = #file_savname#
+			<include refid="where-no" />
+	</update>
+	
+	<update id="updateReadHit" parameterClass="board">
+		UPDATE SBOARD2 SET READHIT = readHit + 1
+		<include refid="where-no" />
+	</update>
+	
+	<update id="updateReplyStep" parameterClass="board">
+		UPDATE SBOARD2 SET re_step=re_step+1 WHERE ref=#ref# AND re_step>#re_step#
+		
+	</update>
+	
+	
+	
+	delete 쿼리문 정의
+	<delete id="deleteBoard" parameterClass="board">
+		DELETE FROM SBOARD2
+		<include refid="where-no" />
+	</delete>
+	
+	<delete id="deleteComment" parameterClass="comment">
+		DELETE FROM BOARDC
+		<include refid="where-no" />
+	</delete>
+	 -->
+</sqlMap>
