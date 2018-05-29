@@ -10,13 +10,13 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class memberAction extends ActionSupport {
+public class MemberAction extends ActionSupport {
 
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 
-	private memberVO paramClass;
-	private memberVO resultClass;
+	private MemberVO paramClass;
+	private MemberVO resultClass;
 
 	private int M_NO;
 	private String M_ID;
@@ -42,7 +42,7 @@ public class memberAction extends ActionSupport {
 
 	Calendar today = Calendar.getInstance();
 
-	public memberAction() throws IOException {
+	public MemberAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 		reader.close();
@@ -54,7 +54,7 @@ public class memberAction extends ActionSupport {
 
 	public String join() throws Exception {
 		System.out.println("testtest44444");
-		paramClass = new memberVO();
+		paramClass = new MemberVO();
 
 		paramClass.setM_NO(getM_NO());
 		paramClass.setM_ID(getM_ID());
@@ -81,13 +81,13 @@ public class memberAction extends ActionSupport {
 	}
 
 	public String findId() throws Exception {
-		paramClass = new memberVO();
-		resultClass = new memberVO();
+		paramClass = new MemberVO();
+		resultClass = new MemberVO();
 
 		paramClass.setM_NAME(getM_NAME());
 		paramClass.setM_EMAIL1(getM_EMAIL1());
 
-		resultClass = (memberVO) sqlMapper.queryForObject("member.findId", paramClass);
+		resultClass = (MemberVO) sqlMapper.queryForObject("member.findId", paramClass);
 
 		if (resultClass == null)
 			chkno = 0;
@@ -104,7 +104,7 @@ public class memberAction extends ActionSupport {
 	}
 
 	public static void setReader(Reader reader) {
-		memberAction.reader = reader;
+		MemberAction.reader = reader;
 	}
 
 	public static SqlMapClient getSqlMapper() {
@@ -112,22 +112,22 @@ public class memberAction extends ActionSupport {
 	}
 
 	public static void setSqlMapper(SqlMapClient sqlMapper) {
-		memberAction.sqlMapper = sqlMapper;
+		MemberAction.sqlMapper = sqlMapper;
 	}
 
-	public memberVO getParamClass() {
+	public MemberVO getParamClass() {
 		return paramClass;
 	}
 
-	public void setParamClass(memberVO paramClass) {
+	public void setParamClass(MemberVO paramClass) {
 		this.paramClass = paramClass;
 	}
 
-	public memberVO getResultClass() {
+	public MemberVO getResultClass() {
 		return resultClass;
 	}
 
-	public void setResultClass(memberVO resultClass) {
+	public void setResultClass(MemberVO resultClass) {
 		this.resultClass = resultClass;
 	}
 
