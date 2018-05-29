@@ -2,7 +2,7 @@ package user.member;
 
 import java.util.Date;
 
-public class memberVO {
+public class MemberVO {
 
 	private int M_NO;
 	private String M_ID;

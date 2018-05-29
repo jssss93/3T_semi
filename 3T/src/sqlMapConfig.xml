@@ -16,6 +16,7 @@
 		</dataSource>
 	</transactionManager>
 	
-	<sqlMap resource="/sql/adminSQL.xml" />
-	
+	<sqlMap resource="/sql/AdminSQL.xml" />
+	<sqlMap resource="/sql/GoodsSQL.xml" />
+	<sqlMap resource="/sql/MemberSQL.xml" />	
 </sqlMapConfig>

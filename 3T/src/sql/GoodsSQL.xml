@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap>
+
+<typeAlias alias="goods" type="admin.goods.GoodsVO"/>
+
+<resultMap id="goodsRes" class="goods">
+	<result property="goods_no" column="goods_no"/>
+	<result property="goods_name" column="goods_name"/>
+	<result property="goods_content" column="goods_content"/>
+	<result property="goods_readcnt" column="goods_readcnt"/>
+	<result property="goods_reg_date" column="goods_reg_date"/>
+	<result property="goods_color" column="goods_color"/>
+	<result property="goods_price" column="goods_price"/>
+	<result property="goods_size" column="goods_size"/>
+	<result property="goods_category" column="goods_category"/>
+	<result property="goods_recommend" column="goods_recommend"/>
+	<result property="goods_totalcount" column="goods_totalcount"/>
+	<result property="goods_related_product" column="goods_related_product"/>
+	<result property="goods_org_filename" column="goods_org_filename"/>
+	<result property="goods_sav_filename" column="goods_sav_filename"/>
+</resultMap>
+
+	<sql id="select-all">
+		select * from goods
+	</sql>
+	
+	<select id="selectAll" resultMap="goodsRes" parameterClass="int">
+		<include refid="select-all"/>
+		order by goods_no desc
+	</select>
+	
+	<select id="selectNew" resultMap="goodsRes" parameterClass="int">
+		<include refid="select-all"/>
+		order by goods_reg_date asc
+	</select>
+	
+</sqlMap>
