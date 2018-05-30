@@ -28,7 +28,7 @@
 		<tr align="center">
 			<td width="50" align="center"><strong>NO</strong></td>
 			<td width="400"><strong></strong></td>
-			<td width="50" align="center"><strong>관리자</strong></td>
+			<td width="50" align="center"><strong>작성자</strong></td>
 		</tr>
 		<tr bgcolor="#777777">
 			<td height="1" colspan="3"></td>
