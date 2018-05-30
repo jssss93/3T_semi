@@ -74,7 +74,7 @@
 	      <tr height="50" align="center">
     		<td colspan="6"><s:property value="pagingHtml"  escape="false" /></td>
     					<td colspan="8"><input name="Main" type="button" value="주문하기 ▶"
-				onClick="javascript:location.href='Write.action'"></td>
+				onClick="javascript:location.href='OrderWrite.action'"></td>
     	   </tr>
 	</table>
    </body>
