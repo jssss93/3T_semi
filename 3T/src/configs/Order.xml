@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 용량제한 10MB 로 설정. -->
+	<constant name="struts.multipart.maxSize" value="10485760" />
+	<package name="board" extends="struts-default">
+
+		<!-- 주문 메인. -->	
+		<action name="Main" class="user.order.ListAction">
+			<result>/user/order/List.jsp</result>
+		</action>
+		
+		<!-- 주문 페이지 이동. -->
+		<action name="Write" class="user.order.WriteAction" method="form">
+			<result>/user/order/Write.jsp</result>
+		</action>
+		<!--  주문 작성-->
+		<action name="WriteAction" class="user.order.WriteAction" >
+			<result type="redirect-action">
+				<param name="actionName">Main</param>
+			</result>
+		</action>
+		<!-- 결제 예정 금액 -->
+		<action name="paylist" class="user.order.WriteAction" method="form">
+			<result>/user/order/PayList.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -12,48 +12,9 @@
 	<!-- <action name="main1" class="admin.MainAction"> <result name="success" 
 		type="tiles"> main1 </result> </action> -->
 
-	<package
-		name="----------------------------------------Goods-------------------------------------------"
-		extends="struts-default">
 
-
-
-
-
-		<action name="listAction" class="admin.goods.ListAction">
-			<result>/admin/goods/List.jsp</result>
-		</action>
-
-		<action name="writeForm" class="admin.goods.WriteAction"
-			method="form">
-			<result>/admin/goods/Write.jsp</result>
-		</action>
-
-		<action name="writeAction" class="admin.goods.WriteAction">
-			<result type="redirect-action">
-				<param name="actionName">listAction</param>
-			</result>
-		</action>
-
-		<action name="viewAction" class="admin.goods.ViewAction">
-			<result>/admin/goods/View.jsp</result>
-		</action>
-
-
-		<action name="modifyForm" class="admin.goods.ViewAction">
-			<result type="chain">writeForm</result>
-		</action>
-
-		<action name="modifyAction" class="admin.goods.ModifyAction">
-			<result type="chain">viewAction</result>
-		</action>
-
-		<action name="deleteAction" class="admin.goods.DeleteAction">
-			<result type="chain">listAction</result>
-		</action>
-
-
-	</package>
+	<include file="/configs/Admin.xml" />
 	<include file="/configs/Goods.xml" />
 	<include file="/configs/Member.xml" />
+	<include file="/configs/Order.xml" />
 </struts>

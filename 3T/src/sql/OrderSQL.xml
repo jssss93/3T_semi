@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap>
+	<!-- 주문 -->
+		<typeAlias alias="order" type="user.order.OrderVO" />
+		<!-- 리절트 맵 정의 -->
+	  	<resultMap id="orderRes" class="order">
+		  	<result property="ORDER_NO" column="ORDER_NO"/>
+		  	<result property="ORDER_NAME" column="ORDER_NAME"/>
+		  	<result property="ORDER_ZIPCODE" column="ORDER_ZIPCODE"/>
+		  	<result property="ORDER_ADDRESS1" column="ORDER_ADDRESS1"/>
+		  	<result property="ORDER_ADDRESS2" column="ORDER_ADDRESS2"/>
+		  	<result property="ORDER_PHONE1" column="ORDER_PHONE1"/>
+		  	<result property="ORDER_PHONE2" column="ORDER_PHONE2"/>
+		  	<result property="ORDER_PHONE3" column="ORDER_PHONE3"/>
+		  	<result property="ORDER_EMAIL1" column="ORDER_EMAIL1"/>
+		  	<result property="ORDER_EMAIL2" column="ORDER_EMAIL2"/>
+		  	<result property="RECIPIENT_CHOICE" column="RECIPIENT_CHOICE"/>
+		  	<result property="RECIPIENT_NAME" column="RECIPIENT_NAME"/>
+		  	<result property="RECIPIENT_ZIPCODE" column="RECIPIENT_ZIPCODE"/>
+		  	<result property="RECIPIENT_ADDRESS1" column="RECIPIENT_ADDRESS1"/>
+		  	<result property="RECIPIENT_ADDRESS2" column="RECIPIENT_ADDRESS2"/>
+		  	<result property="RECIPIENT_PHONE1" column="RECIPIENT_PHONE1"/>
+		  	<result property="RECIPIENT_PHONE2" column="RECIPIENT_PHONE2"/>
+		  	<result property="RECIPIENT_PHONE3" column="RECIPIENT_PHONE3"/>
+		  	<result property="DISCOUNT" column="DISCOUNT"/>
+		  	<result property="PAYMENT" column="PAYMENT"/>
+		  	<result property="DEPOSIT_NAME" column="DEPOSIT_NAME"/>
+		  	<result property="DEPOSIT_BANK" column="DEPOSIT_BANK"/>
+		  	<result property="ORDER_REGDATE" column="ORDER_REGDATE"/>
+		  	<result property="ORDER_IMG" column="ORDER_IMG"/>
+		  	<result property="ORDER_STATE" column="ORDER_STATE"/>
+		  	<result property="ORDER_TOTAL" column="ORDER_TOTAL"/>
+		  	<result property="ORDER_PRICE" column="ORDER_PRICE"/>
+		  	<result property="ORDER_MEMBER_ID" column="ORDER_MEMBER_ID"/>
+		  	<result property="ORDER_GOODS_NO" column="ORDER_GOODS_NO"/>  
+		 	<result property="ORDER_GOODS_INFO" column="ORDER_GOODS_INFO"/>  
+		  	<result property="ORDER_GOODS_COUNT" column="ORDER_GOODS_COUNT"/>  
+		</resultMap>
+		
+		<!-- 공통으로 사용할 select 절 정의 -->
+		<sql id="order-select-all">
+			SELECT * FROM ORDER_3T
+		</sql>
+		
+		<!-- 공통으로 사용할 where-no 절 정의 -->
+		<sql id="order-where-no">
+			WHERE ORDER_NO = #ORDER_NO#
+		</sql>
+	
+		<!-- select 쿼리문 정의 --> 
+		<select id="order-selectAll" resultMap="orderRes">
+			SELECT * FROM  ORDER_3T ORDER BY ORDER_NO DESC
+		</select>
+		<!-- order 조회 쿼리 -->
+		<select id="selectOrder" resultMap="orderRes">
+		 SELECT * FROM  ORDER_3T ORDER BY ORDER_NO DESC
+		 <!--  SELECT * FROM  ORDER_3T WHERE ORDER_NO=#ORDER_NO# -->
+		</select>
+		<!-- goods 조회 쿼리 -->
+		<select id="order-selectGoods" resultMap="orderRes">
+		 SELECT * FROM  ORDER_3T WHERE ORDER_NO=#ORDER_NO#
+		</select>
+		<!-- insert 쿼리문 정의 -->
+		<insert id="order-insertBoard" parameterClass="order">		
+      		INSERT INTO ORDER_3T (ORDER_NO,
+      							ORDER_NAME,
+                         		ORDER_ZIPCODE,
+                         		ORDER_ADDRESS1,
+                         		ORDER_ADDRESS2,
+                         		ORDER_PHONE1,
+                         		ORDER_PHONE2,
+                         		ORDER_PHONE3,
+                         		ORDER_EMAIL1,
+                         		ORDER_EMAIL2,
+                         		RECIPIENT_CHOICE,
+                         		RECIPIENT_NAME,
+                         		RECIPIENT_ZIPCODE,
+                         		RECIPIENT_ADDRESS1,
+                         		RECIPIENT_ADDRESS2,
+                         		RECIPIENT_PHONE1,
+                         		RECIPIENT_PHONE2,
+                         		RECIPIENT_PHONE3,
+                         		DISCOUNT,
+                         		PAYMENT,
+                         		DEPOSIT_NAME,
+                         		DEPOSIT_BANK,
+                         		ORDER_REGDATE,
+                         		ORDER_IMG,
+                         		ORDER_STATE,
+                         		ORDER_TOTAL,
+                         		ORDER_PRICE,
+                         		ORDER_MEMBER_ID,
+                         		ORDER_GOODS_NO,
+                         		ORDER_GOODS_INFO,
+                         		ORDER_GOODS_COUNT
+                         )
+                VALUES (Order_no_seq.NEXTVAL,
+                	 		#ORDER_NAME#,
+                         	#ORDER_ZIPCODE#,
+                         	#ORDER_ADDRESS1#,
+                         	#ORDER_ADDRESS2#,
+                         	#ORDER_PHONE1#,
+                         	#ORDER_PHONE2#,
+                         	#ORDER_PHONE3#,
+                         	#ORDER_EMAIL1#,
+                         	#ORDER_EMAIL2#,
+                         	#RECIPIENT_CHOICE#,
+                         	#RECIPIENT_NAME#,
+                         	#RECIPIENT_ZIPCODE#,
+                         	#RECIPIENT_ADDRESS1#,
+                         	#RECIPIENT_ADDRESS2#,
+                         	#RECIPIENT_PHONE1#,
+                         	#RECIPIENT_PHONE2#,
+                         	#RECIPIENT_PHONE3#,
+                         	#DISCOUNT#,
+                         	#PAYMENT#,
+                         	#DEPOSIT_NAME#,
+                         	#DEPOSIT_BANK#,
+                         	#ORDER_REGDATE#,
+                         	#ORDER_IMG#,
+                         	#ORDER_STATE#,
+                         	#ORDER_TOTAL#,
+                         	#ORDER_PRICE#,
+                         	#ORDER_MEMBER_ID#,
+                         	#ORDER_GOODS_NO#
+                         	#ORDER_GOODS_INFO#,
+                         	#ORDER_GOODS_COUNT#
+                         )
+		</insert>
+		
+		
+</sqlMap>

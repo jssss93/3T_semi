@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.multipart.maxSize" value="104857600" />
+
+	<package
+		name="----------------------------------------Goods-------------------------------------------"
+		extends="struts-default">
+
+		<action name="listAction" class="admin.goods.ListAction">
+			<result>/admin/goods/List.jsp</result>
+		</action>
+		<action name="writeForm" class="admin.goods.WriteAction"
+			method="form">
+			<result>/admin/goods/Write.jsp</result>
+		</action>
+		<action name="writeAction" class="admin.goods.WriteAction">
+			<result type="redirect-action">
+				<param name="actionName">listAction</param>
+			</result>
+		</action>
+		<action name="viewAction" class="admin.goods.ViewAction">
+			<result>/admin/goods/View.jsp</result>
+		</action>
+		<action name="modifyForm" class="admin.goods.ViewAction">
+			<result type="chain">writeForm</result>
+		</action>
+		<action name="modifyAction" class="admin.goods.ModifyAction">
+			<result type="chain">viewAction</result>
+		</action>
+		<action name="deleteAction" class="admin.goods.DeleteAction">
+			<result type="chain">listAction</result>
+		</action>
+		
+	</package>
+</struts> 
