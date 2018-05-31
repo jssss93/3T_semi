@@ -23,7 +23,7 @@ public class ListAction extends ActionSupport {
 	private int currentPage = 1;
 	private int totalCount;
 	
-	private int blockCount = 12;
+	private int blockCount = 6;
 	private int blockPage = 5;
 	private String pagingHtml;
 	private pagingAction page;

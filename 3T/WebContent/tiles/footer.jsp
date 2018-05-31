@@ -6,6 +6,8 @@
 <head>
 <link rel="stylesheet" href="/tiles/tiles/css.css" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<link rel="stylesheet" href="/3T/user/notice/common/css/css.css"
+	type="text/css">
 <title>Insert title here</title>
 </head>
 <body>
