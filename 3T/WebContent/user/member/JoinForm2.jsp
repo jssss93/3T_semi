@@ -2,14 +2,10 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.HashMap"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
 <script language="javascript">
 	  function check() {
 
@@ -200,10 +196,10 @@
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>회원가입</title>
-<link href="/10051005/style.css" rel="stylesheet" type="text/css">
+<link href="/hi1/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<form name="Reg_form" action="memberAction.action" method="post"
+	<form name="Reg_form" action="join.action" method="post"
 		onsubmit="return check()">
 
 
@@ -226,7 +222,7 @@
 						<tr>
 							<td class="tdstyle1">아이디<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="text" name="M_ID"
+							<td valign="middle"><input type="text" name="M_ID" maxlength="20"
 								size="28"> <input type="button" name="confirm_id"
 								value="중복확인" onclick="openConfirmId()" class="hreflink2">
 								<input type="hidden" name="confirm_id" value=""> 영문/숫자를
@@ -235,13 +231,13 @@
 						<tr>
 							<td class="tdstyle1">비밀번호<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="password"
+							<td valign="middle"><input type="password" maxlength="14"
 								name="M_PASSWD" size="30"> 영문/숫자를 이용하여 4~12자로 입력하세요</td>
 						</tr>
 						<tr>
 							<td class="tdstyle1">비밀번호확인<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="password"
+							<td valign="middle"><input type="password" maxlength="7" maxlength="14"
 								name="M_PASSWD2" size="30"> 비밀번호를 재입력 해주세요</td>
 						</tr>
 						<tr>
@@ -253,9 +249,9 @@
 						<tr>
 							<td class="tdstyle1">주민등록번호<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="text" name="M_JUMIN1"
-								size="6"> - <input type="text" name="M_JUMIN2"
-								size="7"></td>
+							<td valign="middle"><input type="text" name="M_JUMIN1" 
+								size="6" maxlength="6"> - <input type="text" name="M_JUMIN2"
+								size="7"maxlength="7"></td>
 						</tr>
 						<tr>
 							<td class="tdstyle1">우편번호<img
@@ -324,7 +320,7 @@
 						</tr>
 						<tr>
 							<td colspan="2" align="center" style="border: 0px;"><input
-								type="submit" value="회원가입" class="submit"> <input
+								type="submit" value="회원가입" class="submit" onclick="javascript:location.href='login.action'"> <input
 								type="button" value="취 소"
 								onclick="location.href='메인페이지'" class="hreflink"></td>
 						</tr>

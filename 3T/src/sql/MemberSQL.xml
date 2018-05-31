@@ -4,16 +4,16 @@
 <sqlMap namespace="member">
 
 	<!-- 데이터를 꺼낼때 사용할것 설정 -->
-	 <typeAlias alias="member" type="user.member.MemberVO" /> 
+	<typeAlias alias="member" type="user.member.MemberVO" />
 
 	<!-- 리절트 맵 정의: id="memberRes" -->
 	<resultMap id="memberRes" class="member">
 
 		<result property="M_NO" column="M_NO" />
 		<result property="M_ID" column="M_ID" />
+		<result property="M_NAME" column="M_NAME" />
 		<result property="M_PASSWD" column="M_PASSWD" />
 		<result property="M_PASSWD2" column="M_PASSWD2" />
-		<result property="M_NAME" column="M_NAME" />
 		<result property="M_SEX" column="M_SEX" />
 		<result property="M_JUMIN1" column="M_JUMIN1" />
 		<result property="M_JUMIN2" column="M_JUMIN2" />
@@ -29,8 +29,8 @@
 		<result property="ACCOUNT_NO" column="ACCOUNT_NO" />
 		<result property="M_ADMIN" column="M_ADMIN" />
 		<result property="M_SEX" column="M_SEX" />
-		
-		
+
+
 
 
 	</resultMap>
@@ -38,18 +38,47 @@
 
 
 	<!-- 회원관리 공통 쿼리문 정의 -->
-	<sql id="select-all1">
+	<sql id="select-all">
 		SELECT * FROM MEMBER
 	</sql>
 
 
-		<select id="selectAll1" resultMap="memberRes">
-			SELECT * FROM MEMBER ORDER BY M_ID DESC
-		</select>
-	
-	<insert id="mInsert1" parameterClass="member">
-	
-		insert into MEMBER(M_NO,
+	<select id="selectAll" resultMap="memberRes">
+		SELECT * FROM MEMBER ORDER BY
+		M_ID DESC
+	</select>
+
+	<!-- 로그인 -->
+	<!-- <select id="login" resultMap="memberRes" parameterClass="member"> select 
+		* from member where M_ID = #M_ID# and M_PASSWD=#M_PASSWD# </select> -->
+	<select id="searchpw" resultMap="memberRes" parameterClass="string">
+		SELECT * FROM MEMBER WHERE M_ID = #M_ID#
+	</select>
+
+	<!-- 회원아이디찾기 -->
+	<select id="findId" resultMap="memberRes" parameterClass="member">
+		select
+		* from MEMBER where M_NAME = #M_NAME# and M_EMAIL1 = #M_EMAIL1#
+	</select>
+	<!-- 회원비밀번호찾기 -->
+	<select id="findPw" resultMap="memberRes" parameterClass="member">
+		select
+		* from MEMBER where M_ID = #M_ID# and M_JUMIN1 = #M_JUMIN1# and
+		M_JUMIN2 = #M_JUMIN2#
+	</select>
+
+
+
+
+	<!-- 회원가입 -->
+
+
+
+
+	<insert id="mInsert" parameterClass="member">
+
+		insert into MEMBER(
+		M_NO,
 		M_ID,
 		M_PASSWD,
 		M_PASSWD2,
@@ -69,7 +98,8 @@
 		M_ADMIN,
 		M_SEX
 		)
-		values(member_no_seq.NEXTVAL,
+		values(
+		member_no_seq.NEXTVAL,
 		#M_ID#,
 		#M_PASSWD#,
 		#M_PASSWD2#,
@@ -88,13 +118,12 @@
 		#ACCOUNT_NO#,
 		#M_ADMIN#,
 		#M_SEX#
-		
+
 		)
 	</insert>
-	
-	<select id="findId1" resultMap="memberRes" parameterClass="member">
-		select M_ID from MEMBER where M_NAME=#M_NAME# and M_EMAIL1=#M_EMAIL1#
-	</select>
+
+
+
 
 
 
