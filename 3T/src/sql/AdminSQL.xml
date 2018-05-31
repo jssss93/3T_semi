@@ -122,14 +122,12 @@
 		WHERE notice_no = #notice_no#
 	</sql>
 
-	<select id="ANselectAll" resultMap="NoticeRes"
-		parameterClass="int">
+	<select id="ANselectAll" resultMap="NoticeRes" parameterClass="int">
 		<include refid="ANselect-all" />
 
 	</select>
 
-	<select id="ANselectOne" resultMap="NoticeRes"
-		parameterClass="int">
+	<select id="ANselectOne" resultMap="NoticeRes" parameterClass="int">
 		<include refid="ANselect-all" />
 		<include refid="ANwhere-no" />
 	</select>
@@ -140,9 +138,9 @@
 	</select>
 
 
-	
-	
-	
+
+
+
 	<insert id="insertNotice" parameterClass="ANnotice">
 		INSERT INTO
 		NOTICE(notice_no,notice_state,notice_writer,notice_subject,notice_content,notice_file_orgname,notice_file_savname)
@@ -156,18 +154,75 @@
 		,NOTICE_FILE_SAVNAME = #notice_file_savname#
 		<include refid="ANwhere-no" />
 	</update>
-	
+
 	<update id="updateNotice" parameterClass="ANnotice">
-		UPDATE Notice SET notice_writer=#notice_writer# , notice_subject=#notice_subject# ,notice_content=#notice_content#
+		UPDATE Notice SET notice_writer=#notice_writer# ,
+		notice_subject=#notice_subject# ,notice_content=#notice_content#
 		<include refid="ANwhere-no" />
 	</update>
-	
+
 	<delete id="deleteNotice" parameterClass="ANnotice">
 		DELETE FROM NOTICE
 		<include refid="ANwhere-no" />
 	</delete>
 
-	
 
+
+
+
+
+	<!-- 관리자 FAQ SQL ********************************************************************************************************************** -->
+	<typeAlias alias="AFFaq" type="admin.faq.VO.FaqVO" />
+
+	<resultMap id="FaqRes" class="AFFaq">
+		<result property="faq_no" column="faq_no" />
+		<result property="faq_subject" column="faq_subject" />
+		<result property="faq_writer" column="faq_writer" />
+		<result property="faq_content" column="faq_content" />
+		<result property="faq_member_id" column="faq_member_id" />
+	</resultMap>
+
+	<sql id="AFselect-all">
+		SELECT * FROM FAQ
+	</sql>
+
+	<!-- 공통으로 사용할 where-no 절 정의 -->
+	<sql id="AFwhere-no">
+		WHERE faq_no = #faq_no#
+	</sql>
+
+	<select id="AFselectAll" resultMap="FaqRes" parameterClass="int">
+		<include refid="AFselect-all" />
+
+	</select>
+
+	<select id="AFselectOne" resultMap="FaqRes" parameterClass="int">
+		<include refid="AFselect-all" />
+		<include refid="AFwhere-no" />
+	</select>
+
+	<select id="AFselectLastNo" resultClass="AFFaq" parameterClass="int">
+		SELECT max(faq_no) as faq_no FROM FAQ
+	</select>
+
+
+	<insert id="insertFaq" parameterClass="AFFaq">
+		INSERT INTO
+		FAQ(faq_no,faq_subject,faq_writer,faq_content,faq_member_id) VALUES
+		(FAQ_NO_SEQ.NEXTVAL,
+		#faq_subject#,#faq_writer#,#faq_content#,#faq_member_id#)
+	</insert>
+
+	<update id="updateFaq" parameterClass="AFFaq">
+		UPDATE FAQ SET faq_writer=#faq_writer# ,faq_subject=#faq_subject#,
+		faq_content=#faq_content#
+		<include refid="AFwhere-no" />
+	</update>
+
+
+	<delete id="deleteFaq" parameterClass="AFFaq">
+		DELETE FROM FAQ
+		<include refid="AFwhere-no" />
+	</delete>
 
 </sqlMap>
