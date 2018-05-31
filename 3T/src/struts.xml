@@ -17,4 +17,5 @@
 	<include file="/configs/Goods.xml" />
 	<include file="/configs/Member.xml" />
 	<include file="/configs/Order.xml" />
+	<include file="/configs/Review.xml"/>
 </struts>
