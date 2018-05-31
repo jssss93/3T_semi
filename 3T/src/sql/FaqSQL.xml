@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap>
+	<!-- FAQ -->
+	<typeAlias alias="userfaq" type="user.faq.FaqVO" />
+	<!-- 리절트 맵 정의 -->
+	<resultMap id="userfaqRes" class="userfaq">
+		<result property="FAQ_NO" column="FAQ_NO"/>
+		<result property="FAQ_WRITER" column="FAQ_WRITER" />
+		<result property="FAQ_SUBJECT" column="FAQ_SUBJECT" />
+		<result property="FAQ_CONTENT" column="FAQ_CONTENT" />
+		<result property="FAQ_MEMBER_ID" column="FAQ_MEMBER_ID" />
+	</resultMap>
+	
+	<!-- 공통으로 사용할 select 절 정의 -->
+		<sql id="userfaq-select-all">
+			SELECT * FROM FAQ
+		</sql>
+		
+		<!-- 공통으로 사용할 where-no 절 정의 -->
+		<sql id="userfaq-where-no">
+			WHERE FAQ_NO = #FAQ_NO#
+		</sql>
+		<!-- 해당 번호의 글을 가져오는 쿼리 -->
+		<select id="userfaq-selectOne" resultMap="userfaqRes" parameterClass="int">
+			SELECT * FROM FAQ  WHERE FAQ_NO = #FAQ_NO#
+		</select>
+		
+		<!-- select 쿼리문 정의 --> 
+		<select id="userfaq-selectAll" resultMap="userfaqRes" parameterClass="int">
+			SELECT * FROM  FAQ   ORDER BY FAQ_NO DESC
+		</select>
+		
+		<!-- 검색로직 추가시작 -->
+		<select id="userfaq-selectSearchW" resultMap="userfaqRes" parameterClass="string">
+			<include refid="usernotice-select-all" />
+			 WHERE FAQ_WRITER like #searchKeyword#
+			 ORDER BY FAQ_NO DESC
+		</select>
+		<select id="userfaq-selectSearchS" resultMap="userfaqRes" parameterClass="string">
+			<include refid="usernotice-select-all" />
+			 WHERE FAQ_SUBJECT like #searchKeyword#
+			 ORDER BY FAQ_NO DESC
+		</select>
+		<select id="userfaq-selectSearchC" resultMap="userfaqRes" parameterClass="string">
+			<include refid="usernotice-select-all" />
+			 WHERE FAQ_CONTENT like #searchKeyword#
+			 ORDER BY FAQ_NO DESC
+		</select>
+	<!-- 검색로직 끝 -->
+</sqlMap>

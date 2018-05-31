@@ -130,4 +130,20 @@ public class GoodsVO {
 		this.goods_related_product = goods_related_product;
 	}
 
+	public String getGoods_file_orgname() {
+		return goods_file_orgname;
+	}
+
+	public void setGoods_file_orgname(String goods_file_orgname) {
+		this.goods_file_orgname = goods_file_orgname;
+	}
+
+	public String getGoods_file_savname() {
+		return goods_file_savname;
+	}
+
+	public void setGoods_file_savname(String goods_file_savname) {
+		this.goods_file_savname = goods_file_savname;
+	}
+
 }

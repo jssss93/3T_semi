@@ -234,7 +234,7 @@ function validation() {
 			<td align="left"><input name="delete" type="button"
 				value="x 삭제하기" style="background-color: #B8B8B8;" /></td>
 			<td colspan="6"><input name="Main" type="button" value="이전페이지 ▶"
-				onClick="javascript:location.href='Main.action'"></td>
+				onClick="javascript:location.href='OrderMain.action'"></td>
 		</tr>
 		<tr>
 			<td height="20"></td>
@@ -253,7 +253,7 @@ function validation() {
 				<td height="10"></td>
 			</tr>	
 	</table>
-	<form method="post" action="WriteAction.action" name="Orderinformation" onSubmit="">
+	<form method="post" action="OrderWriteAction.action" name="Orderinformation" onSubmit="">
 		<table width="1030" border="1" cellspacing="0" cellpadding="3">
 			<tr>
 				<td width="50" align="center"  bgcolor="#F9F9F9">주문하시는분 <font color="red" size="1">★</font></td>
@@ -376,7 +376,7 @@ function validation() {
 	<table width="1030" border="1" cellspacing="0" cellpadding="3">
 			<tr  bgcolor="#F9F9F9">
 				<td align="center" height="60" width="340"><font  color="#5D5D5D">총 주문 금액 </font>
-				<input type="button" value=" 내역보기 >" OnClick="window.open('paylist.action','window_name','width=430,height=320,location=no,status=no,toolbar=no,scrollbars=no');"/></td>
+				<input type="button" value=" 내역보기 >" OnClick="window.open('Orderpaylist.action','window_name','width=430,height=320,location=no,status=no,toolbar=no,scrollbars=no');"/></td>
 				<td align="center" width="340"><font color="#5D5D5D">총 할인 + 부가결제 금액</font></td>
 				<td align="center" width="340"><font color="#5D5D5D">총 결제예정 금액</font></td>
 			</tr>	

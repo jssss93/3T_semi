@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap>
+	<!-- 공지사항 -->
+	<typeAlias alias="usernotice" type="admin.notice.VO.NoticeVO" />
+	<!-- 리절트 맵 정의 -->
+	<resultMap id="usernoticeRes" class="usernotice">
+		<result property="notice_no" column="notice_no" />
+		<result property="notice_state" column="notice_state" />
+		<result property="notice_writer" column="notice_writer" />
+		<result property="notice_subject" column="notice_subject" />
+		<result property="notice_content" column="notice_content" />
+		<result property="notice_file_orgname" column="notice_file_orgname" />
+		<result property="notice_file_savname" column="notice_file_savname" />
+	</resultMap>
+	
+	<!-- 공통으로 사용할 select 절 정의 -->
+		<sql id="usernotice-select-all">
+			SELECT * FROM NOTICE
+		</sql>
+		
+		<!-- 공통으로 사용할 where-no 절 정의 -->
+		<sql id="usernotice-where-no">
+			WHERE notice_no = #notice_no#
+		</sql>
+		<!-- 해당 번호의 글을 가져오는 쿼리 -->
+		<select id="usernotice-selectOne" resultMap="usernoticeRes" parameterClass="int">
+			SELECT * FROM NOTICE WHERE notice_no = #notice_no#
+		</select>
+		
+		<!-- select 쿼리문 정의 --> 
+		<select id="usernotice-selectAll" resultMap="usernoticeRes">
+			SELECT * FROM  NOTICE ORDER BY notice_no DESC
+		</select>
+		<!-- 검색로직 추가시작 -->
+		<select id="usernotice-selectSearchW" resultMap="usernoticeRes" parameterClass="string">
+			<include refid="usernotice-select-all" />
+			 WHERE notice_writer like #searchKeyword#
+			 ORDER BY notice_no DESC
+		</select>
+		<select id="usernotice-selectSearchS" resultMap="usernoticeRes" parameterClass="string">
+			<include refid="usernotice-select-all" />
+			 WHERE notice_subject like #searchKeyword#
+			 ORDER BY notice_no DESC
+		</select>
+		<select id="usernotice-selectSearchC" resultMap="usernoticeRes" parameterClass="string">
+			<include refid="usernotice-select-all" />
+			 WHERE notice_content like #searchKeyword#
+			 ORDER BY notice_no DESC
+		</select>
+	<!-- 검색로직 끝 -->
+</sqlMap>

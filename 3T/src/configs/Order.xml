@@ -9,22 +9,22 @@
 	<package name="board" extends="struts-default">
 
 		<!-- 주문 메인. -->	
-		<action name="Main" class="user.order.ListAction">
+		<action name="OrderMain" class="user.order.ListAction">
 			<result>/user/order/List.jsp</result>
 		</action>
 		
 		<!-- 주문 페이지 이동. -->
-		<action name="Write" class="user.order.WriteAction" method="form">
+		<action name="OrderWrite" class="user.order.WriteAction" method="form">
 			<result>/user/order/Write.jsp</result>
 		</action>
 		<!--  주문 작성-->
-		<action name="WriteAction" class="user.order.WriteAction" >
+		<action name="OrderWriteAction" class="user.order.WriteAction" >
 			<result type="redirect-action">
 				<param name="actionName">Main</param>
 			</result>
 		</action>
 		<!-- 결제 예정 금액 -->
-		<action name="paylist" class="user.order.WriteAction" method="form">
+		<action name="Orderpaylist" class="user.order.WriteAction" method="form">
 			<result>/user/order/PayList.jsp</result>
 		</action>
 	</package>
