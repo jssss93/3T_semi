@@ -7,6 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<link rel="stylesheet" href="/3T/user/notice/common/css/css.css"
+	type="text/css">
 </head>
 <body>
 	<table width="1100" border="0" height="300" align="center"
@@ -35,7 +37,7 @@
 					<td width="100" height="200" align="center"><s:a
 							href="%{viewURL}">
 							
-							<img src="/list1/image/${goods_file_savname}.PNG" width="350"
+							<img src="/3T/upload/${goods_file_savname}" width="350"
 								height="200">
 								
 						</s:a></td>
@@ -75,7 +77,7 @@
 					<td width="150" height="400" align="center"><s:a
 							href="%{viewURL}">
 							
-							<img src="/list1/image/${goods_file_savname}.PNG" width="350"
+							<img src="/3T/upload/${goods_file_savname}" width="350"
 								height="400">
 						</s:a><br> <s:property value="goods_name" /><br> <s:property
 							value="goods_price" />
@@ -128,7 +130,7 @@
 					<td width="150" height="400" align="center"><s:a
 							href="%{viewURL}">
 							
-							<img src="/list1/image/${goods_file_savname}.PNG" width="350"
+							<img src="C:\\upload\\+'${goods_file_savname}'" width="350"
 								height="400">
 						</s:a><br> <s:property value="goods_name" /><br> <s:property
 							value="goods_price" />

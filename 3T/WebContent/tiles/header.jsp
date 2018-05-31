@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<link rel="stylesheet" href="/3T/user/notice/common/css/css.css"
+	type="text/css">
 </head>
 <body>
 	<table border=0>
@@ -47,9 +49,9 @@
 			</td>
 			
 			<td align="center" width="200">
-				<a href="notice.action">notice</a>
+				<a href="UserNoticeList.action">notice</a>
 				
-				<a href="faq.action">FAQ</a>
+				<a href="UserFaqList.action">FAQ</a>
 				
 				<a href="qna.action">Q&A</a>
 				
@@ -57,7 +59,7 @@
 			</td>
 			
 			
-			<s:if test='%{session.id == null}'>
+			<s:if test='%{session.M_id == null}'>
 				<td align="right">
 					<!--비회원 헤더 카테고리  --> <!--비회원 로그인 폼  경로 잡아줄 것--> <a
 					href="loginForm.action" >LOGIN</a> &nbsp;|&nbsp;<a
@@ -65,7 +67,7 @@
 
 				</td>
 			</s:if>
-			<s:elseif test='%{session.id != null}'>
+			<s:elseif test='%{session.M_id != null}'>
 				<td align="right">
 					<!--경로잡을것  --> 
 					<a href="logout.action">LOGOUT</a> 

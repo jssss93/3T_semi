@@ -1,19 +1,19 @@
 package user.goods;
 public class pagingAction {
 
-	private int currentPage;   // ?˜„?¬?˜?´ì§?
-	private int totalCount;	 // ? „ì²? ê²Œì‹œë¬? ?ˆ˜
-	private int totalPage;	 // ? „ì²? ?˜?´ì§? ?ˆ˜
-	private int blockCount;	 // ?•œ ?˜?´ì§??˜  ê²Œì‹œë¬¼ì˜ ?ˆ˜
-	private int blockPage;	 // ?•œ ?™”ë©´ì— ë³´ì—¬ì¤? ?˜?´ì§? ?ˆ˜
-	private int startCount;	 // ?•œ ?˜?´ì§??—?„œ ë³´ì—¬ì¤? ê²Œì‹œê¸??˜ ?‹œ?‘ ë²ˆí˜¸
-	private int endCount;	 // ?•œ ?˜?´ì§??—?„œ ë³´ì—¬ì¤? ê²Œì‹œê¸??˜ ? ë²ˆí˜¸
-	private int startPage;	 // ?‹œ?‘ ?˜?´ì§?
-	private int endPage;	 // ë§ˆì?ë§? ?˜?´ì§?
+	private int currentPage;   // ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ëŒï¿½?
+	private int totalCount;	 // ?ï¿½ï¿½ï§£? å¯ƒï¿½ï¿½ï¿½è‡¾? ?ï¿½ï¿½
+	private int totalPage;	 // ?ï¿½ï¿½ï§£? ?ï¿½ï¿½?ï¿½ëŒï¿½? ?ï¿½ï¿½
+	private int blockCount;	 // ?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ëŒï¿½??ï¿½ï¿½  å¯ƒï¿½ï¿½ï¿½è‡¾ì‡±ï¿½ï¿½ ?ï¿½ï¿½
+	private int blockPage;	 // ?ï¿½ï¿½ ?ï¿½ï¿½ï§ëŒï¿½ï¿½ è¹‚ëŒï¿½ÑŠï¿½? ?ï¿½ï¿½?ï¿½ëŒï¿½? ?ï¿½ï¿½
+	private int startCount;	 // ?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ëŒï¿½??ï¿½ï¿½?ï¿½ï¿½ è¹‚ëŒï¿½ÑŠï¿½? å¯ƒï¿½ï¿½ï¿½æ¹²??ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ è¸°ï¿½ï¿½ï¿½
+	private int endCount;	 // ?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ëŒï¿½??ï¿½ï¿½?ï¿½ï¿½ è¹‚ëŒï¿½ÑŠï¿½? å¯ƒï¿½ï¿½ï¿½æ¹²??ï¿½ï¿½ ?ï¿½ï¿½ è¸°ï¿½ï¿½ï¿½
+	private int startPage;	 // ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ëŒï¿½?
+	private int endPage;	 // ï§ï¿½ï¿½?ï§? ?ï¿½ï¿½?ï¿½ëŒï¿½?
 
 	private StringBuffer pagingHtml;
 
-	// ?˜?´ì§? ?ƒ?„±?
+	// ?ï¿½ï¿½?ï¿½ëŒï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½
 	public pagingAction(int currentPage, int totalCount, int blockCount,
 			int blockPage) {
 
@@ -22,42 +22,42 @@ public class pagingAction {
 		this.currentPage = currentPage;
 		this.totalCount = totalCount;
 
-		// ? „ì²? ?˜?´ì§? ?ˆ˜
+		// ?ï¿½ï¿½ï§£? ?ï¿½ï¿½?ï¿½ëŒï¿½? ?ï¿½ï¿½
 		totalPage = (int) Math.ceil((double) totalCount / blockCount);
 		if (totalPage == 0) {
 			totalPage = 1;
 		}
 
-		// ?˜„?¬ ?˜?´ì§?ê°? ? „ì²? ?˜?´ì§? ?ˆ˜ë³´ë‹¤ ?¬ë©? ? „ì²? ?˜?´ì§? ?ˆ˜ë¡? ?„¤? •
+		// ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ëŒï¿½?åª›? ?ï¿½ï¿½ï§£? ?ï¿½ï¿½?ï¿½ëŒï¿½? ?ï¿½ï¿½è¹‚ëŒ€ï¿½ï¿½ ?ï¿½Ñ‰ï¿½? ?ï¿½ï¿½ï§£? ?ï¿½ï¿½?ï¿½ëŒï¿½? ?ï¿½ï¿½æ¿¡? ?ï¿½ï¿½?ï¿½ï¿½
 		if (currentPage > totalPage) {
 			currentPage = totalPage;
 		}
 
-		// ?˜„?¬ ?˜?´ì§??˜ ì²˜ìŒê³? ë§ˆì?ë§? ê¸??˜ ë²ˆí˜¸ ê°?? ¸?˜¤ê¸?.
+		// ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ëŒï¿½??ï¿½ï¿½ ï§£ï¿½ï¿½ï¿½æ€¨? ï§ï¿½ï¿½?ï§? æ¹²??ï¿½ï¿½ è¸°ï¿½ï¿½ï¿½ åª›??ï¿½ï¿½?ï¿½ã…ºï¿½?.
 		startCount = (currentPage - 1) * blockCount;
 		endCount = startCount + blockCount - 1;
 
-		// ?‹œ?‘ ?˜?´ì§??? ë§ˆì?ë§? ?˜?´ì§? ê°? êµ¬í•˜ê¸?.
+		// ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ëŒï¿½??? ï§ï¿½ï¿½?ï§? ?ï¿½ï¿½?ï¿½ëŒï¿½? åª›? æ´Ñ‹ï¿½ï¿½æ¹²?.
 		startPage = (int) ((currentPage - 1) / blockPage) * blockPage + 1;
 		endPage = startPage + blockPage - 1;
 
-		// ë§ˆì?ë§? ?˜?´ì§?ê°? ? „ì²? ?˜?´ì§? ?ˆ˜ë³´ë‹¤ ?¬ë©? ? „ì²? ?˜?´ì§? ?ˆ˜ë¡? ?„¤? •
+		// ï§ï¿½ï¿½?ï§? ?ï¿½ï¿½?ï¿½ëŒï¿½?åª›? ?ï¿½ï¿½ï§£? ?ï¿½ï¿½?ï¿½ëŒï¿½? ?ï¿½ï¿½è¹‚ëŒ€ï¿½ï¿½ ?ï¿½Ñ‰ï¿½? ?ï¿½ï¿½ï§£? ?ï¿½ï¿½?ï¿½ëŒï¿½? ?ï¿½ï¿½æ¿¡? ?ï¿½ï¿½?ï¿½ï¿½
 		if (endPage > totalPage) {
 			endPage = totalPage;
 		}
 
-		// ?´? „ block ?˜?´ì§?
+		// ?ï¿½ï¿½?ï¿½ï¿½ block ?ï¿½ï¿½?ï¿½ëŒï¿½?
 		pagingHtml = new StringBuffer();
 		if (currentPage > blockPage) {
-			pagingHtml.append("<a href=mainAction.action?currentPage="
+			pagingHtml.append("<a href=listouter.action?currentPage="
 					+ (startPage - 1) + ">");
-			pagingHtml.append("?´? „");
+			pagingHtml.append("?ï¿½ï¿½?ï¿½ï¿½");
 			pagingHtml.append("</a>");
 		}
 
 		pagingHtml.append("&nbsp;|&nbsp;");
 
-		//?˜?´ì§? ë²ˆí˜¸.?˜„?¬ ?˜?´ì§??Š” ë¹¨ê°„?ƒ‰?œ¼ë¡? ê°•ì¡°?•˜ê³? ë§í¬ë¥? ? œê±?.
+		//?ï¿½ï¿½?ï¿½ëŒï¿½? è¸°ï¿½ï¿½ï¿½.?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ëŒï¿½??ï¿½ï¿½ é®â‘£ï¿½?ï¿½ï¿½?ï¿½ì‡°ï¿½? åª›ï¿½è­°ï¿½?ï¿½ï¿½æ€¨? ï§ï¿½ï¿½Ñ‰ï¿½? ?ï¿½ï¿½å«„?.
 		for (int i = startPage; i <= endPage; i++) {
 			if (i > totalPage) {
 				break;
@@ -68,7 +68,7 @@ public class pagingAction {
 				pagingHtml.append("</font></b>");
 			} else {
 				pagingHtml
-						.append("&nbsp;<a href='mainAction.action?currentPage=");
+						.append("&nbsp;<a href='listouter.action?currentPage=");
 				pagingHtml.append(i);
 				pagingHtml.append("'>");
 				pagingHtml.append(i);
@@ -80,11 +80,11 @@ public class pagingAction {
 
 		pagingHtml.append("&nbsp;&nbsp;|&nbsp;&nbsp;");
 
-		// ?‹¤?Œ block ?˜?´ì§?
+		// ?ï¿½ï¿½?ï¿½ï¿½ block ?ï¿½ï¿½?ï¿½ëŒï¿½?
 		if (totalPage - startPage >= blockPage) {
-			pagingHtml.append("<a href=mainAction.action?currentPage="
+			pagingHtml.append("<a href=listouter.action?currentPage="
 					+ (endPage + 1) + ">");
-			pagingHtml.append("?‹¤?Œ");
+			pagingHtml.append("?ï¿½ï¿½?ï¿½ï¿½");
 			pagingHtml.append("</a>");
 		}
 	}
