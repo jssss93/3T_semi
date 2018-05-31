@@ -18,4 +18,7 @@
 	<include file="/configs/Member.xml" />
 	<include file="/configs/Order.xml" />
 	<include file="/configs/Review.xml"/>
+	<include file="/configs/Notice.xml" />
+	<include file="/configs/Faq.xml" />
+  
 </struts>

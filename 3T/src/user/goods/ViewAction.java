@@ -1,6 +1,5 @@
-package admin.goods;
+package user.goods;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 
@@ -11,51 +10,54 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import admin.goods.VO.GoodsVO;
 
-public class DeleteAction extends ActionSupport {
+public class ViewAction extends ActionSupport {
 
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 
-	private GoodsVO paramClass;
-	private GoodsVO resultClass;
+	private GoodsVO paramClass = new GoodsVO();
+	private GoodsVO resultClass = new GoodsVO();
 
 	private int currentPage;
-	private String fileUploadPath = "C:\\upload\\";
 
-	private int goods_no;
+	private int Goods_no;
+	
+	/*private List<reviewBoardBean> reviewList = new ArrayList<reviewBoardBean>();
+	   private reviewBoardBean reviewClass = new reviewBoardBean();
+	   
+	   private List<qnaBoardBean> qnaList = new ArrayList<qnaBoardBean>();
+	   private qnaBoardBean qnaClass = new qnaBoardBean();*/
 
-	public DeleteAction() throws IOException {
+	public ViewAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 		reader.close();
 	}
-
+    //�󼼺���
 	public String execute() throws Exception {
-		paramClass = new GoodsVO();
-		resultClass = new GoodsVO();
-
-		resultClass = (GoodsVO) sqlMapper.queryForObject("selectOne", getGoods_no());
-
-		File deleteFile = new File(fileUploadPath + resultClass.getGoods_file_savname());
-		deleteFile.delete();
-
+		
 		paramClass.setGoods_no(getGoods_no());
+		
+		sqlMapper.update("goods-updateReadcnt", paramClass);
 
-		sqlMapper.update("deleteGoods", paramClass);
+		resultClass = (GoodsVO) sqlMapper.queryForObject("goods-selectOne", getGoods_no());
 
+		 /*reviewList = (List) sqlMapper.queryForList("review.selectAll", getGoods_no()); 
+	     qnaList = (List) sqlMapper.queryForList("qna.qnaListDetail", getGoods_no());*/
+		
 		return SUCCESS;
+	}
+
+	public int getGoods_no() {
+		return Goods_no;
+	}
+
+	public void setGoods_no(int goods_no) {
+		Goods_no = goods_no;
 	}
 
 	public GoodsVO getParamClass() {
 		return paramClass;
-	}
-
-	public int getGoods_no() {
-		return goods_no;
-	}
-
-	public void setGoods_no(int goods_no) {
-		this.goods_no = goods_no;
 	}
 
 	public void setParamClass(GoodsVO paramClass) {
@@ -77,13 +79,6 @@ public class DeleteAction extends ActionSupport {
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
 	}
-
-	public String getFileUploadPath() {
-		return fileUploadPath;
-	}
-
-	public void setFileUploadPath(String fileUploadPath) {
-		this.fileUploadPath = fileUploadPath;
-	}
-
+	
+	
 }

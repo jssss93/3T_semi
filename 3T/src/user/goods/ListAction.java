@@ -16,61 +16,196 @@ public class ListAction extends ActionSupport {
 
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
-
+	
 	private List<GoodsVO> list = new ArrayList<GoodsVO>();
-	private List<GoodsVO> list1 = new ArrayList<GoodsVO>(); 
+	private List<GoodsVO> list1 = new ArrayList<GoodsVO>();
 	
 	private int currentPage = 1;
 	private int totalCount;
-	private int blockCount = 15;
+	
+	private int blockCount = 12;
 	private int blockPage = 5;
 	private String pagingHtml;
 	private pagingAction page;
 	private int num = 0;
-	
-	public ListAction() throws IOException{
+
+	public ListAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 		reader.close();
 	}
 
-	public String execute() throws Exception {
-		
-		list = sqlMapper.queryForList("selectAll2");
-		
+	public String outer() throws Exception {
+
+		list = sqlMapper.queryForList("select-All-outer");
+		list1 = sqlMapper.queryForList("select-All-outer-best");
+
 		totalCount = list.size();
-		
+
 		page = new pagingAction(currentPage, totalCount, blockCount, blockPage);
 		pagingHtml = page.getPagingHtml().toString();
 
 		int lastCount = totalCount;
-		
+
 		if (page.getEndCount() < totalCount)
 			lastCount = page.getEndCount() + 1;
 
 		list = list.subList(page.getStartCount(), lastCount);
-		
+
 		return SUCCESS;
 	}
-	
-	/*public String best() throws Exception{
-		
-		list1 = sqlMapper.queryForList("selectBest2");
-		
-totalCount = list.size();
-		
+	public String suit() throws Exception {
+
+		list = sqlMapper.queryForList("select-All-suit");
+		list1 = sqlMapper.queryForList("select-All-suit-best");
+
+		totalCount = list.size();
+
 		page = new pagingAction(currentPage, totalCount, blockCount, blockPage);
 		pagingHtml = page.getPagingHtml().toString();
 
 		int lastCount = totalCount;
-		
+
 		if (page.getEndCount() < totalCount)
 			lastCount = page.getEndCount() + 1;
 
 		list = list.subList(page.getStartCount(), lastCount);
-		
+
 		return SUCCESS;
-	}*/
+	}
+	public String top() throws Exception {
+
+		list = sqlMapper.queryForList("select-All-top");
+		list1 = sqlMapper.queryForList("select-All-top-best");
+
+		totalCount = list.size();
+
+		page = new pagingAction(currentPage, totalCount, blockCount, blockPage);
+		pagingHtml = page.getPagingHtml().toString();
+
+		int lastCount = totalCount;
+
+		if (page.getEndCount() < totalCount)
+			lastCount = page.getEndCount() + 1;
+
+		list = list.subList(page.getStartCount(), lastCount);
+
+		return SUCCESS;
+	}
+	public String shirt() throws Exception {
+
+		list = sqlMapper.queryForList("select-All-shirt");
+		list1 = sqlMapper.queryForList("select-All-shirt-best");
+
+		totalCount = list.size();
+
+		page = new pagingAction(currentPage, totalCount, blockCount, blockPage);
+		pagingHtml = page.getPagingHtml().toString();
+
+		int lastCount = totalCount;
+
+		if (page.getEndCount() < totalCount)
+			lastCount = page.getEndCount() + 1;
+
+		list = list.subList(page.getStartCount(), lastCount);
+
+		return SUCCESS;
+	}
+	public String knit() throws Exception {
+
+		list = sqlMapper.queryForList("select-All-knit");
+		list1 = sqlMapper.queryForList("select-All-knit-best");
+
+		totalCount = list.size();
+
+		page = new pagingAction(currentPage, totalCount, blockCount, blockPage);
+		pagingHtml = page.getPagingHtml().toString();
+
+		int lastCount = totalCount;
+
+		if (page.getEndCount() < totalCount)
+			lastCount = page.getEndCount() + 1;
+
+		list = list.subList(page.getStartCount(), lastCount);
+
+		return SUCCESS;
+	}
+	public String bottom() throws Exception {
+
+		list = sqlMapper.queryForList("select-All-bottom");
+		list1 = sqlMapper.queryForList("select-All-bottom-best");
+
+		totalCount = list.size();
+
+		page = new pagingAction(currentPage, totalCount, blockCount, blockPage);
+		pagingHtml = page.getPagingHtml().toString();
+
+		int lastCount = totalCount;
+
+		if (page.getEndCount() < totalCount)
+			lastCount = page.getEndCount() + 1;
+
+		list = list.subList(page.getStartCount(), lastCount);
+
+		return SUCCESS;
+	}
+	public String shoes() throws Exception {
+
+		list = sqlMapper.queryForList("select-All-shoes");
+		list1 = sqlMapper.queryForList("select-All-shoes-best");
+
+		totalCount = list.size();
+
+		page = new pagingAction(currentPage, totalCount, blockCount, blockPage);
+		pagingHtml = page.getPagingHtml().toString();
+
+		int lastCount = totalCount;
+
+		if (page.getEndCount() < totalCount)
+			lastCount = page.getEndCount() + 1;
+
+		list = list.subList(page.getStartCount(), lastCount);
+
+		return SUCCESS;
+	}
+	public String acc() throws Exception {
+
+		list = sqlMapper.queryForList("select-All-acc");
+		list1 = sqlMapper.queryForList("select-All-acc-best");
+
+		totalCount = list.size();
+
+		page = new pagingAction(currentPage, totalCount, blockCount, blockPage);
+		pagingHtml = page.getPagingHtml().toString();
+
+		int lastCount = totalCount;
+
+		if (page.getEndCount() < totalCount)
+			lastCount = page.getEndCount() + 1;
+
+		list = list.subList(page.getStartCount(), lastCount);
+
+		return SUCCESS;
+	}
+	public String perfectline() throws Exception {
+
+		list = sqlMapper.queryForList("select-All-perfectline");
+		list1 = sqlMapper.queryForList("select-All-perfectline-best");
+
+		totalCount = list.size();
+
+		page = new pagingAction(currentPage, totalCount, blockCount, blockPage);
+		pagingHtml = page.getPagingHtml().toString();
+
+		int lastCount = totalCount;
+
+		if (page.getEndCount() < totalCount)
+			lastCount = page.getEndCount() + 1;
+
+		list = list.subList(page.getStartCount(), lastCount);
+
+		return SUCCESS;
+	}
 
 	public List<GoodsVO> getList() {
 		return list;
@@ -78,6 +213,14 @@ totalCount = list.size();
 
 	public void setList(List<GoodsVO> list) {
 		this.list = list;
+	}
+
+	public List<GoodsVO> getList1() {
+		return list1;
+	}
+
+	public void setList1(List<GoodsVO> list1) {
+		this.list1 = list1;
 	}
 
 	public int getCurrentPage() {
@@ -137,5 +280,7 @@ totalCount = list.size();
 	}
 	
 	
-
+	
 }
+	
+	
