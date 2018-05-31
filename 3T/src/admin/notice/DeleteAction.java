@@ -1,4 +1,4 @@
-package admin.goods;
+package admin.notice;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,19 +10,20 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 
 import admin.goods.VO.GoodsVO;
+import admin.notice.VO.NoticeVO;
 
 public class DeleteAction extends ActionSupport {
 
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 
-	private GoodsVO paramClass;
-	private GoodsVO resultClass;
+	private NoticeVO paramClass;
+	private NoticeVO resultClass;
 
 	private int currentPage;
 	private String fileUploadPath = "C:\\upload\\";
 
-	private int goods_no;
+	private int notice_no;
 
 	public DeleteAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
@@ -31,42 +32,47 @@ public class DeleteAction extends ActionSupport {
 	}
 
 	public String execute() throws Exception {
-		paramClass = new GoodsVO();
-		resultClass = new GoodsVO();
+		paramClass = new NoticeVO();
+		resultClass = new NoticeVO();
 
-		resultClass = (GoodsVO) sqlMapper.queryForObject("selectOne", getGoods_no());
+		resultClass = (NoticeVO) sqlMapper.queryForObject("ANselectOne", getNotice_no());
 
-		File deleteFile = new File(fileUploadPath + resultClass.getGoods_file_savname());
+		File deleteFile = new File(fileUploadPath + resultClass.getNotice_file_savname());
 		deleteFile.delete();
 
-		paramClass.setGoods_no(getGoods_no());
+		paramClass.setNotice_no(getNotice_no());
 
-		sqlMapper.update("deleteGoods", paramClass);
+		sqlMapper.update("deleteNotice", paramClass);
 
 		return SUCCESS;
 	}
 
-	public GoodsVO getParamClass() {
+
+
+
+	public int getNotice_no() {
+		return notice_no;
+	}
+
+	public void setNotice_no(int notice_no) {
+		this.notice_no = notice_no;
+	}
+
+	
+
+	public NoticeVO getParamClass() {
 		return paramClass;
 	}
 
-	public int getGoods_no() {
-		return goods_no;
-	}
-
-	public void setGoods_no(int goods_no) {
-		this.goods_no = goods_no;
-	}
-
-	public void setParamClass(GoodsVO paramClass) {
+	public void setParamClass(NoticeVO paramClass) {
 		this.paramClass = paramClass;
 	}
 
-	public GoodsVO getResultClass() {
+	public NoticeVO getResultClass() {
 		return resultClass;
 	}
 
-	public void setResultClass(GoodsVO resultClass) {
+	public void setResultClass(NoticeVO resultClass) {
 		this.resultClass = resultClass;
 	}
 
