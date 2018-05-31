@@ -94,6 +94,22 @@ public class GoodsVO {
 		return goods_recommend;
 	}
 
+	public String getGoods_file_orgname() {
+		return goods_file_orgname;
+	}
+
+	public void setGoods_file_orgname(String goods_file_orgname) {
+		this.goods_file_orgname = goods_file_orgname;
+	}
+
+	public String getGoods_file_savname() {
+		return goods_file_savname;
+	}
+
+	public void setGoods_file_savname(String goods_file_savname) {
+		this.goods_file_savname = goods_file_savname;
+	}
+
 	public void setGoods_recommend(int goods_recommend) {
 		this.goods_recommend = goods_recommend;
 	}
@@ -129,9 +145,5 @@ public class GoodsVO {
 	public void setGoods_file_savname(String goods_file_savname) {
 		this.goods_file_savname = goods_file_savname;
 	}
-
-	
-
-
 
 }

@@ -5,7 +5,8 @@
 
 <struts>
 	<constant name="struts.multipart.maxSize" value="104857600" />
-
+	<constant name="struts.multipart.saveDir" value="location of your choice" />
+	
 	<package
 		name="----------------------------------------Goods-------------------------------------------"
 		extends="struts-default">
@@ -28,12 +29,45 @@
 		<action name="modifyForm" class="admin.goods.ViewAction">
 			<result type="chain">writeForm</result>
 		</action>
-		<action name="modifyAction" class="admin.goods.ModifyAction">
+		<action name="modifyAction" class="admin.goods.ModifyAction">	
 			<result type="chain">viewAction</result>
 		</action>
 		<action name="deleteAction" class="admin.goods.DeleteAction">
 			<result type="chain">listAction</result>
 		</action>
-		
+
+	</package>
+
+	<package
+		name="----------------------------------------Notice-------------------------------------------"
+		extends="struts-default">
+
+		<action name="ANlistAction" class="admin.notice.ListAction">
+			<result>/admin/notice/List.jsp</result>
+		</action>
+
+		<action name="ANwriteForm" class="admin.notice.WriteAction"
+			method="form">
+			<result>/admin/notice/Write.jsp</result>
+		</action>
+		<action name="ANwriteAction" class="admin.notice.WriteAction">
+			<result type="redirect-action">
+				<param name="actionName">ANlistAction</param>
+			</result>
+		</action>
+		<action name="ANviewAction" class="admin.notice.ViewAction">
+			<result>/admin/notice/View.jsp</result>
+		</action>
+
+		<action name="ANmodifyForm" class="admin.notice.ViewAction">
+			<result type="chain">ANwriteForm</result>
+		</action>
+		<action name="ANmodifyAction" class="admin.notice.ModifyAction">
+			<result type="chain">ANviewAction</result>
+		</action>
+		<action name="ANdeleteAction" class="admin.notice.DeleteAction">
+			<result type="chain">ANlistAction</result>
+		</action>
+
 	</package>
 </struts> 

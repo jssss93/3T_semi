@@ -38,15 +38,15 @@ public class WriteAction extends ActionSupport {
 	private int goods_recommend;
 	private int goods_totalcount;
 	private String goods_related_product;
-	private String goods_org_filename;
-	private String goods_sav_filename;
+	private String goods_file_orgname;
+	private String goods_file_savname;
 	Calendar today = Calendar.getInstance();
 
 	private File upload;
 	private String uploadContentType;
 	private String uploadFileName;
-	private String fileUploadPath = "D:\\2018\\javasrc\\3T\\WebContent\\upload\\";
-	
+	private String fileUploadPath = "C:\\upload\\";
+
 	public WriteAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
@@ -73,8 +73,8 @@ public class WriteAction extends ActionSupport {
 		paramClass.setGoods_related_product(getGoods_related_product());
 		paramClass.setGoods_content(getGoods_content());
 		paramClass.setGoods_reg_date(today.getTime());
-		paramClass.setGoods_org_filename(getGoods_org_filename());
-		paramClass.setGoods_sav_filename(getGoods_sav_filename());
+		paramClass.setGoods_file_orgname(getGoods_file_orgname());
+		paramClass.setGoods_file_savname(getGoods_file_savname());
 
 		sqlMapper.insert("insertGoods", paramClass);
 
@@ -89,8 +89,8 @@ public class WriteAction extends ActionSupport {
 			FileUtils.copyFile(getUpload(), destFile);
 
 			paramClass.setGoods_no(resultClass.getGoods_no());
-			paramClass.setGoods_org_filename(getUploadFileName());
-			paramClass.setGoods_sav_filename(file_name + "." + file_ext);
+			paramClass.setGoods_file_orgname(getUploadFileName());
+			paramClass.setGoods_file_savname(file_name + "." + file_ext);
 
 			sqlMapper.update("updateFile", paramClass);
 		}
@@ -98,20 +98,20 @@ public class WriteAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public String getGoods_org_filename() {
-		return goods_org_filename;
+	public String getGoods_file_orgname() {
+		return goods_file_orgname;
 	}
 
-	public void setGoods_org_filename(String goods_org_filename) {
-		this.goods_org_filename = goods_org_filename;
+	public void setGoods_file_orgname(String goods_file_orgname) {
+		this.goods_file_orgname = goods_file_orgname;
 	}
 
-	public String getGoods_sav_filename() {
-		return goods_sav_filename;
+	public String getGoods_file_savname() {
+		return goods_file_savname;
 	}
 
-	public void setGoods_sav_filename(String goods_sav_filename) {
-		this.goods_sav_filename = goods_sav_filename;
+	public void setGoods_file_savname(String goods_file_savname) {
+		this.goods_file_savname = goods_file_savname;
 	}
 
 	public int getGoods_no() {
