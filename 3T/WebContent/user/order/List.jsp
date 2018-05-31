@@ -38,7 +38,7 @@
 
 	      <s:iterator value="list" status="stat">
 			<!-- http://localhost:8080/StrutsBoard/viewAction.action?no=2&currentPage=1 -->
-			<s:url id="viewURL" action="viewAction" >
+			<s:url id="viewURL" action="OrderView" >
 				<s:param name="ORDER_NO">
 					<s:property value="ORDER_NO" />
 				</s:param>
@@ -72,9 +72,9 @@
 	      </s:if>
 			
 	      <tr height="50" align="center">
-    		<td colspan="6"><s:property value="pagingHtml"  escape="false" /></td>
-    					<td colspan="8"><input name="Main" type="button" value="주문하기 ▶"
-				onClick="javascript:location.href='OrderWrite.action'"></td>
+    		<td colspan="5"><s:property value="pagingHtml"  escape="false" /></td>
+    					<td colspan="6"><input name="Main" type="button" value="주문하기 ▶"
+				onClick="javascript:location.href='OrderWrite.action?currentPage=<s:property value="currentPage" />'"></td>
     	   </tr>
 	</table>
    </body>

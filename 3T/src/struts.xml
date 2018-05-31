@@ -19,4 +19,6 @@
 	<include file="/configs/Order.xml" />
 	<include file="/configs/Notice.xml" />
 	<include file="/configs/Faq.xml" />
+	<include file="/configs/Basket.xml" />
+	<include file="/configs/Wishlist.xml" />
 </struts>

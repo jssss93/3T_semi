@@ -6,7 +6,7 @@
 <struts>
 	<!-- 용량제한 10MB 로 설정. -->
 	<constant name="struts.multipart.maxSize" value="10485760" />
-	<package name="board" extends="struts-default">
+	<package name="order" extends="struts-default">
 
 		<!-- 주문 메인. -->	
 		<action name="OrderMain" class="user.order.ListAction">
@@ -26,6 +26,10 @@
 		<!-- 결제 예정 금액 -->
 		<action name="Orderpaylist" class="user.order.WriteAction" method="form">
 			<result>/user/order/PayList.jsp</result>
+		</action>
+			<!-- 주문 상세보기 -->
+		<action name="OrderView" class="user.order.viewAction">
+			<result>/user/order/View.jsp</result>
 		</action>
 	</package>
 </struts>

@@ -159,7 +159,7 @@ function validation() {
 		</tr>
 	</table>
 
-	<table width="1030" border="1" cellspacing="0" cellpadding="2">
+	<table width="1000" border="1" cellspacing="0" cellpadding="2">
 		<tr>
 			<td width="50" rowspan="2" align="center">해택 정보</td>
 			<td width="400">&nbsp;&nbsp;$ [FAMILY]회원이십니다.</td>
@@ -170,7 +170,7 @@ function validation() {
 		</tr>
 	</table>
 
-	<table width="1030" border="0" cellspacing="0" cellpadding="2">
+	<table width="1000" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td height="20"></td>
 		</tr>
@@ -240,8 +240,8 @@ function validation() {
 			<td height="20"></td>
 		</tr>
 	</table>
-	<hr align="left" width="1030" color="#8C8C8C">
-	<table width="1030" border="0" cellspacing="0" cellpadding="3">
+	<hr align="left" width="1000" color="#8C8C8C">
+	<table width="1000" border="0" cellspacing="0" cellpadding="3">
 			<tr>
 				<td height="10"></td>
 			</tr>	
@@ -254,7 +254,7 @@ function validation() {
 			</tr>	
 	</table>
 	<form method="post" action="OrderWriteAction.action" name="Orderinformation" onSubmit="">
-		<table width="1030" border="1" cellspacing="0" cellpadding="3">
+		<table width="1000" border="1" cellspacing="0" cellpadding="3">
 			<tr>
 				<td width="50" align="center"  bgcolor="#F9F9F9">주문하시는분 <font color="red" size="1">★</font></td>
 				<td width="400"><input type="text" name="ORDER_NAME" size="10"
@@ -310,7 +310,7 @@ function validation() {
 		</table>
 	
 
-	<table width="1030" border="0" cellspacing="0" cellpadding="3">
+	<table width="1000" border="0" cellspacing="0" cellpadding="3">
 			<tr>
 				<td height="10"></td>
 			</tr>	
@@ -323,7 +323,7 @@ function validation() {
 			</tr>	
 	</table>
 	
-		<table width="1030" border="1" cellspacing="0" cellpadding="3">
+		<table width="1000" border="1" cellspacing="0" cellpadding="3">
 			<tr>
 				<td width="50" align="center"  bgcolor="#F9F9F9">배송지 선택</td>
 				<td width="400">
@@ -362,7 +362,7 @@ function validation() {
 			</tr>
 		</table>
 	
-	<table width="1030" border="0" cellspacing="0" cellpadding="3">
+	<table width="1000" border="0" cellspacing="0" cellpadding="3">
 			<tr>
 				<td height="10"></td>
 			</tr>	
@@ -373,7 +373,7 @@ function validation() {
 				<td height="10"></td>
 			</tr>	
 	</table>
-	<table width="1030" border="1" cellspacing="0" cellpadding="3">
+	<table width="1000" border="1" cellspacing="0" cellpadding="3">
 			<tr  bgcolor="#F9F9F9">
 				<td align="center" height="60" width="340"><font  color="#5D5D5D">총 주문 금액 </font>
 				<input type="button" value=" 내역보기 >" OnClick="window.open('Orderpaylist.action','window_name','width=430,height=320,location=no,status=no,toolbar=no,scrollbars=no');"/></td>
@@ -386,7 +386,7 @@ function validation() {
 				<td  align="center"><font style="font-weight: bold;" color="#FF0000"><h3>= KRW $</h3></font></td>
 			</tr>
 	</table>
-	<table width="1030" border="0" cellspacing="0" cellpadding="3">
+	<table width="1000" border="0" cellspacing="0" cellpadding="3">
 				<tr>
 					<td height="10"></td>
 				</tr>	
@@ -397,7 +397,7 @@ function validation() {
 					<td height="10"></td>
 				</tr>	
 	</table>
-	<table width="1030" border="1" cellspacing="0" cellpadding="3">
+	<table width="1000" border="1" cellspacing="0" cellpadding="3">
 				<tr>
 					<td width="830" height="50">&nbsp;&nbsp;&nbsp;<input type="radio" name="PAYMENT" value="무통장 입금" checked="checked"/>무통장 입금&nbsp;&nbsp;&nbsp;
 						<input type="radio"name="PAYMENT" value="카드 결제"/>카드 결제
@@ -444,13 +444,13 @@ function validation() {
 				
 	</table>
 	</form>
-	<table width="1030" border="0" cellspacing="0" cellpadding="3">
+	<table width="1000" border="0" cellspacing="0" cellpadding="3">
 				<tr>
 					<td height="10"></td>
 				</tr>	
 				
 	</table>
-	<table width="1030" border="1" cellspacing="0" cellpadding="3">
+	<table width="1000" border="1" cellspacing="0" cellpadding="3">
 			<tr>
 				<td><font style="font-weight: bold;">무이자 할부 이용안내</font></td>
 			</tr>
@@ -461,13 +461,13 @@ function validation() {
 				</td>
 			</tr>
 	</table>
-	<table width="1030" border="0" cellspacing="0" cellpadding="3">
+	<table width="1000" border="0" cellspacing="0" cellpadding="3">
 				<tr>
 					<td height="10"></td>
 				</tr>	
 				
 	</table>
-	<table width="1030" border="1" cellspacing="0" cellpadding="3">
+	<table width="1000" border="1" cellspacing="0" cellpadding="3">
 			<tr>
 				<td><font style="font-weight: bold;">이용 안내</font></td>
 			</tr>

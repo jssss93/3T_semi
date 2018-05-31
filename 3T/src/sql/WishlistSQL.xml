@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap>
+	<!-- 찜 -->
+	<typeAlias alias="wishlist" type="user.wishlist.WishlistVO" />
+	<!-- 리절트 맵 정의 -->
+	<resultMap id="wishlistRes" class="wishlist">
+		<result property="W_NO" column="W_NO" />
+		<result property="W_MEMBER_ID" column="W_MEMBER_ID" />
+		<result property="W_GOODS_NAME" column="W_GOODS_NAME" />
+		<result property="W_GOODS_AMOUNT" column="W_GOODS_AMOUNT" />
+		<result property="W_GOODS_IMG" column="W_GOODS_IMG" />
+		<result property="W_TOTAL" column="W_TOTAL" />
+		<result property="W_SELECT" column="W_SELECT" />
+	</resultMap>
+	
+		<!-- 공통으로 사용할 select 절 정의 -->
+		<sql id="wishlist-select-all">
+			SELECT * FROM WISHLIST
+		</sql>
+		
+		<!-- 공통으로 사용할 where-no 절 정의 -->
+		<sql id="wishlist-where-no">
+			WHERE W_NO = #W_NO#
+		</sql>
+	
+		<!-- select 쿼리문 정의 --> 
+		<select id="wishlist-selectAll" resultMap="wishlistRes">
+			SELECT * FROM  WISHLIST ORDER BY W_NO DESC
+		</select>
+</sqlMap>

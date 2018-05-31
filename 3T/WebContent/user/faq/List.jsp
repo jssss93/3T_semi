@@ -67,7 +67,9 @@
 				<td height="1" colspan="3"></td>
 			</tr>
 		</s:if>
-		
+		<tr height="50" align="center">
+    		<td colspan="3"><s:property value="pagingHtml"  escape="false" /></td>
+       </tr>
 	<tr align="center">
 		<td colspan="3">
 			<form>

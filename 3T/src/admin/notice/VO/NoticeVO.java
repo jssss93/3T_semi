@@ -3,7 +3,7 @@ package admin.notice.VO;
 public class NoticeVO {
 	private int notice_no;
 	private String notice_state;
-	private String notice_wirter;
+	private String notice_writer;
 	private String notice_subject;
 	private String notice_content;
 	private String notice_file_orgname;
@@ -25,12 +25,12 @@ public class NoticeVO {
 		this.notice_state = notice_state;
 	}
 
-	public String getNotice_wirter() {
-		return notice_wirter;
+	public String getNotice_writer() {
+		return notice_writer;
 	}
 
-	public void setNotice_wirter(String notice_wirter) {
-		this.notice_wirter = notice_wirter;
+	public void setNotice_writer(String notice_writer) {
+		this.notice_writer = notice_writer;
 	}
 
 	public String getNotice_subject() {
