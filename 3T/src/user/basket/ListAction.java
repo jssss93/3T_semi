@@ -12,24 +12,24 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class ListAction extends ActionSupport {
 	
-	public static Reader reader;	//ÆÄÀÏ ½ºÆ®¸²À» À§ÇÑ reader.
-	public static SqlMapClient sqlMapper;	//SqlMapClient API¸¦ »ç¿ëÇÏ±â À§ÇÑ sqlMapper °´Ã¼.
+	public static Reader reader;	//íŒŒì¼ ìŠ¤íŠ¸ë¦¼ì„ ìœ„í•œ reader.
+	public static SqlMapClient sqlMapper;	//SqlMapClient APIë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•œ sqlMapper ê°ì²´.
 
 	private List<BasketVO> list = new ArrayList<BasketVO>();	 
 	
 	
-	// »ı¼ºÀÚ
+	// ìƒì„±ì
 	public ListAction() throws IOException {
 		
-		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); // sqlMapConfig.xml ÆÄÀÏÀÇ ¼³Á¤³»¿ëÀ» °¡Á®¿Â´Ù.
-		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);	// sqlMapConfig.xmlÀÇ ³»¿ëÀ» Àû¿ëÇÑ sqlMapper °´Ã¼ »ı¼º.
+		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); // sqlMapConfig.xml íŒŒì¼ì˜ ì„¤ì •ë‚´ìš©ì„ ê°€ì ¸ì˜¨ë‹¤.
+		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);	// sqlMapConfig.xmlì˜ ë‚´ìš©ì„ ì ìš©í•œ sqlMapper ê°ì²´ ìƒì„±.
 		reader.close();
 	}
 
-	// °Ô½ÃÆÇ LIST ¾×¼Ç
+	// ê²Œì‹œíŒ LIST ì•¡ì…˜
 	public String execute() throws Exception {
 		
-		// ¸ğµç ±ÛÀ» °¡Á®¿Í list¿¡ ³Ö´Â´Ù.
+		// ëª¨ë“  ê¸€ì„ ê°€ì ¸ì™€ listì— ë„£ëŠ”ë‹¤.
 		list = sqlMapper.queryForList("basket-selectAll");
 		System.out.println("testtest1"+list);
 

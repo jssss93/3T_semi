@@ -14,15 +14,15 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class WriteAction extends ActionSupport {
 	
-	public static Reader reader;	//ÆÄÀÏ ½ºÆ®¸²À» À§ÇÑ reader.
-	public static SqlMapClient sqlMapper;	//SqlMapClient API¸¦ »ç¿ëÇÏ±â À§ÇÑ sqlMapper °´Ã¼.
+	public static Reader reader;	//íŒŒì¼ ìŠ¤íŠ¸ë¦¼ì„ ìœ„í•œ reader.
+	public static SqlMapClient sqlMapper;	//SqlMapClient APIë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•œ sqlMapper ê°ì²´.
 
-	private OrderVO paramClass; //ÆÄ¶ó¹ÌÅÍ¸¦ ÀúÀåÇÒ °´Ã¼
-	private OrderVO resultClass; //Äõ¸® °á°ú °ªÀ» ÀúÀåÇÒ °´Ã¼
+	private OrderVO paramClass; //íŒŒë¼ë¯¸í„°ë¥¼ ì €ì¥í•  ê°ì²´
+	private OrderVO resultClass; //ì¿¼ë¦¬ ê²°ê³¼ ê°’ì„ ì €ì¥í•  ê°ì²´
 
 	private List<OrderVO> list = new ArrayList<OrderVO>();;	 
 	
-	private int totalCount; // ÃÑ °Ô½Ã¹°ÀÇ ¼ö
+	private int totalCount; // ì´ ê²Œì‹œë¬¼ì˜ ìˆ˜
 	
 	private String ORDER_NAME;
 	private String ORDER_ZIPCODE;
@@ -51,30 +51,30 @@ public class WriteAction extends ActionSupport {
 	private String ORDER_GOODS_NO;
 	private String ORDER_GOODS_INFO;
 	private int ORDER_GOODS_COUNT;
-	Calendar today = Calendar.getInstance(); //¿À´Ã ³¯Â¥ ±¸ÇÏ±â.
+	Calendar today = Calendar.getInstance(); //ì˜¤ëŠ˜ ë‚ ì§œ êµ¬í•˜ê¸°.
 	
-	// »ı¼ºÀÚ
+	// ìƒì„±ì
 	public WriteAction() throws IOException {
 		
-		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); // sqlMapConfig.xml ÆÄÀÏÀÇ ¼³Á¤³»¿ëÀ» °¡Á®¿Â´Ù.
-		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);	// sqlMapConfig.xmlÀÇ ³»¿ëÀ» Àû¿ëÇÑ sqlMapper °´Ã¼ »ı¼º.
+		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); // sqlMapConfig.xml íŒŒì¼ì˜ ì„¤ì •ë‚´ìš©ì„ ê°€ì ¸ì˜¨ë‹¤.
+		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);	// sqlMapConfig.xmlì˜ ë‚´ìš©ì„ ì ìš©í•œ sqlMapper ê°ì²´ ìƒì„±.
 		reader.close();
 	}
 
-	// °Ô½ÃÆÇ LIST ¾×¼Ç
+	// ê²Œì‹œíŒ LIST ì•¡ì…˜
 	public String form() throws Exception {
-		// ¸ğµç ±ÛÀ» °¡Á®¿Í list¿¡ ³Ö´Â´Ù.
+		// ëª¨ë“  ê¸€ì„ ê°€ì ¸ì™€ listì— ë„£ëŠ”ë‹¤.
 		list = sqlMapper.queryForList("order-selectAll");
-		totalCount = list.size(); // ÀüÃ¼ ±Û °¹¼ö¸¦ ±¸ÇÑ´Ù.
+		totalCount = list.size(); // ì „ì²´ ê¸€ ê°¯ìˆ˜ë¥¼ êµ¬í•œë‹¤.
 		return SUCCESS;
 	}
 	public String execute() throws Exception {
 
-		//ÆÄ¶ó¹ÌÅÍ¿Í ¸®ÀıÆ® °´Ã¼ »ı¼º.
+		//íŒŒë¼ë¯¸í„°ì™€ ë¦¬ì ˆíŠ¸ ê°ì²´ ìƒì„±.
 		paramClass = new OrderVO();
 		resultClass = new OrderVO();
 
-		// µî·ÏÇÒ Ç×¸ñ ¼³Á¤.
+		// ë“±ë¡í•  í•­ëª© ì„¤ì •.
 		//paramClass.setSubject(getSubject());
 		//paramClass.setRegdate(today.getTime());
 		paramClass.setORDER_NAME(getORDER_NAME());
@@ -105,7 +105,7 @@ public class WriteAction extends ActionSupport {
 		paramClass.setORDER_GOODS_COUNT(getORDER_GOODS_COUNT());
 		
 		
-		// µî·Ï Äõ¸® ¼öÇà.
+		// ë“±ë¡ ì¿¼ë¦¬ ìˆ˜í–‰.
 		sqlMapper.insert("order-insertBoard", paramClass);
 		return SUCCESS;
 	}
