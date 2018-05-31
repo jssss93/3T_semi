@@ -4,16 +4,16 @@ import java.util.Date;
 
 public class BasketVO {
 	
-	private int BASKET_NO; //»óÇ° ¹øÈ£
-	private String BASKET_MEMBER_ID;//°í°´ID
-	private int BASKET_GOODS_AMOUNT;//»óÇ°°¡°İ
-	private String BASKET_GOODS_SIZE;//»óÇ°»çÀÌÁî
-	private String BASKET_GOODS_COLOR;//»óÇ° »ö»ó
-	private String BASKET_GOODS_img;//»óÇ° ÀÌ¹ÌÁö
-	private int BASKET_TOTAL;// »óÇ° ÃÑ°¡°İ
+	private int BASKET_NO; //ìƒí’ˆ ë²ˆí˜¸
+	private String BASKET_MEMBER_ID;//ê³ ê°ID
+	private int BASKET_GOODS_AMOUNT;//ìƒí’ˆê°€ê²©
+	private String BASKET_GOODS_SIZE;//ìƒí’ˆì‚¬ì´ì¦ˆ
+	private String BASKET_GOODS_COLOR;//ìƒí’ˆ ìƒ‰ìƒ
+	private String BASKET_GOODS_img;//ìƒí’ˆ ì´ë¯¸ì§€
+	private int BASKET_TOTAL;// ìƒí’ˆ ì´ê°€ê²©
 	private String BASKET_SELECT;//select
-	private int  BASKET_QUANTITY;//»óÇ°¼ö·®
-	private String BASKET_NAME;//»óÇ° ÀÌ¸§
+	private int  BASKET_QUANTITY;//ìƒí’ˆìˆ˜ëŸ‰
+	private String BASKET_NAME;//ìƒí’ˆ ì´ë¦„
 	public int getBASKET_NO() {
 		return BASKET_NO;
 	}

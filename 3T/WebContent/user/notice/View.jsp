@@ -58,7 +58,7 @@
 		<tr>
 			<td bgcolor="#F4F4F4">글쓴이</td>
 			<td bgcolor="#FFFFFF">&nbsp;&nbsp;<s:property
-					value="resultClass.notice_wirter" />
+					value="resultClass.notice_writer" />
 			</td>
 		</tr>
 		<tr bgcolor="#777777">
