@@ -25,7 +25,7 @@
 		<action name="listouter" class="user.goods.ListAction" method="outer">
 			<result type="tiles">goodsList</result>
 		</action>
-
+ 
 		<action name="listsuit" class="user.goods.ListAction" method="suit">
 			<result type="tiles">goodsList</result>
 		</action>

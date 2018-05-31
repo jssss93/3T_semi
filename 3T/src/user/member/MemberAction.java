@@ -53,7 +53,6 @@ public class MemberAction extends ActionSupport {
 	}
 
 	public String join() throws Exception {
-		System.out.println("testtest44444");
 		paramClass = new MemberVO();
 
 		paramClass.setM_NO(getM_NO());
@@ -87,7 +86,7 @@ public class MemberAction extends ActionSupport {
 		paramClass.setM_NAME(getM_NAME());
 		paramClass.setM_EMAIL1(getM_EMAIL1());
 
-		resultClass = (MemberVO) sqlMapper.queryForObject("member.findId1", paramClass);
+		resultClass = (MemberVO) sqlMapper.queryForObject("member.findId", paramClass);
 
 		if (resultClass == null)
 			chkno = 0;
@@ -96,8 +95,6 @@ public class MemberAction extends ActionSupport {
 
 		return SUCCESS;
 	}
-
-
 
 	public static Reader getReader() {
 		return reader;
