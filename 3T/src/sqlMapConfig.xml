@@ -22,6 +22,8 @@
 	<sqlMap resource="/sql/ReviewSQL.xml" />	
 	<sqlMap resource="/sql/OrderSQL.xml" />	
 	<sqlMap resource="/sql/NoticeSQL.xml" />	
-	<sqlMap resource="/sql/FaqSQL.xml" />	
-
+	<sqlMap resource="/sql/FaqSQL.xml" />
+	<sqlMap resource="/sql/BasketSQL.xml"/>	
+	<sqlMap resource="/sql/WishlistSQL.xml"/>	
+  
 </sqlMapConfig>

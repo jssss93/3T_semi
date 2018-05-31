@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap>
+	<!-- 장바구니 -->
+		<typeAlias alias="basket" type="user.basket.BasketVO" />
+		<!-- 리절트 맵 정의 -->
+	  	<resultMap id="basketRes" class="basket">
+		  	<result property="BASKET_NO" column="BASKET_NO"/>
+		  	<result property="BASKET_MEMBER_ID" column="BASKET_MEMBER_ID"/>
+		  	<result property="BASKET_GOODS_AMOUNT" column="BASKET_GOODS_AMOUNT"/>
+		  	<result property="BASKET_GOODS_SIZE" column="BASKET_GOODS_SIZE"/>
+		  	<result property="BASKET_GOODS_COLOR" column="BASKET_GOODS_COLOR"/>
+		  	<result property="BASKET_GOODS_img" column="BASKET_GOODS_img"/>
+		  	<result property="BASKET_TOTAL" column="BASKET_TOTAL"/>
+		  	<result property="BASKET_SELECT" column="BASKET_SELECT"/>
+		  	<result property="BASKET_QUANTITY" column="BASKET_QUANTITY"/>
+		  	<result property="BASKET_NAME" column="BASKET_NAME"/>
+		</resultMap>
+		
+		<!-- 공통으로 사용할 select 절 정의 -->
+		<sql id="basket-select-all">
+			SELECT * FROM BASKET
+		</sql>
+		
+		<!-- 공통으로 사용할 where-no 절 정의 -->
+		<sql id="basket-where-no">
+			WHERE BASKET_NO = #BASKET_NO#
+		</sql>
+	
+		<!-- select 쿼리문 정의 --> 
+		<select id="basket-selectAll" resultMap="basketRes">
+			SELECT * FROM  BASKET ORDER BY BASKET_NO DESC
+		</select>
+</sqlMap>
