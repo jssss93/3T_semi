@@ -15,8 +15,8 @@ public class GoodsVO {
 	private int goods_recommend;
 	private int goods_totalcount;
 	private String goods_related_product;
-	private String goods_org_filename;
-	private String goods_sav_filename;
+	private String goods_file_orgname;
+	private String goods_file_savname;
 
 	public int getGoods_no() {
 		return goods_no;
@@ -94,6 +94,22 @@ public class GoodsVO {
 		return goods_recommend;
 	}
 
+	public String getGoods_file_orgname() {
+		return goods_file_orgname;
+	}
+
+	public void setGoods_file_orgname(String goods_file_orgname) {
+		this.goods_file_orgname = goods_file_orgname;
+	}
+
+	public String getGoods_file_savname() {
+		return goods_file_savname;
+	}
+
+	public void setGoods_file_savname(String goods_file_savname) {
+		this.goods_file_savname = goods_file_savname;
+	}
+
 	public void setGoods_recommend(int goods_recommend) {
 		this.goods_recommend = goods_recommend;
 	}
@@ -113,23 +129,5 @@ public class GoodsVO {
 	public void setGoods_related_product(String goods_related_product) {
 		this.goods_related_product = goods_related_product;
 	}
-
-	public String getGoods_org_filename() {
-		return goods_org_filename;
-	}
-
-	public void setGoods_org_filename(String goods_org_filename) {
-		this.goods_org_filename = goods_org_filename;
-	}
-
-	public String getGoods_sav_filename() {
-		return goods_sav_filename;
-	}
-
-	public void setGoods_sav_filename(String goods_sav_filename) {
-		this.goods_sav_filename = goods_sav_filename;
-	}
-
-
 
 }

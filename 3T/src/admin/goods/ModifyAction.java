@@ -13,16 +13,16 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import admin.goods.VO.GoodsVO;
 
-public class ModifyAction extends ActionSupport{
+public class ModifyAction extends ActionSupport {
 
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
-	
+
 	private GoodsVO paramClass;
 	private GoodsVO resultClass;
-	
-	private int currentPage;	
-	
+
+	private int currentPage;
+
 	private int goods_no;
 	private String goods_name;
 	private String goods_content;
@@ -33,30 +33,28 @@ public class ModifyAction extends ActionSupport{
 	private String goods_category;
 	private int goods_totalcount;
 	private String goods_related_product;
-	
-	private String goods_org_filename;
-	private String goods_sav_filename;
-	
+
+	private String goods_file_orgname;
+	private String goods_file_savname;
+
 	private String old_file;
-	
+
 	private File upload;
 	private String uploadContentType;
 	private String uploadFileName;
 	private String fileUploadPath = "C:\\upload\\";
-	
-	public ModifyAction() throws IOException
-	{
+
+	public ModifyAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 		reader.close();
-		
+
 	}
-	
-	public String execute() throws Exception
-	{
+
+	public String execute() throws Exception {
 		paramClass = new GoodsVO();
 		resultClass = new GoodsVO();
-		
+
 		paramClass.setGoods_no(getGoods_no());
 		paramClass.setGoods_name(getGoods_name());
 		paramClass.setGoods_content(getGoods_content());
@@ -66,38 +64,34 @@ public class ModifyAction extends ActionSupport{
 		paramClass.setGoods_category(getGoods_category());
 		paramClass.setGoods_totalcount(getGoods_totalcount());
 		paramClass.setGoods_related_product(getGoods_related_product());
-		paramClass.setGoods_org_filename(getGoods_org_filename());
-		paramClass.setGoods_sav_filename(getGoods_sav_filename());
-		
-		
-		
+		paramClass.setGoods_file_orgname(getGoods_file_orgname());
+		paramClass.setGoods_file_savname(getGoods_file_savname());
+
 		sqlMapper.update("updateGoods", paramClass);
-		
-		if(getUpload() != null)
-		{
+
+		if (getUpload() != null) {
 			String file_name = "file_" + getGoods_no();
-			String file_ext = getUploadFileName().substring(getUploadFileName().lastIndexOf('.') +1, getUploadFileName().length());
-			
+			String file_ext = getUploadFileName().substring(getUploadFileName().lastIndexOf('.') + 1,
+					getUploadFileName().length());
+
 			File deleteFile = new File(fileUploadPath + getOld_file());
 			deleteFile.delete();
-			
+
 			File destFile = new File(fileUploadPath + file_name + "." + file_ext);
 			FileUtils.copyFile(getUpload(), destFile);
-			
-			paramClass.setGoods_org_filename(getUploadFileName());
-			paramClass.setGoods_sav_filename(file_name + "." + file_ext);
-			
+
+			paramClass.setGoods_file_orgname(getUploadFileName());
+			paramClass.setGoods_file_savname(file_name + "." + file_ext);
+
 			sqlMapper.update("updateFile", paramClass);
-			
-			
-			
+
 		}
-		
+
 		resultClass = (GoodsVO) sqlMapper.queryForObject("selectOne", getGoods_no());
 		return SUCCESS;
-		
-		
+
 	}
+
 	public String getOld_file() {
 		return old_file;
 	}
@@ -129,7 +123,6 @@ public class ModifyAction extends ActionSupport{
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
 	}
-
 
 	public int getGoods_no() {
 		return goods_no;
@@ -203,20 +196,20 @@ public class ModifyAction extends ActionSupport{
 		this.goods_related_product = goods_related_product;
 	}
 
-	public String getGoods_org_filename() {
-		return goods_org_filename;
+	public String getGoods_file_orgname() {
+		return goods_file_orgname;
 	}
 
-	public void setGoods_org_filename(String goods_org_filename) {
-		this.goods_org_filename = goods_org_filename;
+	public void setGoods_file_orgname(String goods_file_orgname) {
+		this.goods_file_orgname = goods_file_orgname;
 	}
 
-	public String getGoods_sav_filename() {
-		return goods_sav_filename;
+	public String getGoods_file_savname() {
+		return goods_file_savname;
 	}
 
-	public void setGoods_sav_filename(String goods_sav_filename) {
-		this.goods_sav_filename = goods_sav_filename;
+	public void setGoods_file_savname(String goods_file_savname) {
+		this.goods_file_savname = goods_file_savname;
 	}
 
 	public File getUpload() {
@@ -250,6 +243,5 @@ public class ModifyAction extends ActionSupport{
 	public void setFileUploadPath(String fileUploadPath) {
 		this.fileUploadPath = fileUploadPath;
 	}
-	
-	
+
 }
