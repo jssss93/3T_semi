@@ -19,7 +19,9 @@
 	<sqlMap resource="/sql/AdminSQL.xml" />
 	<sqlMap resource="/sql/GoodsSQL.xml" />
 	<sqlMap resource="/sql/MemberSQL.xml" />
+	<sqlMap resource="/sql/ReviewSQL.xml" />	
 	<sqlMap resource="/sql/OrderSQL.xml" />	
 	<sqlMap resource="/sql/NoticeSQL.xml" />	
 	<sqlMap resource="/sql/FaqSQL.xml" />	
+
 </sqlMapConfig>

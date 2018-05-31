@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap>
+	<typeAlias alias="review" type="user.review.ReviewVO" />
+
+	<!-- 리절트 맵 정의 -->
+	<resultMap id="reviewRes" class="review">
+		<result property="REV_no" column="REV_no" />
+		<result property="REV_subject" column="REV_subject" />
+		<result property="REV_name" column="REV_name" />
+		<result property="REV_passwd" column="REV_passwd" />
+		<result property="REV_content" column="REV_content" />
+		<result property="REV_file_orgname" column="REV_file_orgname" />
+		<result property="REV_file_savname" column="REV_file_savname" />
+		<result property="REV_readcnt" column="REV_readcnt" />
+		<result property="REV_regdate" column="REV_regdate" />
+		<result property="REV_ref" column="REV_ref" />
+		<result property="REV_re_step" column="REV_re_step" />
+		<result property="REV_re_level" column="REV_re_level" />
+		<result property="REV_member_id" column="REV_member_id" />
+		<result property="REV_goods_no" column="REV_goods_no" />
+	</resultMap>
+
+	<!-- 공통으로 사용할 select 절 정의 -->
+	<sql id="review-select-all">
+		SELECT * FROM REVIEW
+	</sql>
+
+	<!-- 공통으로 사용할 where-no 절 정의 -->
+	<sql id="review-where-no">
+		WHERE REV_no = #REV_no#
+	</sql>
+
+
+	<!-- select 쿼리문 정의 -->
+	<select id="review-selectAll" resultMap="reviewRes">
+		<include refid="review-select-all" />
+		ORDER BY REV_no DESC
+	</select>
+
+	<select id="review-selectOne" resultMap="reviewRes"
+		parameterClass="int">
+		<include refid="review-select-all" />
+		<include refid="review-where-no" />
+	</select>
+
+	<select id="review-selectLastNo" resultClass="review">
+		SELECT max(REV_no) as REV_no FROM REVIEW
+	</select>
+
+	<select id="review-selectPassword" resultMap="reviewRes"
+		parameterClass="review">
+		<include refid="review-select-all" />
+		<include refid="review-where-no" />
+		AND REV_passwd = #REV_passwd#
+	</select>
+
+	<!-- insert 쿼리문 정의 -->
+
+	<insert id="review-insertReview" parameterClass="review">
+
+		INSERT INTO REVIEW (REV_no,
+		REV_subject,
+		REV_name,
+		REV_passwd,
+		REV_content,
+		REV_regdate,
+
+		REV_member_id,
+		REV_goods_no,
+
+		REV_re_step,
+		REV_re_level,
+		REV_ref
+
+		)
+		VALUES (REV_NO_SEQ.NEXTVAL,
+		#REV_subject#,
+		#REV_name#,
+		#REV_passwd#,
+		#REV_content#,
+		#REV_regdate#,
+
+		#REV_member_id#,
+		#REV_goods_no#,
+
+		#REV_re_step#,
+		#REV_re_level#,
+		REV_no_seq.CURRVAL
+
+		)
+	</insert>
+
+	<!-- update 쿼리문 정의 -->
+	<!-- update 쿼리문 정의 -->
+	<update id="review-updateReview" parameterClass="review">
+		UPDATE REVIEW SET REV_SUBJECT = #REV_subject#,
+		REV_NAME = #REV_name#,
+		REV_PASSWD = #REV_passwd#,
+		REV_CONTENT = #REV_content#
+		<include refid="review-where-no" />
+	</update>
+
+
+	<update id="review-updateFile" parameterClass="review">
+		UPDATE REVIEW SET REV_FILE_ORGNAME = #REV_file_orgname#
+		,REV_FILE_SAVNAME = #REV_file_savname#
+		<include refid="review-where-no" />
+	</update>
+
+	<update id="review-updateReadHit" parameterClass="review">
+		UPDATE REVIEW SET REV_READCNT = REV_readcnt + 1
+		<include refid="review-where-no" />
+	</update>
+
+
+</sqlMap>
