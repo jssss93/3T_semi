@@ -27,7 +27,7 @@ public class ListAction extends ActionSupport {
 	private int blockCount = 10;
 	private int blockPage = 5;
 	private String pagingHtml;
-	private pagingAction page;
+	private PagingAction page;
 	private int num = 0;
 
 	public ListAction() throws IOException {
@@ -43,10 +43,10 @@ public class ListAction extends ActionSupport {
 		 * if(getSearchKeyword() != null) { return search(); }
 		 */
 
-		list = sqlMapper.queryForList("selectAll");
+		list = sqlMapper.queryForList("AFselectAll");
 
 		totalCount = list.size();
-		page = new pagingAction(currentPage, totalCount, blockCount, blockPage, num, "");
+		page = new PagingAction(currentPage, totalCount, blockCount, blockPage, num, "");
 		pagingHtml = page.getPagingHtml().toString();
 
 		int lastCount = totalCount;

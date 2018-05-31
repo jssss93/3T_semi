@@ -1,6 +1,6 @@
 package admin.goods;
 
-public class pagingAction {
+public class PagingAction {
 	
 	private int currentPage;
 	private int totalCount;
@@ -14,7 +14,7 @@ public class pagingAction {
 	
 	private StringBuffer pagingHtml;
 	
-	public pagingAction(int currentPage, int totalCount, int blockCount, int blockPage, int searchNum, String isSearch)
+	public PagingAction(int currentPage, int totalCount, int blockCount, int blockPage, int searchNum, String isSearch)
 	{
 		this.blockCount = blockCount;
 		this.blockPage = blockPage;

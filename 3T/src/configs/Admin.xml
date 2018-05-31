@@ -6,7 +6,7 @@
 <struts>
 	<constant name="struts.multipart.maxSize" value="104857600" />
 	<constant name="struts.multipart.saveDir" value="location of your choice" />
-	
+
 	<package
 		name="----------------------------------------Goods-------------------------------------------"
 		extends="struts-default">
@@ -29,7 +29,7 @@
 		<action name="modifyForm" class="admin.goods.ViewAction">
 			<result type="chain">writeForm</result>
 		</action>
-		<action name="modifyAction" class="admin.goods.ModifyAction">	
+		<action name="modifyAction" class="admin.goods.ModifyAction">
 			<result type="chain">viewAction</result>
 		</action>
 		<action name="deleteAction" class="admin.goods.DeleteAction">
@@ -67,6 +67,39 @@
 		</action>
 		<action name="ANdeleteAction" class="admin.notice.DeleteAction">
 			<result type="chain">ANlistAction</result>
+		</action>
+
+	</package>
+
+	<package
+		name="----------------------------------------Faq-------------------------------------------"
+		extends="struts-default">
+
+		<action name="AFlistAction" class="admin.faq.ListAction">
+			<result>/admin/faq/List.jsp</result>
+		</action>
+
+		<action name="AFwriteForm" class="admin.faq.WriteAction"
+			method="form">
+			<result>/admin/faq/Write.jsp</result>
+		</action>
+		<action name="AFwriteAction" class="admin.faq.WriteAction">
+			<result type="redirect-action">
+				<param name="actionName">AFlistAction</param>
+			</result>
+		</action>
+		<action name="AFviewAction" class="admin.faq.ViewAction">
+			<result>/admin/faq/View.jsp</result>
+		</action>
+
+		<action name="AFmodifyForm" class="admin.faq.ViewAction">
+			<result type="chain">AFwriteForm</result>
+		</action>
+		<action name="AFmodifyAction" class="admin.faq.ModifyAction">
+			<result type="chain">AFviewAction</result>
+		</action>
+		<action name="AFdeleteAction" class="admin.faq.DeleteAction">
+			<result type="chain">AFlistAction</result>
 		</action>
 
 	</package>
