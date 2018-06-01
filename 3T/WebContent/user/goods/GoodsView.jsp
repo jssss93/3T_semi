@@ -8,13 +8,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <script type="text/javascript">
-function change(num) {
+/* 종합개수 카운트 */
+/* function change(num) {
     var x = document.form;
     var y = Number(x.goods_qty.value) + num;
     if (y < 1)
        y = 1;
     x.goods_qty.value = y;
- }
+ } */
  </script>
 </head>
 <center>
@@ -22,8 +23,9 @@ function change(num) {
 		<body>
 		<tr>
 		    <!-- 상품 메인 이미지-->
-			<td height="490" align="center" valign="middle"><img width="490"
-				height="490" src="/3T/upload/"><s:property value="resultClass.goods_file_savname(',')"/>
+			<td height="490" align="center" valign="middle">
+			<img src="/3T/upload/<s:property value="resultClass.goods_file_savname"/> "width"="490"
+								height="490">
 		      </td>
 			
 			<!-- 상품 상세 내용 -->
@@ -104,7 +106,8 @@ function change(num) {
 								<tr>
 									<td>
 										<!-- 상품구매버튼 --> <!-- 로그인 o -->
-										<s:if test='%{session.id != null}'> 
+										<s:if test='%{session.id != null}'>
+										<s:if test="%{resultClass.goods_totalcount!=0}"> 
 										<input name="Buy" style=""
 										onmouseover="this.src='/goods/upload/buy2.JPG'"
 										onmouseout="this.src='/goods/upload/buy.JPG'"
@@ -114,13 +117,22 @@ function change(num) {
 							          </s:if>
 							         <s:else>
 							            <img src="/goods/upload/buy.JPG"
-							               onmouseover="this.src='/3T/upload/buy2.JPG'"
-										   onmouseout="this.src='/3T/upload/buy.JPG'" border="0"></img>
+							            onmouseover="this.src='/3T/upload/buy2.JPG'"
+										onmouseout="this.src='/3T/upload/buy.JPG'" border="0"></img>
 									</s:else>
+									</s:if>
+									   <!-- 상품구매버튼 --> <!-- 로그인 x -->
+									   <input name="Buy" style=""
+										onmouseover="this.src='/goods/upload/buy2.JPG'"
+										onmouseout="this.src='/goods/upload/buy.JPG'"
+										onclick="Buycheck;" 
+										type="image" src="/3T/upload/buy.JPG"
+									    value="Submit" />
 									</td>
 									<td>
 										<!-- 장바구니버튼 --> <!-- 로그인 o --> 
-										<s:if test='%{session.id != null}'> 
+										<s:if test='%{session.id != null}'>
+										<s:if test="%{resultClass.goods_totalcount!=0}"> 
 										<input name="BuyCart" style=""
 										onmouseover="this.src='/3T/upload/add to cart2.JPG'"
 										onmouseout="this.src='/3T/upload/add to cart.JPG'"
@@ -132,7 +144,16 @@ function change(num) {
 							               onmouseover="this.src='/3T/upload/add to cart2.JPG'"
 										   onmouseout="this.src='/3T/upload/add to cart.JPG'" border="0"></img>
 									</s:else>
+									</s:if>
 									</td>
+									<td>
+									    <!-- 장바구니버튼 --> <!-- 로그인 x -->
+									    <input name="BuyCart" style=""
+										onmouseover="this.src='/3T/upload/add to cart2.JPG'"
+										onmouseout="this.src='/3T/upload/add to cart.JPG'"
+										onclick="BuyCartcheck;" 
+										type="image" src="/3T/upload/add to cart.JPG"
+									    value="Submit" /> 
 								</tr>
 								<tr>
 									<td>
@@ -175,13 +196,12 @@ function change(num) {
 		cellpadding="0" cellspacing="0">
 
 		<tr>
-			<td colspan="0" align="center"><img
-            src="/3T/upload/<s:property value="resultClass.goods_file_savname(',')"/>"></img>
+			<td colspan="0" align="center">
+			<img src="/3T/upload/${goods_file_savname}">
 		</tr>
 		<tr>
 			<td width="100" height="100" align="center"><h2>Main logo</h2>
-		    <img
-            src="/3T/upload/<s:property value="resultClass.goods_file_savname(',')"/>"></img>
+		    <img src="/3T/upload/${goods_file_savname}">
 		    </td>
 		</tr>
 	</table>
@@ -190,8 +210,8 @@ function change(num) {
 		cellpadding="0" cellspacing="0">
 
 		<tr>
-			<td colspan="0" align="center"><img
-            src="/3T/upload/<s:property value="resultClass.goods_file_savname(',')"/>"></img>
+			<td colspan="0" align="center">
+			<img src="/3T/upload/${goods_file_savname}">
 		</tr>
 	</table>
 	<br> <br> <br>
@@ -199,8 +219,8 @@ function change(num) {
 		cellpadding="0" cellspacing="0">
 
 		<tr>
-			<td colspan="0" align="center"><img
-            src="/3T/upload/<s:property value="resultClass.goods_file_savname(',')"/>"></img>
+			<td colspan="0" align="center">
+			<img src="/3T/upload/${goods_file_savname}">
 		</tr>
 	</table>
 	<!-- 옷 자세히 보기 -->
@@ -210,26 +230,25 @@ function change(num) {
 
 		<tr>
 			<td colspan="3" align="center"><h2>Main logo</h2>
-		    <img
-            src="/3T/upload/<s:property value="resultClass.goods_file_savname(',')"/>"></img>
+		   <img src="/3T/upload/${goods_file_savname}">
 		    </td>
 		</tr>
 		<tr>
 			<td width="200" height="200" align="center"><h2>clothes
-					ditail img</h2><img
-            src="/3T/upload/<s:property value="resultClass.goods_file_savname(',')"/>"></img>
+					ditail img</h2>
+					<img src="/3T/upload/${goods_file_savname}">
 		    </td>
 		</tr>
 		<tr>
 			<td width="200" height="200" align="center"><h2>clothes
-					ditail img</h2><img
-            src="/3T/upload/<s:property value="resultClass.goods_file_savname(',')"/>"></img>
+					ditail img</h2>
+					<img src="/3T/upload/${goods_file_savname}">
 		    </td>
 		</tr>
 		<tr>
 			<td width="200" height="200" align="center"><h2>clothes
-					ditail img</h2><img
-            src="/3T/upload//<s:property value="resultClass.goods_file_savname(',')"/>"></img>
+					ditail img</h2>
+					<img src="/3T/upload/${goods_file_savname}">
 		    </td>
 		</tr>
 	</table>
@@ -242,8 +261,8 @@ function change(num) {
 	cellpadding="0" cellspacing="0">
 
 	<tr>
-		<td colspan="0" align="center"><h2>Model info</h2><img
-            src="/3T/upload/<s:property value="resultClass.goods_file_savname(',')"/>"></img>
+		<td colspan="0" align="center"><h2>Model info</h2>
+		<img src="/3T/upload/${goods_file_savname}">
 		    </td>
 	</tr>
 </table>

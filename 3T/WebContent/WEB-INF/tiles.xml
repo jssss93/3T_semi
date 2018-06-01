@@ -36,5 +36,9 @@
 	<definition name="faqView" extends="main">
 		<put-attribute name="body" value="/user/faq/View.jsp"/>
 	</definition>
+	
+	<definition name="loginForm" extends="main">
+		<put-attribute name="body" value="/user/member/LoginForm.jsp"/>
+	</definition>
 
 </tiles-definitions>

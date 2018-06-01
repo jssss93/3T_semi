@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -12,15 +15,18 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import admin.goods.VO.GoodsVO;
 
-public class MainAction extends ActionSupport {
+public class MainAction extends ActionSupport implements SessionAware{
 
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
-
+	public Map session;
+	
+	
 	private List<GoodsVO> list = new ArrayList<GoodsVO>();
 	private List<GoodsVO> list1 = new ArrayList<GoodsVO>();
 	private List<GoodsVO> list2 = new ArrayList<GoodsVO>();
 
+	
 	private int currentPage = 1;
 	private int totalCount;
 	private int totalCount1;
@@ -38,6 +44,8 @@ public class MainAction extends ActionSupport {
 	}
 
 	public String execute() throws Exception {
+		
+		session.get("M_ID");
 
 		list = sqlMapper.queryForList("goods-selectAll");
 		list1 = sqlMapper.queryForList("goods-selectNew");
@@ -166,6 +174,17 @@ public class MainAction extends ActionSupport {
 	public void setList2(List<GoodsVO> list2) {
 		this.list2 = list2;
 	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
+
+	
+	
 
 	/*public List<GoodsVO> getList1() {
 		return list1;
