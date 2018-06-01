@@ -26,7 +26,7 @@
 		<result property="m_name_bank" column="m_name_bank" />
 		<result property="account_no" column="account_no" />
 		<result property="m_admin" column="m_admin" />
-		<result property="m_sex" column="m_sex" />
+	
 
 	</resultMap>
 
