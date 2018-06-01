@@ -63,6 +63,11 @@
 	<result type="chain">Review_View</result>
 </action>
 
+<!-- 게시판 삭제 액션. -->
+<action name="Review_DeleteAction" class="user.review.DeleteAction">
+		<result type="chain">Review_list</result>
+	
+</action>
 
 </package>
 
