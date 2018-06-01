@@ -263,7 +263,7 @@
 						<tr>
 							<td class="tdstyle1">휴대폰번호<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><s:textfield name="cellphone"
+							<td valign="middle"><s:textfield name="M_PHONE"
 									theme="simple" value="%{resultClass.M_PHONE}" /> "-" 없이 숫자만
 								입력하세요</td>
 						</tr>

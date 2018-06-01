@@ -6,6 +6,7 @@
 <html>
 <head>
 
+
 <script language="javascript">
 	  function check() {
 
@@ -17,10 +18,6 @@
 			f.M_ID.focus();
 			return false;
 		}
-	// 	if (f.confirm_id2.value == "") {
-	//		alert("아이디 중복확인을 해주십시오");
-	//		return false;
-	//	} 
 
 		if (f.M_PASSWD.value == "") {
 			alert("비밀번호를 입력해주십시오");
@@ -87,7 +84,7 @@
 		
 
 		
-	}  
+	}   
 
 	function openConfirmId() {
 		var url = "memberIdCheck.action?id=" + document.Reg_form.id.value;
@@ -105,6 +102,7 @@
 				"toolbar=no, location=no, status=co, menubar=no, scrollbars=no, resizable=no, width=400, height=200");
 	}
 </script>
+
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script language="Javascript">
 	function checkemailaddy() {
@@ -321,7 +319,7 @@
 						</tr>
 						<tr>
 							<td colspan="2" align="center" style="border: 0px;"><input
-								type="submit" value="회원가입" class="submit" onclick="javascript:location.href='login.action'"> <input
+								type="submit" value="회원가입" class="submit"> <input
 								type="button" value="취 소"
 								onclick="location.href='메인페이지'" class="hreflink"></td>
 						</tr>
