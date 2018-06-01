@@ -54,6 +54,24 @@
 	<select id="searchpw" resultMap="memberRes" parameterClass="string">
 		SELECT * FROM MEMBER WHERE M_ID = #M_ID#
 	</select>
+	<!-- 회원 정보 수정 -->
+	<update id="memberUpdate" parameterClass="member">
+		UPDATE MEMBER
+		SET M_ID =
+		#M_ID#,
+		M_PASSWD = #M_PASSWD#,
+		M_PASSWD2 = #M_PASSWD2#,
+		M_EMAIL1 =#M_EMAIL1#,
+		M_EMAIL2 =#M_EMAIL2#,
+		M_ZIPCODE =#M_ZIPCODE#,
+		M_PHONE =#M_PHONE#,
+		M_ADDR1 =#M_ADDR1#,
+		M_ADDR2 = #M_ADDR2#,
+		M_DEPOSITOR =#M_DEPOSITOR#,
+		M_NAME_BANK = #M_NAME_BANK#,
+		ACCOUNT_NO = #ACCOUNT_NO#
+		WHERE M_ID = #M_ID#
+	</update>
 
 	<!-- 회원아이디찾기 -->
 	<select id="findId" resultMap="memberRes" parameterClass="member">
@@ -121,6 +139,14 @@
 
 		)
 	</insert>
+
+ <!-- 	탈퇴처리후 member테이블에서 삭제  -->
+	<delete id="memberDelete" parameterClass="member">
+		delete from
+		member where M_ID=#M_ID#
+	</delete> 
+		
+		
 
 
 

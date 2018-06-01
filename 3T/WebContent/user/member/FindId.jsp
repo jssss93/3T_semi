@@ -20,7 +20,7 @@
 </script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link href="/hi1/style.css" rel="stylesheet" type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<form name="hi" action="findIdAction.action">

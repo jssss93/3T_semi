@@ -10,7 +10,7 @@
 
             ${session.M_ID}님 환영합니다.<br/>
             <a href="logout.action">로그아웃</a>
-
-login success
+			<a href="/3T/user/member/Mypage.jsp">
+		마이페이지
 </body>
 </html>
