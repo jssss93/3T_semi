@@ -4,6 +4,71 @@
 <sqlMap>
 
 	<!-- 관리자 상품 SQL ********************************************************************************************************************** -->
+	<typeAlias alias="ad_member" type="admin.member.VO.MemberVO" />
+
+	<resultMap id="MemberRes" class="ad_member">
+
+		<result property="m_no" column="m_no" />
+		<result property="m_id" column="m_id" />
+		<result property="m_name" column="m_name" />
+		<result property="m_passwd" column="m_passwd" />
+		<result property="m_passwd2" column="m_passwd2" />
+		<result property="m_jumin1" column="m_jumin1" />
+		<result property="m_jumin2" column="m_jumin2" />
+		<result property="m_phone" column="m_phone" />
+		<result property="m_email1" column="m_email1" />
+		<result property="m_email2" column="m_email2" />
+		<result property="m_zipcode" column="m_zipcode" />
+		<result property="m_addr1" column="m_addr1" />
+		<result property="m_addr2" column="m_addr2" />
+		<result property="m_regdate" column="m_regdate" />
+		<result property="m_depositor" column="m_depositor" />
+		<result property="m_name_bank" column="m_name_bank" />
+		<result property="account_no" column="account_no" />
+		<result property="m_admin" column="m_admin" />
+		<result property="m_sex" column="m_sex" />
+
+	</resultMap>
+
+	<sql id="AMselect-all">
+		SELECT * FROM MEMBER
+	</sql>
+
+	<!-- 공통으로 사용할 where-no 절 정의 -->
+	<sql id="AMwhere-no">
+		WHERE m_no = #m_no#
+	</sql>
+
+
+
+	<select id="AMselectAll" resultMap="MemberRes" parameterClass="int">
+		<include refid="AMselect-all" />
+
+	</select>
+
+	<select id="AMselectOne" resultMap="MemberRes" parameterClass="int">
+		<include refid="AMselect-all" />
+		<include refid="AMwhere-no" />
+	</select>
+
+	<select id="AMselectLastNo" resultClass="ad_member" parameterClass="int">
+		SELECT max(m_no) as m_no FROM MEMBER
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- 관리자 상품 SQL ********************************************************************************************************************** -->
 	<typeAlias alias="ad_goods" type="admin.goods.VO.GoodsVO" />
 
 	<resultMap id="GoodsRes" class="ad_goods">

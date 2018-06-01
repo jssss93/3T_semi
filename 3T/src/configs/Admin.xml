@@ -8,6 +8,20 @@
 	<constant name="struts.multipart.saveDir" value="location of your choice" />
 
 	<package
+		name="----------------------------------------Member-------------------------------------------"
+		extends="struts-default">
+		
+		<action name="AMlistAction" class="admin.member.ListAction">
+			<result>/admin/member/List.jsp</result>
+		</action>
+		
+		<action name="AMviewAction" class="admin.member.ViewAction">
+			<result>/admin/member/View.jsp</result>
+		</action>
+		
+	</package>
+
+	<package
 		name="----------------------------------------Goods-------------------------------------------"
 		extends="struts-default">
 
