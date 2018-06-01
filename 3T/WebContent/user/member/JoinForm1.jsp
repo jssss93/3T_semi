@@ -26,7 +26,7 @@
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>이용약관</title>
-<link href="/hi1/style.css" rel="stylesheet" type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 </head>
 <center>
 	<body>

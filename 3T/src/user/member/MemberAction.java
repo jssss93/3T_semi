@@ -74,7 +74,7 @@ public class MemberAction extends ActionSupport {
 		paramClass.setACCOUNT_NO(getACCOUNT_NO());
 		paramClass.setM_REGDATE(today.getTime());
 
-		sqlMapper.insert("member.mInsert1", paramClass);
+		sqlMapper.insert("member.mInsert", paramClass);
 		return SUCCESS;
 
 	}

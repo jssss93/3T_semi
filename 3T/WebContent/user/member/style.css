@@ -1,0 +1,61 @@
+*{ margin:0; padding:0; }
+
+@FONT-FACE{
+	FONT-FAMILY: 'NanumGothic';
+	src: url('fonts/NanumGothic.eot');
+}
+
+TABLE{ margin:0; padding:0; border-spacing:0; border-collapse:collapse;}
+BODY {FONT-SIZE: 9pt; LINE-HEIGHT: 160%; FONT-FAMILY: NanumGothic}
+TD {FONT-SIZE: 9pt; LINE-HEIGHT: 160%; FONT-FAMILY: NanumGothic}
+img{border:0; vertical-align: middle;}
+input{border:1px solid #929292;}
+input.submit{background-color: #5bbcb1; border: 1px solid #2bae9f; border-radius: 5px; color: #fff; padding: 8px 30px; font-weight:bold;}
+input.hreflink{background-color: #eee; border: 1px solid #bbb; border-radius: 5px; color: #555; padding: 8px 30px; font-weight:bold;}
+input.hreflink2{background-color: #eee; border: 1px solid #bbb; color: #555; padding: 1px 5px; font-weight:bold;}
+.edge{background-color:#eee; border:#ccc 1px solid; width:400px; padding:20px;}
+.findform{border:#5bbcb1 1px solid; padding-top:20px; padding-bottom:20px;}
+
+#form tr {border-collapse:collapse; border-bottom:#ccc 1px solid; caption-side:bottom; padding:10px 20px;}
+#form td {border-collapse:collapse; border-bottom:#ccc 1px solid; caption-side:bottom; padding:10px 20px;}
+#form td.tdstyle1 {background:#eee; width:120px; text-align:left; vertical-align:middle;}
+#form td.tdstyle2 {background:#2bae9f; border:#ccc 1px solid; width:400px; padding:20px; font-size:14px; font-weight:bold; color:#fff;}
+
+#boardform {border-collapse:collapse; border-top:#ccc 1px solid; caption-side:bottom; padding:10px 20px;}
+#boardform td {border-collapse:collapse; border-bottom:#ccc 1px solid; caption-side:bottom; padding:10px 20px;}
+#boardform td.tdstyle3 {background:#eee; text-align:center; vertical-align:middle;font-weight:bold; height:24px;padding:10px;}
+#boardform td.tdstyle4 {background:#2bae9f; border:#ccc 1px solid; padding:10px; font-size:14px; font-weight:bold; color:#fff;}
+#boardform td.tdstyle5 {text-align:center; vertical-align:middle; height:24px;font-size:9pt;padding:3px;}
+#boardform td.tdstyle6 {background:#eee; text-align:left; vertical-align:middle;font-weight:bold; height:24px;}
+#boardform td.tdstyle7 {background:#2bae9f; border:#ccc 1px solid; padding:8px; font-size:9pt; font-weight:bold; color:#fff; font:±¼¸²;text-align:center;}
+#boardform td.tdstyle8 {background:#2bae9f; border:#ccc 1px solid; padding:20px; font-size:9pt; font-weight:bold; color:#ffff00; font:±¼¸²;text-align:center;}
+#boardform td.tdstyle9 {text-align:center; vertical-align:middle; height:24px;font-size:9pt;padding:3px;border:#ccc 1px solid;}
+
+.header{background:url(./img/top_bg.gif) repeat-x;}
+.center_visualbg{background:url(./img/main_bg.jpg) center top;}
+.center_reva{background:url(./img/reva_bg.jpg);}
+.footer{background:#d4d9e0; height:166;}
+
+a:link {FONT-SIZE: 10pt; color: #888; text-decoration:none;}
+a:visited {FONT-SIZE: 10pt; color: #888; text-decoration:none;}
+a:hover {FONT-SIZE: 10pt; color: #888; text-decoration:none;}
+a:active {FONT-SIZE: 10pt; color: #888; text-decoration:none;}
+
+.formbar{border-top:#2bae9f 1px solid; border-bottom:#2bae9f 1px solid; padding-top:20px; padding-bottom:20px;}
+.formtext{padding-right:15px; font-size:14px; font-weight:bold;}
+.text01{color:#2bae9f; font-size:18px; font-weight:bold; padding-bottom:15px;}
+
+
+/*¾îµå¹Î Çì´õ*/
+#logo{padding:20px 50px; list-style:none;}
+#adtop { width: 1200px; z-index:-999; }
+#adtop td {	padding:0; margin:0;}
+#adtop td a {FONT-SIZE: 12pt; LINE-HEIGHT: 200%; padding:15px; color:#fff; text-decoration: none; font-weight: bold;	}
+#adtop td.over {}
+#adtop td.over a {background: #fff; color: #000;}
+
+/*¾îµå¹Î ¼­ºê¸Þ´º*/
+#adsubmenu {padding:0; margin:0;}
+#adsubmenu td {padding:2px 0px;}
+#adsubmenu td.td_bottom15 {padding-bottom:15px;}
+#adsubmenu td a {FONT-SIZE: 12pt; LINE-HEIGHT: 200%; padding:15px; color:#fff; text-decoration: none; font-weight: bold;}

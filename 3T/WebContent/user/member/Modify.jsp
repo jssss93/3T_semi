@@ -7,25 +7,20 @@
 <head>
 
 <script language="javascript">
-	  function check() {
+	function check() {
 
-		var f = document.Reg_form; 
-	
+		var f = document.Reg_form;
 
 		if (f.M_ID.value == "") {
 			alert("아이디를 입력해주십시오");
 			f.M_ID.focus();
 			return false;
 		}
-	// 	if (f.confirm_id2.value == "") {
-	//		alert("아이디 중복확인을 해주십시오");
-	//		return false;
-	//	} 
+	
 
 		if (f.M_PASSWD.value == "") {
 			alert("비밀번호를 입력해주십시오");
 			f.M_PASSWD.focus();
-			
 			return false;
 		}
 
@@ -77,17 +72,13 @@
 			return false;
 		}
 
-
 		if (f.M_EMAIL.value == "") {
 			alert("이메일을 입력해주십시오");
 			f.M_EMAIL.focus();
 			return false;
 		}
-		
-		
 
-		
-	}  
+	}
 
 	function openConfirmId() {
 		var url = "memberIdCheck.action?id=" + document.Reg_form.id.value;
@@ -108,13 +99,13 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script language="Javascript">
 	function checkemailaddy() {
-		if (Reg_form.email3.value == '1') {
-			Reg_form.M_EMAIL2.readonly = false;
-			Reg_form.M_EMAIL2.value = '';
-			Reg_form.M_EMAIL2.focus();
+		if (mypageUpdate.email3.value == '1') {
+			mypageUpdate.M_EMAIL2.readonly = false;
+			mypageUpdate.M_EMAIL2.value = '';
+			mypageUpdate.M_EMAIL2.focus();
 		} else {
-			Reg_form.M_EMAIL2.readonly = true;
-			Reg_form.M_EMAIL2.value = Reg_form.email3.value;
+			mypageUpdate.M_EMAIL2.readonly = true;
+			mypageUpdate.M_EMAIL2.value = mypageUpdate.email3.value;
 		}
 	}
 </script>
@@ -196,11 +187,11 @@
 	}
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>회원가입</title>
+<title>정보수정</title>
 <link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<form name="Reg_form" action="join.action" method="post"
+	<form name="mypageUpdate" action="modifyAction.action" method="post"
 		onsubmit="return check()">
 
 
@@ -209,7 +200,7 @@
 				<td align="center" style="padding: 50px;">
 					<table width="700" border="0" cellspacing="0" cellpadding="0">
 						<tr>
-							<td height="40" align="center" class="text01 formbar" colspan="2">회원가입</td>
+							<td height="40" align="center" class="text01 formbar" colspan="2">회원정보수정</td>
 						</tr>
 						<tr>
 							<td height="60"></td>
@@ -223,79 +214,80 @@
 						<tr>
 							<td class="tdstyle1">아이디<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="text" name="M_ID" maxlength="20"
-								size="28"> <input type="button" name="confirm_id"
-								value="중복확인" onclick="openConfirmId()" class="hreflink2">
-								<input type="hidden" name="confirm_id" value=""> 영문/숫자를
-								이용하여 4~12자로 입력하세요</td>
+							<td valign="middle"><s:property value="%{resultClass.M_ID}" />
 						</tr>
 						<tr>
 							<td class="tdstyle1">비밀번호<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="password" maxlength="14"
-								name="M_PASSWD" size="30"> 영문/숫자를 이용하여 4~12자로 입력하세요</td>
+							<td><input type="password" name="M_PASSWD" size="30"	onfocus="on(this)" onblur="off(this)">
+						 <font class="BFONT">영문/숫자를 이용하여 4~12자로 입력하세요</font></td>
 						</tr>
 						<tr>
 							<td class="tdstyle1">비밀번호확인<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="password" maxlength="7" maxlength="14"
-								name="M_PASSWD2" size="30"> 비밀번호를 재입력 해주세요</td>
+							<td valign="middle"><input type="password" name="M_PASSWD2" size="30" onfocus="on(this)" onblur="off(this)">
+						<font class="BFONT">비밀번호를 재입력 해주세요</font></td>
 						</tr>
 						<tr>
 							<td class="tdstyle1">이 름<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="text" name="M_NAME"
-								size="28"> 회원가입 후 수정이 불가능합니다</td>
+							<td valign="middle"><s:property value="%{resultClass.M_NAME}" />
+							</td>
 						</tr>
 						<tr>
 							<td class="tdstyle1">주민등록번호<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="text" name="M_JUMIN1" 
-								size="6" maxlength="6"> - <input type="text" name="M_JUMIN2"
-								size="7"maxlength="7"></td>
+							<td valign="middle"><s:property
+									value="%{resultClass.M_JUMIN1}" /> - <s:property
+									value="%{resultClass.M_JUMIN2}" /></td>
 						</tr>
 						<tr>
 							<td class="tdstyle1">우편번호<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="text" id="M_ZIPCODE"
-								name="M_ZIPCODE" size="28" placeholder="검색버튼이용해주세요">
-								<input type="button" value="검색" onclick="DaumPostcode()"
-								class="hreflink2"> <br></td>
+
+							<td valign="middle"><s:textfield name="M_ZIPCODE"
+									id="M_ZIPCODE" theme="simple" value="%{resultClass.M_ZIPCODE}" />
+								<input type="button" value="검색" onclick="DaumPostcode()">
+								검색 버튼을 눌러 주소를 입력해 주세요</td>
 						</tr>
 						<tr>
 							<td class="tdstyle1">주 소<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="text" id="M_ADDR1"
-								name="M_ADDR1" placeholder="자동기입" size="60"> <br>
-								<input type="text" id="M_ADDR2" name="M_ADDR2" placeholder="상제주소를 입력해주세요"size="60"></td>
+
+							<td valign="middle"><s:textfield name="M_ADDR1" id="M_ADDR1"
+									theme="simple" value="%{resultClass.M_ADDR1}" /> <br> <s:textfield
+									name="M_ADDR2" id="M_ADDR2" theme="simple"
+									value="%{resultClass.M_ADDR2}" /></td>
 						</tr>
 
 						<tr>
 							<td class="tdstyle1">휴대폰번호<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="text" name="M_PHONE"
-								size="28" placeholder="ex)01055551111"> "-" 없이 숫자만 입력하세요</td>
+							<td valign="middle"><s:textfield name="cellphone"
+									theme="simple" value="%{resultClass.M_PHONE}" /> "-" 없이 숫자만
+								입력하세요</td>
 						</tr>
+						
 						<tr>
 							<td class="tdstyle1">이메일<img
-								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
+								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif">
+								</td>
 							<td valign="middle">
-									<input name="M_EMAIL1" type="text" class="box" id="M_EMAIL1"
-										size="15"> @ <input name="M_EMAIL2" type="text"
-										class="box" id="M_EMAIL2" size="20"> <select
-										name="email3" class="box" id="email_select"
-										onChange="checkemailaddy();">
-										<option value="" selected>선택하세요</option>
-										<option value="naver.com">naver.com</option>
-										<option value="hotmail.com">hotmail.com</option>
-										<option value="hanmail.com">hanmail.com</option>
-										<option value="yahoo.co.kr">yahoo.co.kr</option>
-										<option value="1">직접입력</option>
-									</select>
-
-
-								
+							<s:textfield name="M_EMAIL1" id="M_EMAIL1" theme="simple" value="%{resultClass.M_EMAIL1}" /> @ 
+							<s:textfield name="M_EMAIL2" id="M_EMAIL2" theme="simple" value="%{resultClass.M_EMAIL2}" />
+								<select name="email3"  id="email3"
+								onChange="checkemailaddy();">
+									<option value="" selected>선택하세요</option>
+									<option value="naver.com">naver.com</option>
+									<option value="hotmail.com">hotmail.com</option>
+									<option value="hanmail.com">hanmail.com</option>
+									<option value="yahoo.co.kr">yahoo.co.kr</option>
+									<option value="1">직접입력</option>
+									
+							</select>
+							</td>
 						</tr>
+						
 
 
 					</table>
@@ -308,11 +300,10 @@
 						<tr>
 							<td class="tdstyle1">환불계좌 정보<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle">예금주<input type="text"
-								name="M_DEPOSITOR" size="28"><br> <br>
-								은행명<input type="text" name="M_NAME_BANK" size="28"><br>
-								<br> 계좌번호<input type="text" name="ACCOUNT_NO" size="28"
-								placeholder="ex)111-212-555000"><br>
+							<td valign="middle">예금주<s:textfield name="M_DEPOSITOR" theme="simple"
+							value="%{resultClass.M_DEPOSITOR}" /><br> <br> 은행명<s:textfield name="M_NAME_BANK" theme="simple"
+							value="%{resultClass.M_NAME_BANK}" /> <br><br> 계좌번호<s:textfield name="ACCOUNT_NO" theme="simple"
+							value="%{resultClass.ACCOUNT_NO}" /><br>
 							</td>
 
 						</tr>
@@ -321,9 +312,13 @@
 						</tr>
 						<tr>
 							<td colspan="2" align="center" style="border: 0px;"><input
-								type="submit" value="회원가입" class="submit" onclick="javascript:location.href='login.action'"> <input
-								type="button" value="취 소"
-								onclick="location.href='메인페이지'" class="hreflink"></td>
+								type="submit" value="수정" class="submit"><input
+								type="button" value="취 소" onclick="history.go(-1)"
+								class="hreflink">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+							<input type="button" value="회원탈퇴" onclick="document.location.href='deleteAction.action'"
+								class="submit">
+								</td>
+								
 						</tr>
 					</table>
 

@@ -12,10 +12,9 @@
 			<result>/user/member/LoginForm.jsp</result>
 		</action>
 
-		<action name="logon" class="user.member.login.LoginAction"
-			method="login">
+		<action name="logon" class="user.member.login.LoginAction" method="login">
 			<result name="success">/user/member/LoginSuccess.jsp</result>
-			<result name="error">/user/member/login/LoginError.jsp</result>
+			<result name="error">/user/login/LoginError.jsp</result>
 		</action>
 
 		<action name="join1" class="user.member.MemberAction">
@@ -54,6 +53,25 @@
 				/user/member/FindPw.jsp
 			</result>
 		</action>
+		<action name="modifyForm" class="user.member.ModifyAction">
+			<result>
+				/user/member/Modify.jsp
+			</result>
+		</action>
+		<action name="modifyAction" class="user.member.ModifyAction" method="modifyUpadte">
+			<result>
+				/user/member/ModifySuccess.jsp
+			</result>
+		</action>
+		
+		<action name="deleteAction" class="user.member.MemberDeleteAction" method="delete">
+			<result>
+				/user/member/DeleteSuccess.jsp
+			</result>
+		</action>
+		
+		
+
 
 
 	</package>
