@@ -23,7 +23,6 @@ public class MemberAction extends ActionSupport {
 	private String M_PASSWD;
 	private String M_PASSWD2;
 	private String M_NAME;
-	private String M_SEX;
 	private String M_JUMIN1;
 	private String M_JUMIN2;
 	private String M_PHONE;
@@ -59,7 +58,6 @@ public class MemberAction extends ActionSupport {
 		paramClass.setM_ID(getM_ID());
 		paramClass.setM_PASSWD(getM_PASSWD());
 		paramClass.setM_PASSWD2(getM_PASSWD2());
-		paramClass.setM_SEX(getM_SEX());
 		paramClass.setM_NAME(getM_NAME());
 		paramClass.setM_JUMIN1(getM_JUMIN1());
 		paramClass.setM_JUMIN2(getM_JUMIN2());
@@ -168,13 +166,6 @@ public class MemberAction extends ActionSupport {
 		M_NAME = m_NAME;
 	}
 
-	public String getM_SEX() {
-		return M_SEX;
-	}
-
-	public void setM_SEX(String m_SEX) {
-		M_SEX = m_SEX;
-	}
 
 	public String getM_JUMIN1() {
 		return M_JUMIN1;
