@@ -112,6 +112,21 @@
 		UPDATE REVIEW SET REV_READCNT = REV_readcnt + 1
 		<include refid="review-where-no" />
 	</update>
-
-
+	
+	<!-- delete 쿼리문 정의 -->
+  		  <delete id="review-DeleteReview" parameterClass="review">
+			DELETE FROM REVIEW
+			<include refid="review-where-no" />
+   		 </delete>
+<!-- 검색로직 추가시작 --><!-- 검색 추가데이터 -->
+<select id="review-selectSearchW" resultMap="reviewRes" parameterClass="string">
+		<include refid="select-all" />
+		 WHERE REV_name like #searchKeyword#
+		 ORDER BY REV_no DESC
+	</select>
+	<select id="review-selectSearchS" resultMap="reviewRes" parameterClass="string">
+		<include refid="select-all" />
+		 WHERE REV_subject like #searchKeyword#
+		 ORDER BY REV_no DESC
+	</select>
 </sqlMap>

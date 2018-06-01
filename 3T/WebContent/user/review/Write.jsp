@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>½ºÆ®·µÃ÷2 °Ô½ÃÆÇ</title>
+<title>REVIEW</title>
 <!--  
 <script type="text/javascript">
 	function validation(){
@@ -13,19 +13,19 @@
 		var frm = document.forms[0]; 
 		
 		if(frm.subject.value == ""){
-			alert("Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			alert("ì œëª©ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”.");
 			return false;
 		}
 		else if(frm.name.value == ""){
-			alert("ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			alert("ì´ë¦„ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”.");
 			return false;
 		}
 		else if(frm.password.value == ""){
-			alert("ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”.");
 			return false;
 		}
 		else if(frm.content.value == ""){
-			alert("³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+			alert("ë‚´ìš©ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”.");
 			return false;
 		}
 		return true;
@@ -38,122 +38,121 @@
 <body>
 
 
-	 <table width="700" border="0" cellspacing="0" cellpadding="2">
-  		<tr>
-  			<td align="left"><h2>REVIEW</h2></td>
-  		</tr>
-  		<tr>
-  			<td height="20"></td>
-  		</tr>
-  	</table>
-  	
-  	
-	
-	
+	<table width="700" border="0" cellspacing="0" cellpadding="2">
+		<tr>
+			<td align="left"><h2>REVIEW</h2></td>
+		</tr>
+		<tr>
+			<td height="20"></td>
+		</tr>
+	</table>
+
+
+
+
 	<s:if test="resultClass == NULL">
-		<form action="Review_Write.action" method="post" enctype="multipart/form-data" onsubmit="return validation();">
+		<form action="Review_Write.action" method="post"
+			enctype="multipart/form-data" onsubmit="return validation();">
 	</s:if>
-	
-	
+
+
 	<s:else>
-		<form action="Review_Modify.action" method="post" enctype="multipart/form-data">
-		<s:hidden name="no" value="%{resultClass.REV_no}"/>
-		<s:hidden name="currentPage" value="%{currentPage}"/>
-		<s:hidden name="old_file" value="%{resultClass.REV_file_savname}"/>
+		<form action="Review_ModifyAction.action" method="post"
+			enctype="multipart/form-data">
+			<s:hidden name="REV_no" value="%{resultClass.REV_no}" />
+			<s:hidden name="currentPage" value="%{currentPage}" />
+			<s:hidden name="old_file" value="%{resultClass.REV_file_savname}" />
 	</s:else>
-	
+
 	<table width="600" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td align="right" colspan="2"><font color="#FF0000"></td>
 		</tr>
-		
+
 		<tr bgcolor="#777777">
 			<td height="1" colspan="2"></td>
 		</tr>
-		
+
 		<tr>
 			<td width="100" bgcolor="#FFFFFF"><font color="#FF0000"></font>SUBJECT</td>
-			<td width="500" bgcolor="#FFFFFF">
-			<s:textfield name="subject" theme="simple" value="%{resultClass.REV_subject}" cssStyle="width:370px" maxlength="50"/>
-			</td>
+			<td width="500" bgcolor="#FFFFFF"><s:textfield
+					name="REV_subject" theme="simple"
+					value="%{resultClass.REV_subject}" cssStyle="width:370px"
+					maxlength="50" /></td>
 		</tr>
 		<tr bgcolor="#777777">
-          <td height="1" colspan="2"></td>
-        </tr>
-		
+			<td height="1" colspan="2"></td>
+		</tr>
+
 		<tr>
 			<td bgcolor="#FFFFFF"><font color="#FF0000"></font>NAME</td>
-			<td bgcolor="#FFFFFF">
-			<s:textfield name="name" theme="simple" value="%{resultClass.REV_name}" cssStyle="width:100px" maxlength="20"/>
-			</td>
+			<td bgcolor="#FFFFFF"><s:textfield name="REV_name"
+					theme="simple" value="%{resultClass.REV_name}"
+					cssStyle="width:100px" maxlength="20" /></td>
 		</tr>
 		<tr bgcolor="#777777">
 			<td height="1" colspan="2"></td>
 		</tr>
-		
+
 		<tr>
 			<td bgcolor="#FFFFFF"><font color="#FF0000"></font>PASSWORD</td>
-			<td bgcolor="#FFFFFF">
-				<s:textfield name="password" theme="simple" value="%{resultClass.REV_passwd}" cssStyle="width:100px" maxlength="20"/>
+			<td bgcolor="#FFFFFF"><s:textfield name="REV_passwd"
+					theme="simple" value="%{resultClass.REV_passwd}"
+					cssStyle="width:100px" maxlength="20" /></td>
+		</tr>
+		<tr bgcolor="#777777">
+			<td height="1" colspan="2"></td>
+		</tr>
+
+		<tr>
+
+			<td colspan="2" bgcolor="#FFFFFF"><s:textarea name="REV_content"
+					theme="simple" value="%{resultClass.REV_content}" cols="100"
+					rows="20" /></td>
+		</tr>
+		<tr bgcolor="#777777">
+			<td height="1" colspan="2"></td>
+		</tr>
+
+		<tr>
+			<td bgcolor="#FFFFFF">FILE</td>
+			<td bgcolor="#FFFFFF"><s:file name="upload" theme="simple" /> <s:if
+					test="resultClass.REV_file_orgname != NULL">
+        	&nbsp; * <s:property value="resultClass.REV_file_orgname" />íŒŒì¼ì´ ë“±ë¡ ë˜ì–´ ìžˆìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì—…ë¡œë“œí•˜ë©´ ê¸°ì¡´ì˜ íŒŒì¼ì€ ì‚­ì œë©ë‹ˆë‹¤.
+        	</s:if></td>
+		</tr>
+		<tr>
+			<td bgcolor="#FFFFF">ê°œì¸ì •ë³´ ìˆ˜ì§‘ ë° ì´ìš© ë™ì˜</td>
+			<td bgcolor="#FFFFF"><s:textarea name="content" theme="simple"
+					value="â–  ê°œì¸ì •ë³´ì˜ ìˆ˜ì§‘Â·ì´ìš© ëª©ì 
+ì„œë¹„ìŠ¤ ì œê³µ ë° ê³„ì•½ì˜ ì´í–‰, êµ¬ë§¤ ë° ëŒ€ê¸ˆê²°ì œ, ë¬¼í’ˆë°°ì†¡ ë˜ëŠ” ì²­êµ¬ì§€ ë°œì†¡, íšŒì›ê´€ë¦¬ ë“±ì„ ìœ„í•œ ëª©ì 
+â–  ìˆ˜ì§‘í•˜ë ¤ëŠ” ê°œì¸ì •ë³´ì˜ í•­ëª©
+ì´ë¦„, ì£¼ì†Œ, ì—°ë½ì²˜ ë“±
+â–  ê°œì¸ì •ë³´ì˜ ë³´ìœ  ë° ì´ìš© ê¸°ê°„
+íšŒì‚¬ëŠ” ê°œì¸ì •ë³´ ìˆ˜ì§‘ ë° ì´ìš©ëª©ì ì´ ë‹¬ì„±ëœ í›„ì—ëŠ” ì˜ˆì™¸ì—†ì´ í•´ë‹¹ì •ë³´ë¥¼ íŒŒê¸°í•©ë‹ˆë‹¤.
+#ê°œì¸ì •ë³´ì˜ ìœ„íƒ ì²˜ë¦¬ì• ì¦ˆí´ë¡œëŠ” ì„œë¹„ìŠ¤ í–¥ìƒì„ ìœ„í•´ ê´€ê³„ë²•ë ¹ì— ë”°ë¼ íšŒì›ì˜ ë™ì˜ë¥¼ ì–»ê±°ë‚˜ ê´€ë ¨ ì‚¬í•­ì„ ê³µê°œ ë˜ëŠ” ê³ ì§€ í›„ íšŒì›ì˜ ê°œì¸ì •ë³´ë¥¼ ì™¸ë¶€ì— ìœ„íƒí•˜ì—¬ ì²˜ë¦¬í•˜ê³  ìžˆìŠµë‹ˆë‹¤. ì• ì¦ˆí´ë¡œì˜ ê°œì¸ì •ë³´ì²˜ë¦¬ ìˆ˜íƒìžì™€ ê·¸ ì—…ë¬´ì˜ ë‚´ìš©ì€ ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤. - ìˆ˜íƒìž : (ì£¼)ë£¨ë‚˜ì†Œí”„íŠ¸- ìœ„íƒ ì—…ë¬´ ë‚´ìš© : ì¹´ì¹´ì˜¤ ì•Œë¦¼í†¡ ë°œì†¡ ì—…ë¬´ ì§ì†¡ ë“± ì¼ë¶€ ë°°ì†¡í˜•íƒœì— ë”°ë¼, ì „ìžìƒê±°ëž˜ì†Œë¹„ìžë³´í˜¸ë²• ì œ 21ì¡°ì— ì˜ê±° í˜‘ë ¥ì‚¬ì— ë°°ì†¡ì •ë³´ê°€ ì œê³µ ë©ë‹ˆë‹¤."
+					cols="80" rows="10"></s:textarea></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td colspan="2" bgcolor="#FFFFFF">ê°œì¸ì •ë³´ ìˆ˜ì§‘ ë° ì´ìš©ì— ë™ì˜í•˜ì‹­ë‹ˆê¹Œ? <input
+				type="radio" name="objChkBox" value="ë™ì˜">ë™ì˜</input> <input
+				type="radio" name="objChkBox" value="ë™ì˜ì•ˆí•¨">ë™ì˜ì•ˆí•¨</input>
 			</td>
 		</tr>
 		<tr bgcolor="#777777">
 			<td height="1" colspan="2"></td>
 		</tr>
-		
 		<tr>
-         
-          <td colspan="2" bgcolor="#FFFFFF">
-            <s:textarea name="content" theme="simple" value="%{resultClass.REV_content}" cols="100" rows="20" />
-          </td>
-        </tr>
-        <tr bgcolor="#777777">
-          <td height="1" colspan="2"></td>
-        </tr>
-        
-        <tr>
-        	<td bgcolor="#FFFFFF">FILE</td>
-        	<td bgcolor="#FFFFFF">
-        	<s:file name="upload" theme="simple"/>
-        	
-        	<s:if test="resultClass.REV_file_orgname != NULL">
-        	&nbsp; * <s:property value="resultClass.file_orgname"/>ÆÄÀÏÀÌ µî·Ï µÇ¾î ÀÖ½À´Ï´Ù. ´Ù½Ã ¾÷·ÎµåÇÏ¸é ±âÁ¸ÀÇ ÆÄÀÏÀº »èÁ¦µË´Ï´Ù.
-        	</s:if>
-        	</td>
-        </tr>
-        <tr>
-        	<td bgcolor="#FFFFF">°³ÀÎÁ¤º¸ ¼öÁý ¹× ÀÌ¿ë µ¿ÀÇ </td>
-        	<td bgcolor="#FFFFF">
-        	<s:textarea name="content" theme="simple" value="¡á °³ÀÎÁ¤º¸ÀÇ ¼öÁý¡¤ÀÌ¿ë ¸ñÀû
-¼­ºñ½º Á¦°ø ¹× °è¾àÀÇ ÀÌÇà, ±¸¸Å ¹× ´ë±Ý°áÁ¦, ¹°Ç°¹è¼Û ¶Ç´Â Ã»±¸Áö ¹ß¼Û, È¸¿ø°ü¸® µîÀ» À§ÇÑ ¸ñÀû
-¡á ¼öÁýÇÏ·Á´Â °³ÀÎÁ¤º¸ÀÇ Ç×¸ñ
-ÀÌ¸§, ÁÖ¼Ò, ¿¬¶ôÃ³ µî
-¡á °³ÀÎÁ¤º¸ÀÇ º¸À¯ ¹× ÀÌ¿ë ±â°£
-È¸»ç´Â °³ÀÎÁ¤º¸ ¼öÁý ¹× ÀÌ¿ë¸ñÀûÀÌ ´Þ¼ºµÈ ÈÄ¿¡´Â ¿¹¿Ü¾øÀÌ ÇØ´çÁ¤º¸¸¦ ÆÄ±âÇÕ´Ï´Ù.
-#°³ÀÎÁ¤º¸ÀÇ À§Å¹ Ã³¸®¾ÖÁîÅ¬·Î´Â ¼­ºñ½º Çâ»óÀ» À§ÇØ °ü°è¹ý·É¿¡ µû¶ó È¸¿øÀÇ µ¿ÀÇ¸¦ ¾ò°Å³ª °ü·Ã »çÇ×À» °ø°³ ¶Ç´Â °íÁö ÈÄ È¸¿øÀÇ °³ÀÎÁ¤º¸¸¦ ¿ÜºÎ¿¡ À§Å¹ÇÏ¿© Ã³¸®ÇÏ°í ÀÖ½À´Ï´Ù. ¾ÖÁîÅ¬·ÎÀÇ °³ÀÎÁ¤º¸Ã³¸® ¼öÅ¹ÀÚ¿Í ±× ¾÷¹«ÀÇ ³»¿ëÀº ´ÙÀ½°ú °°½À´Ï´Ù. - ¼öÅ¹ÀÚ : (ÁÖ)·ç³ª¼ÒÇÁÆ®- À§Å¹ ¾÷¹« ³»¿ë : Ä«Ä«¿À ¾Ë¸²Åå ¹ß¼Û ¾÷¹« Á÷¼Û µî ÀÏºÎ ¹è¼ÛÇüÅÂ¿¡ µû¶ó, ÀüÀÚ»ó°Å·¡¼ÒºñÀÚº¸È£¹ý Á¦ 21Á¶¿¡ ÀÇ°Å Çù·Â»ç¿¡ ¹è¼ÛÁ¤º¸°¡ Á¦°ø µË´Ï´Ù." cols="80" rows="10"></s:textarea>
-        	</td>
-       		<td colspan="2"></td>
-        </tr>
-        <tr>
-        <td colspan="2" bgcolor="#FFFFFF">°³ÀÎÁ¤º¸ ¼öÁý ¹× ÀÌ¿ë¿¡ µ¿ÀÇÇÏ½Ê´Ï±î?
-        <input type="radio"  name="objChkBox" value="µ¿ÀÇ">µ¿ÀÇ</input>
-        <input type="radio"  name="objChkBox" value="µ¿ÀÇ¾ÈÇÔ">µ¿ÀÇ¾ÈÇÔ</input>
-        </td>
-        </tr>
-        <tr bgcolor="#777777">
-        	<td height="1" colspan="2"></td>
-        </tr>
-        <tr>
-        	<td height="10" colspan="2"></td>
-        </tr>
-		
-		<tr>
-			<td align="right" colspan="2">
-				<input name="submit" type="submit" value="OK" >
-				<input name="list" type="button" value="CANCLE" onClick="javascript:location.href='Review_list.action?currentPage=<s:property value="currentPage"/>'">
-			</td>
+			<td height="10" colspan="2"></td>
 		</tr>
-		
+
+		<tr>
+			<td align="right" colspan="2"><input name="submit" type="submit"
+				value="OK"> <input name="list" type="button" value="CANCLE"
+					onClick="javascript:location.href='Review_list.action?currentPage=<s:property value="currentPage"/>'"></td>
+		</tr>
+
 	</table>
 	</form>
 </body>

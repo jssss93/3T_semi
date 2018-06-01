@@ -17,15 +17,15 @@ public class ViewAction extends ActionSupport {
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 
-	private ReviewVO paramClass = new ReviewVO(); //파라미터를 저장할 객체
-	private ReviewVO resultClass = new ReviewVO(); //쿼리 결과 값을 저장할 객체
+	private ReviewVO paramClass = new ReviewVO(); // 파라미터를 저장할 객체
+	private ReviewVO resultClass = new ReviewVO(); // 쿼리 결과 값을 저장할 객체
 
 	private int currentPage;
-	private int no;
+
 	private int REV_no;
 	private String REV_passwd;
 
-	private String fileUploadPath = "C:\\Java\\upload\\";
+	private String fileUploadPath = "C:\\upload\\";
 
 	private InputStream inputStream;
 	private String contentDisposition;
@@ -34,39 +34,31 @@ public class ViewAction extends ActionSupport {
 	// 생성자
 	public ViewAction() throws IOException {
 
-		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); 
-		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader); 
+		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
+		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 		reader.close();
 	}
 
-	
 	public String execute() throws Exception {
 
-		
-		paramClass.setREV_no(getREV_no());;
+		paramClass.setREV_no(getREV_no());
+		;
 		sqlMapper.update("review-updateReadHit", paramClass);
 
-		
 		resultClass = (ReviewVO) sqlMapper.queryForObject("review-selectOne", getREV_no());
 
 		return SUCCESS;
 	}
 
-	
 	public String download() throws Exception {
 
-		
 		resultClass = (ReviewVO) sqlMapper.queryForObject("review-selectOne", getREV_no());
 
-		
 		File fileInfo = new File(fileUploadPath + resultClass.getREV_file_savname());
 
-		
 		setContentLength(fileInfo.length());
-		setContentDisposition("attachment;filename="
-				+ URLEncoder.encode(resultClass.getREV_file_orgname(), "UTF-8"));
-		setInputStream(new FileInputStream(fileUploadPath
-				+ resultClass.getREV_file_savname()));
+		setContentDisposition("attachment;filename=" + URLEncoder.encode(resultClass.getREV_file_orgname(), "UTF-8"));
+		setInputStream(new FileInputStream(fileUploadPath + resultClass.getREV_file_savname()));
 
 		return SUCCESS;
 	}
@@ -81,16 +73,15 @@ public class ViewAction extends ActionSupport {
 	public String checkAction() throws Exception {
 
 		// 비밀번호 입력값 파라미터 설정.
-		paramClass.setREV_no(getNo());
+		paramClass.setREV_no(getREV_no());
 		paramClass.setREV_passwd(getREV_passwd());
-		
-		System.out.println("getREV_no"+getNo());
-		System.out.println("getREV_passwd"+getREV_passwd());
+
+		System.out.println("getREV_no" + getREV_no());
+		System.out.println("getREV_passwd" + getREV_passwd());
 
 		// 현재 글의 비밀번호 가져오기.
-		resultClass = (ReviewVO) sqlMapper.queryForObject("review-selectPassword",paramClass);
+		resultClass = (ReviewVO) sqlMapper.queryForObject("review-selectPassword", paramClass);
 
-		
 		if (resultClass == null)
 			return ERROR;
 
@@ -185,17 +176,4 @@ public class ViewAction extends ActionSupport {
 		this.REV_passwd = REV_passwd;
 	}
 
-
-	public int getNo() {
-		return no;
-	}
-
-
-	public void setNo(int no) {
-		this.no = no;
-	}
-	
-	
-	
-	
 }
