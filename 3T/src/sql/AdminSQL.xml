@@ -3,7 +3,7 @@
 	'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap>
 
-	<!-- 관리자 상품 SQL ********************************************************************************************************************** -->
+	<!-- 관리자 회원 SQL ********************************************************************************************************************** -->
 	<typeAlias alias="ad_member" type="admin.member.VO.MemberVO" />
 
 	<resultMap id="MemberRes" class="ad_member">
@@ -26,7 +26,7 @@
 		<result property="m_name_bank" column="m_name_bank" />
 		<result property="account_no" column="account_no" />
 		<result property="m_admin" column="m_admin" />
-		<result property="m_sex" column="m_sex" />
+		
 
 	</resultMap>
 
@@ -42,7 +42,8 @@
 
 
 	<select id="AMselectAll" resultMap="MemberRes" parameterClass="int">
-		<include refid="AMselect-all" />
+		<include refid="AMselect-all" /> 
+		
 
 	</select>
 
@@ -90,26 +91,27 @@
 
 	</resultMap>
 
-	<sql id="select-all">
+	<sql id="AGselect-all">
 		SELECT * FROM GOODS
 	</sql>
 
 	<!-- 공통으로 사용할 where-no 절 정의 -->
-	<sql id="where-no">
+	<sql id="AGwhere-no">
 		WHERE Goods_no = #goods_no#
 	</sql>
 
-	<select id="selectAll" resultMap="GoodsRes" parameterClass="int">
-		<include refid="select-all" />
+	<select id="AGselectAll" resultMap="GoodsRes" parameterClass="int">
+		<include refid="AGselect-all" />
+		order by goods_reg_date desc
 
 	</select>
 
-	<select id="selectOne" resultMap="GoodsRes" parameterClass="int">
-		<include refid="select-all" />
-		<include refid="where-no" />
+	<select id="AGselectOne" resultMap="GoodsRes" parameterClass="int">
+		<include refid="AGselect-all" />
+		<include refid="AGwhere-no" />
 	</select>
 
-	<select id="selectLastNo" resultClass="ad_goods" parameterClass="int">
+	<select id="AGselectLastNo" resultClass="ad_goods" parameterClass="int">
 		SELECT max(goods_no) as goods_no FROM GOODS
 	</select>
 
@@ -127,15 +129,15 @@
 		#goods_category#,#goods_recommend#,#goods_totalcount#,#goods_related_product#,#goods_file_orgname#,#goods_file_savname#)
 	</insert>
 
-	<update id="updateFile" parameterClass="ad_goods">
+	<update id="AGupdateFile" parameterClass="ad_goods">
 		UPDATE GOODS SET GOODS_FILE_ORGNAME = #goods_file_orgname#
 		,GOODS_FILE_SAVNAME = #goods_file_savname#
-		<include refid="where-no" />
+		<include refid="AGwhere-no" />
 	</update>
 
 	<update id="updateReadcnt" parameterClass="ad_goods">
 		UPDATE GOODS SET GOODS_READCNT = GOODS_READCNT + 1
-		<include refid="where-no" />
+		<include refid="AGwhere-no" />
 	</update>
 
 	<update id="updateGoods" parameterClass="ad_goods">
@@ -149,13 +151,13 @@
 		goods_related_product=#goods_related_product#,
 		goods_file_orgname=#goods_file_orgname#,
 		goods_file_savname=#goods_file_savname#
-		<include refid="where-no" />
+		<include refid="AGwhere-no" />
 	</update>
 
 
 	<delete id="deleteGoods" parameterClass="ad_goods">
 		DELETE FROM GOODS
-		<include refid="where-no" />
+		<include refid="AGwhere-no" />
 	</delete>
 
 

@@ -101,19 +101,19 @@
 	
 		<tr>
 			<td colspan="2" align="right">
-				<s:url id="modifyURL" action="modifyForm">
+				<s:url id="modifyURL" action="AGmodifyForm">
 					<s:param name="no">
 						<s:property value="no" />
 					</s:param>
 				</s:url>
-				<s:url id="deleteURL" action="deleteAction">
+				<s:url id="deleteURL" action="AGdeleteAction">
 					<s:param name="no">
 						<s:property value="no" />
 					</s:param>
 				</s:url>
-				<input name="modify_b" type="button" value="수정" class="inputb" onClick="javascript:open_win_noresizable('modifyForm.action?goods_no=<s:property value="resultClass.goods_no" />&currentPage=<s:property value="currentPage" />','modify')">
-				<input name="delete_b" type="button" value="삭제" class="inputb" onClick="javascript:open_win_noresizable('deleteAction.action?goods_no=<s:property value="resultClass.goods_no" />&currentPage=<s:property value="currentPage" />','delete')">
-				<input name="list_b" type="button" value="목록" class="inputb" onClick="javascript:location.href='listAction.action?currentPage=<s:property value="currentPage" />'">
+				<input name="modify_b" type="button" value="수정" class="inputb" onClick="javascript:open_win_noresizable('AGmodifyForm.action?goods_no=<s:property value="resultClass.goods_no" />&currentPage=<s:property value="currentPage" />','modify')">
+				<input name="delete_b" type="button" value="삭제" class="inputb" onClick="javascript:open_win_noresizable('AGdeleteAction.action?goods_no=<s:property value="resultClass.goods_no" />&currentPage=<s:property value="currentPage" />','delete')">
+				<input name="list_b" type="button" value="목록" class="inputb" onClick="javascript:location.href='AGlistAction.action?currentPage=<s:property value="currentPage" />'">
 			</td>
 		</tr>
 		

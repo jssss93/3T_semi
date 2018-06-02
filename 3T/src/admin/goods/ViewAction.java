@@ -32,7 +32,7 @@ public class ViewAction extends ActionSupport {
 		paramClass.setGoods_no(getGoods_no());
 		sqlMapper.update("updateReadcnt", paramClass);
 
-		resultClass = (GoodsVO) sqlMapper.queryForObject("selectOne", getGoods_no());
+		resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", getGoods_no());
 
 		return SUCCESS;
 	}

@@ -43,7 +43,7 @@ public class ListAction extends ActionSupport {
 		 * if(getSearchKeyword() != null) { return search(); }
 		 */
 
-		list = sqlMapper.queryForList("AFselectAll");
+		list = sqlMapper.queryForList("AGselectAll");
 
 		totalCount = list.size();
 		page = new PagingAction(currentPage, totalCount, blockCount, blockPage, num, "");

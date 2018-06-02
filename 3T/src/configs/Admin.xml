@@ -25,29 +25,29 @@
 		name="----------------------------------------Goods-------------------------------------------"
 		extends="struts-default">
 
-		<action name="listAction" class="admin.goods.ListAction">
+		<action name="AGlistAction" class="admin.goods.ListAction">
 			<result>/admin/goods/List.jsp</result>
 		</action>
-		<action name="writeForm" class="admin.goods.WriteAction"
+		<action name="AGwriteForm" class="admin.goods.WriteAction"
 			method="form">
 			<result>/admin/goods/Write.jsp</result>
 		</action>
-		<action name="writeAction" class="admin.goods.WriteAction">
+		<action name="AGwriteAction" class="admin.goods.WriteAction">
 			<result type="redirect-action">
-				<param name="actionName">listAction</param>
+				<param name="actionName">AGlistAction</param>
 			</result>
 		</action>
-		<action name="viewAction" class="admin.goods.ViewAction">
+		<action name="AGviewAction" class="admin.goods.ViewAction">
 			<result>/admin/goods/View.jsp</result>
 		</action>
-		<action name="modifyForm" class="admin.goods.ViewAction">
-			<result type="chain">writeForm</result>
+		<action name="AGmodifyForm" class="admin.goods.ViewAction">
+			<result type="chain">AGwriteForm</result>
 		</action>
-		<action name="modifyAction" class="admin.goods.ModifyAction">
-			<result type="chain">viewAction</result>
+		<action name="AGmodifyAction" class="admin.goods.ModifyAction">
+			<result type="chain">AGviewAction</result>
 		</action>
-		<action name="deleteAction" class="admin.goods.DeleteAction">
-			<result type="chain">listAction</result>
+		<action name="AGdeleteAction" class="admin.goods.DeleteAction">
+			<result type="chain">AGlistAction</result>
 		</action>
 
 	</package>

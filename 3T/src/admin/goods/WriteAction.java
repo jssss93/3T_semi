@@ -3,8 +3,10 @@ package admin.goods;
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
@@ -42,21 +44,23 @@ public class WriteAction extends ActionSupport {
 	private String goods_file_savname;
 	Calendar today = Calendar.getInstance();
 
-	private File upload;
-	private String uploadContentType;
-	private String uploadFileName;
-	private String fileUploadPath = "C:\\upload\\";
+
+	private String fileUploadPath = "3T\\WebContent\\upload\\";
+
+	private String file_orgname = "";
+	private String file_savname = "";
+
+	private List<File> uploads = new ArrayList<File>();
+	private List<String> uploadsFileName = new ArrayList<String>();
 
 	public WriteAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 		reader.close();
-
 	}
 
 	public String form() throws Exception {
 		return SUCCESS;
-
 	}
 
 	public String execute() throws Exception {
@@ -78,24 +82,48 @@ public class WriteAction extends ActionSupport {
 
 		sqlMapper.insert("insertGoods", paramClass);
 
-		if (getUpload() != null) {
-			resultClass = (GoodsVO) sqlMapper.queryForObject("selectLastNo");
+		for (int i = 0; i < uploads.size(); i++) {
+			resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectLastNo");
 
-			String file_name = "file_" + resultClass.getGoods_no();
-			String file_ext = getUploadFileName().substring(getUploadFileName().lastIndexOf('.') + 1,
-					getUploadFileName().length());
+			if (i > 0) {
+				file_orgname = file_orgname + ",";
+				file_savname = file_savname + ",";
+			}
 
-			File destFile = new File(fileUploadPath + file_name + "." + file_ext);
-			FileUtils.copyFile(getUpload(), destFile);
+			file_orgname = file_orgname + getUploadsFileName().get(i);
+
+			String file_name = "goods_" + resultClass.getGoods_no();
+			String file_ext = getUploadsFileName().get(i).substring(getUploadsFileName().get(i).lastIndexOf('.') + 1,
+					getUploadsFileName().get(i).length());
+			file_savname = file_savname + file_name + "(" + (i + 1) + ")"+ "." + file_ext ;
+
+			File destFile = new File(fileUploadPath + file_name + "(" + (i + 1) + ")"+ "." + file_ext);
+			FileUtils.copyFile(getUploads().get(i), destFile);
 
 			paramClass.setGoods_no(resultClass.getGoods_no());
-			paramClass.setGoods_file_orgname(getUploadFileName());
-			paramClass.setGoods_file_savname(file_name + "." + file_ext);
+			paramClass.setGoods_file_orgname(file_orgname);
+			paramClass.setGoods_file_savname(file_savname);
 
-			sqlMapper.update("updateFile", paramClass);
+			sqlMapper.update("AGupdateFile", paramClass);
 		}
-
+		
 		return SUCCESS;
+	}
+
+	public List<File> getUploads() {
+		return uploads;
+	}
+
+	public void setUploads(List<File> uploads) {
+		this.uploads = uploads;
+	}
+
+	public List<String> getUploadsFileName() {
+		return uploadsFileName;
+	}
+
+	public void setUploadsFileName(List<String> uploadsFileName) {
+		this.uploadsFileName = uploadsFileName;
 	}
 
 	public String getGoods_file_orgname() {
@@ -210,29 +238,6 @@ public class WriteAction extends ActionSupport {
 		this.goods_related_product = goods_related_product;
 	}
 
-	public File getUpload() {
-		return upload;
-	}
-
-	public void setUpload(File upload) {
-		this.upload = upload;
-	}
-
-	public String getUploadContentType() {
-		return uploadContentType;
-	}
-
-	public void setUploadContentType(String uploadContentType) {
-		this.uploadContentType = uploadContentType;
-	}
-
-	public String getUploadFileName() {
-		return uploadFileName;
-	}
-
-	public void setUploadFileName(String uploadFileName) {
-		this.uploadFileName = uploadFileName;
-	}
 
 	public GoodsVO getParamClass() {
 		return paramClass;

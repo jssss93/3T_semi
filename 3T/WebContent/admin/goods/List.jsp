@@ -36,7 +36,7 @@
 		</tr>
 
 	<s:iterator value="list" status="stat">
-		<s:url id="viewURL" action="viewAction">
+		<s:url id="viewURL" action="AGviewAction">
 			<s:param name="goods_no">
 				<s:property value="goods_no" />
 			</s:param>
@@ -47,7 +47,7 @@
 	
 		<tr>
 			<td align="center"><s:property value="goods_no" /></td>
-			<td align="center"><img src="D:\\2018\\javasrc\\3T\\WebContent\\upload\\<s:property value="goods_sav_filename" />" width="50" height="50"/>
+			<td align="center"><img src="\\3T\\WebContent\\upload\\<s:property value="goods_sav_filename" />" width="50" height="50"/>
 			<td align="left"><s:a href="%{viewURL}"><s:property value="goods_name" /></s:a></td>
 			<td align="center"><s:property value="goods_color" /></td>
 			<td align="center"><s:property value="goods_price" /></td>
@@ -76,7 +76,7 @@
 	<tr align="right">
 		<td colspan="5">
 			
-			<input type="button" value="글쓰기" class="inputb" onClick="javascript:location.href='writeForm.action?currentPage=<s:property value="currentPage" />';" />
+			<input type="button" value="글쓰기" class="inputb" onClick="javascript:location.href='AGwriteForm.action?currentPage=<s:property value="currentPage" />';" />
 		</td>
 	</tr>
 
