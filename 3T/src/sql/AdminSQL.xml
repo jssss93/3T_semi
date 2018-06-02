@@ -3,7 +3,7 @@
 	'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap>
 
-	<!-- °ü¸®ÀÚ »óÇ° SQL ********************************************************************************************************************** -->
+	<!-- ê´€ë¦¬ìž íšŒì› SQL ********************************************************************************************************************** -->
 	<typeAlias alias="ad_member" type="admin.member.VO.MemberVO" />
 
 	<resultMap id="MemberRes" class="ad_member">
@@ -26,15 +26,13 @@
 		<result property="m_name_bank" column="m_name_bank" />
 		<result property="account_no" column="account_no" />
 		<result property="m_admin" column="m_admin" />
-	
-
 	</resultMap>
 
 	<sql id="AMselect-all">
 		SELECT * FROM MEMBER
 	</sql>
 
-	<!-- °øÅëÀ¸·Î »ç¿ëÇÒ where-no Àý Á¤ÀÇ -->
+	<!-- ê³µí†µìœ¼ë¡œ ì‚¬ìš©í•  where-no ì ˆ ì •ì˜ -->
 	<sql id="AMwhere-no">
 		WHERE m_no = #m_no#
 	</sql>
@@ -42,7 +40,8 @@
 
 
 	<select id="AMselectAll" resultMap="MemberRes" parameterClass="int">
-		<include refid="AMselect-all" />
+		<include refid="AMselect-all" /> 
+		
 
 	</select>
 
@@ -68,7 +67,7 @@
 
 
 
-	<!-- °ü¸®ÀÚ »óÇ° SQL ********************************************************************************************************************** -->
+	<!-- ê´€ë¦¬ìž ìƒí’ˆ SQL ********************************************************************************************************************** -->
 	<typeAlias alias="ad_goods" type="admin.goods.VO.GoodsVO" />
 
 	<resultMap id="GoodsRes" class="ad_goods">
@@ -90,26 +89,27 @@
 
 	</resultMap>
 
-	<sql id="select-all">
+	<sql id="AGselect-all">
 		SELECT * FROM GOODS
 	</sql>
 
-	<!-- °øÅëÀ¸·Î »ç¿ëÇÒ where-no Àý Á¤ÀÇ -->
-	<sql id="where-no">
+	<!-- ê³µí†µìœ¼ë¡œ ì‚¬ìš©í•  where-no ì ˆ ì •ì˜ -->
+	<sql id="AGwhere-no">
 		WHERE Goods_no = #goods_no#
 	</sql>
 
-	<select id="selectAll" resultMap="GoodsRes" parameterClass="int">
-		<include refid="select-all" />
+	<select id="AGselectAll" resultMap="GoodsRes" parameterClass="int">
+		<include refid="AGselect-all" />
+		order by goods_reg_date desc
 
 	</select>
 
-	<select id="selectOne" resultMap="GoodsRes" parameterClass="int">
-		<include refid="select-all" />
-		<include refid="where-no" />
+	<select id="AGselectOne" resultMap="GoodsRes" parameterClass="int">
+		<include refid="AGselect-all" />
+		<include refid="AGwhere-no" />
 	</select>
 
-	<select id="selectLastNo" resultClass="ad_goods" parameterClass="int">
+	<select id="AGselectLastNo" resultClass="ad_goods" parameterClass="int">
 		SELECT max(goods_no) as goods_no FROM GOODS
 	</select>
 
@@ -127,15 +127,15 @@
 		#goods_category#,#goods_recommend#,#goods_totalcount#,#goods_related_product#,#goods_file_orgname#,#goods_file_savname#)
 	</insert>
 
-	<update id="updateFile" parameterClass="ad_goods">
+	<update id="AGupdateFile" parameterClass="ad_goods">
 		UPDATE GOODS SET GOODS_FILE_ORGNAME = #goods_file_orgname#
 		,GOODS_FILE_SAVNAME = #goods_file_savname#
-		<include refid="where-no" />
+		<include refid="AGwhere-no" />
 	</update>
 
 	<update id="updateReadcnt" parameterClass="ad_goods">
 		UPDATE GOODS SET GOODS_READCNT = GOODS_READCNT + 1
-		<include refid="where-no" />
+		<include refid="AGwhere-no" />
 	</update>
 
 	<update id="updateGoods" parameterClass="ad_goods">
@@ -149,13 +149,13 @@
 		goods_related_product=#goods_related_product#,
 		goods_file_orgname=#goods_file_orgname#,
 		goods_file_savname=#goods_file_savname#
-		<include refid="where-no" />
+		<include refid="AGwhere-no" />
 	</update>
 
 
 	<delete id="deleteGoods" parameterClass="ad_goods">
 		DELETE FROM GOODS
-		<include refid="where-no" />
+		<include refid="AGwhere-no" />
 	</delete>
 
 
@@ -164,7 +164,7 @@
 
 
 
-	<!-- °ü¸®ÀÚ °øÁö»çÇ× SQL************************************************************************************************************* -->
+	<!-- ê´€ë¦¬ìž ê³µì§€ì‚¬í•­ SQL************************************************************************************************************* -->
 	<typeAlias alias="ANnotice" type="admin.notice.VO.NoticeVO" />
 
 
@@ -182,7 +182,7 @@
 		SELECT * FROM NOTICE
 	</sql>
 
-	<!-- °øÅëÀ¸·Î »ç¿ëÇÒ where-no Àý Á¤ÀÇ -->
+	<!-- ê³µí†µìœ¼ë¡œ ì‚¬ìš©í•  where-no ì ˆ ì •ì˜ -->
 	<sql id="ANwhere-no">
 		WHERE notice_no = #notice_no#
 	</sql>
@@ -236,7 +236,7 @@
 
 
 
-	<!-- °ü¸®ÀÚ FAQ SQL ********************************************************************************************************************** -->
+	<!-- ê´€ë¦¬ìž FAQ SQL ********************************************************************************************************************** -->
 	<typeAlias alias="AFFaq" type="admin.faq.VO.FaqVO" />
 
 	<resultMap id="FaqRes" class="AFFaq">
@@ -251,7 +251,7 @@
 		SELECT * FROM FAQ
 	</sql>
 
-	<!-- °øÅëÀ¸·Î »ç¿ëÇÒ where-no Àý Á¤ÀÇ -->
+	<!-- ê³µí†µìœ¼ë¡œ ì‚¬ìš©í•  where-no ì ˆ ì •ì˜ -->
 	<sql id="AFwhere-no">
 		WHERE faq_no = #faq_no#
 	</sql>
