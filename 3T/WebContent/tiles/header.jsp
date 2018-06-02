@@ -59,25 +59,25 @@
 			</td>
 			
 			
-			<s:if test='%{session.M_id == null}'>
+			<s:if test='%{session.M_ID == null}'>
 				<td align="right">
 					<!--비회원 헤더 카테고리  --> <!--비회원 로그인 폼  경로 잡아줄 것--> <a
-					href="loginForm.action" >LOGIN</a> &nbsp;|&nbsp;<a
+					href="login.action" >LOGIN</a> &nbsp;|&nbsp;<a
 					href="joinForm.action" >JOIN</a>
 
 				</td>
 			</s:if>
-			<s:elseif test='%{session.M_id != null}'>
+			<s:elseif test='%{session.M_ID != null}'>
 				<td align="right">
 					<!--경로잡을것  --> 
-					<a href="logout.action">LOGOUT</a> 
+					<a href="main.action">LOGOUT</a> 
 					&nbsp;|&nbsp;
 					<a href="logout.action">MODIFY</a> 
 					&nbsp;|&nbsp;
 					<a href="orderList.action">ORDER</a> 
 					&nbsp;|&nbsp;
 					<a href="basketList.action">MYPAGE</a> 
-					&nbsp;|&nbsp;
+					&nbsp;&nbsp;
 					
 				</td>
 			</s:elseif>

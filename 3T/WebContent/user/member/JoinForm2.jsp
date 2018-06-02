@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=euc-kr"
+	pageEncoding="euc-kr"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -198,6 +198,7 @@
 <link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<% request.setCharacterEncoding("UTF-8"); %>
 	<form name="Reg_form" action="join.action" method="post"
 		onsubmit="return check()">
 

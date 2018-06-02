@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=euc-kr"
+	pageEncoding="euc-kr"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,14 +9,9 @@
 <script language="javascript">
 	function check() {
 
-		var f = document.Reg_form;
+		var f = document.mypageUpdate;
 
-		if (f.M_ID.value == "") {
-			alert("아이디를 입력해주십시오");
-			f.M_ID.focus();
-			return false;
-		}
-	
+
 
 		if (f.M_PASSWD.value == "") {
 			alert("비밀번호를 입력해주십시오");
@@ -27,25 +22,7 @@
 		if (f.M_PASSWD.value != f.M_PASSWD2.value) {
 			alert("비빌번호를 다르게 입력했습니다.");
 			f.M_PASSWD2.select();
-			return false;
-		}
-
-		if (f.M_NAME.value == "") {
-			alert("이름을 입력해주십시오");
-			f.M_NAME.focus();
-			return false;
-		}
-
-		if (f.M_JUMIN1.value == "") {
-			alert("주민등록번호를 입력해주십시오");
-			f.M_JUMIN1.focus();
-			return false;
-		}
-
-		if (f.M_JUMIN2.value == "") {
-			alert("주민등록번호를 입력해주십시오");
-			f.M_JUMIN2.focus();
-			return false;
+			return false; 
 		}
 
 		if (f.M_ZIPCODE.value == "") {

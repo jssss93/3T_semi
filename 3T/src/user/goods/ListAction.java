@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -12,10 +15,11 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import admin.goods.VO.GoodsVO;
 
-public class ListAction extends ActionSupport {
+public class ListAction extends ActionSupport implements SessionAware{
 
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
+	public Map session;
 	
 	private List<GoodsVO> list = new ArrayList<GoodsVO>();
 	private List<GoodsVO> list1 = new ArrayList<GoodsVO>();
@@ -37,6 +41,8 @@ public class ListAction extends ActionSupport {
 
 	public String outer() throws Exception {
 
+		session.get("M_ID");
+		
 		list = sqlMapper.queryForList("select-All-outer");
 		list1 = sqlMapper.queryForList("select-All-outer-best");
 
@@ -56,6 +62,8 @@ public class ListAction extends ActionSupport {
 	}
 	public String suit() throws Exception {
 
+		session.get("M_ID");
+		
 		list = sqlMapper.queryForList("select-All-suit");
 		list1 = sqlMapper.queryForList("select-All-suit-best");
 
@@ -74,6 +82,8 @@ public class ListAction extends ActionSupport {
 		return SUCCESS;
 	}
 	public String top() throws Exception {
+		
+		session.get("M_ID");
 
 		list = sqlMapper.queryForList("select-All-top");
 		list1 = sqlMapper.queryForList("select-All-top-best");
@@ -93,6 +103,8 @@ public class ListAction extends ActionSupport {
 		return SUCCESS;
 	}
 	public String shirt() throws Exception {
+		
+		session.get("M_ID");
 
 		list = sqlMapper.queryForList("select-All-shirt");
 		list1 = sqlMapper.queryForList("select-All-shirt-best");
@@ -112,6 +124,8 @@ public class ListAction extends ActionSupport {
 		return SUCCESS;
 	}
 	public String knit() throws Exception {
+		
+		session.get("M_ID");
 
 		list = sqlMapper.queryForList("select-All-knit");
 		list1 = sqlMapper.queryForList("select-All-knit-best");
@@ -131,6 +145,8 @@ public class ListAction extends ActionSupport {
 		return SUCCESS;
 	}
 	public String bottom() throws Exception {
+		
+		session.get("M_ID");
 
 		list = sqlMapper.queryForList("select-All-bottom");
 		list1 = sqlMapper.queryForList("select-All-bottom-best");
@@ -150,6 +166,8 @@ public class ListAction extends ActionSupport {
 		return SUCCESS;
 	}
 	public String shoes() throws Exception {
+		
+		session.get("M_ID");
 
 		list = sqlMapper.queryForList("select-All-shoes");
 		list1 = sqlMapper.queryForList("select-All-shoes-best");
@@ -169,6 +187,8 @@ public class ListAction extends ActionSupport {
 		return SUCCESS;
 	}
 	public String acc() throws Exception {
+		
+		session.get("M_ID");
 
 		list = sqlMapper.queryForList("select-All-acc");
 		list1 = sqlMapper.queryForList("select-All-acc-best");
@@ -188,6 +208,8 @@ public class ListAction extends ActionSupport {
 		return SUCCESS;
 	}
 	public String perfectline() throws Exception {
+		
+		session.get("M_ID");
 
 		list = sqlMapper.queryForList("select-All-perfectline");
 		list1 = sqlMapper.queryForList("select-All-perfectline-best");
@@ -277,6 +299,14 @@ public class ListAction extends ActionSupport {
 
 	public void setNum(int num) {
 		this.num = num;
+	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
 	}
 	
 	

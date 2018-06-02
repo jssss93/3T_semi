@@ -9,7 +9,6 @@ public class MemberVO {
 	private String M_PASSWD;
 	private String M_PASSWD2;
 	private String M_NAME;
-	private String M_SEX;
 	private String M_JUMIN1;
 	private String M_JUMIN2;
 	private String M_PHONE;
@@ -64,13 +63,7 @@ public class MemberVO {
 		M_NAME = m_NAME;
 	}
 
-	public String getM_SEX() {
-		return M_SEX;
-	}
 
-	public void setM_SEX(String m_SEX) {
-		M_SEX = m_SEX;
-	}
 
 	public String getM_JUMIN1() {
 		return M_JUMIN1;

@@ -3,194 +3,194 @@
 <sqlMap>
 
 
-	<typeAlias alias="goods" type="admin.goods.VO.GoodsVO" />
+   <typeAlias alias="goods" type="admin.goods.VO.GoodsVO" />
 
-	<resultMap id="goodsRes" class="goods">
-		<result property="goods_no" column="goods_no" />
-		<result property="goods_name" column="goods_name" />
-		<result property="goods_content" column="goods_content" />
-		<result property="goods_readcnt" column="goods_readcnt" />
-		<result property="goods_reg_date" column="goods_reg_date" />
-		<result property="goods_color" column="goods_color" />
-		<result property="goods_price" column="goods_price" />
-		<result property="goods_size" column="goods_size" />
-		<result property="goods_category" column="goods_category" />
-		<result property="goods_recommend" column="goods_recommend" />
-		<result property="goods_totalcount" column="goods_totalcount" />
-		<result property="goods_related_product" column="goods_related_product" />
-		<result property="goods_file_orgname" column="goods_file_orgname" />
-		<result property="goods_file_savname" column="goods_file_savname" />
-	</resultMap>
+   <resultMap id="goodsRes" class="goods">
+      <result property="goods_no" column="goods_no" />
+      <result property="goods_name" column="goods_name" />
+      <result property="goods_content" column="goods_content" />
+      <result property="goods_readcnt" column="goods_readcnt" />
+      <result property="goods_reg_date" column="goods_reg_date" />
+      <result property="goods_color" column="goods_color" />
+      <result property="goods_price" column="goods_price" />
+      <result property="goods_size" column="goods_size" />
+      <result property="goods_category" column="goods_category" />
+      <result property="goods_recommend" column="goods_recommend" />
+      <result property="goods_totalcount" column="goods_totalcount" />
+      <result property="goods_related_product" column="goods_related_product" />
+      <result property="goods_file_orgname" column="goods_file_orgname" />
+      <result property="goods_file_savname" column="goods_file_savname" />
+   </resultMap>
 
-	<sql id="goods-select-all">
-		select * from goods
-	</sql>
+   <sql id="goods-select-all">
+      select * from goods
+   </sql>
 
-	<!-- where 컬럼명 = 조건 -->
-	<sql id="goods-where-no">
-		where goods_no = #goods_no#
-	</sql>
+   <!-- where 컬럼명 = 조건 -->
+   <sql id="goods-where-no">
+      where goods_no = #goods_no#
+   </sql>
 
-	<!-- 상세보기 -->
+   <!-- 상세보기 -->
 
-	<select id="goods-selectOne" resultMap="goodsRes"
-		parameterClass="int">
-		select * from goods where goods_no = #goods_no#
-	</select>
+   <select id="goods-selectOne" resultMap="goodsRes"
+      parameterClass="int">
+      select * from goods where goods_no = #goods_no#
+   </select>
 
-	<update id="goods-updateReadcnt" parameterClass="goods">
-		update goods set goods_readcnt = goods_readcnt + 1
-		<include refid="goods-where-no" />
-	</update>
+   <update id="goods-updateReadcnt" parameterClass="goods">
+      update goods set goods_readcnt = goods_readcnt + 1
+      <include refid="goods-where-no" />
+   </update>
 
-	<!-- 메인 리스트 -->
+   <!-- 메인 리스트 -->
 
-	<!-- 전체 가져옴 15개가져와서 -->
-	<select id="goods-selectAll" resultMap="goodsRes"
-		parameterClass="int">
-		select * from (select * from goods order by goods_no asc) where rownum <![CDATA[<]]>=
-		15
-	</select>
-	<!-- 새로운 순서로 3개만 가져와서 보여줌 -->
-	<select id="goods-selectNew" resultMap="goodsRes"
-		parameterClass="int">
-		select * from (select * from goods order by goods_reg_date desc) where
-		rownum <![CDATA[<]]>=
-		3
-	</select>
-	<!-- 추천순으로 가져옴 6개 -->
-	<select id="goods-selectBest" resultMap="goodsRes"
-		parameterClass="int">
-		select * from (select * from goods order by goods_recommend desc)
-		where rownum <![CDATA[<]]>=
-		6
-	</select>
+   <!-- 전체 가져옴 15개가져와서 -->
+   <select id="goods-selectAll" resultMap="goodsRes"
+      parameterClass="int">
+      select * from (select * from goods order by goods_no asc) where rownum <![CDATA[<]]>=
+      15
+   </select>
+   <!-- 새로운 순서로 3개만 가져와서 보여줌 -->
+   <select id="goods-selectNew" resultMap="goodsRes"
+      parameterClass="int">
+      select * from (select * from goods order by goods_reg_date desc) where
+      rownum <![CDATA[<]]>=
+      3
+   </select>
+   <!-- 추천순으로 가져옴 6개 -->
+   <select id="goods-selectBest" resultMap="goodsRes"
+      parameterClass="int">
+      select * from (select * from goods order by goods_recommend desc)
+      where rownum <![CDATA[<]]>=
+      6
+   </select>
 
 
-	<!-- 카테고리 리스트 -->
+   <!-- 카테고리 리스트 -->
 
-	<!-- outer -->
-	<select id="select-All-outer" resultMap="goodsRes"
-		parameterClass="int">
-		<include refid="goods-select-all" />
-		where goods_category= '1' order by goods_reg_date desc
-	</select>
-	<!-- outer best4개 출력 -->
-	<select id="select-All-outer-best" resultMap="goodsRes"
-		parameterClass="int">
-		select * from (select * from goods where goods_category = '1'order by
-		goods_recommend desc) where rownum <![CDATA[<]]>=
-		4
-	</select>
+   <!-- outer -->
+   <select id="select-All-outer" resultMap="goodsRes"
+      parameterClass="int">
+      <include refid="goods-select-all" />
+      where goods_category= '1' order by goods_reg_date desc
+   </select>
+   <!-- outer best4개 출력 -->
+   <select id="select-All-outer-best" resultMap="goodsRes"
+      parameterClass="int">
+      select * from (select * from goods where goods_category = '1'order by
+      goods_recommend desc) where rownum <![CDATA[<]]>=
+      4
+   </select>
 
-	<!-- suit -->
-	<select id="select-All-suit" resultMap="goodsRes"
-		parameterClass="int">
-		<include refid="goods-select-all" />
-		where goods_category= '22' order by goods_reg_date desc
-	</select>
-	<!-- suit best4개 출력 -->
-	<select id="select-All-suit-best" resultMap="goodsRes"
-		parameterClass="int">
-		select * from (select * from goods where goods_category = '22' order
-		by goods_recommend desc) where rownum <![CDATA[<]]>=
-		4
-	</select>
+   <!-- suit -->
+   <select id="select-All-suit" resultMap="goodsRes"
+      parameterClass="int">
+      <include refid="goods-select-all" />
+      where goods_category= '22' order by goods_reg_date desc
+   </select>
+   <!-- suit best4개 출력 -->
+   <select id="select-All-suit-best" resultMap="goodsRes"
+      parameterClass="int">
+      select * from (select * from goods where goods_category = '22' order
+      by goods_recommend desc) where rownum <![CDATA[<]]>=
+      4
+   </select>
 
-	<!-- top -->
-	<select id="select-All-top" resultMap="goodsRes" parameterClass="int">
-		<include refid="goods-select-all" />
-		where goods_category='top' order by goods_reg_date desc
-	</select>
-	<!-- top best4개 출력 -->
-	<select id="select-All-top-best" resultMap="goodsRes"
-		parameterClass="int">
-		select * from (select * from goods where goods_category = 'top' order
-		by goods_recommend desc) where rownum <![CDATA[<]]>=
-		4
-	</select>
+   <!-- top -->
+   <select id="select-All-top" resultMap="goodsRes" parameterClass="int">
+      <include refid="goods-select-all" />
+      where goods_category='top' order by goods_reg_date desc
+   </select>
+   <!-- top best4개 출력 -->
+   <select id="select-All-top-best" resultMap="goodsRes"
+      parameterClass="int">
+      select * from (select * from goods where goods_category = 'top' order
+      by goods_recommend desc) where rownum <![CDATA[<]]>=
+      4
+   </select>
 
-	<!-- shirt -->
-	<select id="select-All-shirt" resultMap="goodsRes"
-		parameterClass="int">
-		<include refid="goods-select-all" />
-		where goods_category='shirt' order by goods_reg_date desc
-	</select>
-	<!-- shirt best4개 출력 -->
-	<select id="select-All-shirt-best" resultMap="goodsRes"
-		parameterClass="int">
-		select * from (select * from goods where goods_category = 'shirt'
-		order by goods_recommend desc) where rownum <![CDATA[<]]>=
-		4
-	</select>
+   <!-- shirt -->
+   <select id="select-All-shirt" resultMap="goodsRes"
+      parameterClass="int">
+      <include refid="goods-select-all" />
+      where goods_category='shirt' order by goods_reg_date desc
+   </select>
+   <!-- shirt best4개 출력 -->
+   <select id="select-All-shirt-best" resultMap="goodsRes"
+      parameterClass="int">
+      select * from (select * from goods where goods_category = 'shirt'
+      order by goods_recommend desc) where rownum <![CDATA[<]]>=
+      4
+   </select>
 
-	<!-- knit -->
-	<select id="select-All-knit" resultMap="goodsRes"
-		parameterClass="int">
-		<include refid="goods-select-all" />
-		where goods_category='knit' order by goods_reg_date desc
-	</select>
-	<!-- knit best4개 출력 -->
-	<select id="select-All-knit-best" resultMap="goodsRes"
-		parameterClass="int">
-		select * from (select * from goods where goods_category = 'knit' order
-		by goods_recommend desc) where rownum <![CDATA[<]]>=
-		4
-	</select>
+   <!-- knit -->
+   <select id="select-All-knit" resultMap="goodsRes"
+      parameterClass="int">
+      <include refid="goods-select-all" />
+      where goods_category='knit' order by goods_reg_date desc
+   </select>
+   <!-- knit best4개 출력 -->
+   <select id="select-All-knit-best" resultMap="goodsRes"
+      parameterClass="int">
+      select * from (select * from goods where goods_category = 'knit' order
+      by goods_recommend desc) where rownum <![CDATA[<]]>=
+      4
+   </select>
 
-	<!-- bottom -->
-	<select id="select-All-bottom" resultMap="goodsRes"
-		parameterClass="int">
-		<include refid="goods-select-all" />
-		where goods_category='bottom' order by goods_reg_date desc
-	</select>
-	<!-- bottom best4개 출력 -->
-	<select id="select-All-bottom-best" resultMap="goodsRes"
-		parameterClass="int">
-		select * from (select * from goods where goods_category = 'bottom'
-		order by goods_recommend desc) where rownum <![CDATA[<]]>=
-		4
-	</select>
+   <!-- bottom -->
+   <select id="select-All-bottom" resultMap="goodsRes"
+      parameterClass="int">
+      <include refid="goods-select-all" />
+      where goods_category='bottom' order by goods_reg_date desc
+   </select>
+   <!-- bottom best4개 출력 -->
+   <select id="select-All-bottom-best" resultMap="goodsRes"
+      parameterClass="int">
+      select * from (select * from goods where goods_category = 'bottom'
+      order by goods_recommend desc) where rownum <![CDATA[<]]>=
+      4
+   </select>
 
-	<!-- shoes -->
-	<select id="select-All-shoes" resultMap="goodsRes"
-		parameterClass="int">
-		<include refid="goods-select-all" />
-		where goods_category='shoes' order by goods_reg_date desc
-	</select>
-	<!-- shoes best4개 출력 -->
-	<select id="select-All-shoes-best" resultMap="goodsRes"
-		parameterClass="int">
-		select * from (select * from goods where goods_category = 'shoes'
-		order by goods_recommend desc) where rownum <![CDATA[<]]>=
-		4
-	</select>
+   <!-- shoes -->
+   <select id="select-All-shoes" resultMap="goodsRes"
+      parameterClass="int">
+      <include refid="goods-select-all" />
+      where goods_category='shoes' order by goods_reg_date desc
+   </select>
+   <!-- shoes best4개 출력 -->
+   <select id="select-All-shoes-best" resultMap="goodsRes"
+      parameterClass="int">
+      select * from (select * from goods where goods_category = 'shoes'
+      order by goods_recommend desc) where rownum <![CDATA[<]]>=
+      4
+   </select>
 
-	<!-- acc -->
-	<select id="select-All-acc" resultMap="goodsRes" parameterClass="int">
-		<include refid="goods-select-all" />
-		where goods_category='acc' order by goods_reg_date desc
-	</select>
-	<!-- acc best4개 출력 -->
-	<select id="select-All-acc-best" resultMap="goodsRes"
-		parameterClass="int">
-		select * from (select * from goods where goods_category = 'acc' order
-		by goods_recommend desc) where rownum <![CDATA[<]]>=
-		4
-	</select>
+   <!-- acc -->
+   <select id="select-All-acc" resultMap="goodsRes" parameterClass="int">
+      <include refid="goods-select-all" />
+      where goods_category='acc' order by goods_reg_date desc
+   </select>
+   <!-- acc best4개 출력 -->
+   <select id="select-All-acc-best" resultMap="goodsRes"
+      parameterClass="int">
+      select * from (select * from goods where goods_category = 'acc' order
+      by goods_recommend desc) where rownum <![CDATA[<]]>=
+      4
+   </select>
 
-	<!-- perfectline -->
-	<select id="select-All-perfectline" resultMap="goodsRes"
-		parameterClass="int">
-		<include refid="goods-select-all" />
-		where goods_category='perfectline' order by goods_reg_date desc
-	</select>
-	<!-- perfectline best4개 출력 -->
-	<select id="select-All-perfectline-best" resultMap="goodsRes"
-		parameterClass="int">
-		select * from (select * from goods where goods_category =
-		'perfectline' order by goods_recommend desc) where rownum <![CDATA[<]]>=
-		4
-	</select>
+   <!-- perfectline -->
+   <select id="select-All-perfectline" resultMap="goodsRes"
+      parameterClass="int">
+      <include refid="goods-select-all" />
+      where goods_category='perfectline' order by goods_reg_date desc
+   </select>
+   <!-- perfectline best4개 출력 -->
+   <select id="select-All-perfectline-best" resultMap="goodsRes"
+      parameterClass="int">
+      select * from (select * from goods where goods_category =
+      'perfectline' order by goods_recommend desc) where rownum <![CDATA[<]]>=
+      4
+   </select>
 
 </sqlMap>
