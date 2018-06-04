@@ -35,7 +35,7 @@
 				<a href="AF_List.action">FAQ</a>&nbsp;/
 			</td>
 			<td>
-				<a href="AQ_List.action">QA</a>&nbsp;/
+				<a href="AQ_List.action">QA(아직안되)</a>&nbsp;/
 			</td>
 			<td>
 				<a href="AO_List.action">주문목록</a>&nbsp;/

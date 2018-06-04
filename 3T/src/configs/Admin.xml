@@ -116,6 +116,10 @@
 				<param name="actionName">AMlistAction</param>
 			</result>
 		</action>
+		
+		<action name="AM_MsglistAction" class="admin.member.msg.ListAction">
+			<result>/admin/member/msg/List.jsp</result>
+		</action>
 
 	</package>
 
