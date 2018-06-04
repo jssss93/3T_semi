@@ -13,11 +13,21 @@
 				class="org.apache.struts2.views.tiles.TilesResult"></result-type>
 		</result-types>
 
+		<action name="AD_main" class="admin.member.ListAction">
+			<result name="success" type="tiles">
+				AD_main
+			</result>
+		</action>
+
 		<action name="login" class="user.member.MemberAction">
 			<result type="tiles">loginForm</result>
 		</action>
 
-		<action name="logon" class="user.member.login.LoginAction" method="login">
+		<action name="logon" class="user.member.login.LoginAction"
+			method="login">
+			<result name="login" type="tiles">
+				AD_main
+			</result>
 			<result name="success">/user/member/LoginSuccess.jsp</result>
 			<result name="error">/user/login/LoginError.jsp</result>
 		</action>
@@ -63,19 +73,21 @@
 				/user/member/Modify.jsp
 			</result>
 		</action>
-		<action name="modifyAction" class="user.member.ModifyAction" method="modifyUpadte">
+		<action name="modifyAction" class="user.member.ModifyAction"
+			method="modifyUpadte">
 			<result>
 				/user/member/ModifySuccess.jsp
 			</result>
 		</action>
-		
-		<action name="deleteAction" class="user.member.MemberDeleteAction" method="delete">
+
+		<action name="deleteAction" class="user.member.MemberDeleteAction"
+			method="delete">
 			<result>
 				/user/member/DeleteSuccess.jsp
 			</result>
 		</action>
-		
-		
+
+
 
 
 

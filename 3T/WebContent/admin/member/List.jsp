@@ -31,9 +31,12 @@
 		</tr>
 
 		<s:iterator value="list" status="stat">
-			<s:url id="viewURL" action="AMviewAction">
+			<s:url id="viewURL" action="AM_View">
 				<s:param name="m_no">
 					<s:property value="m_no" />
+				</s:param>
+				<s:param name="m_id">
+					<s:property value="m_id" />
 				</s:param>
 				<s:param name="currentPage">
 					<s:property value="currentPage" />

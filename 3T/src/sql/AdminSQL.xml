@@ -40,8 +40,8 @@
 
 
 	<select id="AMselectAll" resultMap="MemberRes" parameterClass="int">
-		<include refid="AMselect-all" /> 
-		
+		<include refid="AMselect-all" />
+
 
 	</select>
 
@@ -50,16 +50,47 @@
 		<include refid="AMwhere-no" />
 	</select>
 
-	<select id="AMselectLastNo" resultClass="ad_member" parameterClass="int">
+	<select id="AMselectLastNo" resultClass="ad_member"
+		parameterClass="int">
 		SELECT max(m_no) as m_no FROM MEMBER
 	</select>
 
+	<!-- 관리자 쿠폰 SQL ********************************************************************************************************************** -->
+	<typeAlias alias="ad_coupon" type="admin.member.coupon.CouponVO" />
+
+	<resultMap id="CouponRes" class="ad_coupon">
+
+		<result property="m_id" column="m_id" />
+		<result property="m_coupon_content" column="m_coupon_content" />
+		<result property="m_coupon_no" column="m_coupon_no" />
+
+	</resultMap>
 
 
+	<insert id="giveCoupon" parameterClass="ad_coupon">
+		INSERT INTO
+		MEMBER_COUPON(m_id,m_coupon_content,m_coupon_no)
+		VALUES
+		(#m_id#,#m_coupon_content#,M_COUPON_NO_SEQ.NEXTVAL)
+	</insert>
 
+	<!-- 관리자 쪽지 SQL ********************************************************************************************************************** -->
+	<typeAlias alias="ad_msg" type="admin.member.msg.MsgVO" />
 
+	<resultMap id="MsgRes" class="ad_msg">
 
+		<result property="m_id" column="m_id" />
+		<result property="m_msg_content" column="m_msg_content" />
+		<result property="m_msg_no" column="m_msg_no" />
 
+	</resultMap>
+	
+	<insert id="giveMsg" parameterClass="ad_msg">
+		INSERT INTO
+		MEMBER_MSG(m_id,m_msg_content,m_msg_no)
+		VALUES
+		(#m_id#,#m_msg_content#,M_MSG_NO_SEQ.NEXTVAL)
+	</insert>
 
 
 
@@ -109,7 +140,8 @@
 		<include refid="AGwhere-no" />
 	</select>
 
-	<select id="AGselectLastNo" resultClass="ad_goods" parameterClass="int">
+	<select id="AGselectLastNo" resultClass="ad_goods"
+		parameterClass="int">
 		SELECT max(goods_no) as goods_no FROM GOODS
 	</select>
 
@@ -289,5 +321,63 @@
 		DELETE FROM FAQ
 		<include refid="AFwhere-no" />
 	</delete>
+
+	<!-- 관리자 ORDER SQL ********************************************************************************************************************** -->
+	<typeAlias alias="AOorder" type="admin.order.VO.OrderVO" />
+	<!-- 리절트 맵 정의 -->
+	<resultMap id="OrderRes" class="AOorder">
+		<result property="order_no" column="ORDER_NO" />
+		<result property="order_name" column="ORDER_NAME" />
+		<result property="order_zipcode" column="ORDER_ZIPCODE" />
+		<result property="order_address1" column="ORDER_ADDRESS1" />
+		<result property="order_address2" column="ORDER_ADDRESS2" />
+		<result property="order_phone1" column="order_phone1" />
+		<result property="order_phone2" column="order_phone2" />
+		<result property="order_phone3" column="order_phone3" />
+		<result property="order_email1" column="order_email1" />
+		<result property="order_email2" column="order_email2" />
+		<result property="recipient_choice" column="recipient_choice" />
+		<result property="recipient_name" column="recipient_name" />
+		<result property="recipient_zipcode" column="recipient_zipcode" />
+		<result property="recipient_address1" column="recipient_address1" />
+		<result property="recipient_address2" column="recipient_address2" />
+		<result property="recipient_phone1" column="recipient_phone1" />
+		<result property="recipient_phone2" column="recipient_phone2" />
+		<result property="recipient_phone3" column="recipient_phone3" />
+		<result property="discount" column="discount" />
+		<result property="payment" column="payment" />
+		<result property="deposit_name" column="deposit_name" />
+		<result property="deposit_bank" column="deposit_bank" />
+		<result property="order_regdate" column="order_regdate" />
+		<result property="order_img" column="order_img" />
+		<result property="order_state" column="order_state" />
+		<result property="order_total" column="order_total" />
+		<result property="order_price" column="order_price" />
+		<result property="order_member_id" column="order_member_id" />
+		<result property="order_goods_no" column="order_goods_no" />
+		<result property="order_goods_info" column="order_goods_info" />
+		<result property="order_goods_count" column="order_goods_count" />
+	</resultMap>
+
+
+	<sql id="AOselect-all">
+		SELECT * FROM ORDER_3T
+	</sql>
+
+
+	<sql id="AOwhere-no">
+		WHERE ORDER_NO = #order_no#
+	</sql>
+
+
+	<select id="AOselectAll" resultMap="OrderRes">
+		SELECT * FROM ORDER_3T ORDER
+		BY ORDER_NO DESC
+	</select>
+
+	<select id="AOselectOne" resultMap="OrderRes">
+		SELECT * FROM ORDER_3T ORDER
+		BY ORDER_NO DESC
+	</select>
 
 </sqlMap>

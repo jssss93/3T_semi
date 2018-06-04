@@ -79,7 +79,7 @@ public class WriteAction extends ActionSupport {
 		paramClass.setGoods_reg_date(today.getTime());
 		paramClass.setGoods_file_orgname(getGoods_file_orgname());
 		paramClass.setGoods_file_savname(getGoods_file_savname());
-
+		
 		sqlMapper.insert("insertGoods", paramClass);
 
 		for (int i = 0; i < uploads.size(); i++) {

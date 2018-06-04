@@ -20,6 +20,8 @@
 				main
 			</result>
 		</action>
+		
+		
 
 		<!-- 카테고리 -->
 		<action name="listouter" class="user.goods.ListAction" method="outer">
