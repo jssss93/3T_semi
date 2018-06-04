@@ -2,43 +2,82 @@
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
-       
+
 <tiles-definitions>
 
-	
+
 	<definition name="main" template="/tiles/layout.jsp">
-		<put-attribute name="title" value="test"/>
-		<put-attribute name="header" value="/tiles/header.jsp"/>
-		<put-attribute name="body" value="/user/goods/MainList.jsp"/>
-		<put-attribute name="footer" value="/tiles/footer.jsp"/>
+		<put-attribute name="title" value="test" />
+		<put-attribute name="header" value="/tiles/header.jsp" />
+		<put-attribute name="body" value="/user/goods/MainList.jsp" />
+		<put-attribute name="footer" value="/tiles/footer.jsp" />
 	</definition>
-	
+
 	<definition name="goodsList" extends="main">
-		<put-attribute name="body" value="/user/goods/GoodsList.jsp"/>
+		<put-attribute name="body" value="/user/goods/GoodsList.jsp" />
 	</definition>
-	
+
 	<definition name="goodsview" extends="main">
-		<put-attribute name="body" value="/user/goods/GoodsView.jsp"/>
+		<put-attribute name="body" value="/user/goods/GoodsView.jsp" />
 	</definition>
-	
+
 	<definition name="noticeList" extends="main">
-		<put-attribute name="body" value="/user/notice/List.jsp"/>
+		<put-attribute name="body" value="/user/notice/List.jsp" />
 	</definition>
-	
+
 	<definition name="noticeView" extends="main">
-		<put-attribute name="body" value="/user/notice/View.jsp"/>
+		<put-attribute name="body" value="/user/notice/View.jsp" />
 	</definition>
-	
+
 	<definition name="faqList" extends="main">
-		<put-attribute name="body" value="/user/faq/List.jsp"/>
+		<put-attribute name="body" value="/user/faq/List.jsp" />
 	</definition>
-	
+
 	<definition name="faqView" extends="main">
-		<put-attribute name="body" value="/user/faq/View.jsp"/>
+		<put-attribute name="body" value="/user/faq/View.jsp" />
+	</definition>
+
+	<definition name="loginForm" extends="main">
+		<put-attribute name="body" value="/user/member/LoginForm.jsp" />
+	</definition>
+
+	<!-- *******************************ADMIN******************************* -->
+
+	<definition name="AD_main" template="/admin/tiles/layout.jsp">
+		<put-attribute name="title" value="test" />
+		<put-attribute name="header" value="/admin/tiles/header.jsp" />
+		<put-attribute name="body" value="/admin/member/List.jsp" />
+		<put-attribute name="footer" value="/admin/tiles/footer.jsp" />
+	</definition>
+	<definition name="AM_List" extends="AD_main">
+		<put-attribute name="body" value="/admin/member/List.jsp" />
 	</definition>
 	
-	<definition name="loginForm" extends="main">
-		<put-attribute name="body" value="/user/member/LoginForm.jsp"/>
+	<definition name="AM_View" extends="AD_main">
+		<put-attribute name="body" value="/admin/member/View.jsp" />
+	</definition>
+	
+	<definition name="AM_Coupon" extends="AD_main">
+		<put-attribute name="body" value="/admin/member/View.jsp" />
+	</definition>
+	
+	
+	
+	
+	<definition name="AG_List" extends="AD_main">
+		<put-attribute name="body" value="/admin/goods/List.jsp" />
+	</definition>
+	<definition name="AN_List" extends="AD_main">
+		<put-attribute name="body" value="/admin/notice/List.jsp" />
+	</definition>
+	<definition name="AF_List" extends="AD_main">
+		<put-attribute name="body" value="/admin/faq/List.jsp" />
+	</definition>
+	<definition name="AQ_List" extends="AD_main">
+		<put-attribute name="body" value="/admin/qa/List.jsp" />
+	</definition>
+	<definition name="AO_List" extends="AD_main">
+		<put-attribute name="body" value="/admin/order/List.jsp" />
 	</definition>
 
 </tiles-definitions>

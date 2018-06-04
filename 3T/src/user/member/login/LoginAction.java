@@ -60,6 +60,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			if (resultClass.getM_PASSWD().equals(getM_PASSWD())) {
 				session.put("M_ID", resultClass.getM_ID());
 				session.put("M_PASSWD", resultClass.getM_PASSWD());
+				if(resultClass.getM_ADMIN()==1) {
+					return LOGIN;
+				}
 				return SUCCESS;
 			}
 

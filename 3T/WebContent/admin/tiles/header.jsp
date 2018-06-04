@@ -11,70 +11,53 @@
 </head>
 <body>
 	<table border=0>
+
+
+
 		<tr>
-			<td align="center" width="100" >
-				<h2><a href="main.action">3T</a></h2>
+			<td align="left" width="150" >
+				<h2><a href="AD_main.action">3T</a></h2>
+				<h2><a href="main.action">(회원용페이지로이동)</a></h2>
 			</td>
 			
 			
+			
 			<td>
-				<a href="listouter.action">outer</a>&nbsp;/
+				<a href="AM_List.action">회원목록</a>&nbsp;/
 			</td>
 			<td>
-				<a href="listsuit.action">suit</a>&nbsp;/
+				<a href="AG_List.action">상품목록</a>&nbsp;/
 			</td>
 			<td>
-				<a href="listtop.action">top</a>&nbsp;/
+				<a href="AN_List.action">공지사항</a>&nbsp;/
 			</td>
 			<td>
-				<a href="listshirt.action">shirt</a>&nbsp;/
+				<a href="AF_List.action">FAQ</a>&nbsp;/
 			</td>
 			<td>
-				<a href="listknit.action">knit</a>&nbsp;/
+				<a href="AQ_List.action">QA</a>&nbsp;/
 			</td>
 			<td>
-				<a href="listbottom.action">bottom</a>&nbsp;/
-			</td>
-			<td>
-				<a href="listshoes.action">shoes</a>&nbsp;/
-			</td>
-			<td>
-				<a href="listacc.action">acc</a>&nbsp;/
-			</td>
-			<td>
-				<a href="listperfectline.action">perfectline</a>
+				<a href="AO_List.action">주문목록</a>&nbsp;/
 			</td>
 			
-			<td align="center" width="200">
-				<a href="UserNoticeList.action">notice</a>
-				
-				<a href="UserFaqList.action">FAQ</a>
-				
-				<a href="qna.action">Q&A</a>
-				
-				<a href="review.action">review</a>
-			</td>
+			
 			
 			
 			<s:if test='%{session.M_ID == null}'>
 				<td align="right">
 					<!--비회원 헤더 카테고리  --> <!--비회원 로그인 폼  경로 잡아줄 것--> <a
-					href="login.action" >LOGIN
-					<form action=""></form>
-					</a> &nbsp;|&nbsp;<a
+					href="login.action" >LOGIN</a> &nbsp;|&nbsp;<a
 					href="joinForm.action" >JOIN</a>
 
 				</td>
 			</s:if>
 			<s:elseif test='%{session.M_ID != null}'>
 				<td align="right">
+				${session.M_ID }님 환영합니다
+				
 					<!--경로잡을것  --> 
-					<form action="logout">
-					<input> 
-						<input type="submit" value="로그아웃">
-						
-					</form>
-					<a href="main.action" >LOGOUT</a> 
+					<a href="logout.action">LOGOUT</a> 
 					&nbsp;|&nbsp;
 					<a href="logout.action">MODIFY</a> 
 					&nbsp;|&nbsp;

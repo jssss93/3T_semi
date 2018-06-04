@@ -120,12 +120,12 @@
    		 </delete>
 <!-- 검색로직 추가시작 --><!-- 검색 추가데이터 -->
 <select id="review-selectSearchW" resultMap="reviewRes" parameterClass="string">
-		<include refid="select-all" />
+		<include refid="review-select-all" />
 		 WHERE REV_name like #searchKeyword#
 		 ORDER BY REV_no DESC
 	</select>
 	<select id="review-selectSearchS" resultMap="reviewRes" parameterClass="string">
-		<include refid="select-all" />
+		<include refid="review-select-all" />
 		 WHERE REV_subject like #searchKeyword#
 		 ORDER BY REV_no DESC
 	</select>

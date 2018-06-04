@@ -46,7 +46,7 @@ public class MainAction extends ActionSupport implements SessionAware{
 	public String execute() throws Exception {
 		
 		session.get("M_ID");
-
+		
 		list = sqlMapper.queryForList("goods-selectAll");
 		list1 = sqlMapper.queryForList("goods-selectNew");
 		list2 = sqlMapper.queryForList("goods-selectBest");
