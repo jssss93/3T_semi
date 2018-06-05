@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!-- 용량제한 100MB 로 설정. -->
+	<constant name="struts.multipart.maxSize" value="104857600" />
+
+	<package name="qa" extends="struts-default">
+		<!-- 글로벌 예외 처리 화면 설정 -->
+
+		<!-- 게시판 리스트 액션 -->
+		<action name="qa_listAction" class="user.qa.ListAction">
+			<result>/user/qa/List.jsp</result>
+		</action>
+		<!-- 게시판 글쓰기 액션 -->
+		<action name="qa_writeForm" class="user.qa.WriteAction" method="form">
+			<result>/user/qa/Write.jsp</result>
+		</action>
+
+		<action name="qa_writeAction" class="user.qa.WriteAction">
+			<result type="redirect-action">
+				<param name="actionName">qa_listAction</param>
+			</result>
+		</action>
+		<!-- 게시판 답변글쓰기 액션 -->
+		<action name="qa_replyForm" class="user.qa.WriteAction" method="reply">
+			<result type="chain">qa_writeForm</result>
+		</action>
+		<action name="qa_replyAction" class="user.qa.WriteAction">
+			<result type="redirect-action">
+				<param name="actionName">qa_listAction</param>
+			</result>
+		</action>
+		<!-- 게시판 글 읽기 액션 -->
+		<action name="qa_viewAction" class="user.qa.ViewAction">
+			<result>
+				/user/qa/View.jsp
+			</result>
+		</action>
+		<!-- 게시판 파일 다운로드 액션 -->
+		<action name="qa_fileDownloadAction" class="user.qa.ViewAction"
+			method="download">
+			<result name="success" type="stream">
+				<param name="contentType">binary/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">${contentDisposition}</param>
+				<param name="contentLength">${contentLength}</param>
+				<param name="bufferSize">409600</param>
+			</result>
+		</action>
+
+		<!-- 게시판 수정 액션 -->
+		<action name="qa_modifyForm" class="user.qa.ViewAction">
+			<result type="chain">qa_writeForm</result>
+		</action>
+
+		<action name="qa_modifyAction" class="user.qa.ModifyAction">
+			<result type="chain">qa_viewAction</result>
+		</action>
+
+		<!-- 비밀번호 체크 액션 -->
+		<action name="qa_checkForm" class="user.qa.ViewAction" method="checkForm">
+			<result>/user/qa/checkPassword.jsp</result>
+		</action>
+		<action name="qa_checkForm2" class="user.qa.ViewAction" method="checkForm">
+			<result>/user/qa/checkPassword2.jsp</result>
+		</action>
+
+		<action name="qa_checkAction" class="user.qa.ViewAction" method="checkAction">
+			<result name="error">/user/qa/checkError.jsp</result>
+			<result>/user/qa/checkSuccess.jsp</result>
+		</action>
+
+		<action name="qa_checkAction2" class="user.qa.ViewAction" method="checkAction2">
+			<result name="error">/user/qa/checkError.jsp</result>
+			<result>/user/qa/checkSuccess.jsp</result>
+		</action>
+
+		<action name="qa_deleteAction" class="user.qa.DeleteAction">
+			<result type="chain">qa_listAction</result>
+		</action>
+
+		<action name="qa_deleteAction2" class="user.qa.DeleteAction" method="execute2">
+			<result type="chain">qa_listAction</result>
+		</action>
+
+		<!-- 코멘트작성 관련 액션 -->
+		<action name="qa_writeCommentAction" class="user.qa.CommentWriteAction">
+			<result type="chain">
+				qa_viewAction
+			</result>
+		</action>
+	</package>
+
+</struts>

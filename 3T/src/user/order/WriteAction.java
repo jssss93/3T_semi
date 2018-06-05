@@ -14,15 +14,15 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class WriteAction extends ActionSupport {
 	
-	public static Reader reader;	//파일 스트림을 위한 reader.
-	public static SqlMapClient sqlMapper;	//SqlMapClient API를 사용하기 위한 sqlMapper 객체.
+	public static Reader reader;	
+	public static SqlMapClient sqlMapper;	
 
-	private OrderVO paramClass; //파라미터를 저장할 객체
-	private OrderVO resultClass; //쿼리 결과 값을 저장할 객체
+	private OrderVO paramClass; 
+	private OrderVO resultClass; 
 
 	private List<OrderVO> list = new ArrayList<OrderVO>();;	 
 	
-	private int totalCount; // 총 게시물의 수
+	private int totalCount; 
 	
 	private String ORDER_NAME;
 	private String ORDER_ZIPCODE;
@@ -49,34 +49,32 @@ public class WriteAction extends ActionSupport {
 	private int ORDER_PRICE;
 	private String ORDER_MEMBER_ID;
 	private String ORDER_GOODS_NO;
-	private String ORDER_GOODS_INFO;
+	private String ORDER_GOODS_NAME;
 	private int ORDER_GOODS_COUNT;
-	Calendar today = Calendar.getInstance(); //오늘 날짜 구하기.
+	Calendar today = Calendar.getInstance(); 
 	
-	// 생성자
+	
 	public WriteAction() throws IOException {
 		
-		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); // sqlMapConfig.xml 파일의 설정내용을 가져온다.
-		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);	// sqlMapConfig.xml의 내용을 적용한 sqlMapper 객체 생성.
+		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); 
+		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);	
 		reader.close();
 	}
 
-	// 게시판 LIST 액션
+	
 	public String form() throws Exception {
-		// 모든 글을 가져와 list에 넣는다.
+		
 		list = sqlMapper.queryForList("order-selectAll");
-		totalCount = list.size(); // 전체 글 갯수를 구한다.
+		totalCount = list.size(); 
 		return SUCCESS;
 	}
 	public String execute() throws Exception {
 
-		//파라미터와 리절트 객체 생성.
+		
 		paramClass = new OrderVO();
 		resultClass = new OrderVO();
 
-		// 등록할 항목 설정.
-		//paramClass.setSubject(getSubject());
-		//paramClass.setRegdate(today.getTime());
+	
 		paramClass.setORDER_NAME(getORDER_NAME());
 		paramClass.setORDER_ZIPCODE(getORDER_ZIPCODE());
 		paramClass.setORDER_ADDRESS1(getORDER_ADDRESS1());
@@ -101,11 +99,11 @@ public class WriteAction extends ActionSupport {
 		paramClass.setORDER_TOTAL(getORDER_TOTAL());
 		paramClass.setORDER_MEMBER_ID(getORDER_MEMBER_ID());
 		paramClass.setORDER_GOODS_NO(getORDER_GOODS_NO());
-		paramClass.setORDER_GOODS_INFO(getORDER_GOODS_INFO());
+		paramClass.setORDER_GOODS_NAME(getORDER_GOODS_NAME());
 		paramClass.setORDER_GOODS_COUNT(getORDER_GOODS_COUNT());
 		
 		
-		// 등록 쿼리 수행.
+		
 		sqlMapper.insert("order-insertBoard", paramClass);
 		return SUCCESS;
 	}
@@ -369,12 +367,12 @@ public class WriteAction extends ActionSupport {
 		RECIPIENT_PHONE3 = rECIPIENT_PHONE3;
 	}
 
-	public String getORDER_GOODS_INFO() {
-		return ORDER_GOODS_INFO;
+	public String getORDER_GOODS_NAME() {
+		return ORDER_GOODS_NAME;
 	}
 
-	public void setORDER_GOODS_INFO(String oRDER_GOODS_INFO) {
-		ORDER_GOODS_INFO = oRDER_GOODS_INFO;
+	public void setORDER_GOODS_NAME(String oRDER_GOODS_NAME) {
+		ORDER_GOODS_NAME = oRDER_GOODS_NAME;
 	}
 
 	public int getORDER_GOODS_COUNT() {

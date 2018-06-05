@@ -22,5 +22,5 @@
 	<include file="/configs/Faq.xml" />
 	<include file="/configs/Basket.xml" />
 	<include file="/configs/Wishlist.xml" />
-  
+ 	  <include file="/configs/Qa.xml" />
 </struts>

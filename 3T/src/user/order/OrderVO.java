@@ -34,7 +34,7 @@ public class OrderVO {
 	private int ORDER_PRICE;
 	private String ORDER_MEMBER_ID;
 	private String ORDER_GOODS_NO;
-	private String ORDER_GOODS_INFO;
+	private String ORDER_GOODS_NAME;
 	private int ORDER_GOODS_COUNT;
 	
 
@@ -215,11 +215,11 @@ public class OrderVO {
 	public void setRECIPIENT_PHONE3(String rECIPIENT_PHONE3) {
 		RECIPIENT_PHONE3 = rECIPIENT_PHONE3;
 	}
-	public String getORDER_GOODS_INFO() {
-		return ORDER_GOODS_INFO;
+	public String getORDER_GOODS_NAME() {
+		return ORDER_GOODS_NAME;
 	}
-	public void setORDER_GOODS_INFO(String oRDER_GOODS_INFO) {
-		ORDER_GOODS_INFO = oRDER_GOODS_INFO;
+	public void setORDER_GOODS_NAME(String oRDER_GOODS_NAME) {
+		ORDER_GOODS_NAME = oRDER_GOODS_NAME;
 	}
 	public int getORDER_GOODS_COUNT() {
 		return ORDER_GOODS_COUNT;

@@ -34,7 +34,7 @@
 		  	<result property="ORDER_PRICE" column="ORDER_PRICE"/>
 		  	<result property="ORDER_MEMBER_ID" column="ORDER_MEMBER_ID"/>
 		  	<result property="ORDER_GOODS_NO" column="ORDER_GOODS_NO"/>  
-		 	<result property="ORDER_GOODS_INFO" column="ORDER_GOODS_INFO"/>  
+		 	<result property="ORDER_GOODS_NAME" column="ORDER_GOODS_NAME"/>  
 		  	<result property="ORDER_GOODS_COUNT" column="ORDER_GOODS_COUNT"/>  
 		</resultMap>
 		
@@ -92,7 +92,7 @@
                          		ORDER_PRICE,
                          		ORDER_MEMBER_ID,
                          		ORDER_GOODS_NO,
-                         		ORDER_GOODS_INFO,
+                         		ORDER_GOODS_NAME,
                          		ORDER_GOODS_COUNT
                          )
                 VALUES (Order_no_seq.NEXTVAL,
@@ -124,7 +124,7 @@
                          	#ORDER_PRICE#,
                          	#ORDER_MEMBER_ID#,
                          	#ORDER_GOODS_NO#
-                         	#ORDER_GOODS_INFO#,
+                         	#ORDER_GOODS_NAME#,
                          	#ORDER_GOODS_COUNT#
                          )
 		</insert>

@@ -25,5 +25,6 @@
 	<sqlMap resource="/sql/FaqSQL.xml" />
 	<sqlMap resource="/sql/BasketSQL.xml"/>	
 	<sqlMap resource="/sql/WishlistSQL.xml"/>	
+	 <sqlMap resource="/sql/QaSQL.xml"/>
   
 </sqlMapConfig>
