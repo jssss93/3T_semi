@@ -68,7 +68,8 @@
 			</s:if>
 			<s:elseif test='%{session.M_ID != null}'>
 				<td align="right">
-					<!--경로잡을것  --> 
+					<!--경로잡을것  --> <td align="right">
+					${session.M_ID }님 환영합니다</td>
 					<form action="logout">
 					<input> 
 						<input type="submit" value="로그아웃">

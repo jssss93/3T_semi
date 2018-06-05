@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -13,7 +16,17 @@ import com.opensymphony.xwork2.ActionSupport;
 import admin.faq.VO.FaqVO;
 import admin.qa.VO.QAVO;
 
-public class ListAction extends ActionSupport {
+public class ListAction extends ActionSupport implements SessionAware {
+	private Map session;
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
+
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 
@@ -109,7 +122,5 @@ public class ListAction extends ActionSupport {
 	public void setList(List<QAVO> list) {
 		this.list = list;
 	}
-
-
 
 }

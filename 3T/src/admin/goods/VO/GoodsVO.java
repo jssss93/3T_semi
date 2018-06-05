@@ -7,7 +7,7 @@ public class GoodsVO {
 	private String goods_name;
 	private String goods_content;
 	private int goods_readcnt;
-	private Date goods_reg_date;
+	private Date goods_regdate;
 	private String goods_color;
 	private int goods_price;
 	private String goods_size;
@@ -50,12 +50,12 @@ public class GoodsVO {
 		this.goods_readcnt = goods_readcnt;
 	}
 
-	public Date getGoods_reg_date() {
-		return goods_reg_date;
+	public Date getGoods_regdate() {
+		return goods_regdate;
 	}
 
-	public void setGoods_reg_date(Date goods_reg_date) {
-		this.goods_reg_date = goods_reg_date;
+	public void setGoods_regdate(Date goods_regdate) {
+		this.goods_regdate = goods_regdate;
 	}
 
 	public String getGoods_color() {
