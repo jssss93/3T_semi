@@ -75,6 +75,12 @@
 			</result>
 		</action>
 		
+		<action name="AD_logout" class="user.member.login.LoginAction" method="logout">
+			<result name="success" type="tiles">
+				main
+			</result>
+		</action>
+		
 
 	</package>
 
@@ -116,6 +122,17 @@
 				<param name="actionName">AMlistAction</param>
 			</result>
 		</action>
+		
+		<action name="AM_MsglistAction" class="admin.member.msg.ListAction">
+			<result>/admin/member/msg/List.jsp</result>
+		</action>
+		
+		<action name="logout" class="admin.LogoutAction">
+			<result type="redirect-action">
+				<param name="actionName">main</param>
+			</result>
+		</action>
+		
 
 	</package>
 

@@ -31,7 +31,7 @@ public class WriteAction extends ActionSupport {
 	private String goods_name;
 	private String goods_content;
 	private int goods_readcnt;
-	private Date goods_reg_date;
+	private Date goods_regdate;
 	private String goods_color;
 	private int goods_price;
 	private String goods_size;
@@ -43,7 +43,6 @@ public class WriteAction extends ActionSupport {
 	private String goods_file_orgname;
 	private String goods_file_savname;
 	Calendar today = Calendar.getInstance();
-
 
 	private String fileUploadPath = "3T\\WebContent\\upload\\";
 
@@ -76,10 +75,10 @@ public class WriteAction extends ActionSupport {
 		paramClass.setGoods_totalcount(getGoods_totalcount());
 		paramClass.setGoods_related_product(getGoods_related_product());
 		paramClass.setGoods_content(getGoods_content());
-		paramClass.setGoods_reg_date(today.getTime());
+		paramClass.setGoods_regdate(today.getTime());
 		paramClass.setGoods_file_orgname(getGoods_file_orgname());
 		paramClass.setGoods_file_savname(getGoods_file_savname());
-		
+
 		sqlMapper.insert("insertGoods", paramClass);
 
 		for (int i = 0; i < uploads.size(); i++) {
@@ -95,9 +94,9 @@ public class WriteAction extends ActionSupport {
 			String file_name = "goods_" + resultClass.getGoods_no();
 			String file_ext = getUploadsFileName().get(i).substring(getUploadsFileName().get(i).lastIndexOf('.') + 1,
 					getUploadsFileName().get(i).length());
-			file_savname = file_savname + file_name + "(" + (i + 1) + ")"+ "." + file_ext ;
+			file_savname = file_savname + file_name + "(" + (i + 1) + ")" + "." + file_ext;
 
-			File destFile = new File(fileUploadPath + file_name + "(" + (i + 1) + ")"+ "." + file_ext);
+			File destFile = new File(fileUploadPath + file_name + "(" + (i + 1) + ")" + "." + file_ext);
 			FileUtils.copyFile(getUploads().get(i), destFile);
 
 			paramClass.setGoods_no(resultClass.getGoods_no());
@@ -106,7 +105,7 @@ public class WriteAction extends ActionSupport {
 
 			sqlMapper.update("AGupdateFile", paramClass);
 		}
-		
+
 		return SUCCESS;
 	}
 
@@ -174,12 +173,60 @@ public class WriteAction extends ActionSupport {
 		this.goods_readcnt = goods_readcnt;
 	}
 
-	public Date getGoods_reg_date() {
-		return goods_reg_date;
+	public static Reader getReader() {
+		return reader;
 	}
 
-	public void setGoods_reg_date(Date goods_reg_date) {
-		this.goods_reg_date = goods_reg_date;
+	public static void setReader(Reader reader) {
+		WriteAction.reader = reader;
+	}
+
+	public static SqlMapClient getSqlMapper() {
+		return sqlMapper;
+	}
+
+	public static void setSqlMapper(SqlMapClient sqlMapper) {
+		WriteAction.sqlMapper = sqlMapper;
+	}
+
+	public Date getGoods_regdate() {
+		return goods_regdate;
+	}
+
+	public void setGoods_regdate(Date goods_regdate) {
+		this.goods_regdate = goods_regdate;
+	}
+
+	public Calendar getToday() {
+		return today;
+	}
+
+	public void setToday(Calendar today) {
+		this.today = today;
+	}
+
+	public String getFileUploadPath() {
+		return fileUploadPath;
+	}
+
+	public void setFileUploadPath(String fileUploadPath) {
+		this.fileUploadPath = fileUploadPath;
+	}
+
+	public String getFile_orgname() {
+		return file_orgname;
+	}
+
+	public void setFile_orgname(String file_orgname) {
+		this.file_orgname = file_orgname;
+	}
+
+	public String getFile_savname() {
+		return file_savname;
+	}
+
+	public void setFile_savname(String file_savname) {
+		this.file_savname = file_savname;
 	}
 
 	public String getGoods_color() {
@@ -237,7 +284,6 @@ public class WriteAction extends ActionSupport {
 	public void setGoods_related_product(String goods_related_product) {
 		this.goods_related_product = goods_related_product;
 	}
-
 
 	public GoodsVO getParamClass() {
 		return paramClass;

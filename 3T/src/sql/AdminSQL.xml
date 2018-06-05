@@ -65,7 +65,10 @@
 		<result property="m_coupon_no" column="m_coupon_no" />
 
 	</resultMap>
-
+	<select id="AM_COUPONselectAll" resultClass="ad_coupon"
+		parameterClass="int">
+		SELECT * FROM MEMBER_COUPON
+	</select>
 
 	<insert id="giveCoupon" parameterClass="ad_coupon">
 		INSERT INTO
@@ -84,6 +87,12 @@
 		<result property="m_msg_no" column="m_msg_no" />
 
 	</resultMap>
+
+
+	<select id="AM_MSGselectAll" resultClass="ad_msg"
+		parameterClass="int">
+		SELECT * FROM MEMBER_MSG
+	</select>
 	
 	<insert id="giveMsg" parameterClass="ad_msg">
 		INSERT INTO
@@ -106,7 +115,7 @@
 		<result property="goods_name" column="goods_name" />
 		<result property="goods_content" column="goods_content" />
 		<result property="goods_readcnt" column="goods_readcnt" />
-		<result property="goods_reg_date" column="goods_reg_date" />
+		<result property="goods_regdate" column="goods_regdate" />
 		<result property="goods_color" column="goods_color" />
 		<result property="goods_price" column="goods_price" />
 		<result property="goods_size" column="goods_size" />
@@ -131,7 +140,7 @@
 
 	<select id="AGselectAll" resultMap="GoodsRes" parameterClass="int">
 		<include refid="AGselect-all" />
-		order by goods_reg_date desc
+		order by goods_regdate desc
 
 	</select>
 
@@ -150,11 +159,11 @@
 
 	<insert id="insertGoods" parameterClass="ad_goods">
 		INSERT INTO
-		GOODS(goods_no,goods_name,goods_content,goods_readcnt,goods_reg_date,goods_color,
+		GOODS(goods_no,goods_name,goods_content,goods_readcnt,goods_regdate,goods_color,
 		goods_price,goods_size,
 		goods_category,goods_recommend,goods_totalcount,goods_related_product,goods_file_orgname,goods_file_savname)
 		VALUES (goods_NO_SEQ.NEXTVAL, #goods_name#,
-		#goods_content#,#goods_readcnt#, #goods_reg_date#,#goods_color#,
+		#goods_content#,#goods_readcnt#, #goods_regdate#,#goods_color#,
 		#goods_price#,#goods_size#,
 		#goods_category#,#goods_recommend#,#goods_totalcount#,#goods_related_product#,#goods_file_orgname#,#goods_file_savname#)
 	</insert>

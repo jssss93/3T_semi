@@ -23,22 +23,22 @@
 			
 			
 			<td>
-				<a href="AM_List.action">회원목록</a>&nbsp;/
+				<a href="AM_List.action">회원목록</a>&nbsp;|
 			</td>
 			<td>
-				<a href="AG_List.action">상품목록</a>&nbsp;/
+				<a href="AG_List.action">상품목록</a>&nbsp;|
 			</td>
 			<td>
-				<a href="AN_List.action">공지사항</a>&nbsp;/
+				<a href="AN_List.action">공지사항</a>&nbsp;|	
 			</td>
 			<td>
-				<a href="AF_List.action">FAQ</a>&nbsp;/
+				<a href="AF_List.action">FAQ</a>&nbsp;|
 			</td>
 			<td>
-				<a href="AQ_List.action">QA</a>&nbsp;/
+				<a href="AQ_List.action">QA(아직안되)</a>&nbsp;|
 			</td>
 			<td>
-				<a href="AO_List.action">주문목록</a>&nbsp;/
+				<a href="AO_List.action">주문목록</a>&nbsp;
 			</td>
 			
 			
@@ -54,17 +54,14 @@
 			</s:if>
 			<s:elseif test='%{session.M_ID != null}'>
 				<td align="right">
-				${session.M_ID }님 환영합니다
+					${session.M_ID } 님 환영합니다.</td>
+				<td align="right">
+				
 				
 					<!--경로잡을것  --> 
-					<a href="logout.action">LOGOUT</a> 
+					<a href="AD_logout.action">LOGOUT</a> 
 					&nbsp;|&nbsp;
-					<a href="logout.action">MODIFY</a> 
-					&nbsp;|&nbsp;
-					<a href="orderList.action">ORDER</a> 
-					&nbsp;|&nbsp;
-					<a href="basketList.action">MYPAGE</a> 
-					&nbsp;&nbsp;
+					(관리자모드) 
 					
 				</td>
 			</s:elseif>

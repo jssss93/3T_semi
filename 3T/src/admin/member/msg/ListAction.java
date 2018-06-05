@@ -1,38 +1,26 @@
-package admin.qa;
+package admin.member.msg;
 
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import org.apache.struts2.interceptor.SessionAware;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 
-import admin.faq.VO.FaqVO;
-import admin.qa.VO.QAVO;
+import admin.member.coupon.CouponVO;
 
-public class ListAction extends ActionSupport implements SessionAware {
-	private Map session;
-
-	public Map getSession() {
-		return session;
-	}
-
-	public void setSession(Map session) {
-		this.session = session;
-	}
+public class ListAction extends ActionSupport {
 
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 
-	private List<QAVO> list = new ArrayList<QAVO>();
+	private List<MsgVO> list = new ArrayList<MsgVO>();
 
-	private int num = 0;
+	private String searchKeyword;
+	private int searchNum;
 
 	private int currentPage = 1;
 	private int totalCount;
@@ -40,20 +28,24 @@ public class ListAction extends ActionSupport implements SessionAware {
 	private int blockPage = 5;
 	private String pagingHtml;
 	private PagingAction page;
+	private int num = 0;
 
 	public ListAction() throws IOException {
-
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 		reader.close();
+
 	}
 
 	public String execute() throws Exception {
 
-		list = sqlMapper.queryForList("AQselectAll");
+		/*
+		 * if(getSearchKeyword() != null) { return search(); }
+		 */
+
+		list = sqlMapper.queryForList("AM_MSGselectAll");
 
 		totalCount = list.size();
-
 		page = new PagingAction(currentPage, totalCount, blockCount, blockPage, num, "");
 		pagingHtml = page.getPagingHtml().toString();
 
@@ -63,12 +55,41 @@ public class ListAction extends ActionSupport implements SessionAware {
 			lastCount = page.getEndCount() + 1;
 
 		list = list.subList(page.getStartCount(), lastCount);
-
 		return SUCCESS;
 	}
 
+	/*
+	 * public String search() throws Exception {
+	 * 
+	 * //searchKeyword = new String(searchKeyword.getBytes("iso-8859-1"),"euc-kr") ;
+	 * //System.out.println(searchKeyword); //System.out.println(searchNum);
+	 * if(searchNum == 0){ list = sqlMapper.queryForList("selectSearchW",
+	 * "%"+getSearchKeyword()+"%"); } if(searchNum == 1){ list =
+	 * sqlMapper.queryForList("selectSearchS", "%"+getSearchKeyword()+"%"); }
+	 * if(searchNum == 2){ list = sqlMapper.queryForList("selectSearchC",
+	 * "%"+getSearchKeyword()+"%"); }
+	 * 
+	 * totalCount = list.size(); page = new pagingAction(currentPage, totalCount,
+	 * blockCount, blockPage, searchNum, getSearchKeyword()); pagingHtml =
+	 * page.getPagingHtml().toString();
+	 * 
+	 * int lastCount = totalCount;
+	 * 
+	 * if(page.getEndCount() < totalCount) lastCount = page.getEndCount() + 1;
+	 * 
+	 * list = list.subList(page.getStartCount(), lastCount); return SUCCESS; }
+	 */
+
 	public int getCurrentPage() {
 		return currentPage;
+	}
+
+	public List<MsgVO> getList() {
+		return list;
+	}
+
+	public void setList(List<MsgVO> list) {
+		this.list = list;
 	}
 
 	public void setCurrentPage(int currentPage) {
@@ -107,20 +128,20 @@ public class ListAction extends ActionSupport implements SessionAware {
 		this.pagingHtml = pagingHtml;
 	}
 
-	public PagingAction getPage() {
-		return page;
+	public String getSearchKeyword() {
+		return searchKeyword;
 	}
 
-	public void setPage(PagingAction page) {
-		this.page = page;
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
 	}
 
-	public List<QAVO> getList() {
-		return list;
+	public int getSearchNum() {
+		return searchNum;
 	}
 
-	public void setList(List<QAVO> list) {
-		this.list = list;
+	public void setSearchNum(int searchNum) {
+		this.searchNum = searchNum;
 	}
 
 }

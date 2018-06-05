@@ -10,7 +10,7 @@
       <result property="goods_name" column="goods_name" />
       <result property="goods_content" column="goods_content" />
       <result property="goods_readcnt" column="goods_readcnt" />
-      <result property="goods_reg_date" column="goods_reg_date" />
+      <result property="goods_regdate" column="goods_regdate" />
       <result property="goods_color" column="goods_color" />
       <result property="goods_price" column="goods_price" />
       <result property="goods_size" column="goods_size" />
@@ -54,7 +54,7 @@
    <!-- 새로운 순서로 3개만 가져와서 보여줌 -->
    <select id="goods-selectNew" resultMap="goodsRes"
       parameterClass="int">
-      select * from (select * from goods order by goods_reg_date desc) where
+      select * from (select * from goods order by goods_regdate desc) where
       rownum <![CDATA[<]]>=
       3
    </select>
@@ -73,7 +73,7 @@
    <select id="select-All-outer" resultMap="goodsRes"
       parameterClass="int">
       <include refid="goods-select-all" />
-      where goods_category= '1' order by goods_reg_date desc
+      where goods_category= '1' order by goods_regdate desc
    </select>
    <!-- outer best4개 출력 -->
    <select id="select-All-outer-best" resultMap="goodsRes"
@@ -87,7 +87,7 @@
    <select id="select-All-suit" resultMap="goodsRes"
       parameterClass="int">
       <include refid="goods-select-all" />
-      where goods_category= '22' order by goods_reg_date desc
+      where goods_category= '22' order by goods_regdate desc
    </select>
    <!-- suit best4개 출력 -->
    <select id="select-All-suit-best" resultMap="goodsRes"
@@ -100,7 +100,7 @@
    <!-- top -->
    <select id="select-All-top" resultMap="goodsRes" parameterClass="int">
       <include refid="goods-select-all" />
-      where goods_category='top' order by goods_reg_date desc
+      where goods_category='top' order by goods_regdate desc
    </select>
    <!-- top best4개 출력 -->
    <select id="select-All-top-best" resultMap="goodsRes"
@@ -114,7 +114,7 @@
    <select id="select-All-shirt" resultMap="goodsRes"
       parameterClass="int">
       <include refid="goods-select-all" />
-      where goods_category='shirt' order by goods_reg_date desc
+      where goods_category='shirt' order by goods_regdate desc
    </select>
    <!-- shirt best4개 출력 -->
    <select id="select-All-shirt-best" resultMap="goodsRes"
@@ -128,7 +128,7 @@
    <select id="select-All-knit" resultMap="goodsRes"
       parameterClass="int">
       <include refid="goods-select-all" />
-      where goods_category='knit' order by goods_reg_date desc
+      where goods_category='knit' order by goods_regdate desc
    </select>
    <!-- knit best4개 출력 -->
    <select id="select-All-knit-best" resultMap="goodsRes"
@@ -142,7 +142,7 @@
    <select id="select-All-bottom" resultMap="goodsRes"
       parameterClass="int">
       <include refid="goods-select-all" />
-      where goods_category='bottom' order by goods_reg_date desc
+      where goods_category='bottom' order by goods_regdate desc
    </select>
    <!-- bottom best4개 출력 -->
    <select id="select-All-bottom-best" resultMap="goodsRes"
@@ -156,7 +156,7 @@
    <select id="select-All-shoes" resultMap="goodsRes"
       parameterClass="int">
       <include refid="goods-select-all" />
-      where goods_category='shoes' order by goods_reg_date desc
+      where goods_category='shoes' order by goods_regdate desc
    </select>
    <!-- shoes best4개 출력 -->
    <select id="select-All-shoes-best" resultMap="goodsRes"
@@ -169,7 +169,7 @@
    <!-- acc -->
    <select id="select-All-acc" resultMap="goodsRes" parameterClass="int">
       <include refid="goods-select-all" />
-      where goods_category='acc' order by goods_reg_date desc
+      where goods_category='acc' order by goods_regdate desc
    </select>
    <!-- acc best4개 출력 -->
    <select id="select-All-acc-best" resultMap="goodsRes"
@@ -183,7 +183,7 @@
    <select id="select-All-perfectline" resultMap="goodsRes"
       parameterClass="int">
       <include refid="goods-select-all" />
-      where goods_category='perfectline' order by goods_reg_date desc
+      where goods_category='perfectline' order by goods_regdate desc
    </select>
    <!-- perfectline best4개 출력 -->
    <select id="select-All-perfectline-best" resultMap="goodsRes"
