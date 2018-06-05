@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap>
+	<typeAlias alias="qa" type="user.qa.QaVO" />
+	<typeAlias alias="qa_board" type="user.qa.Qa_CommentVO"/>
+	
+	<!-- 리절트 맵 정의 -->
+	<resultMap id="qaRes" class="qa">
+		<result property="QA_NO" column="QA_NO" />
+		<result property="QA_SPECIAL_NO" column="QA_SPECIAL_NO" />
+		<result property="QA_SUBJECT" column="QA_SUBJECT" />
+		<result property="QA_NAME" column="QA_NAME" />
+		<result property="QA_PASSWD" column="QA_PASSWD" />
+		<result property="QA_CONTENT" column="QA_CONTENT" />
+		<result property="QA_READCNT" column="QA_READCNT" />
+		<result property="QA_REGDATE" column="QA_REGDATE" />
+		<result property="QA_REF" column="QA_REF" />
+		<result property="QA_RE_STEP" column="QA_RE_STEP" />
+		<result property="QA_RE_LEVEL" column="QA_RE_LEVEL" />
+		<result property="QA_FILE_ORGNAME" column="QA_FILE_ORGNAME" />
+		<result property="QA_FILE_SAVNAME" column="QA_FILE_SAVNAME" />
+		<result property="QA_MAKE_PUBLIC" column="QA_MAKE_PUBLIC" />
+		<result property="QA_CATEGORY_NO" column="QA_CATEGORY_NO" /><!-- QA_CATEGORY_NO -->
+		<result property="QA_MEMBER_ID" column="QA_MEMBER_ID" />
+	</resultMap>
+	<resultMap id="qaboardRes" class="qa_board">
+			<result property="QA_NO" column="QA_NO" />
+			<result property="QA_ORIGINNO" column="QA_ORIGINNO" />
+			<result property="QA_NAME" column="QA_NAME" />
+			<result property="QA_PASSWD" column="QA_PASSWD" />
+			<result property="QA_CONTENT" column="QA_CONTENT" />
+			<result property="QA_REGDATE" column="QA_REGDATE" />
+		</resultMap>
+
+
+	<!-- 공통으로 사용할 select 절 정의 -->
+	<sql id="qa_select-all">
+		SELECT * FROM QA
+	</sql>
+	
+	<sql id="qa_select-com">
+		SELECT * FROM qa_board
+	</sql>
+	
+	<!-- 공통으로 사용할 where-no 절 정의 -->
+	<sql id="qa_where-no">
+		WHERE QA_NO = #QA_NO#
+	</sql>
+	
+	
+	<!-- select 쿼리문 정의 -->	
+	<!-- 답변글 로직으로 수정시작 -->
+	<select id="qa_selectAll" resultMap="qaRes" parameterClass="int">
+		 <include refid="qa_select-all" />
+		 ORDER BY QA_REF DESC, QA_RE_STEP ASC 
+	</select>
+	<!-- 답변글 로직으로 수정끝 -->
+	<select id="qa_commentSelectAll" resultMap="qaboardRes" parameterClass="int">
+		SELECT * FROM qa_board
+		 WHERE QA_ORIGINNO = #QA_NO#
+		 ORDER BY QA_NO DESC
+	</select>
+	<select id="qa_selectOne" resultMap="qaRes" parameterClass="int">
+		<include refid="qa_select-all" />
+		<include refid="qa_where-no" />
+	</select>
+	<!-- 검색로직 추가시작 -->
+	<select id="qa_selectSearchW" resultMap="qaRes" parameterClass="string">
+		<include refid="qa_select-all" />
+		 WHERE name like #searchKeyword#
+		 ORDER BY QA_NO DESC
+	</select>
+	<select id="qa_selectSearchS" resultMap="qaRes" parameterClass="string">
+		<include refid="qa_select-all" />
+		 WHERE subject like #searchKeyword#
+		 ORDER BY QA_NO DESC
+	</select>
+	<select id="qa_selectSearchC" resultMap="qaRes" parameterClass="string">
+		<include refid="qa_select-all" />
+		 WHERE content like #searchKeyword#
+		 ORDER BY QA_NO DESC
+	</select>
+	<!-- 검색로직 끝 -->
+	<select id="qa_selectLastNo" resultClass="qa" parameterClass="int">
+		SELECT max(QA_NO) as QA_NO FROM QA
+	</select>
+	
+	<select id="qa_selectPassword" resultMap="qaRes">
+		<include refid="qa_select-all"/>
+		<include refid="qa_where-no" />
+		AND QA_PASSWD = #QA_PASSWD#
+	</select>
+	
+	<select id="qa_selectPassword2" resultMap="qaboardRes">
+		<include refid="qa_select-com"/>
+		<include refid="qa_where-no" />
+		AND QA_PASSWD = #QA_PASSWD#
+	</select>
+	
+	<!-- insert 쿼리문 정의 -->
+	<insert id="qa_insertBoard" parameterClass="qa">
+		INSERT INTO QA(QA_NO, QA_SUBJECT, QA_NAME, QA_PASSWD, QA_CONTENT, QA_REGDATE,QA_RE_STEP,QA_RE_LEVEL,QA_REF,QA_CATEGORY_NO)
+		VALUES (QA_no_seq.NEXTVAL, #QA_SUBJECT#, #QA_NAME#, #QA_PASSWD#, #QA_CONTENT#, #QA_REGDATE#, #QA_RE_STEP#, #QA_RE_LEVEL#,QA_no_seq.CURRVAL,#QA_CATEGORY_NO#)
+	</insert>
+	
+	<insert id="qa_insertBoardReply" parameterClass="qa">
+		INSERT INTO QA(QA_NO, QA_SUBJECT, QA_NAME, QA_PASSWD, QA_CONTENT, QA_REGDATE,QA_RE_STEP,QA_RE_LEVEL,QA_REF,QA_CATEGORY_NO)
+		VALUES (QA_no_seq.NEXTVAL, #QA_SUBJECT#, #QA_NAME#, #QA_PASSWD#, #QA_CONTENT#, #QA_REGDATE#, #QA_RE_STEP#, #QA_RE_LEVEL#,#QA_REF#,#QA_CATEGORY_NO#)
+	</insert>
+	
+	<insert id="qa_insertComment" parameterClass="qa_board">
+		INSERT INTO qa_board(QA_NO, QA_ORIGINNO, QA_NAME, QA_PASSWD, QA_CONTENT, QA_REGDATE)
+		VALUES (QA_board_no_seq.NEXTVAL, #QA_ORIGINNO#, #QA_NAME#, #QA_PASSWD#, #QA_CONTENT#, #QA_REGDATE#)
+	</insert>
+	
+	<!-- update 쿼리문 정의 -->
+	<update id="qa_updateBoard" parameterClass="qa">
+	UPDATE QA SET QA_SUBJECT = 	#QA_SUBJECT#, 
+					QA_NAME = #QA_NAME#,
+					QA_PASSWD = #QA_PASSWD#,
+					QA_CONTENT = #QA_CONTENT#
+	<include refid = "qa_where-no" />
+	</update>
+	
+	<update id="qa_updateFile" parameterClass="qa">
+			UPDATE QA SET QA_FILE_ORGNAME = #QA_FILE_ORGNAME#
+				,QA_FILE_SAVNAME = #QA_FILE_SAVNAME#
+			<include refid="qa_where-no" />
+	</update>
+	
+	<update id="qa_updateReadHit" parameterClass="qa">
+		UPDATE QA SET QA_READCNT = QA_READCNT + 1
+		<include refid="qa_where-no" />
+	</update>
+	
+	<update id="qa_updateReplyStep" parameterClass="qa">
+		UPDATE QA SET QA_RE_STEP=QA_RE_STEP+1 WHERE QA_REF=#QA_REF# AND QA_RE_STEP>#QA_RE_STEP#
+		
+	</update>
+	
+	
+	
+	<!-- delete 쿼리문 정의 -->
+	<delete id="qa_deleteBoard" parameterClass="qa">
+		DELETE FROM QA
+		<include refid="qa_where-no" />
+	</delete>
+	
+	<delete id="qa_deleteComment" parameterClass="qa_board">
+		DELETE FROM qa_board
+		<include refid="qa_where-no" />
+	</delete>
+	
+
+</sqlMap>
