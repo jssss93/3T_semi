@@ -37,9 +37,8 @@
 					<td width="100" height="200" align="center"><s:a
 							href="%{viewURL}">
 							
-							<img src="/3T/upload/${goods_file_savname}" width="350"
-								height="200">
-								
+							<img src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]"/>" width="350"
+								height="200">   
 						</s:a></td>
 
 			</s:iterator>
@@ -77,7 +76,7 @@
 					<td width="150" height="400" align="center"><s:a
 							href="%{viewURL}">
 							
-							<img src="/3T/upload/${goods_file_savname}" width="350"
+							<img src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]"/>" width="350"
 								height="400">
 						</s:a><br> <s:property value="goods_name" /><br> <s:property
 							value="goods_price" />
@@ -130,7 +129,7 @@
 					<td width="150" height="400" align="center"><s:a
 							href="%{viewURL}">
 							
-							<img src="C:\\upload\\+'${goods_file_savname}'" width="350"
+							<img src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]"/>" width="350"
 								height="400">
 						</s:a><br> <s:property value="goods_name" /><br> <s:property
 							value="goods_price" />

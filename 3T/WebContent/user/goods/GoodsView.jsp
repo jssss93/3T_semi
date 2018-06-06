@@ -24,9 +24,10 @@
 		<tr>
 		    <!-- 상품 메인 이미지-->
 			<td height="490" align="center" valign="middle">
-			<img src="/3T/upload/<s:property value="resultClass.goods_file_savname"/> "width"="490"
-								height="490">
-		      </td>
+			<img
+				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[0]"/> "
+				width"="490" height="490"></td>
+
 			
 			<!-- 상품 상세 내용 -->
 			<td>
@@ -197,12 +198,17 @@
 
 		<tr>
 			<td colspan="0" align="center">
-			<img src="/3T/upload/${goods_file_savname}">
+			<img
+				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[1]"/> "
+				width"="490" height="490"></td>
+
 		</tr>
 		<tr>
 			<td width="100" height="100" align="center"><h2>Main logo</h2>
-		    <img src="/3T/upload/${goods_file_savname}">
-		    </td>
+		    <img
+				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[2]"/> "
+				width"="490" height="490"></td>
+
 		</tr>
 	</table>
 	<br> <br> <br>
@@ -211,7 +217,10 @@
 
 		<tr>
 			<td colspan="0" align="center">
-			<img src="/3T/upload/${goods_file_savname}">
+			<img
+				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[3]"/> "
+				width"="490" height="490"></td>
+
 		</tr>
 	</table>
 	<br> <br> <br>
@@ -220,7 +229,10 @@
 
 		<tr>
 			<td colspan="0" align="center">
-			<img src="/3T/upload/${goods_file_savname}">
+			<img
+				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[4]"/> "
+				width"="490" height="490"></td>
+
 		</tr>
 	</table>
 	<!-- 옷 자세히 보기 -->
