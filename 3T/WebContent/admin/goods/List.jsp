@@ -36,7 +36,7 @@
 		</tr>
 
 	<s:iterator value="list" status="stat">
-		<s:url id="viewURL" action="AGviewAction">
+		<s:url id="viewURL" action="AG_View">
 			<s:param name="goods_no">
 				<s:property value="goods_no" />
 			</s:param>
@@ -76,17 +76,17 @@
 	<tr align="right">
 		<td colspan="5">
 			
-			<input type="button" value="글쓰기" class="inputb" onClick="javascript:location.href='AGwriteForm.action?currentPage=<s:property value="currentPage" />';" />
+			<input type="button" value="글쓰기" class="inputb" onClick="javascript:location.href='AG_Writeform.action?currentPage=<s:property value="currentPage" />';" />
 		</td>
 	</tr>
 
 	<tr align="center">
 		<td colspan="5">
-			<form>
+			<form action="AG_List.action" method="search">
 				<select name="searchNum" >
-					<option value="0">작성자</option>
-					<option value="1">제목</option>
-					<option value="2">내용</option>
+					<option value="0">이름</option>
+					<option value="1">카테고리</option>
+					<option value="2">사이즈</option>
 				</select>
 				<s:textfield name="searchKeyword" theme="simple" value="" cssStyle="width:120px" maxlength="20" />
 				<input name="submit" type="submit" value="검색" class="inputb">

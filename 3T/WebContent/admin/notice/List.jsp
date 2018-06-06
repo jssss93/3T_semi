@@ -32,7 +32,7 @@
 		</tr>
 
 		<s:iterator value="list" status="stat">
-			<s:url id="viewURL" action="ANviewAction">
+			<s:url id="viewURL" action="AN_View">
 				<s:param name="notice_no">
 					<s:property value="notice_no" />
 				</s:param>
@@ -61,22 +61,21 @@
 		</s:if>
 
 		<tr align="center">
-			<td colspan="5"><s:property value="pagingHtml" escape="false" /></td>
+			<td colspan="5"><s:property value="PagingHtml" escape="false" /></td>
 		</tr>
 
 		<tr align="right">
 			<td colspan="5"><input type="button" value="글쓰기" class="inputb"
-				onClick="javascript:location.href='ANwriteForm.action?currentPage=<s:property value="currentPage" />';" />
+				onClick="javascript:location.href='AN_Writeform.action?currentPage=<s:property value="currentPage" />';" />
 			</td>
 		</tr>
 
 		<tr align="center">
 			<td colspan="5">
-				<form>
+				<form action="AN_List.action" method="search">
 					<select name="searchNum">
-						<option value="0">작성자</option>
-						<option value="1">제목</option>
-						<option value="2">내용</option>
+						<option value="0">제목</option>
+						<option value="1">내용</option>
 					</select>
 					<s:textfield name="searchKeyword" theme="simple" value=""
 						cssStyle="width:120px" maxlength="20" />

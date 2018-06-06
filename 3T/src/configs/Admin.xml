@@ -29,58 +29,125 @@
 				AM_List
 			</result>
 		</action>
-		
+
 		<action name="AM_View" class="admin.member.ViewAction">
 			<result name="success" type="tiles">
 				AM_View
 			</result>
 		</action>
-		
+
 		<action name="AM_Coupon" class="admin.member.coupon.CouponAction">
 			<result name="success" type="tiles">
 				AM_View
 			</result>
 		</action>
-	
-		
-		
-		
+
+		<action name="AM_Msg" class="admin.member.msg.MsgAction">
+			<result name="success" type="tiles">
+				AM_View
+			</result>
+		</action>
+
+
+
+
 		<action name="AG_List" class="admin.goods.ListAction">
 			<result name="success" type="tiles">
 				AG_List
 			</result>
 		</action>
 		
+		<action name="AG_Writeform" class="admin.goods.WriteAction" method="form">
+			<result name="success" type="tiles">
+				AG_Write
+			</result>
+		</action>
+		
+		<action name="AG_Write" class="admin.goods.WriteAction" >
+			<result name="success" type="tiles">
+				AG_List
+			</result>
+		</action>
+
+		<action name="AG_View" class="admin.goods.ViewAction">
+			<result name="success" type="tiles">
+				AG_View
+			</result>
+		</action>
+
+
+
+
+
+
+
 		<action name="AN_List" class="admin.notice.ListAction">
 			<result name="success" type="tiles">
 				AN_List
 			</result>
 		</action>
 		
+		<action name="AN_Writeform" class="admin.notice.WriteAction" method="form">
+			<result name="success" type="tiles">
+				AN_Write
+			</result>
+		</action>
+		
+		<action name="AN_Write" class="admin.notice.WriteAction">
+			<result name="success" type="tiles">
+				AN_List
+			</result>
+		</action>
+		
+		<action name="AN_View" class="admin.notice.ViewAction">
+			<result name="success" type="tiles">
+				AN_View
+			</result>
+		</action>
+		
+		<!-- <action name="AN_Modifyform" class="admin.notice.ModifyAction" >
+			<result name="success" type="chain">
+				AN_Write
+			</result>
+		</action> -->
+		
+		
+		<action name="AN_ModifyForm" class="admin.notice.ViewAction">
+			<result type="chain">ANwriteForm</result>
+		</action>
+		<action name="ANmodifyAction" class="admin.notice.ModifyAction">
+			<result type="chain">ANviewAction</result>
+		</action>
+		
+		
+		
+		
+
 		<action name="AF_List" class="admin.faq.ListAction">
 			<result name="success" type="tiles">
 				AF_List
 			</result>
 		</action>
-		
+
 		<action name="AQ_List" class="admin.qa.ListAction">
 			<result name="success" type="tiles">
 				AQ_List
 			</result>
 		</action>
-		
+
 		<action name="AO_List" class="admin.order.ListAction">
 			<result name="success" type="tiles">
 				AO_List
 			</result>
 		</action>
-		
-		<action name="AD_logout" class="user.member.login.LoginAction" method="logout">
+
+		<action name="AD_logout" class="user.member.login.LoginAction"
+			method="logout">
 			<result name="success" type="tiles">
 				main
 			</result>
 		</action>
-		
+
 
 	</package>
 
@@ -122,18 +189,21 @@
 				<param name="actionName">AMlistAction</param>
 			</result>
 		</action>
-		
+
 		<action name="AM_MsglistAction" class="admin.member.msg.ListAction">
 			<result>/admin/member/msg/List.jsp</result>
 		</action>
-		
+
+
+		<action name="AMlistAction" class="admin.member.ListAction">
+			<result>/admin/member/List.jsp</result>
+		</action>
+
 		<action name="logout" class="admin.LogoutAction">
 			<result type="redirect-action">
 				<param name="actionName">main</param>
 			</result>
 		</action>
-		
-
 	</package>
 
 	<package

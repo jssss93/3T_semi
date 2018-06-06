@@ -37,12 +37,9 @@
 		WHERE m_no = #m_no#
 	</sql>
 
-
-
 	<select id="AMselectAll" resultMap="MemberRes" parameterClass="int">
 		<include refid="AMselect-all" />
-
-
+		order by m_no desc
 	</select>
 
 	<select id="AMselectOne" resultMap="MemberRes" parameterClass="int">
@@ -55,6 +52,16 @@
 		SELECT max(m_no) as m_no FROM MEMBER
 	</select>
 
+	<select id="M_Search_Name" resultMap="MemberRes">
+		select * from member where
+		m_name like #SearchKeyword#
+	</select>
+
+	<select id="M_Search_ID" resultMap="MemberRes">
+		select * from member where
+		m_id like #SearchKeyword#
+	</select>
+
 	<!-- 관리자 쿠폰 SQL ********************************************************************************************************************** -->
 	<typeAlias alias="ad_coupon" type="admin.member.coupon.CouponVO" />
 
@@ -65,6 +72,7 @@
 		<result property="m_coupon_no" column="m_coupon_no" />
 
 	</resultMap>
+
 	<select id="AM_COUPONselectAll" resultClass="ad_coupon"
 		parameterClass="int">
 		SELECT * FROM MEMBER_COUPON
@@ -93,7 +101,7 @@
 		parameterClass="int">
 		SELECT * FROM MEMBER_MSG
 	</select>
-	
+
 	<insert id="giveMsg" parameterClass="ad_msg">
 		INSERT INTO
 		MEMBER_MSG(m_id,m_msg_content,m_msg_no)
@@ -154,7 +162,20 @@
 		SELECT max(goods_no) as goods_no FROM GOODS
 	</select>
 
+	<select id="G_Search_Name" resultMap="GoodsRes">
+		select * from goods where
+		goods_name like #SearchKeyword#
+	</select>
 
+	<select id="G_Search_Cate" resultMap="GoodsRes">
+		select * from goods where
+		Goods_category like #SearchKeyword#
+	</select>
+	
+	<select id="G_Search_Size" resultMap="GoodsRes">
+		select * from goods where
+		Goods_Size like #SearchKeyword#
+	</select>
 
 
 	<insert id="insertGoods" parameterClass="ad_goods">
@@ -230,6 +251,7 @@
 
 	<select id="ANselectAll" resultMap="NoticeRes" parameterClass="int">
 		<include refid="ANselect-all" />
+		order by notice_no desc
 
 	</select>
 
@@ -243,7 +265,15 @@
 		SELECT max(notice_no) as notice_no FROM NOTICE
 	</select>
 
-
+	<select id="N_Search_Subject" resultMap="NoticeRes">
+		select * from notice where
+		notice_subject like #SearchKeyword#
+	</select>
+	
+	<select id="N_Search_Content" resultMap="NoticeRes">
+		select * from notice where
+		notice_content like #SearchKeyword#
+	</select>
 
 
 
@@ -299,6 +329,7 @@
 
 	<select id="AFselectAll" resultMap="FaqRes" parameterClass="int">
 		<include refid="AFselect-all" />
+		order by faq_no desc
 
 	</select>
 
@@ -310,6 +341,7 @@
 	<select id="AFselectLastNo" resultClass="AFFaq" parameterClass="int">
 		SELECT max(faq_no) as faq_no FROM FAQ
 	</select>
+	
 
 
 	<insert id="insertFaq" parameterClass="AFFaq">

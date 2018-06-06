@@ -77,9 +77,9 @@
 			<td colspan="5">
 				<form>
 					<select name="searchNum">
-						<option value="0">작성자</option>
-						<option value="1">제목</option>
-						<option value="2">내용</option>
+						<option value="0">이름</option>
+						<option value="1">ID</option>
+
 					</select>
 					<s:textfield name="searchKeyword" theme="simple" value=""
 						cssStyle="width:120px" maxlength="20" />

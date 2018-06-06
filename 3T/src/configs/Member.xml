@@ -25,7 +25,8 @@
 
 		<action name="logon" class="user.member.login.LoginAction"
 			method="login">
-			<result name="login" type="tiles">
+			
+			<result name="login" type="tiles" >
 				AD_main
 			</result>
 			<result name="success">/user/member/LoginSuccess.jsp</result>

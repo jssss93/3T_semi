@@ -98,7 +98,7 @@ public class WriteAction extends ActionSupport {
 
 			File destFile = new File(fileUploadPath + file_name + "(" + (i + 1) + ")" + "." + file_ext);
 			FileUtils.copyFile(getUploads().get(i), destFile);
-
+			System.out.println(getFileUploadPath()+"에 저장완료");
 			paramClass.setGoods_no(resultClass.getGoods_no());
 			paramClass.setGoods_file_orgname(file_orgname);
 			paramClass.setGoods_file_savname(file_savname);
