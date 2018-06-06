@@ -60,6 +60,9 @@
 	<definition name="AM_Coupon" extends="AD_main">
 		<put-attribute name="body" value="/admin/member/View.jsp" />
 	</definition>
+	<definition name="AM_Msg" extends="AD_main">
+		<put-attribute name="body" value="/admin/member/View.jsp" />
+	</definition>
 	
 	
 	
@@ -67,9 +70,36 @@
 	<definition name="AG_List" extends="AD_main">
 		<put-attribute name="body" value="/admin/goods/List.jsp" />
 	</definition>
+	
+	<definition name="AG_Writeform" extends="AD_main">
+		<put-attribute name="body" value="/admin/goods/Write.jsp" />
+	</definition>
+	<definition name="AG_Write" extends="AD_main">
+		<put-attribute name="body" value="/admin/goods/Write.jsp" />
+	</definition>
+	
+	<definition name="AG_View" extends="AD_main">
+		<put-attribute name="body" value="/admin/goods/View.jsp" />
+	</definition>
+	
+	
 	<definition name="AN_List" extends="AD_main">
 		<put-attribute name="body" value="/admin/notice/List.jsp" />
 	</definition>
+	
+	<definition name="AN_Writeform" extends="AD_main">
+		<put-attribute name="body" value="/admin/notice/Write.jsp" />
+	</definition>
+	
+	<definition name="AN_Write" extends="AD_main">
+		<put-attribute name="body" value="/admin/notice/Write.jsp" />
+	</definition>
+	
+	<definition name="AN_View" extends="AD_main">
+		<put-attribute name="body" value="/admin/notice/View.jsp" />
+	</definition>
+	
+	
 	<definition name="AF_List" extends="AD_main">
 		<put-attribute name="body" value="/admin/faq/List.jsp" />
 	</definition>

@@ -43,11 +43,11 @@ public class PagingAction {
 		pagingHtml = new StringBuffer();
 		if (currentPage > blockPage) {
 			if (isSearch != "")
-				pagingHtml.append("<a href=listAction.action?currentPage=" + (startPage - 1) + "&searchKeyword="
+				pagingHtml.append("<a href=AQlistAction.action?currentPage=" + (startPage - 1) + "&searchKeyword="
 						+ isSearch + "&searchNum=" + searchNum + ">");
 			else
-				pagingHtml.append("<a href=listAction.action?currentPage=" + (startPage - 1) + ">");
-			pagingHtml.append("����");
+				pagingHtml.append("<a href=AQlistAction.action?currentPage=" + (startPage - 1) + ">");
+			pagingHtml.append("이전");
 			pagingHtml.append("</a>");
 		}
 
@@ -62,7 +62,7 @@ public class PagingAction {
 				pagingHtml.append(i);
 				pagingHtml.append("</font></b>");
 			} else {
-				pagingHtml.append("&nbsp;<a href='listAction.action?currentPage=");
+				pagingHtml.append("&nbsp;<a href='AQlistAction.action?currentPage=");
 				pagingHtml.append(i);
 				if (isSearch != "")
 					pagingHtml.append("&searchKeyword=" + isSearch);
@@ -77,12 +77,12 @@ public class PagingAction {
 		pagingHtml.append("&nbsp;&nbsp;|&nbsp;&nbsp;");
 
 		if (totalPage - startPage >= blockPage) {
-			pagingHtml.append("&nbsp;<a href='listAction.action?currentPage=");
+			pagingHtml.append("&nbsp;<a href='AQlistAction.action?currentPage=");
 			pagingHtml.append((endPage + 1));
 			if (isSearch != "")
 				pagingHtml.append("&searchKeyword=" + isSearch);
 			pagingHtml.append("'>");
-			pagingHtml.append("����");
+			pagingHtml.append("다음");
 			pagingHtml.append("</a>");
 		}
 	}

@@ -51,9 +51,9 @@ public class ListAction extends ActionSupport implements SessionAware {
 
 	public String execute() throws Exception {
 
-		/*
-		 * if(getSearchKeyword() != null) { return search(); }
-		 */
+		if (getSearchKeyword() != null) {
+			return search();
+		}
 
 		list = sqlMapper.queryForList("AGselectAll");
 
@@ -70,27 +70,32 @@ public class ListAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 
-	/*
-	 * public String search() throws Exception {
-	 * 
-	 * //searchKeyword = new String(searchKeyword.getBytes("iso-8859-1"),"euc-kr") ;
-	 * //System.out.println(searchKeyword); //System.out.println(searchNum);
-	 * if(searchNum == 0){ list = sqlMapper.queryForList("selectSearchW",
-	 * "%"+getSearchKeyword()+"%"); } if(searchNum == 1){ list =
-	 * sqlMapper.queryForList("selectSearchS", "%"+getSearchKeyword()+"%"); }
-	 * if(searchNum == 2){ list = sqlMapper.queryForList("selectSearchC",
-	 * "%"+getSearchKeyword()+"%"); }
-	 * 
-	 * totalCount = list.size(); page = new pagingAction(currentPage, totalCount,
-	 * blockCount, blockPage, searchNum, getSearchKeyword()); pagingHtml =
-	 * page.getPagingHtml().toString();
-	 * 
-	 * int lastCount = totalCount;
-	 * 
-	 * if(page.getEndCount() < totalCount) lastCount = page.getEndCount() + 1;
-	 * 
-	 * list = list.subList(page.getStartCount(), lastCount); return SUCCESS; }
-	 */
+	public String search() throws Exception {
+
+		// searchKeyword = new String(searchKeyword.getBytes("iso-8859-1"),"euc-kr") ;
+		// System.out.println(searchKeyword); //System.out.println(searchNum);
+		if (searchNum == 0) {
+			list = sqlMapper.queryForList("G_Search_Name", "%" + getSearchKeyword() + "%");
+		}
+		if (searchNum == 1) {
+			list = sqlMapper.queryForList("G_Search_Cate", "%" + getSearchKeyword() + "%");
+		}
+		if (searchNum == 2) {
+			list = sqlMapper.queryForList("G_Search_Size", "%" + getSearchKeyword() + "%");
+		}
+
+		totalCount = list.size();
+		page = new PagingAction(currentPage, totalCount, blockCount, blockPage, searchNum, getSearchKeyword());
+		pagingHtml = page.getPagingHtml().toString();
+
+		int lastCount = totalCount;
+
+		if (page.getEndCount() < totalCount)
+			lastCount = page.getEndCount() + 1;
+
+		list = list.subList(page.getStartCount(), lastCount);
+		return SUCCESS;
+	}
 
 	public List<GoodsVO> getList() {
 		return list;

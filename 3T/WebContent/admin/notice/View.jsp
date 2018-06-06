@@ -30,6 +30,13 @@
 		</tr>
 		
 		
+		<tr>
+			<td width="100">제목</td>
+			<td width="500">
+			<!-- 이렇게도 쓸수 있다는거다 이자식들아 -->
+				${resultClass.notice_subject }
+			</td>
+		</tr>
 		
 		<tr>
 			<td width="100">내용</td>
@@ -38,6 +45,8 @@
 				${resultClass.notice_content }
 			</td>
 		</tr>
+		
+		
 		
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>
@@ -67,8 +76,8 @@
 		<tr>
 			<td colspan="2" align="right">
 				<s:url id="modifyURL" action="ANmodifyForm">
-					<s:param name="no">
-						<s:property value="no" />
+					<s:param name="notice_no">
+						<s:property value="notice_no" />
 					</s:param>
 				</s:url>
 				<s:url id="deleteURL" action="ANdeleteAction">
@@ -76,9 +85,9 @@
 						<s:property value="no" />
 					</s:param>
 				</s:url>
-				<input name="modify_b" type="button" value="수정" class="inputb" onClick="javascript:open_win_noresizable('ANmodifyForm.action?notice_no=<s:property value="resultClass.notice_no" />&currentPage=<s:property value="currentPage" />','modify')">
+				<input name="modify_b" type="button" value="수정" class="inputb" onClick="javascript:open_win_noresizable('AN_ModifyForm.action?notice_no=<s:property value="resultClass.notice_no" />&currentPage=<s:property value="currentPage" />','modify')">
 				<input name="delete_b" type="button" value="삭제" class="inputb" onClick="javascript:open_win_noresizable('ANdeleteAction.action?notice_no=<s:property value="resultClass.notice_no" />&currentPage=<s:property value="currentPage" />','delete')">
-				<input name="list_b" type="button" value="목록" class="inputb" onClick="javascript:location.href='ANlistAction.action?currentPage=<s:property value="currentPage" />'">
+				<input name="list_b" type="button" value="목록" class="inputb" onClick="javascript:location.href='AN_List.action?currentPage=<s:property value="currentPage" />'">
 			</td>
 		</tr>
 		

@@ -117,7 +117,7 @@
 		<tr>
 			<td colspan="2" align="right">
 
-				<form action="AMcouponAction.action">
+				<form action="AM_Coupon.action">
 
 					<input type="hidden" name="m_id_f" value="${resultClass.m_id}">
 					<input type="hidden" name="m_no" value="${resultClass.m_no}">
@@ -125,7 +125,7 @@
 					<input type="text" name="m_coupon_content_f"> <input
 						type="submit" value="ÄíÆùÁÖ±â">
 				</form>
-				<form action="AMmsgAction.action">
+				<form action="AM_Msg.action">
 
 					<input type="hidden" name="m_id_f" value="${resultClass.m_id}">
 					<input type="hidden" name="m_no" value="${resultClass.m_no}">
