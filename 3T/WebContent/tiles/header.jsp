@@ -75,7 +75,7 @@
 						<input type="submit" value="로그아웃">
 						
 					</form>
-					<a href="main.action" >LOGOUT</a> 
+					<a href="logout.action" >LOGOUT</a> 
 					&nbsp;|&nbsp;
 					<a href="logout.action">MODIFY</a> 
 					&nbsp;|&nbsp;

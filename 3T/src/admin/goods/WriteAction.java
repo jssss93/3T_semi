@@ -44,7 +44,7 @@ public class WriteAction extends ActionSupport {
 	private String goods_file_savname;
 	Calendar today = Calendar.getInstance();
 
-	private String fileUploadPath = "3T\\WebContent\\upload\\";
+	private String fileUploadPath = "D:\\git\\3TT\\3T\\WebContent\\upload\\";
 
 	private String file_orgname = "";
 	private String file_savname = "";
