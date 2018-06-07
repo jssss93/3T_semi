@@ -40,6 +40,10 @@
 	<definition name="loginForm" extends="main">
 		<put-attribute name="body" value="/user/member/LoginForm.jsp" />
 	</definition>
+	
+	<definition name="Buy" extends="main">
+		<put-attribute name="body" value="/user/order/Write.jsp" />
+	</definition>
 
 	<!-- *******************************ADMIN******************************* -->
 

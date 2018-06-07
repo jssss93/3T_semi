@@ -46,6 +46,10 @@
 		<include refid="AMselect-all" />
 		<include refid="AMwhere-no" />
 	</select>
+	<select id="AMselectOne_ID" resultMap="MemberRes" >
+		select * from member
+		where m_id=#m_id#
+	</select>
 
 	<select id="AMselectLastNo" resultClass="ad_member"
 		parameterClass="int">

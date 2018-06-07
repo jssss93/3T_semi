@@ -65,5 +65,9 @@
 		<action name="GoodsView" class="user.goods.ViewAction">
 			<result name="success" type="tiles">goodsview</result>
 		</action>
+		
+		<action name="Buy" class="user.goods.BuyAction">
+			<result name="success" type="tiles">Buy</result>
+		</action>
 	</package>
 </struts>
