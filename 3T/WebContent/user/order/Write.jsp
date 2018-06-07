@@ -165,7 +165,7 @@
 	<table width="1000" border="1" cellspacing="0" cellpadding="2">
 		<tr>
 			<td width="50" rowspan="2" align="center">해택 정보</td>
-			<td width="400">&nbsp;&nbsp;${m_resultClass.m_name }회원님의 구매하기</td>
+			<td width="400">&nbsp;&nbsp;${m_resultClass.m_name } 회원님의 구매하기</td>
 		</tr>
 		<tr>
 			<td width="400">&nbsp;&nbsp;쿠폰 : <font color="#FF0000">$
@@ -191,16 +191,14 @@
 			<td width="80"><strong>수량</strong></td>
 			<td width="120"><strong>합계</strong></td>
 		</tr>
-		<tr align="center" >
+		<tr align="center">
 			<td width="50"><input name="checkbox" type="checkbox" /></td>
-			<td width="100">src해주면되고</td>
-
+			<td width="100"><img src="/3T/upload/<s:property value="g_resultClass.goods_file_savname.split(',')[0]"/>"
+				width="50"></td>
 			<td width="400">${g_resultClass.goods_content}</td>
 			<td width="80">${g_resultClass.goods_price}</td>
 			<td width="80">${g_resultClass.goods_totalcount}</td>
 			<td width="120">${g_resultClass.goods_price}</td>
-
-
 		</tr>
 
 
@@ -226,7 +224,7 @@
 
 		</s:iterator> --%>
 
-		<s:if test="G_List.size() <= 0">
+		<s:if test="g_resultClass == 0">
 			<tr bgcolor="#FFFFFF" align="center">
 				<td colspan="6">등록된 게시물이 없습니다.</td>
 			</tr>
@@ -288,8 +286,9 @@
 					id="sample7_postcode" value="${m_resultClass.m_zipcode }">
 					<input type="button" onclick="sample7_execDaumPostcode()"
 					value="우편번호 찾기"><br> <input type="text"
-					name="ORDER_ADDRESS1" id="sample7_address" value="${m_resultClass.m_addr1 }">
-					<input type="text" name="ORDER_ADDRESS2" id="sample7_address2"
+					name="ORDER_ADDRESS1" id="sample7_address"
+					value="${m_resultClass.m_addr1 }"> <input type="text"
+					name="ORDER_ADDRESS2" id="sample7_address2"
 					value="${m_resultClass.m_addr2 }"></td>
 
 			</tr>
@@ -464,7 +463,18 @@
 							<td colspan="2" align="center"><input name="submit"
 								type="submit"
 								style="width: 22em; font-family: 돋움; background-color: #121212; color: #FFFFFF; line-height: 5em; border-color: #121212;"
-								value="결제하기 " /></td>
+								value="결제하기 " /> 
+								 <input type="hidden" name="ORDER_IMG"
+								value="<s:property value="g_resultClass.goods_file_savname.split(',')[0]"/>"> 
+								<input type="hidden" name="ORDER_GOODS_NAME"
+								value="${g_resultClass.goods_content}"> 
+								<input type="hidden" name="ORDER_PRICE"
+								value="${g_resultClass.goods_price}"> 
+								<input type="hidden" name="ORDER_GOODS_COUNT"
+								value="${g_resultClass.goods_totalcount}"> 
+								<input type="hidden" name="ORDER_TOTAL"
+								value="${g_resultClass.goods_price}">
+						 </td>
 						</tr>
 						<tr>
 							<td height="20"></td>
@@ -478,11 +488,13 @@
 					<table width="530" border="1" cellspacing="0" cellpadding="3">
 						<tr>
 							<td width="104" align="center" bgcolor="#F9F9F9">입금자명</td>
-							<td><input type="text" name="DEPOSIT_NAME" size="30" /></td>
+							<td><input type="text" name="DEPOSIT_NAME" size="30"
+								value="곽영민" /></td>
 						</tr>
 						<tr>
 							<td width="104" align="center" bgcolor="#F9F9F9">입금은행</td>
-							<td><input type="text" name="DEPOSIT_BANK" size="30" /></td>
+							<td><input type="text" name="DEPOSIT_BANK" size="30"
+								value="신한은행" /></td>
 						</tr>
 					</table>
 				</td>
