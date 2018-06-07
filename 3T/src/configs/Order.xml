@@ -20,7 +20,7 @@
 		<!--  주문 작성-->
 		<action name="OrderWriteAction" class="user.order.WriteAction" >
 			<result type="redirect-action">
-				<param name="actionName">Main</param>
+				<param name="actionName">OrderMain</param>
 			</result>
 		</action>
 		<!-- 결제 예정 금액 -->

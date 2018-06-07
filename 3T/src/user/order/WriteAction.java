@@ -51,6 +51,7 @@ public class WriteAction extends ActionSupport {
 	private String ORDER_GOODS_NO;
 	private String ORDER_GOODS_NAME;
 	private int ORDER_GOODS_COUNT;
+	private String ORDER_IMG;
 	Calendar today = Calendar.getInstance(); 
 	
 	
@@ -73,7 +74,8 @@ public class WriteAction extends ActionSupport {
 		
 		paramClass = new OrderVO();
 		resultClass = new OrderVO();
-
+		
+		System.out.println("getORDER_IMG"+getORDER_IMG());
 	
 		paramClass.setORDER_NAME(getORDER_NAME());
 		paramClass.setORDER_ZIPCODE(getORDER_ZIPCODE());
@@ -101,10 +103,14 @@ public class WriteAction extends ActionSupport {
 		paramClass.setORDER_GOODS_NO(getORDER_GOODS_NO());
 		paramClass.setORDER_GOODS_NAME(getORDER_GOODS_NAME());
 		paramClass.setORDER_GOODS_COUNT(getORDER_GOODS_COUNT());
+		paramClass.setORDER_IMG(getORDER_IMG());
 		
 		
 		
 		sqlMapper.insert("order-insertBoard", paramClass);
+		
+		System.out.println("paramClass.ORDER_IMG"+paramClass.getORDER_IMG());
+		
 		return SUCCESS;
 	}
 	public List<OrderVO> getList() {
@@ -131,9 +137,17 @@ public class WriteAction extends ActionSupport {
 		ORDER_ZIPCODE = oRDER_ZIPCODE;
 	}
 
-	
 
-	
+	public String getORDER_IMG() {
+		return ORDER_IMG;
+	}
+
+
+	public void setORDER_IMG(String oRDER_IMG) {
+		ORDER_IMG = oRDER_IMG;
+	}
+
+
 	public String getRECIPIENT_CHOICE() {
 		return RECIPIENT_CHOICE;
 	}

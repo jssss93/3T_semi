@@ -123,7 +123,7 @@
                          	#ORDER_TOTAL#,
                          	#ORDER_PRICE#,
                          	#ORDER_MEMBER_ID#,
-                         	#ORDER_GOODS_NO#
+                         	#ORDER_GOODS_NO#,
                          	#ORDER_GOODS_NAME#,
                          	#ORDER_GOODS_COUNT#
                          )
