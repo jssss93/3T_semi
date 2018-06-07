@@ -16,6 +16,17 @@
        y = 1;
     x.goods_qty.value = y;
  } */
+
+
+ function BuyCheck(index){
+	 if(index==1){
+		 document.form.action='Buy.action?goods_no=${resultClass.goods_no}';
+	 }
+	 if(index==2){
+		 document.myForm.action='AddCart';
+	 }
+	 document.myForm.submit();
+ }
  </script>
 </head>
 <center>
@@ -38,7 +49,7 @@
 							<td style="text-align: left; font-size: 30pt;" colspan="2">
 								<!-- 상품 이름 --><s:property value="resultClass.goods_name"/>
 							</td>
-						</tr>
+						</tr>	
 						<!-- 상품가격 텍스트 -->
 						<tr>
 							<td width="280"><br> <br>
@@ -107,15 +118,16 @@
 								<tr>
 									<td>
 										<!-- 상품구매버튼 --> <!-- 로그인 o -->
-										<s:if test='%{session.id != null}'>
+										<s:if test='%{session.M_ID != null}'>
 										<s:if test="%{resultClass.goods_totalcount!=0}"> 
 										<input name="Buy" style=""
 										onmouseover="this.src='/goods/upload/buy2.JPG'"
 										onmouseout="this.src='/goods/upload/buy.JPG'"
-										onclick="Buycheck;" 
+										onclick="BuyCheck(1);" 
 										type="image" src="/3T/upload/buy.JPG"
-									    value="Submit" />
+									    value="로그인 상품구매" />
 							          </s:if>
+							          
 							         <s:else>
 							            <img src="/goods/upload/buy.JPG"
 							            onmouseover="this.src='/3T/upload/buy2.JPG'"
@@ -123,16 +135,16 @@
 									</s:else>
 									</s:if>
 									   <!-- 상품구매버튼 --> <!-- 로그인 x -->
-									   <input name="Buy" style=""
+									   <input name="Buy" 
 										onmouseover="this.src='/goods/upload/buy2.JPG'"
 										onmouseout="this.src='/goods/upload/buy.JPG'"
-										onclick="Buycheck;" 
+										onclick='BuyCheck'
 										type="image" src="/3T/upload/buy.JPG"
-									    value="Submit" />
+									    value="비로그인 상품구매" />
 									</td>
 									<td>
 										<!-- 장바구니버튼 --> <!-- 로그인 o --> 
-										<s:if test='%{session.id != null}'>
+										<s:if test='%{session.M_ID != null}'>
 										<s:if test="%{resultClass.goods_totalcount!=0}"> 
 										<input name="BuyCart" style=""
 										onmouseover="this.src='/3T/upload/add to cart2.JPG'"

@@ -173,6 +173,10 @@
 		<action name="AMlistAction" class="admin.member.ListAction">
 			<result>/admin/member/List.jsp</result>
 		</action>
+		
+		<action name="Buy" class="admin.member.ListAction">
+			<result>/admin/member/List.jsp</result>
+		</action>
 
 		<action name="AMviewAction" class="admin.member.ViewAction">
 			<result>/admin/member/View.jsp</result>

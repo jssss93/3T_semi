@@ -2,6 +2,9 @@ package user.goods;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -10,75 +13,89 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import admin.goods.VO.GoodsVO;
 
-public class ViewAction extends ActionSupport {
+public class ViewAction extends ActionSupport implements SessionAware {
 
-   public static Reader reader;
-   public static SqlMapClient sqlMapper;
+	public static Reader reader;
+	public static SqlMapClient sqlMapper;
 
-   private GoodsVO paramClass = new GoodsVO();
-   private GoodsVO resultClass = new GoodsVO();
+	private GoodsVO paramClass = new GoodsVO();
+	private GoodsVO resultClass = new GoodsVO();
 
-   private int currentPage;
+	private int currentPage;
+	private Map session;
 
-   private int Goods_no;
-   
-   /*private List<reviewBoardBean> reviewList = new ArrayList<reviewBoardBean>();
-      private reviewBoardBean reviewClass = new reviewBoardBean();
-      
-      private List<qnaBoardBean> qnaList = new ArrayList<qnaBoardBean>();
-      private qnaBoardBean qnaClass = new qnaBoardBean();*/
+	public Map getSession() {
+		return session;
+	}
 
-   public ViewAction() throws IOException {
-      reader = Resources.getResourceAsReader("sqlMapConfig.xml");
-      sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
-      reader.close();
-   }
-    //�󼼺���
-   public String execute() throws Exception {
-      
-      paramClass.setGoods_no(getGoods_no());
-      
-      sqlMapper.update("goods-updateReadcnt", paramClass);
+	public void setSession(Map session) {
+		this.session = session;
+	}
 
-      resultClass = (GoodsVO) sqlMapper.queryForObject("goods-selectOne", getGoods_no());
+	private int Goods_no;
 
-       /*reviewList = (List) sqlMapper.queryForList("review.selectAll", getGoods_no()); 
-        qnaList = (List) sqlMapper.queryForList("qna.qnaListDetail", getGoods_no());*/
-      
-      return SUCCESS;
-   }
+	/*
+	 * private List<reviewBoardBean> reviewList = new ArrayList<reviewBoardBean>();
+	 * private reviewBoardBean reviewClass = new reviewBoardBean();
+	 * 
+	 * private List<qnaBoardBean> qnaList = new ArrayList<qnaBoardBean>(); private
+	 * qnaBoardBean qnaClass = new qnaBoardBean();
+	 */
 
-   public int getGoods_no() {
-      return Goods_no;
-   }
+	public ViewAction() throws IOException {
+		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
+		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
+		reader.close();
+	}
 
-   public void setGoods_no(int goods_no) {
-      Goods_no = goods_no;
-   }
+	// �󼼺���
+	public String execute() throws Exception {
 
-   public GoodsVO getParamClass() {
-      return paramClass;
-   }
+		paramClass.setGoods_no(getGoods_no());
 
-   public void setParamClass(GoodsVO paramClass) {
-      this.paramClass = paramClass;
-   }
+		sqlMapper.update("goods-updateReadcnt", paramClass);
 
-   public GoodsVO getResultClass() {
-      return resultClass;
-   }
+		resultClass = (GoodsVO) sqlMapper.queryForObject("goods-selectOne", getGoods_no());
 
-   public void setResultClass(GoodsVO resultClass) {
-      this.resultClass = resultClass;
-   }
+		/*
+		 * reviewList = (List) sqlMapper.queryForList("review.selectAll",
+		 * getGoods_no()); qnaList = (List) sqlMapper.queryForList("qna.qnaListDetail",
+		 * getGoods_no());
+		 */
 
-   public int getCurrentPage() {
-      return currentPage;
-   }
+		return SUCCESS;
+	}
 
-   public void setCurrentPage(int currentPage) {
-      this.currentPage = currentPage;
-   }
-   
-   
+	public int getGoods_no() {
+		return Goods_no;
+	}
+
+	public void setGoods_no(int goods_no) {
+		Goods_no = goods_no;
+	}
+
+	public GoodsVO getParamClass() {
+		return paramClass;
+	}
+
+	public void setParamClass(GoodsVO paramClass) {
+		this.paramClass = paramClass;
+	}
+
+	public GoodsVO getResultClass() {
+		return resultClass;
+	}
+
+	public void setResultClass(GoodsVO resultClass) {
+		this.resultClass = resultClass;
+	}
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+
 }
