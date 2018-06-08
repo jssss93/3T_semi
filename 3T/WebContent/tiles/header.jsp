@@ -59,10 +59,10 @@
 			<s:if test='%{session.M_ID == null}'>
 				<td align="right">
 					<!--비회원 헤더 카테고리  --> <!--비회원 로그인 폼  경로 잡아줄 것--> <a
-					href="login.action" >LOGIN
+					href="loginAction.action" >LOGIN
 					<form action=""></form>
 					</a> &nbsp;|&nbsp;<a
-					href="joinForm.action" >JOIN</a>
+					href="join1Form.action" >JOIN</a>
 
 				</td>
 			</s:if>
