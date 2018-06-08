@@ -39,8 +39,8 @@
 
 		<s:iterator value="list" status="stat">
 			<!-- http://localhost:8080/StrutsBoard/viewAction.action?no=2&currentPage=1 -->
-			<s:url id="viewURL" action="WishlistView">
-				<s:param name="W_NO">
+			<s:url id="viewURL" action="GoodsView">
+				<s:param name="goods_no">
 					<s:property value="W_NO" />
 				</s:param>
 				<s:param name="currentPage">

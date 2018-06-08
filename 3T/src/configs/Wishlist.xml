@@ -8,14 +8,16 @@
 	<constant name="struts.multipart.maxSize" value="10485760" />
 	<package name="Wishlist" extends="struts-default">
 	
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult"></result-type>
+		</result-types>
+		
 		<!-- 찜 메인. -->
 		<action name="WishlistMain" class="user.wishlist.ListAction">
-			<result>/user/wishlist/List.jsp</result>
+			<result type="tiles">wishlist</result>
 		</action>
-		<!-- 찜 상세보기 -->
-		<action name="WishlistView" class="user.wishlist.viewAction">
-			<result>/user/wishlist/View.jsp</result>
-		</action>
+
 		
 		<!-- 찜 삭제하기 -->
 		<!-- 찜 전체 상품 주문 페이지 이동 -->
