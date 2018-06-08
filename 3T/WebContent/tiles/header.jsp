@@ -50,7 +50,7 @@
 				
 				<a href="UserFaqList.action">FAQ</a>
 				
-				<a href="qna.action">Q&A</a>
+				<a href="qa_listAction.action">Q&A</a>
 				
 				<a href="review.action">review</a>
 			</td>
@@ -79,7 +79,7 @@
 					&nbsp;|&nbsp;
 					<a href="logout.action">MODIFY</a> 
 					&nbsp;|&nbsp;
-					<a href="orderList.action">ORDER</a> 
+					<a href="OrderMain.action">ORDER</a> 
 					&nbsp;|&nbsp;
 					<a href="basketList.action">MYPAGE</a> 
 					&nbsp;&nbsp;

@@ -8,14 +8,19 @@
 	<constant name="struts.multipart.maxSize" value="10485760" />
 	<package name="order" extends="struts-default">
 
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult"></result-type>
+		</result-types>
+		
 		<!-- 주문 메인. -->	
 		<action name="OrderMain" class="user.order.ListAction">
-			<result>/user/order/List.jsp</result>
+			<result type="tiles">ordermain</result>
 		</action>
 		
 		<!-- 주문 페이지 이동. -->
 		<action name="OrderWrite" class="user.order.WriteAction" method="form">
-			<result>/user/order/Write.jsp</result>
+			<result type="tiles">orderwrite</result>
 		</action>
 		<!--  주문 작성-->
 		<action name="OrderWriteAction" class="user.order.WriteAction" >
@@ -23,13 +28,15 @@
 				<param name="actionName">OrderMain</param>
 			</result>
 		</action>
+		
 		<!-- 결제 예정 금액 -->
-		<action name="Orderpaylist" class="user.order.WriteAction" method="form">
+		<action name="Orderpaylist" class="user.goods.BuyAction">
 			<result>/user/order/PayList.jsp</result>
 		</action>
-			<!-- 주문 상세보기 -->
-		<action name="OrderView" class="user.order.viewAction">
-			<result>/user/order/View.jsp</result>
+		
+		<!-- 주문 완료후 주문내역 보기 -->
+		<action name="Ordergoodslist" class="user.order.ListAction" >
+			<result>/user/order/GoodsList.jsp</result>
 		</action>
 	</package>
 </struts>

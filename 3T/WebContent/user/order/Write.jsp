@@ -146,6 +146,65 @@
 
 		return true;
 	}
+	
+    
+
+	//주문자와 동일 
+	     function Copy() {
+	         if (document.getElementById("cb1").checked)
+	         {
+	               document.getElementById("recipient_name").value =document.getElementById("order_name").value;
+	               document.getElementById("sample6_postcode").value =document.getElementById("sample7_postcode").value;
+	               document.getElementById("sample6_address").value =document.getElementById("sample7_address").value;
+	               document.getElementById("sample6_address2").value =document.getElementById("sample7_address2").value;
+	               document.getElementById("recipient_phone1").value =document.getElementById("order_phone1").value;
+	               document.getElementById("recipient_phone2").value =document.getElementById("order_phone2").value;
+	               document.getElementById("recipient_phone3").value =document.getElementById("order_phone3").value;            
+	         }
+	         if(document.getElementById("cb2").checked){
+	             document.getElementById("recipient_name").value =null;
+	             document.getElementById("sample6_postcode").value =null;
+	             document.getElementById("sample6_address").value =null;
+	             document.getElementById("sample6_address2").value =null;
+	             document.getElementById("recipient_phone1").value =null;
+	             document.getElementById("recipient_phone2").value =null;
+	             document.getElementById("recipient_phone3").value =null;  
+	         }
+	    }
+	    
+
+	
+    //체크박스 
+    var check = false;
+
+    function CheckAll(){
+
+    var chk = document.getElementsByName("del_unit[]");
+
+    if(check == false){
+
+    check = true;
+
+    for(var i=0; i<chk.length;i++){                                                                    
+
+    chk[i].checked = true;     //모두 체크
+
+    }
+
+    }else{
+
+    check = false;
+
+    for(var i=0; i<chk.length;i++){                                                                    
+
+    chk[i].checked = false;     //모두 해제
+
+    }
+
+    }
+
+    }
+
 </script>
 </head>
 <body>
@@ -172,38 +231,44 @@
 					개</font></td>
 		</tr>
 	</table>
+	<form name="checkTest">
 
-	<table width="1000" border="0" cellspacing="0" cellpadding="2">
-		<tr>
-			<td height="20"></td>
-		</tr>
-		<tr>
-			<td colspan="6" align="left" width="70"><h4>&nbsp;&nbsp;국내배송상품
-					주문내역</h4></td>
-		</tr>
+		<table width="1000" border="0" cellspacing="0" cellpadding="2">
+			<tr>
+				<td height="20"></td>
+			</tr>
+			<tr>
+				<td colspan="6" align="left" width="70"><h4>&nbsp;&nbsp;국내배송상품
+						주문내역</h4></td>
+			</tr>
 
-		<tr align="center" bgcolor="#F9F9F9">
-			<td width="50"><input name="checkbox" type="checkbox" /></td>
-			<td width="100"><strong>이미지 </strong></td>
+			<tr align="center" bgcolor="#F9F9F9">
+				<td width="50"><input type="checkbox" name="checkall"
+					onclick="javascript:CheckAll()" /></td>
+				<td width="100"><strong>이미지 </strong></td>
 
-			<td width="400"><strong>상품정보</strong></td>
-			<td width="80"><strong>판매가</strong></td>
-			<td width="80"><strong>수량</strong></td>
-			<td width="120"><strong>합계</strong></td>
-		</tr>
-		<tr align="center">
-			<td width="50"><input name="checkbox" type="checkbox" /></td>
-			<td width="100"><img
-				src="/3T/upload/<s:property value="g_resultClass.goods_file_savname.split(',')[0]"/>"
-				width="50"></td>
-			<td width="400">${g_resultClass.goods_content}</td>
-			<td width="80">${g_resultClass.goods_price}</td>
-			<td width="80"><%request.getParameterValues("goods_totalcnt"); %></td>
-			<td width="120">${g_resultClass.goods_price}</td>
-		</tr>
+				<td width="400"><strong>상품정보</strong></td>
+				<td width="80"><strong>판매가</strong></td>
+				<td width="80"><strong>수량</strong></td>
+				<td width="120"><strong>총가격</strong></td>
+
+			</tr>
+			<tr align="center">
+				<td width="50"><input type="checkbox" id="del_id"
+					name="del_unit[]" value="ORDER_CHECK" /></td>
+				<td width="100"><img
+					src="/3T/upload/<s:property value="g_resultClass.goods_file_savname.split(',')[0]"/>"
+					width="50"></td>
+				<td width="400">${g_resultClass.goods_content}</td>
+				<td width="80">${g_resultClass.goods_price}</td>
+				<td width="80">${g_resultClass.goods_totalcount}
+				<%-- 	<%request.getParameterValues("goods_totalcnt"); %> --%>
+				</td>
+				<td width="120">${g_resultClass.goods_price*g_resultClass.goods_totalcount}</td>
+			</tr>
 
 
-		<%-- <s:iterator value="G_List" status="stat">
+			<%-- <s:iterator value="G_List" status="stat">
 			<!-- http://localhost:8080/StrutsBoard/viewAction.action?no=2&currentPage=1 -->
 			<s:url id="viewURL" action="viewAction">
 				<s:param name="goods_no">
@@ -225,37 +290,42 @@
 
 		</s:iterator> --%>
 
-		<s:if test="g_resultClass == 0">
-			<tr bgcolor="#FFFFFF" align="center">
-				<td colspan="6">등록된 게시물이 없습니다.</td>
+			<s:if test="g_resultClass == 0">
+				<tr bgcolor="#FFFFFF" align="center">
+					<td colspan="6">등록된 게시물이 없습니다.</td>
+				</tr>
+
+			</s:if>
+			<tr bgcolor="#F9F9F9">
+				<td colspan="2">&nbsp;&nbsp;&nbsp;[기본배송]</td>
+
+
+				<td align="right" colspan="6">상품구매금액${g_resultClass.goods_price}
+					+배송비 0 =합계 :<font color="#FF0000">${g_resultClass.goods_price*g_resultClass.goods_totalcount}
+				</font>
+				</td>
+
+			</tr>
+			<tr align="left">
+				<td colspan="6" bgcolor="#FFCBCB"><font color="#CC3D3D">
+						&nbsp;&nbsp;&nbsp;⊙&nbsp;&nbsp;상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서
+						가능합니다.</td>
+				</font>
 			</tr>
 
-		</s:if>
-		<tr bgcolor="#F9F9F9">
-			<td colspan="2">&nbsp;&nbsp;&nbsp;[기본배송]</td>
-
-
-			<td align="right" colspan="6">상품구매금액 $ +배송비 $ =합계 :<font
-				color="#FF0000">KRW $ </font></td>
-		</tr>
-		<tr align="left">
-			<td colspan="6" bgcolor="#FFCBCB"><font color="#CC3D3D">
-					&nbsp;&nbsp;&nbsp;⊙&nbsp;&nbsp;상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서
-					가능합니다.</td>
-			</font>
-		</tr>
-
-		<tr align="right">
-			<td width="80">선택한상품을</td>
-			<td align="left"><input name="delete" type="button"
-				value="x 삭제하기" style="background-color: #B8B8B8;" /></td>
-			<td colspan="6"><input name="Main" type="button" value="이전페이지 ▶"
-				onClick="javascript:location.href='OrderMain.action'"></td>
-		</tr>
-		<tr>
-			<td height="20"></td>
-		</tr>
-	</table>
+			<tr align="right">
+				<td width="80">선택한상품을</td>
+				<td align="left"><input name="delete" type="button"
+					value="x 삭제하기" style="background-color: #B8B8B8;" /></td>
+				<td colspan="6"><input name="Main" type="button"
+					value="이전페이지 ▶"
+					onClick="javascript:location.href='OrderMain.action'"></td>
+			</tr>
+			<tr>
+				<td height="20"></td>
+			</tr>
+		</table>
+	</form>
 	<hr align="left" width="1000" color="#8C8C8C">
 	<table width="1000" border="0" cellspacing="0" cellpadding="3">
 		<tr>
@@ -275,10 +345,11 @@
 		name="Orderinformation" onSubmit="">
 		<table width="1000" border="1" cellspacing="0" cellpadding="3">
 			<tr>
-				<td width="50" align="center" bgcolor="#F9F9F9">주문하시는분 <font
+				<td width="100" align="center" bgcolor="#F9F9F9">주문하시는분 <font
 					color="red" size="1">★</font></td>
-				<td width="400"><input type="text" name="ORDER_NAME" size="10"
-					maxlength="12" value="${m_resultClass.m_name }"></td>
+				<td width="400"><input type="text" name="ORDER_NAME" size="15"
+					maxlength="12" value="${m_resultClass.m_name }" id="order_name"></td>
+
 			</tr>
 			<tr>
 				<td align="center" valign="top" bgcolor="#F9F9F9">주소 <font
@@ -288,33 +359,39 @@
 					<input type="button" onclick="sample7_execDaumPostcode()"
 					value="우편번호 찾기"><br> <input type="text"
 					name="ORDER_ADDRESS1" id="sample7_address"
-					value="${m_resultClass.m_addr1 }"> <input type="text"
-					name="ORDER_ADDRESS2" id="sample7_address2"
-					value="${m_resultClass.m_addr2 }"></td>
+					value="${m_resultClass.m_addr1 }" size="100"> <br>
+				<input type="text" name="ORDER_ADDRESS2" id="sample7_address2"
+					value="${m_resultClass.m_addr2 }" size="100"></td>
 
 			</tr>
 			<tr>
 				<td width="50" align="center" bgcolor="#F9F9F9">휴대전화 <font
 					color="red" size="1">★</font></td>
 				<td width="400"><select name="ORDER_PHONE1"
-					onchange="Phone_change()">
+					onchange="Phone_change()" id="order_phone1">
 						<option value="010">010</option>
 						<option value="011">011</option>
 						<option value="011">016</option>
 						<option value="011">017</option>
 						<option value="011">018</option>
 						<option value="011">019</option>
-				</select> -<input type="text" name="ORDER_PHONE2" size="6" maxlength="4">-<input
-					type="text" name="ORDER_PHONE3" size="6" maxlength="4"></td>
+				</select> -<input type="text" name="ORDER_PHONE2" size="6" maxlength="4"
+					id="order_phone2"
+					value="<s:property value="m_resultClass.m_phone.substring(3,7)"/>">-<input
+					type="text" name="ORDER_PHONE3" size="6" maxlength="4"
+					id="order_phone3"
+					value="<s:property value="m_resultClass.m_phone.substring(7,11)"/>"></td>
+
 			</tr>
 			<tr>
 				<td width="50" align="center" rowspan="2" bgcolor="#F9F9F9">이메일
 					<font color="red" size="1">★</font>
 				</td>
 				<td width="400"><input type="text" name="ORDER_EMAIL1"
-					value="이메일" onfocus="this.value='';"> @ <input type="text"
-					name="ORDER_EMAIL2" value="naver.com" disabled> <select
-					name="email" onchange="email_change()">
+					value="${m_resultClass.m_email1 }" onfocus="this.value='';"
+					id="order_email1"> @ <input type="text"
+					name="ORDER_EMAIL2" value="${m_resultClass.m_email2}" disabled>
+					<select name="email" onchange="email_change()" id="order_email2">
 						<option value="0">선택하세요</option>
 						<option value="9">직접입력</option>
 						<option value="naver.com">naver.com</option>
@@ -351,18 +428,20 @@
 
 		<table width="1000" border="1" cellspacing="0" cellpadding="3">
 			<tr>
-				<td width="50" align="center" bgcolor="#F9F9F9">배송지 선택</td>
-				<td width="400"><input type="radio" name="RECIPIENT_CHOICE"
-					value="주문자 정보와 동일" checked="checked" />주문자 정보와 동일 <input
-					type="radio" name="RECIPIENT_CHOICE" value="새로운배송지" />새로운배송지 <input
-					type="button" value=" 주소록보기  " /></td>
+				<td width="100" align="center" bgcolor="#F9F9F9">배송지 선택</td>
+				<td width="400"><input type="radio" id="cb1" onclick="Copy();"
+					name="RECIPIENT_CHOICE" /> <label for="cb1">주문자와 동일합니다.</label> <input
+					type="radio" name="RECIPIENT_CHOICE" id="cb2" onclick="Copy();" /><label
+					for="cb1">새로운배송지</label> <input type="button" value="주소록보기 " /></td>
+
 			</tr>
 
 			<tr>
 				<td width="50" align="center" bgcolor="#F9F9F9">받으시는분 <font
 					color="red" size="1">★</font></td>
 				<td width="400"><input type="text" name="RECIPIENT_NAME"
-					size="10" maxlength="12"></td>
+					size="15" maxlength="12" id="recipient_name"></td>
+
 			</tr>
 			<tr>
 				<td align="center" valign="top" bgcolor="#F9F9F9">주소 <font
@@ -371,24 +450,27 @@
 					id="sample6_postcode" placeholder="우편번호"> <input
 					type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 					<input type="text" name="RECIPIENT_ADDRESS1" id="sample6_address"
-					placeholder="주소"> <input type="text"
-					name="RECIPIENT_ADDRESS2" id="sample6_address2" placeholder="상세주소">
-				</td>
+					placeholder="주소" size="100"><br> <input type="text"
+					name="RECIPIENT_ADDRESS2" id="sample6_address2" placeholder="상세주소"
+					size="100"></td>
 
 			</tr>
 			<tr>
 				<td width="50" align="center" bgcolor="#F9F9F9">휴대전화 <font
 					color="red" size="1">★</font></td>
 				<td width="400"><select name="RECIPIENT_PHONE1"
-					onchange="Phone_change()">
+					onchange="Phone_change()" id="recipient_phone1">
+
 						<option value="010">010</option>
 						<option value="011">011</option>
 						<option value="011">016</option>
 						<option value="011">017</option>
 						<option value="011">018</option>
 						<option value="011">019</option>
-				</select>-<input type="text" name="RECIPIENT_PHONE2" size="6" maxlength="4">-<input
-					type="text" name="RECIPIENT_PHONE3" size="6" maxlength="4"></td>
+				</select>-<input type="text" name="RECIPIENT_PHONE2" size="6" maxlength="4"
+					id="recipient_phone2">-<input type="text"
+					name="RECIPIENT_PHONE3" size="6" maxlength="4"
+					id="recipient_phone3"></td>
 			</tr>
 		</table>
 
@@ -409,7 +491,7 @@
 				<td align="center" height="60" width="340"><font
 					color="#5D5D5D">총 주문 금액 </font> <input type="button"
 					value=" 내역보기 >"
-					OnClick="window.open('Orderpaylist.action','window_name','width=430,height=320,location=no,status=no,toolbar=no,scrollbars=no');" /></td>
+					OnClick="window.open('Orderpaylist.action?goods_no=<s:property value="goods_no" />','window_name','width=300,height=320,location=no,status=no,toolbar=no,scrollbars=no');" /></td>
 				<td align="center" width="340"><font color="#5D5D5D">총
 						할인 + 부가결제 금액</font></td>
 				<td align="center" width="340"><font color="#5D5D5D">총
@@ -417,11 +499,12 @@
 			</tr>
 			<tr>
 				<td width="340" align="center"><font style="font-weight: bold;"><h3>KRW
-							$</h3></font></td>
+							${g_resultClass.goods_price*g_resultClass.goods_totalcount}</h3></font></td>
 				<td width="340" align="center"><font style="font-weight: bold;"><h3>-
-							KRW $</h3></font></td>
+							KRW 0</h3></font></td>
 				<td align="center"><font style="font-weight: bold;"
-					color="#FF0000"><h3>= KRW $</h3></font></td>
+					color="#FF0000"><h3>= KRW
+							${g_resultClass.goods_price*g_resultClass.goods_totalcount}</h3></font></td>
 			</tr>
 		</table>
 		<table width="1000" border="0" cellspacing="0" cellpadding="3">
@@ -473,7 +556,11 @@
 								type="hidden" name="ORDER_GOODS_COUNT"
 								value="${g_resultClass.goods_totalcount}"> <input
 								type="hidden" name="ORDER_TOTAL"
-								value="${g_resultClass.goods_price}"></td>
+								value="${g_resultClass.goods_price}"> <input
+								type="hidden" name="ORDER_GOODS_NO"
+								value="${g_resultClass.goods_no}"> <input type="hidden"
+								name="ORDER_MEMBER_ID" value="${session.M_ID}"> <input
+								type="hidden" name="ORDER_STATE" value="입금확인중">
 						</tr>
 						<tr>
 							<td height="20"></td>

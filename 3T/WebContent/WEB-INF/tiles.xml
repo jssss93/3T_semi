@@ -44,10 +44,38 @@
 	<definition name="Buy" extends="main">
 		<put-attribute name="body" value="/user/order/Write.jsp" />
 	</definition>
+	
 	<definition name="AddCart" extends="main">
 		<put-attribute name="body" value="/user/basket/List.jsp" />
 	</definition>
+	
+	<definition name="ordermain" extends="main">
+		<put-attribute name="body" value="/user/order/List.jsp" />
+	</definition>
 
+	<definition name="orderwrite" extends="main">
+		<put-attribute name="body" value="/user/order/Write.jsp" />
+	</definition>
+	
+	<definition name="qalist" extends="main">
+		<put-attribute name="body" value="/user/qa/List.jsp" />
+	</definition>
+		
+	<definition name="qawrite" extends="main">
+		<put-attribute name="body" value="/user/qa/Write.jsp" />
+	</definition>
+			
+	<definition name="qaview" extends="main">
+		<put-attribute name="body" value="/user/qa/View.jsp" />
+	</definition>
+				
+	<definition name="wishlist" extends="main">
+		<put-attribute name="body" value="/user/wishlist/List.jsp" />
+	</definition>
+	
+	<definition name="basketmain" extends="main">
+		<put-attribute name="body" value="/user/basket/List.jsp" />
+	</definition>
 	<!-- *******************************ADMIN******************************* -->
 
 	<definition name="AD_main" template="/admin/tiles/layout.jsp">

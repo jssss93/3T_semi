@@ -33,17 +33,17 @@
 		
 		<!-- 검색로직 추가시작 -->
 		<select id="userfaq-selectSearchW" resultMap="userfaqRes" parameterClass="string">
-			<include refid="usernotice-select-all" />
+			<include refid="userfaq-select-all" />
 			 WHERE FAQ_WRITER like #searchKeyword#
 			 ORDER BY FAQ_NO DESC
 		</select>
 		<select id="userfaq-selectSearchS" resultMap="userfaqRes" parameterClass="string">
-			<include refid="usernotice-select-all" />
+			<include refid="userfaq-select-all" />
 			 WHERE FAQ_SUBJECT like #searchKeyword#
 			 ORDER BY FAQ_NO DESC
 		</select>
 		<select id="userfaq-selectSearchC" resultMap="userfaqRes" parameterClass="string">
-			<include refid="usernotice-select-all" />
+			<include refid="userfaq-select-all" />
 			 WHERE FAQ_CONTENT like #searchKeyword#
 			 ORDER BY FAQ_NO DESC
 		</select>

@@ -1,7 +1,7 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page contentType="text/html; charset=EUC-KR"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="EUC-KR" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -28,7 +28,7 @@
 		<tr align="center">
 			<td width="50" align="center"><strong>NO</strong></td>
 			<td width="400"><strong></strong></td>
-			<td width="50" align="center"><strong>ìž‘ì„±ìž</strong></td>
+			<td width="50" align="center"><strong>ÀÛ¼ºÀÚ</strong></td>
 		</tr>
 		<tr bgcolor="#777777">
 			<td height="1" colspan="3"></td>
@@ -61,7 +61,7 @@
 		<s:if test="list.size() <= 0">
 			<tr bgcolor="#FFFFFF" align="center">
 				<td colspan="3
-		   	  	">ë“±ë¡ëœ ê²Œì‹œë¬¼ì´ ì—†ìŠµë‹ˆë‹¤.</td>
+		   	  	">µî·ÏµÈ °Ô½Ã¹°ÀÌ ¾ø½À´Ï´Ù.</td>
 			</tr>
 			<tr bgcolor="#777777">
 				<td height="1" colspan="3"></td>
@@ -74,12 +74,12 @@
 		<td colspan="3">
 			<form>
 				<select name="searchNum" >
-					<option value="0">ìž‘ì„±ìž</option>
-					<option value="1">ì œëª©</option>
-					<option value="2">ë‚´ìš©</option>
+					<option value="0">ÀÛ¼ºÀÚ</option>
+					<option value="1">Á¦¸ñ</option>
+					<option value="2">³»¿ë</option>
 				</select>
 				<s:textfield name="searchKeyword" theme="simple" value="" cssStyle="width:120px" maxlength="20" />
-				<input name="submit" type="submit" value="ê²€ìƒ‰">
+				<input name="submit" type="submit" value="°Ë»ö">
 			</form>
 		</td>
 	</tr>

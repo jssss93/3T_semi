@@ -41,6 +41,12 @@ public class ListAction extends ActionSupport{
 	// 게시판 LIST 액션
 	public String execute() throws Exception {
 		
+		
+		if(getSearchKeyword() != null)
+		{
+			return search();
+		}
+		
 		// 모든 글을 가져와 list에 넣는다.
 		list = sqlMapper.queryForList("userfaq-selectAll");
 
