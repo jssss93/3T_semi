@@ -193,11 +193,12 @@
 		</tr>
 		<tr align="center">
 			<td width="50"><input name="checkbox" type="checkbox" /></td>
-			<td width="100"><img src="/3T/upload/<s:property value="g_resultClass.goods_file_savname.split(',')[0]"/>"
+			<td width="100"><img
+				src="/3T/upload/<s:property value="g_resultClass.goods_file_savname.split(',')[0]"/>"
 				width="50"></td>
 			<td width="400">${g_resultClass.goods_content}</td>
 			<td width="80">${g_resultClass.goods_price}</td>
-			<td width="80">${g_resultClass.goods_totalcount}</td>
+			<td width="80"><%request.getParameterValues("goods_totalcnt"); %></td>
 			<td width="120">${g_resultClass.goods_price}</td>
 		</tr>
 
@@ -463,18 +464,16 @@
 							<td colspan="2" align="center"><input name="submit"
 								type="submit"
 								style="width: 22em; font-family: 돋움; background-color: #121212; color: #FFFFFF; line-height: 5em; border-color: #121212;"
-								value="결제하기 " /> 
-								 <input type="hidden" name="ORDER_IMG"
-								value="<s:property value="g_resultClass.goods_file_savname.split(',')[0]"/>"> 
+								value="결제하기 " /> <input type="hidden" name="ORDER_IMG"
+								value="<s:property value="g_resultClass.goods_file_savname.split(',')[0]"/>">
 								<input type="hidden" name="ORDER_GOODS_NAME"
-								value="${g_resultClass.goods_content}"> 
-								<input type="hidden" name="ORDER_PRICE"
-								value="${g_resultClass.goods_price}"> 
-								<input type="hidden" name="ORDER_GOODS_COUNT"
-								value="${g_resultClass.goods_totalcount}"> 
-								<input type="hidden" name="ORDER_TOTAL"
-								value="${g_resultClass.goods_price}">
-						 </td>
+								value="${g_resultClass.goods_content}"> <input
+								type="hidden" name="ORDER_PRICE"
+								value="${g_resultClass.goods_price}"> <input
+								type="hidden" name="ORDER_GOODS_COUNT"
+								value="${g_resultClass.goods_totalcount}"> <input
+								type="hidden" name="ORDER_TOTAL"
+								value="${g_resultClass.goods_price}"></td>
 						</tr>
 						<tr>
 							<td height="20"></td>

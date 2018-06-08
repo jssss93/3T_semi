@@ -8,38 +8,37 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <script type="text/javascript">
-/* 종합개수 카운트 */
-/* function change(num) {
-    var x = document.form;
-    var y = Number(x.goods_qty.value) + num;
-    if (y < 1)
-       y = 1;
-    x.goods_qty.value = y;
- } */
+	/* 종합개수 카운트 */
+	/* function change(num) {
+	 var x = document.form;
+	 var y = Number(x.goods_qty.value) + num;
+	 if (y < 1)
+	 y = 1;
+	 x.goods_qty.value = y;
+	 } */
 
-
- function BuyCheck(index){
-	 if(index==1){
-		 document.form.action='Buy.action?goods_no=${resultClass.goods_no}';
-	 }
-	 if(index==2){
-		 document.myForm.action='AddCart';
-	 }
-	 document.myForm.submit();
- }
- </script>
+	function BuyCheck(index) {
+		if (index == 1) {
+			document.form.action = 'Buy.action?goods_no=${resultClass.goods_no}';
+		}
+		if (index == 2) {
+			document.form.action = 'AddCart.action?goods_no=${resultClass.goods_no}';
+		}
+		document.form.submit();
+	}
+</script>
 </head>
+
 <center>
 	<table width="1000" border="1" cellpadding="0" cellspacing="0">
 		<body>
 		<tr>
-		    <!-- 상품 메인 이미지-->
-			<td height="490" align="center" valign="middle">
-			<img
+			<!-- 상품 메인 이미지-->
+			<td height="490" align="center" valign="middle"><img
 				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[0]"/> "
 				width"="490" height="490"></td>
 
-			
+
 			<!-- 상품 상세 내용 -->
 			<td>
 				<form name="form" id="form" method="post">
@@ -47,51 +46,49 @@
 						cellspacing="0">
 						<tr>
 							<td style="text-align: left; font-size: 30pt;" colspan="2">
-								<!-- 상품 이름 --><s:property value="resultClass.goods_name"/>
+								<!-- 상품 이름 --> <s:property value="resultClass.goods_name" />
 							</td>
-						</tr>	
+						</tr>
 						<!-- 상품가격 텍스트 -->
 						<tr>
 							<td width="280"><br> <br>
-								<p></p> <!--상품 가격  --> Price : \&nbsp; <input
-								name="goods_price" type="hidden" value="9000">
-								<s:property value="resultClass.goods_price"/>
+								<p></p> <!--상품 가격  --> Price : \&nbsp; <input name="goods_price"
+								type="hidden" value="9000"> <s:property
+									value="resultClass.goods_price" />
 								<p></p></td>
 							<td></td>
 						</tr>
 						<!-- TOTAL -->
 						<tr>
 							<td style="font-size: 17pt; align: left;" rowspan="2">TOTAL
-							    <s:property value="resultClass.goods_totalcount"/>
-								<input name="goods_totalcount"
+								<s:property value="resultClass.goods_totalcount" /> <input
+								name="goods_totalcnt"
 								style="width: 25px; text-align: center; -ms-ime-mode: disabled;"
 								onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"
-								type="text" maxlength="3" value="1">
-							<!--  카운트 0이되면 품절이되는 카운트 추가해야됨
+								type="text" maxlength="3" value="1"> <!--  카운트 0이되면 품절이되는 카운트 추가해야됨
 							 -----------------------------------
 							 ----------------------------------
 							 ---------------------------------- -->
-							
+
 							</td>
 						</tr>
 						<tr>
-						<!-- +,-버튼 -->
+							<!-- +,-버튼 -->
 							<td style="align: left;"><img width="30" align="left"
-								id="plus" onclick="change(1);" src="/3T/upload/+.jsp"
-								border="1">
+								id="plus" onclick="change(1);" src="/3T/upload/+.jsp" border="1">
 							</td>
 							<td><img width="30" id="minus" onclick="change(-1);"
-								src="/3T/upload/-.jsp" border="1">
-							</td>
+								src="/3T/upload/-.jsp" border="1"></td>
 						</tr>
 						<!-- SIZE 텍스트, 텍스트박스 -->
 						<tr>
 							<td style="width: 170px; font-size: 17pt; align: left;">
 								<p></p> Size : <select name="goods_size" id="goods_size"
 								size="1">
-									<option value="-"><s:property value="resultClass.goods_size"/></option>
-							<!-- size 고르는거 추후에 option이용해서 넣을지 생각해야됨 -->
-							<!-- -----------------------------------------------------
+									<option value="-"><s:property
+											value="resultClass.goods_size" /></option>
+									<!-- size 고르는거 추후에 option이용해서 넣을지 생각해야됨 -->
+									<!-- -----------------------------------------------------
 							-----------------------------------------------------
 							-----------------------------------------------------
 							----------------------------------------------------- -->
@@ -101,12 +98,9 @@
 						<!-- BUY,ADD CART추가하기 -->
 						<tr>
 							<td>
-							    <!-- 구매상품→구매페이지 -->
-								<!-- 상품번호 전송 --> <input name="goods_no" type="hidden"
-								value="572" /> <s:property value="resultClass.goods_no"/>
-								
-								
-								<tabel>
+								<!-- 구매상품→구매페이지 --> <!-- 상품번호 전송 --> <input name="goods_no"
+								type="hidden" value="572" /> <s:property
+									value="resultClass.goods_no" /> <tabel>
 								<tr>
 									<td></td>
 								</tr>
@@ -117,62 +111,57 @@
 								</tr>
 								<tr>
 									<td>
-										<!-- 상품구매버튼 --> <!-- 로그인 o -->
-										<s:if test='%{session.M_ID != null}'>
-										<s:if test="%{resultClass.goods_totalcount!=0}"> 
-										<input name="Buy" style=""
+										<!-- 상품구매버튼 --> <!-- 로그인 o --> <s:if
+											test='%{session.M_ID != null}'>
+											<s:if test="%{resultClass.goods_totalcount!=0}">
+												<input name="Buy" style=""
+													onmouseover="this.src='/goods/upload/buy2.JPG'"
+													onmouseout="this.src='/goods/upload/buy.JPG'"
+													onclick="BuyCheck(1);" type="image"
+													src="/3T/upload/buy.JPG" value="로그인 상품구매" />
+											</s:if>
+
+											<s:else>
+												<img src="/goods/upload/buy.JPG"
+													onmouseover="this.src='/3T/upload/buy2.JPG'"
+													onmouseout="this.src='/3T/upload/buy.JPG'" border="0"></img>
+											</s:else>
+										</s:if> <!-- 상품구매버튼 --> <!-- 로그인 x --> <input name="Buy"
 										onmouseover="this.src='/goods/upload/buy2.JPG'"
 										onmouseout="this.src='/goods/upload/buy.JPG'"
-										onclick="BuyCheck(1);" 
-										type="image" src="/3T/upload/buy.JPG"
-									    value="로그인 상품구매" />
-							          </s:if>
-							          
-							         <s:else>
-							            <img src="/goods/upload/buy.JPG"
-							            onmouseover="this.src='/3T/upload/buy2.JPG'"
-										onmouseout="this.src='/3T/upload/buy.JPG'" border="0"></img>
-									</s:else>
-									</s:if>
-									   <!-- 상품구매버튼 --> <!-- 로그인 x -->
-									   <input name="Buy" 
-										onmouseover="this.src='/goods/upload/buy2.JPG'"
-										onmouseout="this.src='/goods/upload/buy.JPG'"
-										onclick='BuyCheck'
-										type="image" src="/3T/upload/buy.JPG"
-									    value="비로그인 상품구매" />
+										onclick='BuyCheck' type="image" src="/3T/upload/buy.JPG"
+										value="비로그인 상품구매" />
 									</td>
 									<td>
-										<!-- 장바구니버튼 --> <!-- 로그인 o --> 
-										<s:if test='%{session.M_ID != null}'>
-										<s:if test="%{resultClass.goods_totalcount!=0}"> 
-										<input name="BuyCart" style=""
+										<!-- 장바구니버튼 --> <!-- 로그인 o --> <s:if
+											test='%{session.M_ID != null}'>
+											<s:if test="%{resultClass.goods_totalcount!=0}">
+												<input name="BuyCart"
+													onmouseover="this.src='/3T/upload/add to cart2.JPG'"
+													onmouseout="this.src='/3T/upload/add to cart.JPG'"
+													onclick="BuyCheck(2);" type="image"
+													src="/3T/upload/add to cart.JPG" value="로그인 장바구니" />
+											</s:if>
+											<s:else>
+												<img src="/3T/upload/add to cart.JPG"
+													onmouseover="this.src='/3T/upload/add to cart2.JPG'"
+													onmouseout="this.src='/3T/upload/add to cart.JPG'"
+													border="0"></img>
+											</s:else>
+										</s:if>
+									</td>
+									<td>
+										<!-- 장바구니버튼 --> <!-- 로그인 x --> <input name="BuyCart" style=""
 										onmouseover="this.src='/3T/upload/add to cart2.JPG'"
 										onmouseout="this.src='/3T/upload/add to cart.JPG'"
 										onclick="BuyCartcheck;" type="image"
 										src="/3T/upload/add to cart.JPG" value="Submit" />
-									    </s:if>
-							            <s:else>
-							            <img src="/3T/upload/add to cart.JPG"
-							               onmouseover="this.src='/3T/upload/add to cart2.JPG'"
-										   onmouseout="this.src='/3T/upload/add to cart.JPG'" border="0"></img>
-									</s:else>
-									</s:if>
-									</td>
-									<td>
-									    <!-- 장바구니버튼 --> <!-- 로그인 x -->
-									    <input name="BuyCart" style=""
-										onmouseover="this.src='/3T/upload/add to cart2.JPG'"
-										onmouseout="this.src='/3T/upload/add to cart.JPG'"
-										onclick="BuyCartcheck;" 
-										type="image" src="/3T/upload/add to cart.JPG"
-									    value="Submit" /> 
 								</tr>
 								<tr>
 									<td>
 										<!-- 옷 정보 --> <pre>
 					    <font color="#de1616">INFO</font>
-                        <s:property value="resultClass.goods_content"/>
+                        <s:property value="resultClass.goods_content" />
 
                         <font color="#de1616">SIZE</font>
                                                      상의
@@ -209,15 +198,13 @@
 		cellpadding="0" cellspacing="0">
 
 		<tr>
-			<td colspan="0" align="center">
-			<img
+			<td colspan="0" align="center"><img
 				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[1]"/> "
 				width"="490" height="490"></td>
 
 		</tr>
 		<tr>
-			<td width="100" height="100" align="center"><h2>Main logo</h2>
-		    <img
+			<td width="100" height="100" align="center"><h2>Main logo</h2> <img
 				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[2]"/> "
 				width"="490" height="490"></td>
 
@@ -228,8 +215,7 @@
 		cellpadding="0" cellspacing="0">
 
 		<tr>
-			<td colspan="0" align="center">
-			<img
+			<td colspan="0" align="center"><img
 				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[3]"/> "
 				width"="490" height="490"></td>
 
@@ -240,8 +226,7 @@
 		cellpadding="0" cellspacing="0">
 
 		<tr>
-			<td colspan="0" align="center">
-			<img
+			<td colspan="0" align="center"><img
 				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[4]"/> "
 				width"="490" height="490"></td>
 
@@ -253,27 +238,20 @@
 		cellpadding="0" cellspacing="0">
 
 		<tr>
-			<td colspan="3" align="center"><h2>Main logo</h2>
-		   <img src="/3T/upload/${goods_file_savname}">
-		    </td>
+			<td colspan="3" align="center"><h2>Main logo</h2> <img
+				src="/3T/upload/${goods_file_savname}"></td>
 		</tr>
 		<tr>
 			<td width="200" height="200" align="center"><h2>clothes
-					ditail img</h2>
-					<img src="/3T/upload/${goods_file_savname}">
-		    </td>
+					ditail img</h2> <img src="/3T/upload/${goods_file_savname}"></td>
 		</tr>
 		<tr>
 			<td width="200" height="200" align="center"><h2>clothes
-					ditail img</h2>
-					<img src="/3T/upload/${goods_file_savname}">
-		    </td>
+					ditail img</h2> <img src="/3T/upload/${goods_file_savname}"></td>
 		</tr>
 		<tr>
 			<td width="200" height="200" align="center"><h2>clothes
-					ditail img</h2>
-					<img src="/3T/upload/${goods_file_savname}">
-		    </td>
+					ditail img</h2> <img src="/3T/upload/${goods_file_savname}"></td>
 		</tr>
 	</table>
 </center>
@@ -285,9 +263,8 @@
 	cellpadding="0" cellspacing="0">
 
 	<tr>
-		<td colspan="0" align="center"><h2>Model info</h2>
-		<img src="/3T/upload/${goods_file_savname}">
-		    </td>
+		<td colspan="0" align="center"><h2>Model info</h2> <img
+			src="/3T/upload/${goods_file_savname}"></td>
 	</tr>
 </table>
 <!-- 관련상품 -->
@@ -345,6 +322,6 @@
 
 
 	</center>
-	</table>
-	</body>
-	</html>
+</table>
+</body>
+</html>

@@ -14,10 +14,11 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+import admin.basket.VO.BasketVO;
 import admin.goods.VO.GoodsVO;
 import admin.member.VO.MemberVO;
 
-public class BuyAction extends ActionSupport implements SessionAware {
+public class AddCartAction extends ActionSupport implements SessionAware {
 
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
@@ -32,10 +33,15 @@ public class BuyAction extends ActionSupport implements SessionAware {
 	private GoodsVO g_paramClass = new GoodsVO();
 	private GoodsVO g_resultClass = new GoodsVO();
 
+	private BasketVO b_paramClass = new BasketVO();
+
+	private List<BasketVO> B_List = new ArrayList<BasketVO>();
+
 	private String m_id;
 	private int goods_no;
+	private int basket_quantity;
 
-	public BuyAction() throws IOException {
+	public AddCartAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 		reader.close();
@@ -43,9 +49,11 @@ public class BuyAction extends ActionSupport implements SessionAware {
 
 	public String execute() throws Exception {
 
-		m_paramClass.setM_id(ActionContext.getContext().getSession().get("M_ID").toString());
-		m_resultClass = (MemberVO) sqlMapper.queryForObject("AMselectOne_ID", m_paramClass);
-
+		/*
+		 * m_paramClass.setM_id(ActionContext.getContext().getSession().get("M_ID").
+		 * toString()); m_resultClass = (MemberVO)
+		 * sqlMapper.queryForObject("AMselectOne_ID", m_paramClass);
+		 */
 		/*
 		 * g_paramClass.setGoods_no(getGoods_no()); G_List
 		 * =sqlMapper.queryForList("AGselectOne",g_paramClass);
@@ -53,8 +61,45 @@ public class BuyAction extends ActionSupport implements SessionAware {
 
 		g_paramClass.setGoods_no(getGoods_no());
 		g_resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", getGoods_no());
-		
+
+		b_paramClass.setBasket_member_id(ActionContext.getContext().getSession().get("M_ID").toString());
+		b_paramClass.setBasket_goods_amount(g_resultClass.getGoods_price());
+		b_paramClass.setBasket_goods_size(g_resultClass.getGoods_size());
+		b_paramClass.setBasket_goods_color(g_resultClass.getGoods_color());
+		b_paramClass.setBasket_goods_img(g_resultClass.getGoods_file_savname().split(",")[0]);
+		b_paramClass.setBasket_quantity(getBasket_quantity());
+		b_paramClass.setBasket_name(g_resultClass.getGoods_name());
+
+		sqlMapper.insert("insertBasket", b_paramClass);
+
+		B_List = sqlMapper.queryForList("Basket_mem", b_paramClass);
+
 		return SUCCESS;
+
+	}
+
+	public List<BasketVO> getB_List() {
+		return B_List;
+	}
+
+	public void setB_List(List<BasketVO> b_List) {
+		B_List = b_List;
+	}
+
+	public BasketVO getB_paramClass() {
+		return b_paramClass;
+	}
+
+	public void setB_paramClass(BasketVO b_paramClass) {
+		this.b_paramClass = b_paramClass;
+	}
+
+	public int getBasket_quantity() {
+		return basket_quantity;
+	}
+
+	public void setBasket_quantity(int basket_quantity) {
+		this.basket_quantity = basket_quantity;
 	}
 
 	public Map getSession() {

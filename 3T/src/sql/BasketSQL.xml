@@ -11,8 +11,6 @@
 		  	<result property="BASKET_GOODS_SIZE" column="BASKET_GOODS_SIZE"/>
 		  	<result property="BASKET_GOODS_COLOR" column="BASKET_GOODS_COLOR"/>
 		  	<result property="BASKET_GOODS_img" column="BASKET_GOODS_img"/>
-		  	<result property="BASKET_TOTAL" column="BASKET_TOTAL"/>
-		  	<result property="BASKET_SELECT" column="BASKET_SELECT"/>
 		  	<result property="BASKET_QUANTITY" column="BASKET_QUANTITY"/>
 		  	<result property="BASKET_NAME" column="BASKET_NAME"/>
 		</resultMap>

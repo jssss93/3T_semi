@@ -47,9 +47,9 @@ public class PagingAction {
 		if(currentPage > blockPage)
 		{
 			if(isSearch != "")
-				pagingHtml.append("<a href=listAction.action?currentPage=" + (startPage - 1) + "&searchKeyword="+isSearch+"&searchNum="+searchNum+">");
+				pagingHtml.append("<a href=AOlistAction.action?currentPage=" + (startPage - 1) + "&searchKeyword="+isSearch+"&searchNum="+searchNum+">");
 			else
-				pagingHtml.append("<a href=listAction.action?currentPage=" + (startPage - 1) + ">");
+				pagingHtml.append("<a href=AOlistAction.action?currentPage=" + (startPage - 1) + ">");
 			pagingHtml.append("����");
 			pagingHtml.append("</a>");
 		}
@@ -70,7 +70,7 @@ public class PagingAction {
 			}
 			else
 			{
-				pagingHtml.append("&nbsp;<a href='listAction.action?currentPage=");
+				pagingHtml.append("&nbsp;<a href='AOlistAction.action?currentPage=");
 				pagingHtml.append(i);
 				if(isSearch != "")
 					pagingHtml.append("&searchKeyword="+isSearch);
@@ -86,7 +86,7 @@ public class PagingAction {
 		
 		if(totalPage - startPage >= blockPage)
 		{
-			pagingHtml.append("&nbsp;<a href='listAction.action?currentPage=");
+			pagingHtml.append("&nbsp;<a href='AOlistAction.action?currentPage=");
 			pagingHtml.append((endPage+1));
 			if(isSearch != "")
 				pagingHtml.append("&searchKeyword="+isSearch);
