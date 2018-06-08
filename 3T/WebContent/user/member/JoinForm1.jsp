@@ -33,7 +33,7 @@
 
 		<!-- 동의합니다 눌렀을때 memberReg.action을실행함 -->
 
-		<form name="join_agree" action="join2.action" method="post"
+		<form name="join_agree" action="join2Form.action" method="post"
 			onsubmit="return check()">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>

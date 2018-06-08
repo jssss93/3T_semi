@@ -33,8 +33,8 @@
 									<tr>
 										<td class="formtext">주민등록번호</td>
 										<td valign="middle"><input type="text" name="M_JUMIN1"
-											size="6" maxlength="6"> - <input type="text"
-											name="M_JUMIN2" size="7" maxlength="7"></td>
+											size="6" maxlength="6" style="width: 100px; height: 26px;"> - <input type="text"
+											name="M_JUMIN2" size="7" maxlength="7" style="width: 100px; height: 26px;"></td>
 
 									</tr>
 								</table>
@@ -51,13 +51,13 @@
 							<td>RESULT&nbsp;:&nbsp;</td>
 							<td align="left"><br> <b><s:property value="resultClass.M_NAME" /></b>
 								님의 PW는 <b><s:property value="resultClass.M_PASSWD" /></b>입니다.<br>&nbsp;</td>
-							<td align="middle"><a align="middle" href="login.action"
+							<td align="middle"><a align="middle" href="loginAction.action"
 								class="login">&nbsp;&nbsp;로그인폼으로&nbsp;&nbsp;</a></td>
 						</s:if>
 						<s:else>
 							<td></td>
 							<td></td>
-							<td align="middle"><a align="middle" href="login.action"
+							<td align="middle"><a align="middle" href="loginAction.action"
 								class="login">&nbsp;&nbsp;로그인폼으로&nbsp;&nbsp;</a></td>
 						</s:else>
 						</tr>
