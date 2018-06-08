@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+
+<sqlMap namespace="myboard">
+	<!-- 데이터를 꺼낼때 사용할것 설정 -->
+	<typeAlias type="user.member.myboard.BoardVO" alias="myboard" />
+	<!-- 리절트 맵 정의 -->
+	
+	<resultMap class="myboard" id="boardRes">
+		<result column="REV_no" property="REV_no" />
+		<result column="REV_subject" property="REV_subject" />
+		<result column="REV_name" property="REV_name" />
+		<result column="REV_passwd" property="REV_passwd" />
+		<result column="REV_content" property="REV_content" />
+		<result column="REV_file_orgname" property="REV_file_orgname" />
+		<result column="REV_file_savname" property="REV_file_savname" />
+		<result column="REV_readcnt" property="REV_readcnt" />
+		<result column="REV_regdate" property="REV_regdate" />
+		<result column="REV_ref" property="REV_ref" />
+		<result column="REV_re_step" property="REV_re_step" />
+		<result column="REV_re_level" property="REV_re_level" />
+		<result column="REV_member_id" property="REV_member_id" />
+		<result column="REV_goods_no" property="REV_goods_no" />
+	</resultMap>
+	<typeAlias type="user.member.myboard.BoardVO" alias="qa1" />
+	
+	<resultMap class="qa1" id="qaRes1">
+		<result column="QA_NO" property="QA_NO" />
+		<result column="QA_SPECIAL_NO" property="QA_SPECIAL_NO" />
+		<result column="QA_SUBJECT" property="QA_SUBJECT" />
+		<result column="QA_NAME" property="QA_NAME" />
+		<result column="QA_PASSWD" property="QA_PASSWD" />
+		<result column="QA_CONTENT" property="QA_CONTENT" />
+		<result column="QA_READCNT" property="QA_READCNT" />
+		<result column="QA_REGDATE" property="QA_REGDATE" />
+		<result column="QA_REF" property="QA_REF" />
+		<result column="QA_RE_STEP" property="QA_RE_STEP" />
+		<result column="QA_RE_LEVEL" property="QA_RE_LEVEL" />
+		<result column="QA_FILE_ORGNAME" property="QA_FILE_ORGNAME" />
+		<result column="QA_FILE_SAVNAME" property="QA_FILE_SAVNAME" />
+		<result column="QA_MAKE_PUBLIC" property="QA_MAKE_PUBLIC" />
+		<result column="QA_CATEGORY_NO" property="QA_CATEGORY_NO" />
+		<!-- QA_CATEGORY_NO -->
+		<result column="QA_MEMBER_ID" property="QA_MEMBER_ID" />
+	</resultMap>
+	<!-- 공통으로 사용할 select 절 정의 -->
+	<sql id="review-select-all1"> SELECT * FROM REVIEW </sql>
+	<sql id="review-where-no1"> WHERE REV_no = #REV_no# </sql>
+	<sql id="review-select-all2"> SELECT * FROM QA </sql>
+	
+	<select id="review-selectAll1" resultMap="boardRes">
+		<include refid="review-select-all1" />
+		where REV_MEMBER_ID = #REV_MEMBER_ID# ORDER BY REV_no DESC
+	</select>
+	
+	<select id="review-selectAll2" resultMap="qaRes1">
+		<include refid="review-select-all2" />
+		where QA_MEMBER_ID = #QA_MEMBER_ID# ORDER BY QA_NO DESC
+	</select>
+</sqlMap>

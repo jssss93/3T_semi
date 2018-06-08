@@ -19,6 +19,12 @@
 			return false;
 		}
 
+		/* if (f.confirm_id.value == "") {
+			alert("아이디 중복체크를해주세요");
+			f.M_ID.focus();
+			
+			return false;
+		} */
 		if (f.M_PASSWD.value == "") {
 			alert("비밀번호를 입력해주십시오");
 			f.M_PASSWD.focus();
@@ -86,21 +92,22 @@
 		
 	}   
 
-	function openConfirmId() {
-		var url = "memberIdCheck.action?id=" + document.Reg_form.id.value;
-		var f = document.Reg_form; //문서.Form name="";
-		var idPs = /^[0-9a-zA-Z]{4,12}$/; //아이디 비밀번호 체크표현식
-		if (f.id.value == "") {
-			alert("아이디를 입력해주세요.");
-			f.id.focus();
-			return false;
+	  function openConfirmId(){
+			var url="CheckIdAction.action?M_ID="+ document.Reg_form.M_ID.value;
+			var chk=document.Reg_form;
+			if(chk.M_ID.value==""){
+				alert("ID를 입력하세요");
+				chk.M_ID.focus();
+				return false;
+			}
+			if (chk.M_ID.value.length < 2) {
+				alert("최소 2자리 이상 입력해주세요!");
+				chk.M_ID.focus();
+				return false;
+			}
+			open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no,"+
+								 "scrollbars=no,resizable=no,width=400,height=200");
 		}
-
-		open(
-				url,
-				"confirm",
-				"toolbar=no, location=no, status=co, menubar=no, scrollbars=no, resizable=no, width=400, height=200");
-	}
 </script>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -199,8 +206,7 @@
 </head>
 <body>
 <% request.setCharacterEncoding("UTF-8"); %>
-	<form name="Reg_form" action="join.action" method="post"
-		onsubmit="return check()">
+	<form name="Reg_form" action="joinAction.action" method="post" onsubmit="return check()">
 
 
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -250,7 +256,7 @@
 							<td class="tdstyle1">주민등록번호<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
 							<td valign="middle"><input type="text" name="M_JUMIN1" 
-								size="6" maxlength="6"> - <input type="text" name="M_JUMIN2"
+								size="6" maxlength="6"> - <input type="password" name="M_JUMIN2"
 								size="7"maxlength="7"></td>
 						</tr>
 						<tr>
@@ -272,7 +278,7 @@
 						<tr>
 							<td class="tdstyle1">휴대폰번호<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="text" name="M_PHONE"
+							<td valign="middle"><input type="text" name="M_PHONE" maxlength="11"
 								size="28" placeholder="ex)01055551111"> "-" 없이 숫자만 입력하세요</td>
 						</tr>
 						<tr>
@@ -322,7 +328,7 @@
 							<td colspan="2" align="center" style="border: 0px;"><input
 								type="submit" value="회원가입" class="submit"> <input
 								type="button" value="취 소"
-								onclick="location.href='메인페이지'" class="hreflink"></td>
+								onclick="location.href='main.action'" class="hreflink"></td>
 						</tr>
 					</table>
 
