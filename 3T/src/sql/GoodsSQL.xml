@@ -31,7 +31,7 @@
       where goods_no = #goods_no#
    </sql>
 
-   <!-- 상세보기 -->
+   <!-- =================================상세보기========================================= -->
 
    <select id="goods-selectOne" resultMap="goodsRes"
       parameterClass="int">
@@ -42,8 +42,28 @@
       update goods set goods_readcnt = goods_readcnt + 1
       <include refid="goods-where-no" />
    </update>
+   
+   <!-- ===============================위시 리스트로 insert================================== -->
+   
+   <typeAlias alias="wishlist" type="user.wishlist.WishlistVO"/>
+   
+   <resultMap id="wishlistRes" class="wishlist">
+   		<result property="W_NO" column="W_NO" />
+   		<result property="W_MEMBER_ID" column="W_MEMBER_ID" />
+   		<result property="W_GOODS_NAME" column="W_GOODS_NAME" />
+   		<result property="W_GOODS_AMOUNT" column="W_GOODS_AMOUNT" />
+   		<result property="W_GOODS_IMG" column="W_GOODS_IMG" />
+   		<result property="W_TOTAL" column="W_TOTAL" />
+   		<result property="W_SELECT" column="W_SELECT" />
+   </resultMap>
+   
+   <insert id="insertWishList" parameterClass="wishlist">
+   		insert into
+   		wishlist(W_NO, W_MEMBER_ID, W_GOODS_NAME, W_GOODS_AMOUNT, W_GOODS_IMG, W_TOTAL, W_SELECT)
+   		values(W_NO_seq.nextval, #W_MEMBER_ID#, #W_GOODS_NAME#, #W_GOODS_AMOUNT#, #W_GOODS_IMG#, #W_TOTAL#, #W_SELECT#)
+   </insert>
 
-   <!-- 메인 리스트 -->
+   <!-- ===============================메인 리스트======================================= -->
 
    <!-- 전체 가져옴 15개가져와서 -->
    <select id="goods-selectAll" resultMap="goodsRes"
@@ -67,7 +87,7 @@
    </select>
 
 
-   <!-- 카테고리 리스트 -->
+   <!-- ============================카테고리 리스트===================================== -->
 
    <!-- outer -->
    <select id="select-All-outer" resultMap="goodsRes"

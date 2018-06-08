@@ -25,20 +25,25 @@
 
 		<action name="logon" class="user.member.login.LoginAction"
 			method="login">
-			
-			<result name="login" type="tiles" >
+
+			<result name="login" type="tiles">
 				AD_main
 			</result>
-			<result name="success" type="tiles">main</result>
+			
+			<result name="success" type="redirect-action">
+				<param name="actionName">main</param>
+
+			</result>
 			<result name="error">/user/login/LoginError.jsp</result>
 		</action>
-		
-		<action name="logout" class="user.member.login.LoginAction" method="logout">
-			<result name="success" type="tiles">
-				main
+
+		<action name="logout" class="user.member.login.LoginAction"
+			method="logout">
+			<result name="success" type="redirect-action">
+				<param name="actionName">main</param>
 			</result>
 		</action>
-		
+
 
 		<action name="join1" class="user.member.MemberAction">
 			<result>/user/member/JoinForm1.jsp</result>
