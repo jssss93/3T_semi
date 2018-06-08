@@ -56,14 +56,15 @@
 				AG_List
 			</result>
 		</action>
-		
-		<action name="AG_Writeform" class="admin.goods.WriteAction" method="form">
+
+		<action name="AG_Writeform" class="admin.goods.WriteAction"
+			method="form">
 			<result name="success" type="tiles">
 				AG_Write
 			</result>
 		</action>
-		
-		<action name="AG_Write" class="admin.goods.WriteAction" >
+
+		<action name="AG_Write" class="admin.goods.WriteAction">
 			<result name="success" type="tiles">
 				AG_List
 			</result>
@@ -86,42 +87,40 @@
 				AN_List
 			</result>
 		</action>
-		
-		<action name="AN_Writeform" class="admin.notice.WriteAction" method="form">
+
+		<action name="AN_Writeform" class="admin.notice.WriteAction"
+			method="form">
 			<result name="success" type="tiles">
 				AN_Write
 			</result>
 		</action>
-		
+
 		<action name="AN_Write" class="admin.notice.WriteAction">
 			<result name="success" type="tiles">
 				AN_List
 			</result>
 		</action>
-		
+
 		<action name="AN_View" class="admin.notice.ViewAction">
 			<result name="success" type="tiles">
 				AN_View
 			</result>
 		</action>
-		
-		<!-- <action name="AN_Modifyform" class="admin.notice.ModifyAction" >
-			<result name="success" type="chain">
-				AN_Write
-			</result>
-		</action> -->
-		
-		
+
+		<!-- <action name="AN_Modifyform" class="admin.notice.ModifyAction" > <result 
+			name="success" type="chain"> AN_Write </result> </action> -->
+
+
 		<action name="AN_ModifyForm" class="admin.notice.ViewAction">
 			<result type="chain">ANwriteForm</result>
 		</action>
 		<action name="ANmodifyAction" class="admin.notice.ModifyAction">
 			<result type="chain">ANviewAction</result>
 		</action>
-		
-		
-		
-		
+
+
+
+
 
 		<action name="AF_List" class="admin.faq.ListAction">
 			<result name="success" type="tiles">
@@ -149,6 +148,19 @@
 		</action>
 
 
+
+
+
+
+
+		<action name="Buy" class="user.goods.BuyAction">
+			<result name="success" type="tiles">Buy</result>
+		</action>
+
+		<action name="AddCart" class="user.goods.AddCartAction">
+			<result name="success" type="tiles">AddCart</result>
+		</action>
+
 	</package>
 
 
@@ -161,8 +173,9 @@
 			<result>/admin/order/List.jsp</result>
 		</action>
 
-		<!-- <action name="AOviewAction" class="admin.order.ViewAction"> <result>/admin/order/View.jsp</result> 
-			</action> -->
+		<action name="AOviewAction" class="admin.order.ViewAction">
+			<result>/admin/order/View.jsp</result>
+		</action>
 
 	</package>
 
@@ -173,10 +186,14 @@
 		<action name="AMlistAction" class="admin.member.ListAction">
 			<result>/admin/member/List.jsp</result>
 		</action>
-		
-		<action name="Buy" class="admin.member.ListAction">
+
+		<!-- <action name="Buy" class="admin.member.ListAction">
 			<result>/admin/member/List.jsp</result>
-		</action>
+		</action> -->
+		
+		<!-- <action name="AddCart" class="admin.member.ListAction">
+			<result>/admin/member/List.jsp</result>
+		</action> -->
 
 		<action name="AMviewAction" class="admin.member.ViewAction">
 			<result>/admin/member/View.jsp</result>
@@ -238,6 +255,10 @@
 		<action name="AGdeleteAction" class="admin.goods.DeleteAction">
 			<result type="chain">AGlistAction</result>
 		</action>
+
+
+
+
 
 	</package>
 

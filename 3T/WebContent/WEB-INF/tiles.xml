@@ -44,6 +44,9 @@
 	<definition name="Buy" extends="main">
 		<put-attribute name="body" value="/user/order/Write.jsp" />
 	</definition>
+	<definition name="AddCart" extends="main">
+		<put-attribute name="body" value="/user/basket/List.jsp" />
+	</definition>
 
 	<!-- *******************************ADMIN******************************* -->
 

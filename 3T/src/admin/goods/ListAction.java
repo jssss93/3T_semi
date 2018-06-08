@@ -16,6 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import admin.goods.VO.GoodsVO;
 
 public class ListAction extends ActionSupport implements SessionAware {
+
 	private Map session;
 
 	public Map getSession() {
@@ -46,7 +47,6 @@ public class ListAction extends ActionSupport implements SessionAware {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 		reader.close();
-
 	}
 
 	public String execute() throws Exception {

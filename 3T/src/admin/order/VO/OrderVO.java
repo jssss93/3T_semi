@@ -34,8 +34,17 @@ public class OrderVO {
 	private int order_price;
 	private String order_member_id;
 	private String order_goods_no;
-	private String order_goods_info;
+	private String order_goods_name;
 	private int order_goods_count;
+	private String order_check;
+
+	public String getOrder_check() {
+		return order_check;
+	}
+
+	public void setOrder_check(String order_check) {
+		this.order_check = order_check;
+	}
 
 	public int getOrder_no() {
 		return order_no;
@@ -269,12 +278,12 @@ public class OrderVO {
 		this.order_goods_no = order_goods_no;
 	}
 
-	public String getOrder_goods_info() {
-		return order_goods_info;
+	public String getOrder_goods_name() {
+		return order_goods_name;
 	}
 
-	public void setOrder_goods_info(String order_goods_info) {
-		this.order_goods_info = order_goods_info;
+	public void setOrder_goods_name(String order_goods_name) {
+		this.order_goods_name = order_goods_name;
 	}
 
 	public int getOrder_goods_count() {

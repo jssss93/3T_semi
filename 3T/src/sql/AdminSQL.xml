@@ -46,9 +46,11 @@
 		<include refid="AMselect-all" />
 		<include refid="AMwhere-no" />
 	</select>
-	<select id="AMselectOne_ID" resultMap="MemberRes" >
-		select * from member
-		where m_id=#m_id#
+	<select id="AMselectOne_ID" resultMap="MemberRes">
+		select * from
+		member
+		where
+		m_id=#m_id#
 	</select>
 
 	<select id="AMselectLastNo" resultClass="ad_member"
@@ -175,7 +177,7 @@
 		select * from goods where
 		Goods_category like #SearchKeyword#
 	</select>
-	
+
 	<select id="G_Search_Size" resultMap="GoodsRes">
 		select * from goods where
 		Goods_Size like #SearchKeyword#
@@ -270,12 +272,14 @@
 	</select>
 
 	<select id="N_Search_Subject" resultMap="NoticeRes">
-		select * from notice where
+		select * from notice
+		where
 		notice_subject like #SearchKeyword#
 	</select>
-	
+
 	<select id="N_Search_Content" resultMap="NoticeRes">
-		select * from notice where
+		select * from notice
+		where
 		notice_content like #SearchKeyword#
 	</select>
 
@@ -345,7 +349,7 @@
 	<select id="AFselectLastNo" resultClass="AFFaq" parameterClass="int">
 		SELECT max(faq_no) as faq_no FROM FAQ
 	</select>
-	
+
 
 
 	<insert id="insertFaq" parameterClass="AFFaq">
@@ -400,8 +404,9 @@
 		<result property="order_price" column="order_price" />
 		<result property="order_member_id" column="order_member_id" />
 		<result property="order_goods_no" column="order_goods_no" />
-		<result property="order_goods_info" column="order_goods_info" />
+		<result property="order_goods_name" column="order_goods_name" />
 		<result property="order_goods_count" column="order_goods_count" />
+		<result property="order_check" column="order_check" />
 	</resultMap>
 
 
@@ -421,8 +426,38 @@
 	</select>
 
 	<select id="AOselectOne" resultMap="OrderRes">
-		SELECT * FROM ORDER_3T ORDER
-		BY ORDER_NO DESC
+		SELECT * FROM ORDER_3T where
+		order_no=#order_no#
+		ORDER BY ORDER_NO DESC
 	</select>
+
+	<!-- 사용자 BASKET SQL ********************************************************************************************************************** -->
+	<typeAlias alias="ABbasket" type="admin.basket.VO.BasketVO" />
+	<!-- 리절트 맵 정의 -->
+	<resultMap id="BasketRes" class="ABbasket">
+		<result property="basket_no" column="basket_no" />
+		<result property="basket_member_id" column="basket_member_id" />
+		<result property="basket_goods_amount" column="basket_goods_amount" />
+		<result property="basket_goods_size" column="basket_goods_size" />
+		<result property="basket_goods_color" column="basket_goods_color" />
+		<result property="basket_goods_img" column="basket_goods_img" />
+		<result property="basket_quantity" column="basket_quantity" />
+		<result property="basket_name" column="basket_name" />
+
+	</resultMap>
+
+	<select id="Basket_mem" resultMap="BasketRes">
+		SELECT * FROM BASKET 
+		ORDER BY Basket_NO DESC
+	</select>
+
+	<insert id="insertBasket" parameterClass="ABbasket">
+		INSERT INTO
+		BASKET(basket_no,basket_member_id,basket_goods_amount,basket_goods_size,basket_goods_color,
+		basket_goods_img,basket_quantity,basket_name) VALUES
+		(BASKET_NO_SEQ.NEXTVAL,#basket_member_id#,#basket_goods_amount#,#basket_goods_size#,#basket_goods_color#,
+		#basket_goods_img#,#basket_quantity#,#basket_name#)
+	</insert>
+
 
 </sqlMap>
