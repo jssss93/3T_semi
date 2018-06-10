@@ -21,9 +21,25 @@
 
 		<action name="logonAtion" class="user.member.login.LoginAction"
 			method="login">
-			<result name="success" type="tiles">LoginSuccess</result>
-			<result name="error" type="tiles">LoginError</result>
+			<result name="login" type="tiles">
+				AD_main
+			</result>
+			
+			<result name="success" type="redirect-action">
+				<param name="actionName">main</param>
+
+			</result>
+			<result name="error">/user/login/LoginError.jsp</result>
 		</action>
+
+		<action name="logout" class="user.member.login.LoginAction"
+			method="logout">
+			<result name="success" type="redirect-action">
+				<param name="actionName">main</param>
+			</result>
+		</action>
+
+
 
 		<action name="join1Form" class="user.member.MemberAction">
 			<result type="tiles">join1Form</result>

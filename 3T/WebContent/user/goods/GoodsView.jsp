@@ -24,6 +24,12 @@
 		if (index == 2) {
 			document.form.action = 'AddCart.action?goods_no=${resultClass.goods_no}';
 		}
+		if (index == 3) {
+			document.form.action = 'login.action';
+		}
+		if (index == 4) {
+			document.form.action = 'AddWish.action?goods_no=${resultClass.goods_no}';
+		}
 		document.form.submit();
 	}
 </script>
@@ -86,7 +92,9 @@
 								<p></p> Size : <select name="goods_size" id="goods_size"
 								size="1">
 									<option value="-"><s:property
-											value="resultClass.goods_size" /></option>
+											value="resultClass.goods_size.split(',')[0]" /></option>
+									<option value="-"><s:property
+											value="resultClass.goods_size.split(',')[1]" /></option>
 									<!-- size 고르는거 추후에 option이용해서 넣을지 생각해야됨 -->
 									<!-- -----------------------------------------------------
 							-----------------------------------------------------
@@ -120,17 +128,16 @@
 													onclick="BuyCheck(1);" type="image"
 													src="/3T/upload/buy.JPG" value="로그인 상품구매" />
 											</s:if>
-
-											<s:else>
-												<img src="/goods/upload/buy.JPG"
-													onmouseover="this.src='/3T/upload/buy2.JPG'"
-													onmouseout="this.src='/3T/upload/buy.JPG'" border="0"></img>
-											</s:else>
-										</s:if> <!-- 상품구매버튼 --> <!-- 로그인 x --> <input name="Buy"
+										
+											
+										</s:if>
+										<s:elseif test='%{session.M_ID == null}' > <!-- 상품구매버튼 --> <!-- 로그인 x --> 
+										<input name="Buy"
 										onmouseover="this.src='/goods/upload/buy2.JPG'"
 										onmouseout="this.src='/goods/upload/buy.JPG'"
-										onclick='BuyCheck' type="image" src="/3T/upload/buy.JPG"
+										onclick="BuyCheck(3);" type="image" src="/3T/upload/buy.JPG"
 										value="비로그인 상품구매" />
+										</s:elseif>
 									</td>
 									<td>
 										<!-- 장바구니버튼 --> <!-- 로그인 o --> <s:if
@@ -142,21 +149,32 @@
 													onclick="BuyCheck(2);" type="image"
 													src="/3T/upload/add to cart.JPG" value="로그인 장바구니" />
 											</s:if>
-											<s:else>
-												<img src="/3T/upload/add to cart.JPG"
-													onmouseover="this.src='/3T/upload/add to cart2.JPG'"
-													onmouseout="this.src='/3T/upload/add to cart.JPG'"
-													border="0"></img>
-											</s:else>
-										</s:if>
-									</td>
-									<td>
-										<!-- 장바구니버튼 --> <!-- 로그인 x --> <input name="BuyCart" style=""
+											</s:if>
+											<s:elseif test='%{session.M_ID == null}'>
+											<!-- 장바구니버튼 --> <!-- 로그인 x --> <input name="BuyCart" style=""
 										onmouseover="this.src='/3T/upload/add to cart2.JPG'"
 										onmouseout="this.src='/3T/upload/add to cart.JPG'"
-										onclick="BuyCartcheck;" type="image"
-										src="/3T/upload/add to cart.JPG" value="Submit" />
+										onclick="BuyCheck(3);" type="image"
+										src="/3T/upload/add to cart.JPG" value="비로그인 장바구니" />
+											</s:elseif>
+										
+									</td>
+							
 								</tr>
+								<tr>
+								<td>
+								<!-- wishlist버튼  로그인 o-->
+								<s:if test='%{session.M_ID != null}'>
+								<input name="WishList" onclick="BuyCheck(4);" type="image"
+								value="WishList"/>
+								<s:elseif test='%{session.M_ID == null}'>
+											<!-- wishlist --> <!-- 로그인 x --> <input name="WishList" 
+										onclick="BuyCheck(4);"  value="비로그인 WishList" />
+											</s:elseif>
+								</s:if>
+								</td>
+								</tr>
+								
 								<tr>
 									<td>
 										<!-- 옷 정보 --> <pre>

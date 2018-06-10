@@ -66,6 +66,13 @@
 			<result name="success" type="tiles">goodsview</result>
 		</action>
 		
+		<!-- wishList -->
+		<action name="AddWish" class="user.goods.AddWishAction">
+			<result name="success" type="chain">
+				<param name="actionName">GoodsView</param>
+			</result>
+		</action>
+		
 		
 	</package>
 </struts>
