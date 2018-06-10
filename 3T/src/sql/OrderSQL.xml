@@ -57,6 +57,11 @@
 		 SELECT * FROM  ORDER_3T ORDER BY ORDER_NO DESC
 		 <!--  SELECT * FROM  ORDER_3T WHERE ORDER_NO=#ORDER_NO# -->
 		</select>
+		
+		<select id="selectOrder1" resultMap="orderRes" parameterClass="int">
+		SELECT * FROM  ORDER_3T WHERE ORDER_NO=#ORDER_NO#
+		 <!--  SELECT * FROM  ORDER_3T WHERE ORDER_NO=#ORDER_NO# -->
+		</select>
 		<!-- goods 조회 쿼리 -->
 		<select id="order-selectGoods" resultMap="orderRes">
 		 SELECT * FROM  ORDER_3T WHERE ORDER_NO=#ORDER_NO#

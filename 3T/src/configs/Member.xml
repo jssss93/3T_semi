@@ -1,31 +1,26 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE struts PUBLIC
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
-
-
 <struts>
-	<constant name="struts.multipart.maxSize" value="104857600" />
+	<constant value="104857600" name="struts.multipart.maxSize" />
+
+
 	<package name="joinForm" extends="struts-default">
+
 
 		<result-types>
 			<result-type name="tiles"
 				class="org.apache.struts2.views.tiles.TilesResult"></result-type>
 		</result-types>
 
-		<action name="AD_main" class="admin.member.ListAction">
-			<result name="success" type="tiles">
-				AD_main
-			</result>
-		</action>
-
-		<action name="login" class="user.member.MemberAction">
+		<action name="loginAction" class="user.member.MemberAction">
 			<result type="tiles">loginForm</result>
 		</action>
 
-		<action name="logon" class="user.member.login.LoginAction"
+		<action name="logonAtion" class="user.member.login.LoginAction"
 			method="login">
-
 			<result name="login" type="tiles">
 				AD_main
 			</result>
@@ -45,66 +40,66 @@
 		</action>
 
 
-		<action name="join1" class="user.member.MemberAction">
-			<result>/user/member/JoinForm1.jsp</result>
-		</action>
-		<action name="join2" class="user.member.MemberAction">
-			<result>/user/member/JoinForm2.jsp</result>
-		</action>
-		<action name="join" class="user.member.MemberAction" method="join">
-			<result type="redirect-action">
-				<param name="actionName">login</param>
-			</result>
+
+		<action name="join1Form" class="user.member.MemberAction">
+			<result type="tiles">join1Form</result>
 		</action>
 
+		<action name="join2Form" class="user.member.MemberAction">
+			<result type="tiles">join2Form</result>
+		</action>
+
+		<action name="joinAction" class="user.member.MemberAction"
+			method="join">
+
+			<result type="redirect-action">
+				<param name="actionName">loginAction</param>
+			</result>
+		</action>
 
 		<action name="findIdForm" class="user.member.MemberFindIdAction">
-			<result>
-				/user/member/FindId.jsp
-			</result>
+			<result type="tiles">findIdForm</result>
 		</action>
+
 		<action name="findIdAction" class="user.member.MemberFindIdAction"
 			method="findId">
-			<result>
-				/user/member/FindId.jsp
-			</result>
+			<result type="tiles">findIdAction</result>
 		</action>
 
 		<action name="findPwForm" class="user.member.MemberFindPwAction">
-			<result>
-				/user/member/FindPw.jsp
-			</result>
+			<result type="tiles">findPwForm</result>
 		</action>
+
 		<action name="findPwAction" class="user.member.MemberFindPwAction"
 			method="findPw">
-			<result>
-				/user/member/FindPw.jsp
-			</result>
+			<result type="tiles">findPwAction</result>
 		</action>
+
+
 		<action name="modifyForm" class="user.member.ModifyAction">
-			<result>
-				/user/member/Modify.jsp
-			</result>
+			<result type="tiles">modifyForm</result>
 		</action>
+
 		<action name="modifyAction" class="user.member.ModifyAction"
 			method="modifyUpadte">
-			<result>
-				/user/member/ModifySuccess.jsp
-			</result>
+			<result type="tiles">modifyAction</result>
 		</action>
 
 		<action name="deleteAction" class="user.member.MemberDeleteAction"
 			method="delete">
-			<result>
-				/user/member/DeleteSuccess.jsp
-			</result>
+			<result type="tiles">deleteAction</result>
 		</action>
 
+		<action name="CheckIdAction" class="user.member.CheckIdAction">
+			<result>/user/member/CheckId.jsp</result>
+		</action>
 
-
-
-
+		<action name="MyboardAction" class="user.member.myboard.BoardListAction">
+			<result type="tiles">MyboardAction</result>
+		</action>
+		
+		<action name="MypageForm" class="user.member.MyPage">
+			<result type="tiles">MypageForm</result>
+		</action>
 	</package>
-
-
 </struts>

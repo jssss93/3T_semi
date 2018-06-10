@@ -31,15 +31,16 @@
         	<td width="80"><strong>수량</strong></td>
 			<td width="80"><strong>상품구매<br>금액</br></strong></td>
 			<td width="120"><strong>주문처리상태</strong></td>
+			<td width="120"><strong>주문내역</strong></td>
       	  </tr>
       	  <tr bgcolor="#777777">
-        	<td height="1" colspan="6"></td>
+        	<td height="1" colspan="7"></td>
       	   </tr>
 
 	      <s:iterator value="list" status="stat">
 			<!-- http://localhost:8080/StrutsBoard/viewAction.action?no=2&currentPage=1 -->
-			<s:url id="viewURL" action="OrderView" >
-				<s:param name="ORDER_NO">
+			<s:url id="viewURL" action="GoodsView" >
+				<s:param name="goods_no">
 					<s:property value="ORDER_NO" />
 				</s:param>
 				<s:param name="currentPage">
@@ -49,32 +50,36 @@
 			
      	      <tr bgcolor="#FFFFFF"  align="center">
         		<td><s:property value="ORDER_REGDATE" /><br>[<s:property value="ORDER_NO" />]</br></td>
-        		<td align="center"><img src="/2222/image/${ORDER_IMG}.small.jpg" width="50"></td>
-        		<td align="center">&nbsp;<s:a href="%{viewURL}"><s:property value="ORDER_GOODS_INFO" /></s:a></td>
+        		<td align="center"><img src="/3T/upload/${ORDER_IMG}" width="50"></td>
+        		<td align="center">&nbsp;<s:a href="%{viewURL}"><s:property value="ORDER_GOODS_NAME" /></s:a></td>
 				<td align="center"><s:property value="ORDER_GOODS_COUNT" /></td>
         		<td><s:property value="ORDER_TOTAL" /></td>
         		<td><s:property value="ORDER_STATE" /></td>
+        		<td><input type="button"value="내역보기 " 
+        		OnClick="window.open('Ordergoodslist.action?ORDER_NO=<s:property value="ORDER_NO" />','window_name','width=700,height=600,location=no,status=no,toolbar=no,scrollbars=no');" /></td></td>
+        		   
+        		
       	      </tr>
       	      <tr bgcolor="#777777">
-        		<td height="1" colspan="6"></td>
+        		<td height="1" colspan="7"></td>
       	      </tr>
       
 	      </s:iterator>
 			
 	      <s:if test="list.size() <= 0">
 	    	  <tr bgcolor="#FFFFFF"  align="center">
-		   	  	<td colspan="6
+		   	  	<td colspan="7
 		   	  	">등록된 게시물이 없습니다.</td>
               </tr>						
 	      	  <tr bgcolor="#777777">
-      			<td height="1" colspan="6"></td>
+      			<td height="1" colspan="7"></td>
     	      </tr>
 	      </s:if>
 			
 	      <tr height="50" align="center">
-    		<td colspan="5"><s:property value="pagingHtml"  escape="false" /></td>
-    					<td colspan="6"><input name="Main" type="button" value="주문하기 ▶"
-				onClick="javascript:location.href='OrderWrite.action?currentPage=<s:property value="currentPage" />'"></td>
+    		<td colspan="7"><s:property value="pagingHtml"  escape="false" /></td>
+    				<%-- 	<td colspan="7"><input name="Main" type="button" value="주문하기 ▶"
+				onClick="javascript:location.href='OrderWrite.action?currentPage=<s:property value="currentPage" />'"></td> --%>
     	   </tr>
 	</table>
    </body>

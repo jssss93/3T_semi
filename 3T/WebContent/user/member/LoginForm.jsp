@@ -13,7 +13,7 @@
 <center>
 	<body>
 
-		<form method="post" action="logon.action">
+		<form method="post" action="logonAtion.action">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td align="center" height="425">
@@ -53,9 +53,9 @@
 								<td align="center" style="padding-top: 30px;"><table>
 										<trcolor="gray"> <font color="gray"> <input
 											type="submit" value="LOGIN"
-											onclick="document.location.href='logon.action'">&nbsp&nbsp&nbsp
+											onclick="document.location.href='logonAtion.action'">&nbsp&nbsp&nbsp
 											<input type="button" value="JOIN US"
-											onclick="document.location.href='join1.action'">
+											onclick="document.location.href='join1Form.action'">
 										</font>
 										</tr>
 									</table></td>
