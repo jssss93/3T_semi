@@ -2,6 +2,8 @@ package user.goods;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -17,6 +19,8 @@ public class ViewAction extends ActionSupport implements SessionAware {
 
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
+	
+	private List<GoodsVO> rplist = new ArrayList<GoodsVO>();
 
 	private GoodsVO paramClass = new GoodsVO();
 	private GoodsVO resultClass = new GoodsVO();
@@ -56,6 +60,8 @@ public class ViewAction extends ActionSupport implements SessionAware {
 		sqlMapper.update("goods-updateReadcnt", paramClass);
 
 		resultClass = (GoodsVO) sqlMapper.queryForObject("goods-selectOne", getGoods_no());
+		
+		rplist = sqlMapper.queryForList("goods-selectRP", getGoods_no());
 
 		/*
 		 * reviewList = (List) sqlMapper.queryForList("review.selectAll",
@@ -97,5 +103,14 @@ public class ViewAction extends ActionSupport implements SessionAware {
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
 	}
+
+	public List<GoodsVO> getRplist() {
+		return rplist;
+	}
+
+	public void setRplist(List<GoodsVO> rplist) {
+		this.rplist = rplist;
+	}
+	
 
 }

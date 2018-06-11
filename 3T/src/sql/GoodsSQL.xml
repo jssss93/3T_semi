@@ -43,6 +43,11 @@
       <include refid="goods-where-no" />
    </update>
    
+   <!-- 관련카테고리 띄우기 -->
+   <select id="goods-selectRP" resultMap="goodsRes" parameterClass="int">
+   	  select * from goods where goods_category = (select goods_category from goods where goods_no = #goods_no#)
+   </select>
+   
    <!-- ===============================위시 리스트로 insert================================== -->
    
    <typeAlias alias="wishlist" type="user.wishlist.WishlistVO"/>

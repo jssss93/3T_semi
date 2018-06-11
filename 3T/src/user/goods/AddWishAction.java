@@ -26,6 +26,7 @@ public class AddWishAction extends ActionSupport implements SessionAware{
 	
 	private WishlistVO w_paramClass = new WishlistVO();
 	
+	private int sgoods_cnt;
 	private String m_id;
 	private int goods_no;
 	
@@ -44,7 +45,7 @@ public class AddWishAction extends ActionSupport implements SessionAware{
 		w_paramClass.setW_GOODS_NAME(g_resultClass.getGoods_name());
 		w_paramClass.setW_GOODS_AMOUNT(g_resultClass.getGoods_price());
 		w_paramClass.setW_GOODS_IMG(g_resultClass.getGoods_file_savname().split(",")[0]);
-		w_paramClass.setW_TOTAL(g_resultClass.getGoods_totalcount());
+		w_paramClass.setW_TOTAL(getSgoods_cnt());
 		
 		sqlMapper.insert("insertWishList", w_paramClass);
 		
@@ -97,6 +98,14 @@ public class AddWishAction extends ActionSupport implements SessionAware{
 
 	public void setGoods_no(int goods_no) {
 		this.goods_no = goods_no;
+	}
+
+	public int getSgoods_cnt() {
+		return sgoods_cnt;
+	}
+
+	public void setSgoods_cnt(int sgoods_cnt) {
+		this.sgoods_cnt = sgoods_cnt;
 	}
 	
 	

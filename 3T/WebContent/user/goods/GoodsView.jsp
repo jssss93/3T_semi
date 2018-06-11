@@ -72,7 +72,7 @@
 						<tr>
 							<td style="font-size: 17pt; align: left;" rowspan="2">TOTAL
 								<s:property value="resultClass.goods_totalcount" /> <input
-								name="goods_totalcnt"
+								name="sgoods_cnt"
 								style="width: 25px; text-align: center; -ms-ime-mode: disabled;"
 								onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"
 								type="text" maxlength="3" value="1"> <!--  카운트 0이되면 품절이되는 카운트 추가해야됨
@@ -93,12 +93,17 @@
 						<!-- SIZE 텍스트, 텍스트박스 -->
 						<tr>
 							<td style="width: 170px; font-size: 17pt; align: left;">
-								<p></p> Size : <select name="goods_size" id="goods_size"
+								<p></p> Size : <select name="sgoods_size" id="goods_size"
 								size="1">
-									<option value="-"><s:property
+									<option value="<s:property
+											value="resultClass.goods_size.split(',')[0]" />"><s:property
 											value="resultClass.goods_size.split(',')[0]" /></option>
-									<option value="-"><s:property
+									<option value="<s:property
+											value="resultClass.goods_size.split(',')[1]" />"><s:property
 											value="resultClass.goods_size.split(',')[1]" /></option>
+											<option value="<s:property
+											value="resultClass.goods_size.split(',')[2]" />"><s:property
+											value="resultClass.goods_size.split(',')[2]" /></option>
 									<!-- size 고르는거 추후에 option이용해서 넣을지 생각해야됨 -->
 									<!-- -----------------------------------------------------
 							-----------------------------------------------------
@@ -177,9 +182,24 @@
 										<!-- 장바구니버튼 --> <!-- 로그인 x --> <input name="BuyCart" style=""
 										onmouseover="this.src='/3T/upload/add to cart2.JPG'"
 										onmouseout="this.src='/3T/upload/add to cart.JPG'"
-										onclick="BuyCheck(4);" type="image"
+										onclick="BuyCheck(3);" type="image"
 										src="/3T/upload/add to cart.JPG" value="장바구니 (로그인하세요창)" /></s:else>
 
+								</tr>
+								
+								<tr>
+								<td>
+								<!-- wishlist버튼  로그인 o-->
+								<s:if test='%{session.M_ID != null}'>
+								<input name="WishList" onclick="BuyCheck(4);" type="image"
+								value="WishList"/>
+								</s:if>
+								<!-- wishlist --> <!-- 로그인 x -->
+								<s:else>
+								 <input name="WishList" onclick="BuyCheck(3);" type="image" value="비로그인 WishList" />
+											</s:else>
+							
+								</td>
 								</tr>
 								
 								<tr>
@@ -285,24 +305,44 @@
 <br>
 <br>
 <table width="500" border="1" height="500" align="CENTER"
-	cellpadding="0" cellspacing="0">
+	cellpadding="0" cellspacing="0">관련상품
 
-	<tr>
-		<td colspan="0" align="center"><h2>Model info</h2> <img
-			src="/3T/upload/${goods_file_savname}"></td>
-	</tr>
+	
 </table>
 <!-- 관련상품 -->
 <br>
 <br>
 <br>
-<table width="500" border="1" height="150" align="LEFT" cellpadding="15"
+<table width="500" border="1" height="150" align="center" cellpadding="10"
 	cellspacing="10">
 	<tr>
-		<td rowspan="2" align="center" width="400" height="150"><h2>related
-				product</h2></td>
-		<td rowspan="2" align="center" width="400" height="150"><h2>related
-				product</h2></td>
+		<s:iterator value="rplist" status="stat">
+
+				<s:if test="#stat.index % 3 eq 0">
+					<tr></tr>
+				</s:if>
+
+
+
+				<s:url id="viewURL" action="GoodsView">
+					<s:param name="goods_no">
+						<s:property value="goods_no" />
+					</s:param>
+				</s:url>
+
+
+
+
+				<td width="100" height="200" align="center"><s:a
+						href="%{viewURL}">
+
+						<img src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]"/>" width="350"
+								height="200">
+					</s:a><br> <s:property value="goods_name" /><br> <s:property
+						value="goods_price" /></td>
+
+			</s:iterator>
+			
 	</tr>
 </table>
 <!-- 리뷰 게시판 -->
