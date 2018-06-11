@@ -3,12 +3,13 @@
 <!DOCTYPE struts PUBLIC
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+
+
+
 <struts>
-	<constant value="104857600" name="struts.multipart.maxSize" />
 
-
-
-<struts>
 	<constant name="struts.multipart.maxSize" value="104857600" />
 
 
@@ -109,7 +110,7 @@
 		<action name="MyboardAction" class="user.member.myboard.BoardListAction">
 			<result type="tiles">MyboardAction</result>
 		</action>
-		
+
 		<action name="MypageForm" class="user.member.MyPage">
 			<result type="tiles">MypageForm</result>
 		</action>
