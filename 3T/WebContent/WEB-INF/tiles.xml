@@ -53,6 +53,63 @@
 	<definition name="AddCart" extends="main">
 		<put-attribute name="body" value="/user/basket/List.jsp" />
 	</definition>
+	<!-- *******************************~~MEMBER~~******************************* -->
+
+	<definition name="loginForm" extends="main">
+		<put-attribute name="body" value="/user/member/LoginForm.jsp" />
+	</definition>
+
+	<definition name="LoginSuccess" extends="main">
+		<put-attribute name="body" value="/user/member/LoginSuccess.jsp" />
+	</definition>
+
+	<definition name="LoginError" extends="main">
+		<put-attribute name="body" value="/user/member/login/LoginError.jsp" />
+	</definition>
+
+	<definition name="join1Form" extends="main">
+		<put-attribute name="body" value="/user/member/JoinForm1.jsp" />
+	</definition>
+
+	<definition name="join2Form" extends="main">
+		<put-attribute name="body" value="/user/member/JoinForm2.jsp" />
+	</definition>
+
+	<definition name="findIdForm" extends="main">
+		<put-attribute name="body" value="/user/member/FindId.jsp" />
+	</definition>
+
+	<definition name="findIdAction" extends="main">
+		<put-attribute name="body" value="/user/member/FindId.jsp" />
+	</definition>
+
+	<definition name="findPwForm" extends="main">
+		<put-attribute name="body" value="/user/member/FindPw.jsp" />
+	</definition>
+
+	<definition name="findPwAction" extends="main">
+		<put-attribute name="body" value="/user/member/FindPw.jsp" />
+	</definition>
+
+	<definition name="modifyForm" extends="main">
+		<put-attribute name="body" value="/user/member/Modify.jsp" />
+	</definition>
+
+	<definition name="modifyAction" extends="main">
+		<put-attribute name="body" value="/user/member/ModifySuccess.jsp" />
+	</definition>
+
+	<definition name="deleteAction" extends="main">
+		<put-attribute name="body" value="/user/member/DeleteSuccess.jsp" />
+	</definition>
+
+	<definition name="MyboardAction" extends="main">
+		<put-attribute name="body" value="/user/member/MyBoardList.jsp" />
+	</definition>
+
+	<definition name="MypageForm" extends="main">
+		<put-attribute name="body" value="/user/member/Mypage.jsp" />
+	</definition>
 
 	<!-- *******************************ADMIN******************************* -->
 
