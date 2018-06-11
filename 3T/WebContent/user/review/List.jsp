@@ -48,11 +48,16 @@
 
 				<tr bgcolor="#FFFFFF" align="center">
 					<td><s:property value="REV_no" /></td>
-					<td align="center">&nbsp;사진 <s:property value="REV_GOODS_NO" />
-					</td>
+					<td align="center">&nbsp; <img
+						src="/3T/upload/${REV_file_savname}" width="50" height="50"></td>
 
-					<td align="left">&nbsp;<s:a href="%{viewURL}">
+
+
+					<td align="left">&nbsp; <s:if test="REV_re_level != 0">
+							<c:forEach var="i" begin="${REV_re_level}" end="0">&nbsp;</c:forEach>→
+				</s:if> <s:a href="%{viewURL}">
 							<s:property value="REV_subject" />
+
 						</s:a></td>
 					<td align="center"><s:property value="REV_name" /></td>
 
@@ -62,6 +67,8 @@
 				</tr>
 
 			</s:iterator>
+
+
 
 			<s:if test="list.size() <= 0">
 				<!-- list에 들어있는게 없다면 -->

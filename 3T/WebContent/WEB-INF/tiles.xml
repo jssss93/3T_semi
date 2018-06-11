@@ -116,5 +116,19 @@
 	<definition name="AO_List" extends="AD_main">
 		<put-attribute name="body" value="/admin/order/List.jsp" />
 	</definition>
+	
+	<!-- *********************REVIEW************************ -->
+	<definition name="Review_List" extends="main">
+		<put-attribute name="body" value="/user/review/List.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="Review_WriteForm" extends="main">
+		<put-attribute name="body" value="/user/review/Write.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="Review_View" extends="main">
+		<put-attribute name="body" value="/user/review/View.jsp"></put-attribute>
+	</definition>
+	
 
 </tiles-definitions>

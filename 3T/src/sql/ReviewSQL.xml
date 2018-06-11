@@ -2,7 +2,7 @@
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap>
 	<typeAlias alias="review" type="user.review.ReviewVO" />
-
+	<typeAlias alias="comment" type="user.review.Review_CommentVO" />
 	<!-- 리절트 맵 정의 -->
 	<resultMap id="reviewRes" class="review">
 		<result property="REV_no" column="REV_no" />
@@ -21,6 +21,16 @@
 		<result property="REV_goods_no" column="REV_goods_no" />
 	</resultMap>
 
+	<resultMap id="commentRes" class="comment">
+		<result property="REV_C_no" column="REV_C_no" />
+		<result property="REV_C_originno" column="REV_C_originno" />
+		<result property="REV_C_name" column="REV_C_name" />
+		<result property="REV_C_passwd" column="REV_C_passwd" />
+		<result property="REV_C_content" column="REV_C_content" />
+		<result property="REV_C_date" column="REV_C_date" />
+	</resultMap>
+
+
 	<!-- 공통으로 사용할 select 절 정의 -->
 	<sql id="review-select-all">
 		SELECT * FROM REVIEW
@@ -33,9 +43,9 @@
 
 
 	<!-- select 쿼리문 정의 -->
-	<select id="review-selectAll" resultMap="reviewRes">
+	<select id="review-selectAll" resultMap="reviewRes" parameterClass="int">
 		<include refid="review-select-all" />
-		ORDER BY REV_no DESC
+		ORDER BY REV_ref DESC, REV_re_step ASC
 	</select>
 
 	<select id="review-selectOne" resultMap="reviewRes"
@@ -44,8 +54,9 @@
 		<include refid="review-where-no" />
 	</select>
 
-	<select id="review-selectLastNo" resultClass="review">
-		SELECT max(REV_no) as REV_no FROM REVIEW
+	<select id="review-selectLastNo" resultClass="review" parameterClass="int">
+		SELECT max(REV_no)
+		as REV_no FROM REVIEW
 	</select>
 
 	<select id="review-selectPassword" resultMap="reviewRes"
@@ -59,7 +70,8 @@
 
 	<insert id="review-insertReview" parameterClass="review">
 
-		INSERT INTO REVIEW (REV_no,
+		INSERT INTO
+		REVIEW (REV_no,
 		REV_subject,
 		REV_name,
 		REV_passwd,
@@ -90,7 +102,42 @@
 
 		)
 	</insert>
+	
+	<insert id="review-insertReviewReply" parameterClass="review">
+	INSERT INTO
+		REVIEW (REV_no,
+		REV_subject,
+		REV_name,
+		REV_passwd,
+		REV_content,
+		REV_regdate,
 
+		REV_member_id,
+		REV_goods_no,
+
+		REV_re_step,
+		REV_re_level,
+		REV_ref
+
+		)
+		VALUES (REV_NO_SEQ.NEXTVAL,
+		#REV_subject#,
+		#REV_name#,
+		#REV_passwd#,
+		#REV_content#,
+		#REV_regdate#,
+
+		#REV_member_id#,
+		#REV_goods_no#,
+
+		#REV_re_step#,
+		#REV_re_level#,
+		#REV_ref#
+
+		)
+	
+	</insert>
+	
 	<!-- update 쿼리문 정의 -->
 	<!-- update 쿼리문 정의 -->
 	<update id="review-updateReview" parameterClass="review">
@@ -112,21 +159,76 @@
 		UPDATE REVIEW SET REV_READCNT = REV_readcnt + 1
 		<include refid="review-where-no" />
 	</update>
-	
+
+	<update id="review-updateReplyStep" parameterClass="review">
+		UPDATE REVIEW SET REV_re_step=REV_re_step+1 WHERE REV_ref=#REV_ref# AND REV_re_step>#REV_re_step#
+	</update>
+
 	<!-- delete 쿼리문 정의 -->
-  		  <delete id="review-DeleteReview" parameterClass="review">
-			DELETE FROM REVIEW
-			<include refid="review-where-no" />
-   		 </delete>
-<!-- 검색로직 추가시작 --><!-- 검색 추가데이터 -->
-<select id="review-selectSearchW" resultMap="reviewRes" parameterClass="string">
+	<delete id="review-DeleteReview" parameterClass="review">
+		DELETE FROM REVIEW
+		<include refid="review-where-no" />
+	</delete>
+	<!-- 검색로직 추가시작 --><!-- 검색 추가데이터 -->
+	<select id="selectSearchW" resultMap="reviewRes" parameterClass="string">
 		<include refid="review-select-all" />
-		 WHERE REV_name like #searchKeyword#
-		 ORDER BY REV_no DESC
+		WHERE REV_name like #searchKeyword#
+		ORDER BY REV_no DESC
 	</select>
-	<select id="review-selectSearchS" resultMap="reviewRes" parameterClass="string">
+	<select id="selectSearchS" resultMap="reviewRes" parameterClass="string">
 		<include refid="review-select-all" />
-		 WHERE REV_subject like #searchKeyword#
-		 ORDER BY REV_no DESC
+		WHERE REV_subject like #searchKeyword#
+		ORDER BY REV_no DESC
 	</select>
+
+
+	<!-- 댓글로직 -->
+	<sql id="select-com">
+		SELECT * FROM review_comment
+	</sql>
+
+	<sql id="comment-where-no">
+		WHERE REV_C_no = #REV_C_no#
+	</sql>
+
+	<!-- 댓글 select쿼리문 -->
+	<select id="commentSelectAll" resultMap="commentRes"
+		parameterClass="int">
+		SELECT * FROM review_comment
+		WHERE REV_C_originno = #REV_C_no#
+		ORDER BY REV_C_no DESC
+	</select>
+
+
+	<select id="selectPassword2" resultMap="commentRes">
+		<include refid="select-com" />
+		<include refid="comment-where-no" />
+		AND REV_C_passwd = #REV_C_passwd#
+	</select>
+
+	<!--댓글 insert쿼리문 -->
+	<insert id="insertComment" parameterClass="comment">
+		INSERT INTO
+		review_comment(REV_C_NO, REV_C_ORIGINNO, REV_C_NAME, REV_C_PASSWD,
+		REV_C_CONTENT, REV_C_DATE)
+		VALUES (CM_board_no_seq.NEXTVAL,
+		#REV_C_originno#, #REV_C_name#, #REV_C_passwd#, #REV_C_content#,
+		#REV_C_date#)
+	</insert>
+	<!--댓글 delete 쿼리문 -->
+	<delete id="deleteComment" parameterClass="comment">
+		DELETE FROM review_comment
+		<include refid="comment-where-no" />
+	</delete>
+
+
+	<!-- 댓글 -->
+
+
+
+
+
+
+
+
 </sqlMap>
