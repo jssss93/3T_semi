@@ -36,11 +36,13 @@
 						<tr>
 							<td align="center" style="padding-bottom: 20px;">
 								<table border="0" cellspacing="0" cellpadding="0">
+								
 									<tr>
 										<td class="formtext">이름</td>
 										<td height="35"><input type="text" name="M_NAME"
 											size="17" style="width: 230px; height: 26px;"></td>
 									</tr>
+									
 									<tr>
 										<td class="tdstyle1">이메일</td>
 										<td valign="middle"><input name="M_EMAIL1" id="M_EMAIL1" size="15"> @ <input
@@ -55,6 +57,7 @@
 												<option value="1">직접입력</option>
 										</select>
 									</tr>
+									
 								</table>
 							</td>
 						</tr>

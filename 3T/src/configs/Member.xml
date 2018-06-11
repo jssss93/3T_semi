@@ -6,6 +6,7 @@
 
 <struts>
 	<constant name="struts.multipart.maxSize" value="104857600" />
+
 	<package name="joinForm" extends="struts-default">
 
 		<result-types>
@@ -13,11 +14,7 @@
 				class="org.apache.struts2.views.tiles.TilesResult"></result-type>
 		</result-types>
 
-		<action name="AD_main" class="admin.member.ListAction">
-			<result name="success" type="tiles">
-				AD_main
-			</result>
-		</action>
+
 
 		<action name="login" class="user.member.MemberAction">
 			<result type="tiles">loginForm</result>
@@ -25,20 +22,22 @@
 
 		<action name="logon" class="user.member.login.LoginAction"
 			method="login">
-			
-			<result name="login" type="tiles" >
-				AD_main
+
+			<result name="login" type="redirect-action">
+				<param name="actionName">AD_main</param>
 			</result>
+
 			<result name="success" type="tiles">main</result>
 			<result name="error">/user/login/LoginError.jsp</result>
 		</action>
-		
-		<action name="logout" class="user.member.login.LoginAction" method="logout">
+
+		<action name="logout" class="user.member.login.LoginAction"
+			method="logout">
 			<result name="success" type="tiles">
 				main
 			</result>
 		</action>
-		
+
 
 		<action name="join1" class="user.member.MemberAction">
 			<result>/user/member/JoinForm1.jsp</result>

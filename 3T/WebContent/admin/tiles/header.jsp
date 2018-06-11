@@ -15,9 +15,9 @@
 
 
 		<tr>
-			<td align="left" width="150" >
-				<h2><a href="AD_main.action">3T</a></h2>
-				<h2><a href="main.action">(회원용페이지로이동)</a></h2>
+			<td align="left" width="300" >
+				<h1><a href="AD_main.action">3T</a></h1>
+				<a href="main.action">(회원용페이지로이동)</a>
 			</td>
 			
 			
@@ -35,7 +35,7 @@
 				<a href="AF_List.action">FAQ</a>&nbsp;|
 			</td>
 			<td>
-				<a href="AQ_List.action">QA(아직안되)</a>&nbsp;|
+				<a href="AQ_List.action">QA(아직)</a>&nbsp;|
 			</td>
 			<td>
 				<a href="AO_List.action">주문목록</a>&nbsp;

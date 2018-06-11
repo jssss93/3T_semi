@@ -40,6 +40,13 @@ public class WriteAction extends ActionSupport {
 	}
 
 	public String form() throws Exception {
+
+		return SUCCESS;
+
+	}
+
+	public String modifyform() throws Exception {
+		resultClass = (FaqVO) sqlMapper.queryForObject("AFselectOne", getFaq_no());
 		return SUCCESS;
 
 	}

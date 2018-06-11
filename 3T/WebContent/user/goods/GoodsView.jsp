@@ -6,6 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <script type="text/javascript">
 	/* 종합개수 카운트 */
@@ -23,6 +24,12 @@
 		}
 		if (index == 2) {
 			document.form.action = 'AddCart.action?goods_no=${resultClass.goods_no}';
+		}
+		if (index == 3) {
+			document.form.action = 'loginForm.action';
+		}
+		if (index == 4) {
+			document.form.action = 'loginForm.action';
 		}
 		document.form.submit();
 	}
@@ -59,6 +66,9 @@
 							<td></td>
 						</tr>
 						<!-- TOTAL -->
+						<%
+							int totalcnt = 0;
+						%>
 						<tr>
 							<td style="font-size: 17pt; align: left;" rowspan="2">TOTAL
 								<s:property value="resultClass.goods_totalcount" /> <input
@@ -113,49 +123,57 @@
 									<td>
 										<!-- 상품구매버튼 --> <!-- 로그인 o --> <s:if
 											test='%{session.M_ID != null}'>
-											<s:if test="%{resultClass.goods_totalcount!=0}">
-												<input name="Buy" style=""
-													onmouseover="this.src='/goods/upload/buy2.JPG'"
-													onmouseout="this.src='/goods/upload/buy.JPG'"
-													onclick="BuyCheck(1);" type="image"
-													src="/3T/upload/buy.JPG" value="로그인 상품구매" />
-											</s:if>
 
-											<s:else>
-												<img src="/goods/upload/buy.JPG"
-													onmouseover="this.src='/3T/upload/buy2.JPG'"
-													onmouseout="this.src='/3T/upload/buy.JPG'" border="0"></img>
-											</s:else>
-										</s:if> <!-- 상품구매버튼 --> <!-- 로그인 x --> <input name="Buy"
-										onmouseover="this.src='/goods/upload/buy2.JPG'"
-										onmouseout="this.src='/goods/upload/buy.JPG'"
-										onclick='BuyCheck' type="image" src="/3T/upload/buy.JPG"
-										value="비로그인 상품구매" />
+											<input name="Buy" style=""
+												onmouseover="this.src='/goods/upload/buy2.JPG'"
+												onmouseout="this.src='/goods/upload/buy.JPG'"
+												onclick="BuyCheck(1);" type="image" src="/3T/upload/buy.JPG"
+												value="상품구매" />
+										</s:if> <s:else>
+											<img src="/goods/upload/buy.JPG"
+												onmouseover="this.src='/3T/upload/buy2.JPG'"
+												onmouseout="this.src='/3T/upload/buy.JPG'" border="0"></img>
+
+											<!-- 상품구매버튼 -->
+											<!-- 로그인 x -->
+											<input name="Buy"
+												onmouseover="this.src='/goods/upload/buy2.JPG'"
+												onmouseout="this.src='/goods/upload/buy.JPG'"
+												onclick='BuyCheck(3)' type="image" src="/3T/upload/buy.JPG"
+												value="상품구매(로그인하세요 창)" />
+										</s:else>
 									</td>
+									
+									
+									
+									
+									
+									
+									
+									
 									<td>
 										<!-- 장바구니버튼 --> <!-- 로그인 o --> <s:if
 											test='%{session.M_ID != null}'>
-											<s:if test="%{resultClass.goods_totalcount!=0}">
+											
 												<input name="BuyCart"
 													onmouseover="this.src='/3T/upload/add to cart2.JPG'"
 													onmouseout="this.src='/3T/upload/add to cart.JPG'"
 													onclick="BuyCheck(2);" type="image"
-													src="/3T/upload/add to cart.JPG" value="로그인 장바구니" />
-											</s:if>
-											<s:else>
+													src="/3T/upload/add to cart.JPG" value="장바구니 추가" />
+											
+											
 												<img src="/3T/upload/add to cart.JPG"
 													onmouseover="this.src='/3T/upload/add to cart2.JPG'"
 													onmouseout="this.src='/3T/upload/add to cart.JPG'"
 													border="0"></img>
-											</s:else>
-										</s:if>
-									</td>
+											
+									</td></s:if><s:else>
 									<td>
 										<!-- 장바구니버튼 --> <!-- 로그인 x --> <input name="BuyCart" style=""
 										onmouseover="this.src='/3T/upload/add to cart2.JPG'"
 										onmouseout="this.src='/3T/upload/add to cart.JPG'"
-										onclick="BuyCartcheck;" type="image"
-										src="/3T/upload/add to cart.JPG" value="Submit" />
+										onclick="BuyCheck(4);" type="image"
+										src="/3T/upload/add to cart.JPG" value="장바구니 (로그인하세요창)" /></s:else>
 								</tr>
 								<tr>
 									<td>
