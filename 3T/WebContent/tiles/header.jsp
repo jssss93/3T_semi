@@ -52,7 +52,7 @@
 				
 				<a href="qa_listAction.action">Q&A</a>
 				
-				<a href="review.action">review</a>
+				<a href="Review_list.action">review</a>
 			</td>
 			
 			

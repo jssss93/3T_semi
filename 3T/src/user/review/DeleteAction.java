@@ -20,11 +20,16 @@ public class DeleteAction extends ActionSupport {
 	private ReviewVO paramClass; // 파라미터를 저장할 객체
 	private ReviewVO resultClass; // 쿼리 결과 값을 저장할 객체
 
+	private Review_CommentVO cClass = new Review_CommentVO();
+	private Review_CommentVO cResult = new Review_CommentVO();
+
 	private int currentPage; // 현재 페이지
 
-	private String fileUploadPath = "C:\\upload\\";
+	private String fileUploadPath = "C:\\Users\\호준\\Desktop\\git\\3T\\3T\\WebContent\\upload\\";
 
 	private int REV_no;
+
+	private int REV_C_no;
 
 	public DeleteAction() throws IOException {
 
@@ -52,6 +57,18 @@ public class DeleteAction extends ActionSupport {
 
 		// 삭제 쿼리 수행.
 		sqlMapper.update("review-DeleteReview", paramClass);
+
+		return SUCCESS;
+	}
+
+	public String execute2() throws Exception {
+		cClass = new Review_CommentVO();
+		cResult = new Review_CommentVO();
+
+		cClass.setREV_C_no(getREV_C_no());
+		System.out.println("getREV_C_no" + getREV_C_no());
+
+		sqlMapper.update("deleteComment", cClass);
 
 		return SUCCESS;
 	}
@@ -94,6 +111,30 @@ public class DeleteAction extends ActionSupport {
 
 	public void setFileUploadPath(String fileUploadPath) {
 		this.fileUploadPath = fileUploadPath;
+	}
+
+	public Review_CommentVO getcClass() {
+		return cClass;
+	}
+
+	public void setcClass(Review_CommentVO cClass) {
+		this.cClass = cClass;
+	}
+
+	public Review_CommentVO getcResult() {
+		return cResult;
+	}
+
+	public void setcResult(Review_CommentVO cResult) {
+		this.cResult = cResult;
+	}
+
+	public int getREV_C_no() {
+		return REV_C_no;
+	}
+
+	public void setREV_C_no(int REV_C_no) {
+		this.REV_C_no = REV_C_no;
 	}
 
 }
