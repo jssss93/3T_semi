@@ -85,8 +85,8 @@
 						<s:property value="no" />
 					</s:param>
 				</s:url>
-				<input name="modify_b" type="button" value="수정" class="inputb" onClick="javascript:open_win_noresizable('AN_ModifyForm.action?notice_no=<s:property value="resultClass.notice_no" />&currentPage=<s:property value="currentPage" />','modify')">
-				<input name="delete_b" type="button" value="삭제" class="inputb" onClick="javascript:open_win_noresizable('ANdeleteAction.action?notice_no=<s:property value="resultClass.notice_no" />&currentPage=<s:property value="currentPage" />','delete')">
+				<input name="modify_b" type="button" value="수정" class="inputb" onClick="javascript:location.href='AN_ModifyForm.action?notice_no=<s:property value="resultClass.notice_no" />&currentPage=<s:property value="currentPage" />','modify'">
+				<input name="delete_b" type="button" value="삭제" class="inputb" onClick="javascript:location.href='AN_Delete.action?notice_no=<s:property value="resultClass.notice_no" />&currentPage=<s:property value="currentPage" />','delete'">
 				<input name="list_b" type="button" value="목록" class="inputb" onClick="javascript:location.href='AN_List.action?currentPage=<s:property value="currentPage" />'">
 			</td>
 		</tr>

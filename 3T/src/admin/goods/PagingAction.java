@@ -1,7 +1,7 @@
 package admin.goods;
 
 public class PagingAction {
-	
+
 	private int currentPage;
 	private int totalCount;
 	private int totalPage;
@@ -11,92 +11,81 @@ public class PagingAction {
 	private int endCount;
 	private int startPage;
 	private int endPage;
-	
+
 	private StringBuffer pagingHtml;
-	
-	public PagingAction(int currentPage, int totalCount, int blockCount, int blockPage, int searchNum, String isSearch)
-	{
+
+	public PagingAction(int currentPage, int totalCount, int blockCount, int blockPage, int searchNum,
+			String isSearch) {
 		this.blockCount = blockCount;
 		this.blockPage = blockPage;
 		this.currentPage = currentPage;
 		this.totalCount = totalCount;
-		
+
 		totalPage = (int) Math.ceil((double) totalCount / blockCount);
-		if(totalPage == 0)
-		{
+		if (totalPage == 0) {
 			totalPage = 1;
 		}
-		
-		if(currentPage > totalPage)
-		{
+
+		if (currentPage > totalPage) {
 			currentPage = totalPage;
 		}
-		
+
 		startCount = (currentPage - 1) * blockCount;
-		endCount = startCount + blockCount-1;
-		
-		startPage = (int)((currentPage - 1)/blockPage) * blockPage + 1;
+		endCount = startCount + blockCount - 1;
+
+		startPage = (int) ((currentPage - 1) / blockPage) * blockPage + 1;
 		endPage = startPage + blockPage - 1;
-		
-		if(endPage > totalPage)
-		{
+
+		if (endPage > totalPage) {
 			endPage = totalPage;
 		}
-		
+
 		pagingHtml = new StringBuffer();
-		if(currentPage > blockPage)
-		{
-			if(isSearch != "")
-				pagingHtml.append("<a href=AGlistAction.action?currentPage=" + (startPage - 1) + "&searchKeyword="+isSearch+"&searchNum="+searchNum+">");
+		if (currentPage > blockPage) {
+			if (isSearch != "")
+				pagingHtml.append("<a href=AG_List.action?currentPage=" + (startPage - 1) + "&searchKeyword=" + isSearch
+						+ "&searchNum=" + searchNum + ">");
 			else
-				pagingHtml.append("<a href=AGlistAction.action?currentPage=" + (startPage - 1) + ">");
+				pagingHtml.append("<a href=AG_List.action?currentPage=" + (startPage - 1) + ">");
 			pagingHtml.append("이전");
 			pagingHtml.append("</a>");
 		}
-		
+
 		pagingHtml.append("&nbsp;|&nbsp;");
-		
-		for(int i = startPage;i<=endPage;i++)
-		{
-			if(i > totalPage)
-			{
+
+		for (int i = startPage; i <= endPage; i++) {
+			if (i > totalPage) {
 				break;
 			}
-			if(i == currentPage)
-			{
+			if (i == currentPage) {
 				pagingHtml.append("&nbsp;<b> <font color='red'>");
 				pagingHtml.append(i);
 				pagingHtml.append("</font></b>");
-			}
-			else
-			{
-				pagingHtml.append("&nbsp;<a href='AGlistAction.action?currentPage=");
+			} else {
+				pagingHtml.append("&nbsp;<a href='AG_List.action?currentPage=");
 				pagingHtml.append(i);
-				if(isSearch != "")
-					pagingHtml.append("&searchKeyword="+isSearch);
+				if (isSearch != "")
+					pagingHtml.append("&searchKeyword=" + isSearch);
 				pagingHtml.append("'>");
 				pagingHtml.append(i);
 				pagingHtml.append("</a>");
 			}
-			
+
 			pagingHtml.append("&nbsp;");
 		}
-		
+
 		pagingHtml.append("&nbsp;&nbsp;|&nbsp;&nbsp;");
-		
-		if(totalPage - startPage >= blockPage)
-		{
-			pagingHtml.append("&nbsp;<a href='AGlistAction.action?currentPage=");
-			pagingHtml.append((endPage+1));
-			if(isSearch != "")
-				pagingHtml.append("&searchKeyword="+isSearch);
+
+		if (totalPage - startPage >= blockPage) {
+			pagingHtml.append("&nbsp;<a href='AG_List.action?currentPage=");
+			pagingHtml.append((endPage + 1));
+			if (isSearch != "")
+				pagingHtml.append("&searchKeyword=" + isSearch);
 			pagingHtml.append("'>");
 			pagingHtml.append("다음");
 			pagingHtml.append("</a>");
 		}
 	}
-
-	
 
 	public int getCurrentPage() {
 		return currentPage;
@@ -177,7 +166,5 @@ public class PagingAction {
 	public void setPagingHtml(StringBuffer pagingHtml) {
 		this.pagingHtml = pagingHtml;
 	}
-	
-	
 
 }

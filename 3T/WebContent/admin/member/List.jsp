@@ -66,7 +66,7 @@
 		</s:if>
 
 		<tr align="center">
-			<td colspan="5"><s:property value="pagingHtml" escape="false" /></td>
+			<td colspan="5"><s:property value="PagingHtml" escape="false" /></td>
 		</tr>
 
 		<tr align="right">
