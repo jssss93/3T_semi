@@ -50,7 +50,7 @@
 				
 				<a href="UserFaqList.action">FAQ</a>
 				
-				<a href="qna.action">Q&A</a>
+				<a href="qa_listAction.action">Q&A</a>
 				
 				<a href="Review_list.action">review</a>
 			</td>
@@ -59,10 +59,10 @@
 			<s:if test='%{session.M_ID == null}'>
 				<td align="right">
 					<!--비회원 헤더 카테고리  --> <!--비회원 로그인 폼  경로 잡아줄 것--> <a
-					href="login.action" >LOGIN
+					href="loginAction.action" >LOGIN
 					<form action=""></form>
 					</a> &nbsp;|&nbsp;<a
-					href="joinForm.action" >JOIN</a>
+					href="join1Form.action" >JOIN</a>
 
 				</td>
 			</s:if>
@@ -79,7 +79,7 @@
 					&nbsp;|&nbsp;
 					<a href="logout.action">MODIFY</a> 
 					&nbsp;|&nbsp;
-					<a href="orderList.action">ORDER</a> 
+					<a href="OrderMain.action">ORDER</a> 
 					&nbsp;|&nbsp;
 					<a href="basketList.action">MYPAGE</a> 
 					&nbsp;&nbsp;

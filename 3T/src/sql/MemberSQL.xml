@@ -1,152 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
-
 <sqlMap namespace="member">
-
 	<!-- 데이터를 꺼낼때 사용할것 설정 -->
-	<typeAlias alias="member" type="user.member.MemberVO" />
-
+	<typeAlias type="user.member.MemberVO" alias="member" />
 	<!-- 리절트 맵 정의: id="memberRes" -->
-	<resultMap id="memberRes" class="member">
-
-		<result property="M_NO" column="M_NO" />
-		<result property="M_ID" column="M_ID" />
-		<result property="M_NAME" column="M_NAME" />
-		<result property="M_PASSWD" column="M_PASSWD" />
-		<result property="M_PASSWD2" column="M_PASSWD2" />
-		<result property="M_JUMIN1" column="M_JUMIN1" />
-		<result property="M_JUMIN2" column="M_JUMIN2" />
-		<result property="M_PHONE" column="M_PHONE" />
-		<result property="M_EMAIL1" column="M_EMAIL1" />
-		<result property="M_EMAIL2" column="M_EMAIL2" />
-		<result property="M_ZIPCODE" column="M_ZIPCODE" />
-		<result property="M_ADDR1" column="M_ADDR1" />
-		<result property="M_ADDR2" column="M_ADDR2" />
-		<result property="M_REGDATE" column="M_REGDATE" />
-		<result property="M_DEPOSITOR" column="M_DEPOSITOR" />
-		<result property="M_NAME_BANK" column="M_NAME_BANK" />
-		<result property="ACCOUNT_NO" column="ACCOUNT_NO" />
-		<result property="M_ADMIN" column="M_ADMIN" />
-
-
-
-
+	<resultMap class="member" id="memberRes">
+		<result column="M_NO" property="M_NO" />
+		<result column="M_ID" property="M_ID" />
+		<result column="M_NAME" property="M_NAME" />
+		<result column="M_PASSWD" property="M_PASSWD" />
+		<result column="M_PASSWD2" property="M_PASSWD2" />
+		<result column="M_JUMIN1" property="M_JUMIN1" />
+		<result column="M_JUMIN2" property="M_JUMIN2" />
+		<result column="M_PHONE" property="M_PHONE" />
+		<result column="M_EMAIL1" property="M_EMAIL1" />
+		<result column="M_EMAIL2" property="M_EMAIL2" />
+		<result column="M_ZIPCODE" property="M_ZIPCODE" />
+		<result column="M_ADDR1" property="M_ADDR1" />
+		<result column="M_ADDR2" property="M_ADDR2" />
+		<result column="M_REGDATE" property="M_REGDATE" />
+		<result column="M_DEPOSITOR" property="M_DEPOSITOR" />
+		<result column="M_NAME_BANK" property="M_NAME_BANK" />
+		<result column="ACCOUNT_NO" property="ACCOUNT_NO" />
+		<result column="M_ADMIN" property="M_ADMIN" />
 	</resultMap>
-
-
-
 	<!-- 회원관리 공통 쿼리문 정의 -->
-	<sql id="select-all">
-		SELECT * FROM MEMBER
-	</sql>
-
-
-	<select id="selectAll" resultMap="memberRes">
-		SELECT * FROM MEMBER ORDER BY
+	<sql id="select-all"> SELECT * FROM MEMBER </sql>
+	<select id="selectAll" resultMap="memberRes"> SELECT * FROM MEMBER ORDER BY
 		M_ID DESC
 	</select>
-
 	<!-- 로그인 -->
+
 	<!-- <select id="login" resultMap="memberRes" parameterClass="member"> select 
 		* from member where M_ID = #M_ID# and M_PASSWD=#M_PASSWD# </select> -->
 	<select id="searchpw" resultMap="memberRes" parameterClass="string">
 		SELECT * FROM MEMBER WHERE M_ID = #M_ID#
 	</select>
 	<!-- 회원 정보 수정 -->
-	<update id="memberUpdate" parameterClass="member">
-		UPDATE MEMBER
-		SET M_ID =
-		#M_ID#,
-		M_PASSWD = #M_PASSWD#,
-		M_PASSWD2 = #M_PASSWD2#,
-		M_EMAIL1 =#M_EMAIL1#,
-		M_EMAIL2 =#M_EMAIL2#,
-		M_ZIPCODE =#M_ZIPCODE#,
-		M_PHONE =#M_PHONE#,
-		M_ADDR1 =#M_ADDR1#,
-		M_ADDR2 = #M_ADDR2#,
-		M_DEPOSITOR =#M_DEPOSITOR#,
-		M_NAME_BANK = #M_NAME_BANK#,
-		ACCOUNT_NO = #ACCOUNT_NO#
+	<update id="memberUpdate" parameterClass="member"> UPDATE MEMBER SET M_ID
+		= #M_ID#, M_PASSWD = #M_PASSWD#, M_PASSWD2 = #M_PASSWD2#, M_EMAIL1
+		=#M_EMAIL1#, M_EMAIL2 =#M_EMAIL2#, M_ZIPCODE =#M_ZIPCODE#, M_PHONE
+		=#M_PHONE#, M_ADDR1 =#M_ADDR1#, M_ADDR2 = #M_ADDR2#, M_DEPOSITOR
+		=#M_DEPOSITOR#, M_NAME_BANK = #M_NAME_BANK#, ACCOUNT_NO = #ACCOUNT_NO#
 		WHERE M_ID = #M_ID#
 	</update>
-
 	<!-- 회원아이디찾기 -->
-	<select id="findId" resultMap="memberRes" parameterClass="member">
-		select
+	<select id="findId" resultMap="memberRes" parameterClass="member"> select
 		* from MEMBER where M_NAME = #M_NAME# and M_EMAIL1 = #M_EMAIL1#
 	</select>
 	<!-- 회원비밀번호찾기 -->
-	<select id="findPw" resultMap="memberRes" parameterClass="member">
-		select
+	<select id="findPw" resultMap="memberRes" parameterClass="member"> select
 		* from MEMBER where M_ID = #M_ID# and M_JUMIN1 = #M_JUMIN1# and
 		M_JUMIN2 = #M_JUMIN2#
 	</select>
-
-
-
-
+	<!-- 회원 정보(M_ID 중복 확인) -->
+	<select id="checkM_ID" resultMap="memberRes" parameterClass="string">
+		select * from MEMBER where M_ID = #M_ID#
+	</select>
 	<!-- 회원가입 -->
-
-
-
-
-	<insert id="mInsert" parameterClass="member">
-
-		insert into MEMBER(
-		M_NO,
-		M_ID,
-		M_PASSWD,
-		M_PASSWD2,
-		M_NAME,
-		M_JUMIN1,
-		M_JUMIN2,
-		M_PHONE,
-		M_EMAIL1,
-		M_EMAIL2,
-		M_ZIPCODE,
-		M_ADDR1,
-		M_ADDR2,
-		M_REGDATE,
-		M_DEPOSITOR,
-		M_NAME_BANK,
-		ACCOUNT_NO,
-		M_ADMIN
-		)
-		values(
-		member_no_seq.NEXTVAL,
-		#M_ID#,
-		#M_PASSWD#,
-		#M_PASSWD2#,
-		#M_NAME#,
-		#M_JUMIN1#,
-		#M_JUMIN2#,
-		#M_PHONE#,
-		#M_EMAIL1#,
-		#M_EMAIL2#,
-		#M_ZIPCODE#,
-		#M_ADDR1#,
-		#M_ADDR2#,
-		#M_REGDATE#,
-		#M_DEPOSITOR#,
-		#M_NAME_BANK#,
-		#ACCOUNT_NO#,
-		#M_ADMIN#
-
-		)
+	<insert id="mInsert" parameterClass="member"> insert into MEMBER( M_NO,
+		M_ID, M_PASSWD, M_PASSWD2, M_NAME, M_JUMIN1, M_JUMIN2, M_PHONE,
+		M_EMAIL1, M_EMAIL2, M_ZIPCODE, M_ADDR1, M_ADDR2, M_REGDATE,
+		M_DEPOSITOR, M_NAME_BANK, ACCOUNT_NO, M_ADMIN ) values(
+		member_no_seq.NEXTVAL, #M_ID#, #M_PASSWD#, #M_PASSWD2#, #M_NAME#,
+		#M_JUMIN1#, #M_JUMIN2#, #M_PHONE#, #M_EMAIL1#, #M_EMAIL2#,
+		#M_ZIPCODE#, #M_ADDR1#, #M_ADDR2#, #M_REGDATE#, #M_DEPOSITOR#,
+		#M_NAME_BANK#, #ACCOUNT_NO#, #M_ADMIN# )
 	</insert>
-
- <!-- 	탈퇴처리후 member테이블에서 삭제  -->
-	<delete id="memberDelete" parameterClass="member">
-		delete from
-		member where M_ID=#M_ID#
-	</delete> 
-		
-		
-
-
-
-
-
-
+	<!-- 탈퇴처리후 member테이블에서 삭제 -->
+	<delete id="memberDelete" parameterClass="member"> delete from member
+		where M_ID=#M_ID#
+	</delete>
 </sqlMap>

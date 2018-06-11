@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
-
 <tiles-definitions>
 
 
-	<definition name="main" template="/tiles/layout.jsp">
+	<definition template="/tiles/layout.jsp" name="main">
 		<put-attribute name="title" value="test" />
 		<put-attribute name="header" value="/tiles/header.jsp" />
 		<put-attribute name="body" value="/user/goods/MainList.jsp" />
@@ -37,86 +37,170 @@
 		<put-attribute name="body" value="/user/faq/View.jsp" />
 	</definition>
 
-	<definition name="loginForm" extends="main">
-		<put-attribute name="body" value="/user/member/LoginForm.jsp" />
-	</definition>
-	
 	<definition name="Buy" extends="main">
 		<put-attribute name="body" value="/user/order/Write.jsp" />
 	</definition>
-	<definition name="AddCart" extends="main">
-		<put-attribute name="body" value="/user/basket/List.jsp" />
+	<!-- *******************************~~MEMBER~~******************************* -->
+
+	<definition name="loginForm" extends="main">
+		<put-attribute name="body" value="/user/member/LoginForm.jsp" />
 	</definition>
 
+	<definition name="LoginSuccess" extends="main">
+		<put-attribute name="body" value="/user/member/LoginSuccess.jsp" />
+	</definition>
+
+	<definition name="LoginError" extends="main">
+		<put-attribute name="body" value="/user/member/login/LoginError.jsp" />
+	</definition>
+
+	<definition name="join1Form" extends="main">
+		<put-attribute name="body" value="/user/member/JoinForm1.jsp" />
+	</definition>
+
+	<definition name="join2Form" extends="main">
+		<put-attribute name="body" value="/user/member/JoinForm2.jsp" />
+	</definition>
+
+	<definition name="findIdForm" extends="main">
+		<put-attribute name="body" value="/user/member/FindId.jsp" />
+	</definition>
+
+	<definition name="findIdAction" extends="main">
+		<put-attribute name="body" value="/user/member/FindId.jsp" />
+	</definition>
+
+	<definition name="findPwForm" extends="main">
+		<put-attribute name="body" value="/user/member/FindPw.jsp" />
+	</definition>
+
+	
+	<definition name="AddCart" extends="main">
+		<put-attribute name="body" value="/user/basket/List.jsp" />
+
+
+	<definition name="findPwAction" extends="main">
+		<put-attribute name="body" value="/user/member/FindPw.jsp" />
+	</definition>
+
+	<definition name="modifyForm" extends="main">
+		<put-attribute name="body" value="/user/member/Modify.jsp" />
+
+	</definition>
+	
+	<definition name="ordermain" extends="main">
+		<put-attribute name="body" value="/user/order/List.jsp" />
+	</definition>
+
+
+	<definition name="orderwrite" extends="main">
+		<put-attribute name="body" value="/user/order/Write.jsp" />
+	</definition>
+	
+	<definition name="qalist" extends="main">
+		<put-attribute name="body" value="/user/qa/List.jsp" />
+	</definition>
+		
+	<definition name="qawrite" extends="main">
+		<put-attribute name="body" value="/user/qa/Write.jsp" />
+	</definition>
+			
+	<definition name="qaview" extends="main">
+		<put-attribute name="body" value="/user/qa/View.jsp" />
+	</definition>
+				
+	<definition name="wishlist" extends="main">
+		<put-attribute name="body" value="/user/wishlist/List.jsp" />
+	</definition>
+	
+	<definition name="basketmain" extends="main">
+		<put-attribute name="body" value="/user/basket/List.jsp" />
+
+	<definition name="modifyAction" extends="main">
+		<put-attribute name="body" value="/user/member/ModifySuccess.jsp" />
+	</definition>
+
+	<definition name="deleteAction" extends="main">
+		<put-attribute name="body" value="/user/member/DeleteSuccess.jsp" />
+	</definition>
+
+	<definition name="MyboardAction" extends="main">
+		<put-attribute name="body" value="/user/member/MyBoardList.jsp" />
+	</definition>
+
+	<definition name="MypageForm" extends="main">
+		<put-attribute name="body" value="/user/member/Mypage.jsp" />
+
+	</definition>
 	<!-- *******************************ADMIN******************************* -->
 
-	<definition name="AD_main" template="/admin/tiles/layout.jsp">
+	<definition template="/admin/tiles/layout.jsp" name="AD_main">
 		<put-attribute name="title" value="test" />
 		<put-attribute name="header" value="/admin/tiles/header.jsp" />
 		<put-attribute name="body" value="/admin/member/List.jsp" />
 		<put-attribute name="footer" value="/admin/tiles/footer.jsp" />
 	</definition>
+
 	<definition name="AM_List" extends="AD_main">
 		<put-attribute name="body" value="/admin/member/List.jsp" />
 	</definition>
-	
+
 	<definition name="AM_View" extends="AD_main">
 		<put-attribute name="body" value="/admin/member/View.jsp" />
 	</definition>
-	
+
 	<definition name="AM_Coupon" extends="AD_main">
 		<put-attribute name="body" value="/admin/member/View.jsp" />
 	</definition>
+
 	<definition name="AM_Msg" extends="AD_main">
 		<put-attribute name="body" value="/admin/member/View.jsp" />
 	</definition>
-	
-	
-	
-	
+
 	<definition name="AG_List" extends="AD_main">
 		<put-attribute name="body" value="/admin/goods/List.jsp" />
 	</definition>
-	
+
 	<definition name="AG_Writeform" extends="AD_main">
 		<put-attribute name="body" value="/admin/goods/Write.jsp" />
 	</definition>
+
 	<definition name="AG_Write" extends="AD_main">
 		<put-attribute name="body" value="/admin/goods/Write.jsp" />
 	</definition>
-	
+
 	<definition name="AG_View" extends="AD_main">
 		<put-attribute name="body" value="/admin/goods/View.jsp" />
 	</definition>
-	
-	
+
 	<definition name="AN_List" extends="AD_main">
 		<put-attribute name="body" value="/admin/notice/List.jsp" />
 	</definition>
-	
+
 	<definition name="AN_Writeform" extends="AD_main">
 		<put-attribute name="body" value="/admin/notice/Write.jsp" />
 	</definition>
-	
+
 	<definition name="AN_Write" extends="AD_main">
 		<put-attribute name="body" value="/admin/notice/Write.jsp" />
 	</definition>
-	
+
 	<definition name="AN_View" extends="AD_main">
 		<put-attribute name="body" value="/admin/notice/View.jsp" />
 	</definition>
-	
-	
+
 	<definition name="AF_List" extends="AD_main">
 		<put-attribute name="body" value="/admin/faq/List.jsp" />
 	</definition>
+
 	<definition name="AQ_List" extends="AD_main">
 		<put-attribute name="body" value="/admin/qa/List.jsp" />
 	</definition>
+
 	<definition name="AO_List" extends="AD_main">
 		<put-attribute name="body" value="/admin/order/List.jsp" />
 	</definition>
-	
+
 	<!-- *********************REVIEW************************ -->
 	<definition name="Review_List" extends="main">
 		<put-attribute name="body" value="/user/review/List.jsp"></put-attribute>

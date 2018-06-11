@@ -52,6 +52,7 @@ public class WriteAction extends ActionSupport {
 	private String ORDER_GOODS_NAME;
 	private int ORDER_GOODS_COUNT;
 	private String ORDER_IMG;
+	private String ORDER_STATE;
 	Calendar today = Calendar.getInstance(); 
 	
 	
@@ -104,6 +105,7 @@ public class WriteAction extends ActionSupport {
 		paramClass.setORDER_GOODS_NAME(getORDER_GOODS_NAME());
 		paramClass.setORDER_GOODS_COUNT(getORDER_GOODS_COUNT());
 		paramClass.setORDER_IMG(getORDER_IMG());
+		paramClass.setORDER_STATE(getORDER_STATE());
 		
 		
 		
@@ -113,6 +115,18 @@ public class WriteAction extends ActionSupport {
 		
 		return SUCCESS;
 	}
+	
+	
+	public String getORDER_STATE() {
+		return ORDER_STATE;
+	}
+
+
+	public void setORDER_STATE(String oRDER_STATE) {
+		ORDER_STATE = oRDER_STATE;
+	}
+
+
 	public List<OrderVO> getList() {
 		return list;
 	}
