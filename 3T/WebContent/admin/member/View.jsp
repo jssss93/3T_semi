@@ -15,6 +15,13 @@
 						"scrollbars=no, status=no, resizable=no, width=600, height=500");
 
 	}
+	
+	function action(i){
+		if(i==2){
+			document.form.action='AM_List.action?currentPage=<s:property value="currentPage" />'
+		}
+		
+	}
 </script>
 </head>
 
@@ -97,6 +104,7 @@
 		<tr>
 			<td colspan="2" height="10"></td>
 		</tr>
+		
 		<tr>
 			<td colspan="2" height="10"></td>
 		</tr>
@@ -112,7 +120,6 @@
 		<tr>
 			<td colspan="2" height="10"></td>
 		</tr>
-
 
 		<tr>
 			<td colspan="2" align="right">
@@ -125,6 +132,7 @@
 					<input type="text" name="m_coupon_content_f"> <input
 						type="submit" value="쿠폰주기">
 				</form>
+				
 				<form action="AM_Msg.action">
 
 					<input type="hidden" name="m_id_f" value="${resultClass.m_id}">
@@ -133,10 +141,14 @@
 					<input type="text" name="m_msg_content_f"> <input
 						type="submit" value="쪽지보내기">
 				</form>
+				
+				<form name="form">
 				<input name="delete_b" type="button" value="삭제" class="inputb"
-				onClick="javascript:open_win_noresizable('AMdeleteAction.action?m_no=<s:property value="resultClass.m_no" />&currentPage=<s:property value="currentPage" />','delete')">
+				onClick="javascript:location.href=('AM_Delete.action?m_no=<s:property value="resultClass.m_no" />&currentPage=<s:property value="currentPage" />','delete')">
 				<input name="list_b" type="button" value="목록" class="inputb"
-				onClick="javascript:location.href='AMlistAction.action?currentPage=<s:property value="currentPage" />'">
+				onClick="javascript:location.href='AM_List.action?currentPage=<s:property value="currentPage" />'">
+			
+				</form>
 			</td>
 		</tr>
 

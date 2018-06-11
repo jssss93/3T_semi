@@ -94,6 +94,7 @@
 
 
 	<definition name="orderwrite" extends="main">
+
 		<put-attribute name="body" value="/user/order/Write.jsp" />
 	</definition>
 	
@@ -157,6 +158,11 @@
 		<put-attribute name="body" value="/admin/member/View.jsp" />
 	</definition>
 
+
+
+
+
+
 	<definition name="AG_List" extends="AD_main">
 		<put-attribute name="body" value="/admin/goods/List.jsp" />
 	</definition>
@@ -172,6 +178,14 @@
 	<definition name="AG_View" extends="AD_main">
 		<put-attribute name="body" value="/admin/goods/View.jsp" />
 	</definition>
+
+	
+	<definition name="AG_ModifyForm1" extends="AD_main">
+		<put-attribute name="body" value="/admin/goods/Wirte.jsp" />
+	</definition>
+	
+
+
 
 	<definition name="AN_List" extends="AD_main">
 		<put-attribute name="body" value="/admin/notice/List.jsp" />
@@ -189,9 +203,22 @@
 		<put-attribute name="body" value="/admin/notice/View.jsp" />
 	</definition>
 
+
+
 	<definition name="AF_List" extends="AD_main">
 		<put-attribute name="body" value="/admin/faq/List.jsp" />
 	</definition>
+	<definition name="AF_View" extends="AD_main">
+		<put-attribute name="body" value="/admin/faq/View.jsp" />
+	</definition>
+	<definition name="AF_Writeform" extends="AD_main">
+		<put-attribute name="body" value="/admin/faq/Write.jsp" />
+	</definition>
+
+	<definition name="AF_Write" extends="AD_main">
+		<put-attribute name="body" value="/admin/faq/Write.jsp" />
+	</definition>
+	
 
 	<definition name="AQ_List" extends="AD_main">
 		<put-attribute name="body" value="/admin/qa/List.jsp" />

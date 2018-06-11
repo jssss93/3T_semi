@@ -14,7 +14,6 @@ public class QAVO {
 	private int qa_ref;
 	private int qa_re_step;
 	private int qa_re_level;
-	private int qa_level;
 	private String qa_file_orgname;
 	private String qa_file_savname;
 	private String qa_make_public;
@@ -107,14 +106,6 @@ public class QAVO {
 
 	public void setQa_re_level(int qa_re_level) {
 		this.qa_re_level = qa_re_level;
-	}
-
-	public int getQa_level() {
-		return qa_level;
-	}
-
-	public void setQa_level(int qa_level) {
-		this.qa_level = qa_level;
 	}
 
 	public String getQa_file_orgname() {

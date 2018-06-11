@@ -45,6 +45,14 @@ public class WriteAction extends ActionSupport {
 	}
 
 	public String form() throws Exception {
+
+		return SUCCESS;
+
+	}
+
+	public String modifyform() throws Exception {
+
+		resultClass = (NoticeVO) sqlMapper.queryForObject("ANselectOne", getNotice_no());
 		return SUCCESS;
 
 	}
@@ -54,7 +62,6 @@ public class WriteAction extends ActionSupport {
 		paramClass = new NoticeVO();
 		resultClass = new NoticeVO();
 
-		
 		paramClass.setNotice_writer(getNotice_writer());
 		paramClass.setNotice_subject(getNotice_subject());
 		paramClass.setNotice_content(getNotice_content());

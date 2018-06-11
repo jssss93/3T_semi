@@ -46,7 +46,7 @@
 				<td align="center"><h2>FAQ 등록</h2></td>
 			</tr>
 		</table>
-		<form action="AFwriteAction.action" method="post"
+		<form action="AF_Write.action" method="post"
 			onsubmit="return validation();">
 	</s:if>
 
@@ -56,7 +56,7 @@
 				<td align="center"><h2>FAQ 수정</h2></td>
 			</tr>
 		</table>
-		<form action="AFmodifyAction.action" method="post">
+		<form action="AF_Modify.action" method="post">
 			<s:hidden name="faq_no" value="%{resultClass.faq_no}" />
 			<s:hidden name="currentPage" value="%{currentPage}" />
 	</s:else>
@@ -109,7 +109,7 @@
 			<td align="right" colspan="2"><input name="submit" type="submit"
 				value="작성완료" class="inputb"> <input name="list"
 				type="button" value="목록" class="inputb"
-				onClick="javascript:location.href='AFlistAction.action?currentPage=<s:property value="currentPage" />'">
+				onClick="javascript:location.href='AF_List.action?currentPage=<s:property value="currentPage" />'">
 			</td>
 		</tr>
 

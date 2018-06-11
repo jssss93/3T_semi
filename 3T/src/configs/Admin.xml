@@ -37,14 +37,20 @@
 		</action>
 
 		<action name="AM_Coupon" class="admin.member.coupon.CouponAction">
-			<result name="success" type="tiles">
-				AM_View
+			<result name="success" type="redirect-action">
+				<param name="actionName">AM_List</param>
 			</result>
 		</action>
 
 		<action name="AM_Msg" class="admin.member.msg.MsgAction">
-			<result name="success" type="tiles">
-				AM_View
+			<result name="success" type="redirect-action">
+				<param name="actionName">AM_List</param>
+			</result>
+		</action>
+
+		<action name="AM_Delete" class="admin.member.DeleteAction">
+			<result name="success" type="redirect-action">
+				<param name="actionName">AM_List</param>
 			</result>
 		</action>
 
@@ -65,8 +71,8 @@
 		</action>
 
 		<action name="AG_Write" class="admin.goods.WriteAction">
-			<result name="success" type="tiles">
-				AG_List
+			<result name="success" type="redirect-action">
+				<param name="actionName">AG_List</param>
 			</result>
 		</action>
 
@@ -76,7 +82,18 @@
 			</result>
 		</action>
 
+		<action name="AG_ModifyForm" class="admin.goods.WriteAction"
+			method="form">
+			<result name="success" type="chain">
+				<param name="actionName">AG_Writeform</param>
+			</result>
+		</action>
 
+		<action name="AG_Delete" class="admin.goods.DeleteAction">
+			<result name="success" type="redirect-action">
+				<param name="actionName">AG_List</param>
+			</result>
+		</action>
 
 
 
@@ -96,7 +113,7 @@
 		</action>
 
 		<action name="AN_Write" class="admin.notice.WriteAction">
-			<result name="success" type="tiles">
+			<result name="success" type="redirect-action">
 				AN_List
 			</result>
 		</action>
@@ -107,16 +124,24 @@
 			</result>
 		</action>
 
-		<!-- <action name="AN_Modifyform" class="admin.notice.ModifyAction" > <result 
-			name="success" type="chain"> AN_Write </result> </action> -->
-
-
-		<action name="AN_ModifyForm" class="admin.notice.ViewAction">
-			<result type="chain">ANwriteForm</result>
+		<action name="AN_ModifyForm" class="admin.notice.WriteAction"
+			method="modifyform">
+			<result name="success" type="chain">
+				<param name="actionName">AN_Writeform</param>
+			</result>
 		</action>
-		<action name="ANmodifyAction" class="admin.notice.ModifyAction">
-			<result type="chain">ANviewAction</result>
+
+		<action name="AN_Modify" class="admin.notice.ModifyAction">
+			<result name="success" type="redirect-action">
+				<param name="actionName">AN_List</param>
+			</result>
 		</action>
+		<action name="AN_Delete" class="admin.notice.DeleteAction">
+			<result name="success" type="redirect-action">
+				<param name="actionName">AN_List</param>
+			</result>
+		</action>
+
 
 
 
@@ -127,6 +152,44 @@
 				AF_List
 			</result>
 		</action>
+
+		<action name="AF_View" class="admin.faq.ViewAction">
+			<result name="success" type="tiles">
+				AF_View
+			</result>
+		</action>
+		
+		<action name="AF_Writeform" class="admin.faq.WriteAction"
+			method="form">
+			<result name="success" type="tiles">
+				AF_Write
+			</result>
+		</action>
+
+		<action name="AF_Write" class="admin.faq.WriteAction">
+			<result name="success" type="redirect-action">
+				AF_List
+			</result>
+		</action>
+
+		<action name="AF_Modifyform" class="admin.faq.WriteAction"
+			method="modifyform">
+			<result name="success" type="chain">
+				<param name="actionName">AF_Writeform</param>
+			</result>
+		</action>
+
+		<action name="AF_Modify" class="admin.faq.ModifyAction">
+			<result name="success" type="redirect-action">
+				<param name="actionName">AF_List</param>
+			</result>
+		</action>
+		<action name="AF_Delete" class="admin.faq.DeleteAction">
+			<result name="success" type="redirect-action">
+				<param name="actionName">AF_List</param>
+			</result>
+		</action>
+
 
 		<action name="AQ_List" class="admin.qa.ListAction">
 			<result name="success" type="tiles">
@@ -187,17 +250,14 @@
 			<result>/admin/member/List.jsp</result>
 		</action>
 
-		<!-- <action name="Buy" class="admin.member.ListAction">
-			<result>/admin/member/List.jsp</result>
-		</action> -->
-		
-		<!-- <action name="AddCart" class="admin.member.ListAction">
-			<result>/admin/member/List.jsp</result>
-		</action> -->
+		<!-- <action name="Buy" class="admin.member.ListAction"> <result>/admin/member/List.jsp</result> 
+			</action> -->
 
-		<action name="AMviewAction" class="admin.member.ViewAction">
-			<result>/admin/member/View.jsp</result>
-		</action>
+		<!-- <action name="AddCart" class="admin.member.ListAction"> <result>/admin/member/List.jsp</result> 
+			</action> -->
+
+		<!-- <action name="AM_View" class="admin.member.ViewAction"> <result>/admin/member/View.jsp</result> 
+			</action> -->
 
 		<action name="AMcouponAction" class="admin.member.coupon.CouponAction">
 			<result type="redirect-action">

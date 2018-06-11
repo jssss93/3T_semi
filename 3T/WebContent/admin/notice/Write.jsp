@@ -54,7 +54,7 @@
 				<td align="center"><h2>공지사항 등록</h2></td>
 			</tr>
 		</table>
-		<form action="ANwriteAction.action" method="post" enctype="multipart/form-data" onsubmit="return validation();">
+		<form action="AN_Write.action" method="post" enctype="multipart/form-data" onsubmit="return validation();">
 	</s:if>
 	
 	<s:else>
@@ -63,7 +63,7 @@
 				<td align="center"><h2>공지사항 수정</h2></td>
 			</tr>
 		</table>
-		<form action="ANmodifyAction.action" method="post" enctype="multipart/form-data">
+		<form action="AN_Modify.action" method="post" enctype="multipart/form-data">
 			<s:hidden name="notice_no" value="%{resultClass.notice_no}" />
 			<s:hidden name="currentPage" value="%{currentPage}" />
 			<s:hidden name="old_file" value="%{resultClass.notice_file_savname}" />

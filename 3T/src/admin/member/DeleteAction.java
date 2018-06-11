@@ -10,19 +10,20 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 
 import admin.goods.VO.GoodsVO;
+import admin.member.VO.MemberVO;
 
 public class DeleteAction extends ActionSupport {
 
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 
-	private GoodsVO paramClass;
-	private GoodsVO resultClass;
+	private MemberVO paramClass;
+	private MemberVO resultClass;
 
 	private int currentPage;
 	private String fileUploadPath = "C:\\upload\\";
 
-	private int goods_no;
+	private int m_no;
 
 	public DeleteAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
@@ -31,42 +32,39 @@ public class DeleteAction extends ActionSupport {
 	}
 
 	public String execute() throws Exception {
-		paramClass = new GoodsVO();
-		resultClass = new GoodsVO();
+		paramClass = new MemberVO();
+		resultClass = new MemberVO();
 
-		resultClass = (GoodsVO) sqlMapper.queryForObject("selectOne", getGoods_no());
+		resultClass = (MemberVO) sqlMapper.queryForObject("AMselectOne", getM_no());
 
-		File deleteFile = new File(fileUploadPath + resultClass.getGoods_file_savname());
-		deleteFile.delete();
+		paramClass.setM_no(getM_no());
 
-		paramClass.setGoods_no(getGoods_no());
-
-		sqlMapper.update("deleteGoods", paramClass);
+		sqlMapper.update("deleteMember", paramClass);
 
 		return SUCCESS;
 	}
 
-	public GoodsVO getParamClass() {
+	public MemberVO getParamClass() {
 		return paramClass;
 	}
 
-	public int getGoods_no() {
-		return goods_no;
+	public int getM_no() {
+		return m_no;
 	}
 
-	public void setGoods_no(int goods_no) {
-		this.goods_no = goods_no;
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
 	}
 
-	public void setParamClass(GoodsVO paramClass) {
+	public void setParamClass(MemberVO paramClass) {
 		this.paramClass = paramClass;
 	}
 
-	public GoodsVO getResultClass() {
+	public MemberVO getResultClass() {
 		return resultClass;
 	}
 
-	public void setResultClass(GoodsVO resultClass) {
+	public void setResultClass(MemberVO resultClass) {
 		this.resultClass = resultClass;
 	}
 
