@@ -9,7 +9,7 @@
 <body>
 <script type="text/javascript">
 	alert("È¸¿øÅ»ÅðµÇ¾ú½À´Ï´Ù.");
-	document.location.href="login.action"
+	document.location.href="loginAction.action"
 </script>
 
 </body>

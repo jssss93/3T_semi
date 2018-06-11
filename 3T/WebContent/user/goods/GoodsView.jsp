@@ -29,7 +29,7 @@
 			document.form.action = 'loginForm.action';
 		}
 		if (index == 4) {
-			document.form.action = 'loginForm.action';
+			document.form.action = 'AddWish.action?goods_no=${resultClass.goods_no}';
 		}
 		document.form.submit();
 	}
@@ -96,7 +96,9 @@
 								<p></p> Size : <select name="goods_size" id="goods_size"
 								size="1">
 									<option value="-"><s:property
-											value="resultClass.goods_size" /></option>
+											value="resultClass.goods_size.split(',')[0]" /></option>
+									<option value="-"><s:property
+											value="resultClass.goods_size.split(',')[1]" /></option>
 									<!-- size 고르는거 추후에 option이용해서 넣을지 생각해야됨 -->
 									<!-- -----------------------------------------------------
 							-----------------------------------------------------
@@ -124,6 +126,7 @@
 										<!-- 상품구매버튼 --> <!-- 로그인 o --> <s:if
 											test='%{session.M_ID != null}'>
 
+
 											<input name="Buy" style=""
 												onmouseover="this.src='/goods/upload/buy2.JPG'"
 												onmouseout="this.src='/goods/upload/buy.JPG'"
@@ -142,6 +145,7 @@
 												onclick='BuyCheck(3)' type="image" src="/3T/upload/buy.JPG"
 												value="상품구매(로그인하세요 창)" />
 										</s:else>
+
 									</td>
 									
 									
@@ -159,6 +163,7 @@
 													onmouseover="this.src='/3T/upload/add to cart2.JPG'"
 													onmouseout="this.src='/3T/upload/add to cart.JPG'"
 													onclick="BuyCheck(2);" type="image"
+
 													src="/3T/upload/add to cart.JPG" value="장바구니 추가" />
 											
 											
@@ -174,7 +179,9 @@
 										onmouseout="this.src='/3T/upload/add to cart.JPG'"
 										onclick="BuyCheck(4);" type="image"
 										src="/3T/upload/add to cart.JPG" value="장바구니 (로그인하세요창)" /></s:else>
+
 								</tr>
+								
 								<tr>
 									<td>
 										<!-- 옷 정보 --> <pre>

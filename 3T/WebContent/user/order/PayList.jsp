@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,7 +10,7 @@
 <body>
 	<table width="300" border="0" cellspacing="0" cellpadding="2">
 			<tr>
-				<td colspan="2" align="right"><font style="font-weight: bold;" color="#FF0000"><h3> KRW $</h3></font></td>
+				<td colspan="2" align="right"><font style="font-weight: bold;" color="#FF0000"><h3> KRW ${g_resultClass.goods_price*g_resultClass.goods_totalcount}</h3></font></td>
 			</tr>
 			<p>
 			<tr>
@@ -17,7 +18,16 @@
 					ㆍ상품금액
 				</td>
 				<td align="right">
-					<font style="font-weight: bold;"><h5>= KRW $</h5></font>
+				  <font style="font-weight: bold;"><h5>= KRW ${g_resultClass.goods_price} </h5></font>
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					ㆍ수량
+				</td>
+				<td align="right">
+					<font style="font-weight: bold;"><h5>= KRW ${g_resultClass.goods_totalcount}</h5></font>
 				</td>
 			</tr>
 			<tr>
@@ -25,15 +35,7 @@
 					ㆍ배송비
 				</td>
 				<td align="right">
-					<font style="font-weight: bold;"><h5>= KRW $</h5></font>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					ㆍ지역별 배송비
-				</td>
-				<td align="right">
-					<font style="font-weight: bold;"><h5>= KRW $</h5></font>
+					<font style="font-weight: bold;"><h5>= KRW 0</h5></font>
 				</td>
 			</tr>
 			<tr>
