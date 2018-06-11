@@ -12,7 +12,7 @@
 <td><tiles:insertAttribute name="header"/></td>
 </tr>
 <tr>
-	<td valign="top" align="center" bgcolor="FFF0F5"><tiles:insertAttribute name="body" /></td>
+	<td valign="top" align="center" bgcolor="#F5FBEF"><tiles:insertAttribute name="body" /></td>
 	
 <tr>
 	
