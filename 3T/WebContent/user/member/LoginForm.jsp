@@ -53,9 +53,9 @@
 								<td align="center" style="padding-top: 30px;"><table>
 										<trcolor="gray"> <font color="gray"> <input
 											type="submit" value="LOGIN"
-											onclick="document.location.href='logonAtion.action'">&nbsp&nbsp&nbsp
+											onclick="document.location.href='logonAtion.action'" class="submit">&nbsp&nbsp&nbsp
 											<input type="button" value="JOIN US"
-											onclick="document.location.href='join1Form.action'">
+											onclick="document.location.href='join1Form.action'" class="submit">
 										</font>
 										</tr>
 									</table></td>

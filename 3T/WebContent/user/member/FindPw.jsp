@@ -6,6 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -20,7 +21,7 @@
 
 					<table width="600" height="250" border="0" class="findform">
 						<tr>
-							<td align="center"><h2>비밀번호 찾기</h2></td>
+							<td align="center" class="text01"><h2>비밀번호 찾기</h2></td>
 						</tr>
 						<tr>
 							<td align="center" style="padding-bottom: 20px;">

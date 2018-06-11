@@ -24,13 +24,14 @@
 
 
 
-		<action name="login" class="user.member.MemberAction">
-
+		<action name="loginAction" class="user.member.MemberAction">
 			<result type="tiles">loginForm</result>
 		</action>
 
 		<action name="logonAtion" class="user.member.login.LoginAction"
 			method="login">
+			<result name="success" type="tiles">LoginSuccess</result>
+			<result name="error" type="tiles">LoginError</result>
 
 
 			<result name="login" type="redirect-action">
@@ -75,8 +76,10 @@
 		</action>
 
 		<action name="findIdAction" class="user.member.MemberFindIdAction"
-			method="findId">
-			<result type="tiles">findIdAction</result>
+			method="find">
+			<result name="success" type="tiles">findIdAction</result>
+			<result name="error" type="tiles">LoginError</result>
+
 		</action>
 
 		<action name="findPwForm" class="user.member.MemberFindPwAction">
@@ -84,8 +87,10 @@
 		</action>
 
 		<action name="findPwAction" class="user.member.MemberFindPwAction"
-			method="findPw">
-			<result type="tiles">findPwAction</result>
+			method="find">
+			<result name="success" type="tiles">findPwAction</result>
+			<result name="error" type="tiles">LoginError</result>
+
 		</action>
 
 

@@ -77,11 +77,11 @@
 					</form>
 					<a href="logout.action" >LOGOUT</a> 
 					&nbsp;|&nbsp;
-					<a href="logout.action">MODIFY</a> 
+					<a href="modifyForm.action">MODIFY</a> 
 					&nbsp;|&nbsp;
 					<a href="OrderMain.action">ORDER</a> 
 					&nbsp;|&nbsp;
-					<a href="basketList.action">MYPAGE</a> 
+					<a href="MypageForm.action">MYPAGE</a> 
 					&nbsp;&nbsp;
 					
 				</td>

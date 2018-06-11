@@ -3,6 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+
 <script type="text/JavaScript">
 	function chkBox(bool) { // 전체선택/해제 
 		var obj = document.getElementsByName("join");

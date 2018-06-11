@@ -6,7 +6,10 @@
 <html>
 <head>
 
+<style type="text/css">
+#form td.tdstyle2 {background-color :#000000; border:#ccc 1px solid; width:400px; padding:20px; font-size:14px; font-weight:bold; color:#000;}
 
+</style>
 <script language="javascript">
 	  function check() {
 
@@ -230,7 +233,7 @@
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
 							<td valign="middle"><input type="text" name="M_ID" maxlength="20"
 								size="28"> <input type="button" name="confirm_id"
-								value="중복확인" onclick="openConfirmId()" class="hreflink2">
+								value="중복확인" onclick="openConfirmId()" >
 								<input type="hidden" name="confirm_id" value=""> 영문/숫자를
 								이용하여 4~12자로 입력하세요</td>
 						</tr>
@@ -288,7 +291,7 @@
 									<input name="M_EMAIL1" type="text" class="box" id="M_EMAIL1"
 										size="15"> @ <input name="M_EMAIL2" type="text"
 										class="box" id="M_EMAIL2" size="20"> <select
-										name="email3" class="box" id="email_select"
+										name="email3"  id="email_select"
 										onChange="checkemailaddy();">
 										<option value="" selected>선택하세요</option>
 										<option value="naver.com">naver.com</option>

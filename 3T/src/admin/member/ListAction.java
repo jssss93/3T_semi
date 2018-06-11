@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.catalina.Session;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.ibatis.common.resources.Resources;

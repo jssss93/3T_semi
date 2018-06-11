@@ -29,21 +29,27 @@ public class MemberFindIdAction extends ActionSupport implements SessionAware {
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 		reader.close();
 	}
+	
+	public String execute() throws Exception {
+		return SUCCESS;
+	}
 
-	public String findId() throws Exception {
+	public String find() throws Exception {
 
 		paramClass.setM_NAME(getM_NAME());
 		paramClass.setM_EMAIL1(getM_EMAIL1());
 
 		resultClass = (MemberVO) sqlMapper.queryForObject("member.findId", paramClass);
 
-		return SUCCESS;
+		if(resultClass != null) {
+			return SUCCESS;
+		}else {
+			return ERROR;
+		}
+		
+}
 
-	}
 
-	public String execute() throws Exception {
-		return SUCCESS;
-	}
 
 	public Map getSession() {
 		return session;
