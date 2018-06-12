@@ -261,9 +261,7 @@
 					width="50"></td>
 				<td width="400">${g_resultClass.goods_content}</td>
 				<td width="80">${g_resultClass.goods_price}</td>
-				<td width="80">${g_resultClass.goods_totalcount}
-				<%-- 	<%request.getParameterValues("goods_totalcnt"); %> --%>
-				</td>
+				<td width="80"><%= request.getParameter("sgoods_cnt") %></td>
 				<td width="120">${g_resultClass.goods_price*g_resultClass.goods_totalcount}</td>
 			</tr>
 

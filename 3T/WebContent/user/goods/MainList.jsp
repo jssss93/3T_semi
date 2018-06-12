@@ -14,7 +14,7 @@
 	<table width="1100" border="0" height="300" align="center"
 		cellpadding="0" cellspacing="3">
 		<tr>
-			<td colspan=3 align="center"><h2>3t3t3t</h2>3t3t3t3t3t3t3t3t<br>------------------------</td>
+			<td colspan=3 align="center"><h2>New Item</h2><img src="/3T/upload/mainline.PNG"/></td>
 		</tr>
 		<tr>
 			<s:iterator value="list1" status="stat1">
