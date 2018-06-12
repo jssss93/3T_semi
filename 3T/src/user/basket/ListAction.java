@@ -14,29 +14,17 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-
 import admin.member.VO.MemberVO;
 
 public class ListAction extends ActionSupport implements SessionAware {
 
-	private Map session;
-
-	public Map getSession() {
-		return session;
-	}
-
 	private BasketVO paramClass = new BasketVO();
-
-	public void setSession(Map session) {
-		this.session = session;
-	}
-
 
 	public static Reader reader; // 파일 스트림을 위한 reader.
 	public static SqlMapClient sqlMapper; // SqlMapClient API를 사용하기 위한 sqlMapper 객체.
 
 	public Map session;
-	
+
 	private List<BasketVO> B_List = new ArrayList<BasketVO>();
 
 	// 생성자
@@ -50,16 +38,11 @@ public class ListAction extends ActionSupport implements SessionAware {
 	// 게시판 LIST 액션
 	public String execute() throws Exception {
 
-		
 		// 모든 글을 가져와 list에 넣는다.
 		B_List = sqlMapper.queryForList("Basket_mem");
-		
-		
 
 		paramClass.setBASKET_MEMBER_ID(ActionContext.getContext().getSession().get("M_ID").toString());
 		// 모든 글을 가져와 list에 넣는다.
-		list = sqlMapper.queryForList("basket-selectM");
-
 
 		return SUCCESS;
 	}
@@ -95,7 +78,5 @@ public class ListAction extends ActionSupport implements SessionAware {
 	public void setB_List(List<BasketVO> b_List) {
 		B_List = b_List;
 	}
-
-
 
 }

@@ -19,32 +19,31 @@ import com.opensymphony.xwork2.ActionSupport;
 import admin.basket.VO.BasketVO;
 import admin.member.VO.MemberVO;
 
-public class WriteAction extends ActionSupport implements SessionAware{
-	
-	public static Reader reader;	
-	public static SqlMapClient sqlMapper;	
+public class WriteAction extends ActionSupport implements SessionAware {
 
-	private OrderVO paramClass; 
-	private OrderVO resultClass; 
+	public static Reader reader;
+	public static SqlMapClient sqlMapper;
 
-	
+	private OrderVO paramClass;
+	private OrderVO resultClass;
+
 	private MemberVO m_paramClass = new MemberVO();
 	private MemberVO m_resultClass = new MemberVO();
-	
+
 	public Map session;
+
 	public Map getSession() {
 		return session;
 	}
-
 
 	public void setSession(Map session) {
 		this.session = session;
 	}
 
-	private List<BasketVO> B_List = new ArrayList<BasketVO>();;	 
-	
-	private int totalCount; 
-	
+	private List<BasketVO> B_List = new ArrayList<BasketVO>();;
+
+	private int totalCount;
+
 	private String ORDER_NAME;
 	private String ORDER_ZIPCODE;
 	private String ORDER_ADDRESS1;
@@ -74,39 +73,33 @@ public class WriteAction extends ActionSupport implements SessionAware{
 	private int ORDER_GOODS_COUNT;
 	private String ORDER_IMG;
 	private String ORDER_STATE;
-	Calendar today = Calendar.getInstance(); 
-	
-	
+	Calendar today = Calendar.getInstance();
+
 	public WriteAction() throws IOException {
-		
-		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); 
-		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);	
+
+		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
+		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 		reader.close();
 	}
 
-	
 	public String form() throws Exception {
-		
 
 		m_paramClass.setM_id(ActionContext.getContext().getSession().get("M_ID").toString());
 		m_resultClass = (MemberVO) sqlMapper.queryForObject("AMselectOne_ID", m_paramClass);
-		
-		System.out.println("m_resultClass.getM_name "+m_resultClass.getM_name());
-		System.out.println("장바구니에서 오더");
+
 		B_List = sqlMapper.queryForList("basket-selectAll");
-		System.out.println("장바구니에서 오더 list "+B_List);
-		
-		totalCount = B_List.size(); 
+
+		totalCount = B_List.size();
 		return SUCCESS;
 	}
+
 	public String execute() throws Exception {
 
-		
 		paramClass = new OrderVO();
 		resultClass = new OrderVO();
-		
-		System.out.println("getORDER_IMG"+getORDER_IMG());
-	
+
+		System.out.println("getORDER_IMG" + getORDER_IMG());
+
 		paramClass.setORDER_NAME(getORDER_NAME());
 		paramClass.setORDER_ZIPCODE(getORDER_ZIPCODE());
 		paramClass.setORDER_ADDRESS1(getORDER_ADDRESS1());
@@ -116,7 +109,7 @@ public class WriteAction extends ActionSupport implements SessionAware{
 		paramClass.setORDER_PHONE3(getORDER_PHONE3());
 		paramClass.setORDER_EMAIL1(getORDER_EMAIL1());
 		paramClass.setORDER_EMAIL2(getORDER_EMAIL2());
-		
+
 		paramClass.setRECIPIENT_NAME(getRECIPIENT_NAME());
 		paramClass.setRECIPIENT_ZIPCODE(getRECIPIENT_ZIPCODE());
 		paramClass.setRECIPIENT_ADDRESS1(getRECIPIENT_ADDRESS1());
@@ -135,41 +128,31 @@ public class WriteAction extends ActionSupport implements SessionAware{
 		paramClass.setORDER_GOODS_COUNT(getORDER_GOODS_COUNT());
 		paramClass.setORDER_IMG(getORDER_IMG());
 		paramClass.setORDER_STATE(getORDER_STATE());
-		
-		
-		
+
 		sqlMapper.insert("order-insertBoard", paramClass);
-		
-		System.out.println("paramClass.ORDER_IMG"+paramClass.getORDER_IMG());
-		
+
 		return SUCCESS;
 	}
-	
-	
+
 	public MemberVO getM_paramClass() {
 		return m_paramClass;
 	}
-
 
 	public void setM_paramClass(MemberVO m_paramClass) {
 		this.m_paramClass = m_paramClass;
 	}
 
-
 	public MemberVO getM_resultClass() {
 		return m_resultClass;
 	}
-
 
 	public void setM_resultClass(MemberVO m_resultClass) {
 		this.m_resultClass = m_resultClass;
 	}
 
-
 	public String getORDER_STATE() {
 		return ORDER_STATE;
 	}
-
 
 	public void setORDER_STATE(String oRDER_STATE) {
 		ORDER_STATE = oRDER_STATE;
@@ -179,11 +162,9 @@ public class WriteAction extends ActionSupport implements SessionAware{
 		return B_List;
 	}
 
-
 	public void setB_List(List<BasketVO> b_List) {
 		B_List = b_List;
 	}
-
 
 	public String getORDER_NAME() {
 		return ORDER_NAME;
@@ -201,16 +182,13 @@ public class WriteAction extends ActionSupport implements SessionAware{
 		ORDER_ZIPCODE = oRDER_ZIPCODE;
 	}
 
-
 	public String getORDER_IMG() {
 		return ORDER_IMG;
 	}
 
-
 	public void setORDER_IMG(String oRDER_IMG) {
 		ORDER_IMG = oRDER_IMG;
 	}
-
 
 	public String getRECIPIENT_NAME() {
 		return RECIPIENT_NAME;
@@ -259,7 +237,6 @@ public class WriteAction extends ActionSupport implements SessionAware{
 	public void setORDER_REGDATE(Date oRDER_REGDATE) {
 		ORDER_REGDATE = oRDER_REGDATE;
 	}
-
 
 	public int getORDER_TOTAL() {
 		return ORDER_TOTAL;
@@ -452,6 +429,5 @@ public class WriteAction extends ActionSupport implements SessionAware{
 	public void setORDER_GOODS_COUNT(int oRDER_GOODS_COUNT) {
 		ORDER_GOODS_COUNT = oRDER_GOODS_COUNT;
 	}
-
 
 }
