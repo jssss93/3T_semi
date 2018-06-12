@@ -14,7 +14,7 @@ public class OrderVO {
 	private String ORDER_PHONE3;
 	private String ORDER_EMAIL1;
 	private String ORDER_EMAIL2;
-	private String RECIPIENT_CHOICE;
+	
 	private String RECIPIENT_NAME;
 	private String RECIPIENT_ZIPCODE;
 	private String RECIPIENT_PHONE1;
@@ -22,7 +22,6 @@ public class OrderVO {
 	private String RECIPIENT_PHONE3;
 	private String RECIPIENT_ADDRESS1;
 	private String RECIPIENT_ADDRESS2;
-	private int DISCOUNT;
 
 	private String PAYMENT;
 	private String DEPOSIT_NAME;
@@ -58,12 +57,6 @@ public class OrderVO {
 	}
 
 
-	public String getRECIPIENT_CHOICE() {
-		return RECIPIENT_CHOICE;
-	}
-	public void setRECIPIENT_CHOICE(String rECIPIENT_CHOICE) {
-		RECIPIENT_CHOICE = rECIPIENT_CHOICE;
-	}
 	public String getRECIPIENT_NAME() {
 		return RECIPIENT_NAME;
 	}
@@ -77,12 +70,6 @@ public class OrderVO {
 		RECIPIENT_ZIPCODE = rECIPIENT_ZIPCODE;
 	}
 
-	public int getDISCOUNT() {
-		return DISCOUNT;
-	}
-	public void setDISCOUNT(int dISCOUNT) {
-		DISCOUNT = dISCOUNT;
-	}
 	public String getPAYMENT() {
 		return PAYMENT;
 	}

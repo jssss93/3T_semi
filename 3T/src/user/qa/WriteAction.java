@@ -11,16 +11,17 @@ import java.io.IOException;
 
 import java.io.File;
 import org.apache.commons.io.FileUtils;
+import org.apache.struts2.interceptor.SessionAware;
 
 
-public class WriteAction extends ActionSupport{
+public class WriteAction extends ActionSupport implements SessionAware{
 	
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 	
 	private QaVO paramClass;
 	private QaVO resultClass;
-
+	public Map session;
 	
 	private int currentPage;
 	
@@ -136,6 +137,14 @@ public class WriteAction extends ActionSupport{
 		}
 
 		return SUCCESS;
+	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
 	}
 
 	public static Reader getReader() {

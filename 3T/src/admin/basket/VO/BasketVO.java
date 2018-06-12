@@ -12,6 +12,7 @@ public class BasketVO {
 	private String basket_goods_img;// 상품 이미지
 	private int basket_quantity;// 상품수량
 	private String basket_name;// 상품 이름
+	private int basket_goods_no;
 
 	public int getBasket_no() {
 		return basket_no;
@@ -76,5 +77,14 @@ public class BasketVO {
 	public void setBasket_name(String basket_name) {
 		this.basket_name = basket_name;
 	}
+
+	public int getBasket_goods_no() {
+		return basket_goods_no;
+	}
+
+	public void setBasket_goods_no(int basket_goods_no) {
+		this.basket_goods_no = basket_goods_no;
+	}
+
 
 }

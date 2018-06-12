@@ -68,7 +68,6 @@ public class WishlistVO {
 	public void setW_GOODS_COLOR(String w_GOODS_COLOR) {
 		W_GOODS_COLOR = w_GOODS_COLOR;
 	}
-	
-	
+
 	
 }

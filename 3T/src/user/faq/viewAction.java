@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.net.URLEncoder;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -15,7 +18,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 
 
-public class viewAction extends ActionSupport{
+public class viewAction extends ActionSupport implements SessionAware{
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 
@@ -28,13 +31,37 @@ public class viewAction extends ActionSupport{
 	private InputStream inputStream;
 	private String contentDisposition;
 	private long contentLength;
-
+	public Map session;
 	// 생성자
 	public viewAction() throws IOException {
 
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); // sqlMapConfig.xml 파일의 설정내용을 가져온다.
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader); // sqlMapConfig.xml의 내용을 적용한 sqlMapper 객체 생성.
 		reader.close();
+	}
+
+	public static Reader getReader() {
+		return reader;
+	}
+
+	public static void setReader(Reader reader) {
+		viewAction.reader = reader;
+	}
+
+	public static SqlMapClient getSqlMapper() {
+		return sqlMapper;
+	}
+
+	public static void setSqlMapper(SqlMapClient sqlMapper) {
+		viewAction.sqlMapper = sqlMapper;
+	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
 	}
 
 	// 상세보기

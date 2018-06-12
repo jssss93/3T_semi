@@ -38,5 +38,11 @@
 		<action name="Ordergoodslist" class="user.order.ListAction" >
 			<result>/user/order/GoodsList.jsp</result>
 		</action>
+		<!-- 주문 삭제  -->
+	    <action name="order_checkdelete" class="user.basket.BasketDeleteAction">
+          <result type="redirect-action">
+				<param name="actionName">OrderWrite</param>
+			</result>
+       </action>
 	</package>
 </struts>

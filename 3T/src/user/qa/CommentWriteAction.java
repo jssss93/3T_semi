@@ -7,12 +7,15 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
 import java.util.*;
+
+import org.apache.struts2.interceptor.SessionAware;
+
 import java.io.Reader;
 import java.io.IOException;
 
 
 
-public class CommentWriteAction extends ActionSupport{
+public class CommentWriteAction extends ActionSupport implements SessionAware {
 	
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
@@ -22,7 +25,7 @@ public class CommentWriteAction extends ActionSupport{
 
 	private int QA_NO;
 	private int currentPage;
-
+	public Map session;
 	private String QA_NAME;
 	private String QA_PASSWD;
 	private String QA_CONTENT;
@@ -62,6 +65,38 @@ public class CommentWriteAction extends ActionSupport{
 		return SUCCESS;
 	}
 
+
+	public static Reader getReader() {
+		return reader;
+	}
+
+	public static void setReader(Reader reader) {
+		CommentWriteAction.reader = reader;
+	}
+
+	public static SqlMapClient getSqlMapper() {
+		return sqlMapper;
+	}
+
+	public static void setSqlMapper(SqlMapClient sqlMapper) {
+		CommentWriteAction.sqlMapper = sqlMapper;
+	}
+
+	public Qa_CommentVO getParamClass() {
+		return paramClass;
+	}
+
+	public void setParamClass(Qa_CommentVO paramClass) {
+		this.paramClass = paramClass;
+	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
 
 	public int getCurrentPage() {
 		return currentPage;

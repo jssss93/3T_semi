@@ -6,13 +6,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>FAQ</title>
-<link rel="stylesheet" href="/3T/user/faq/common/css/css.css"
-	type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+#form td.tdstyle2 {
+	background-color: #000000;
+	border: #ccc 1px solid;
+	width: 400px;
+	padding: 20px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000;
+}
+
+#form td.tdstyle2 {
+	background: #2bae9f;
+	border: #ccc 1px solid;
+	width: 400px;
+	padding: 20px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #fff;
+}
+</style>
 <script type="text/javascript">
-		function open_win_noresizable (url, name) {
-			var oWin = window.open(url, name, "scrollbars=no,status=no,resizable=no,width=300,height=150");
-		}
-	</script>
+	function open_win_noresizable(url, name) {
+		var oWin = window.open(url, name,
+				"scrollbars=no,status=no,resizable=no,width=300,height=150");
+	}
+</script>
 </head>
 
 <body>
@@ -22,7 +43,7 @@
 			<td height="30"></td>
 		</tr>
 		<tr>
-			<td align="left"><h2>FAQ</h2></td>
+			<td align="center" class="text01 formbar">FAQ</td>
 		</tr>
 		<tr>
 			<td height="50"></td>
@@ -30,14 +51,13 @@
 	</table>
 	<table width="600" border="0" cellspacing="0" cellpadding="0">
 
-		<tr bgcolor="#777777">
+		<tr>
 			<td height="1" colspan="2"></td>
 		</tr>
 
 		<tr>
-			<td bgcolor="#F4F4F4">번호</td>
-			<td bgcolor="#FFFFFF">&nbsp;&nbsp;<s:property
-					value="resultClass.FAQ_NO" />
+			<td><b>번호</b></td>
+			<td>&nbsp;&nbsp;<s:property value="resultClass.FAQ_NO" />
 			</td>
 		</tr>
 		<tr bgcolor="#777777">
@@ -45,8 +65,8 @@
 		</tr>
 
 		<tr>
-			<td width="100" bgcolor="#F4F4F4">제목</td>
-			<td width="500" bgcolor="#FFFFFF">&nbsp;&nbsp;<s:property
+			<td width="100" bgcolor="#F4F4F4"><b>제목</b></td>
+			<td width="500" class="tdstyle1">&nbsp;&nbsp;<s:property
 					value="resultClass.FAQ_SUBJECT" />
 			</td>
 		</tr>
@@ -56,8 +76,8 @@
 		</tr>
 
 		<tr>
-			<td bgcolor="#F4F4F4">글쓴이</td>
-			<td bgcolor="#FFFFFF">&nbsp;&nbsp;<s:property
+			<td bgcolor="#F4F4F4"><b>글쓴이</b></td>
+			<td class="tdstyle2">&nbsp;&nbsp;<s:property
 					value="resultClass.FAQ_WRITER" />
 			</td>
 		</tr>
@@ -66,8 +86,8 @@
 		</tr>
 
 		<tr>
-			<td bgcolor="#F4F4F4">내용</td>
-			<td bgcolor="#FFFFFF">&nbsp;&nbsp;<pre>
+			<td bgcolor="#F4F4F4"><b>내용</b></td>
+			<td class="tdstyle1">&nbsp;&nbsp;<pre>
 					<s:property value="resultClass.FAQ_CONTENT" />
 				</pre>
 			</td>
@@ -86,10 +106,9 @@
 
 
 		<tr>
-			<td align="right" colspan="2">
-				<input name="list" type="button" value="목록" 
-				onClick="javascript:location.href='UserFaqList.action?currentPage=<s:property value="currentPage" />'">				
-			</td>
+			<td align="right" colspan="2"><input name="list" type="button"
+				class="submit" value="목록"
+				onClick="javascript:location.href='UserFaqList.action?currentPage=<s:property value="currentPage" />'"></td>
 		</tr>
 
 	</table>

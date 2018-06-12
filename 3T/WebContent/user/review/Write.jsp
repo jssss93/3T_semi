@@ -6,6 +6,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#form td.tdstyle2 {background-color :#000000; border:#ccc 1px solid; width:400px; padding:20px; font-size:14px; font-weight:bold; color:#000;}
+
+</style>
+
 <title>REVIEW</title>
 
 
@@ -40,9 +47,10 @@
 <body>
 
 
-	<table width="700" border="0" cellspacing="0" cellpadding="2">
+
+	<table width="600" border="0" cellspacing="0" cellpadding="2" align="center">
 		<tr>
-			<td align="left"><h2>REVIEW</h2></td>
+			<td align="center" class="text01 formbar">REVIEW</td>
 		</tr>
 		<tr>
 			<td height="20"></td>
@@ -78,7 +86,7 @@
 
 	<table width="600" border="0" cellspacing="0" cellpadding="0">
 		<tr>
-			<td align="right" colspan="2"><font color="#FF0000"></td>
+			<td align="right" colspan="2" ></td>
 		</tr>
 
 		<tr bgcolor="#777777">
@@ -87,8 +95,8 @@
 		<c:choose>
 			<c:when test="${session.M_ID != NULL}">
 				<tr>
-					<td width="100" bgcolor="#FFFFFF"><font color="#FF0000"></font>SUBJECT</td>
-					<td width="500" bgcolor="#FFFFFF"><s:textfield
+					<td width="100" class="tdstyle2"><b>SUBJECT</b></td>
+					<td width="500"  class="tdstyle2"><s:textfield
 							name="REV_subject" theme="simple"
 							value="%{resultClass.REV_subject}" cssStyle="width:370px"
 							maxlength="50" /></td>
@@ -99,8 +107,8 @@
 
 				<tr>
 
-					<td bgcolor="#FFFFFF"><font color="#FF0000"></font>NAME</td>
-					<td bgcolor="#FFFFFF"><s:textfield name="REV_name"
+					<td  class="tdstyle2"><b>NAME</b></td>
+					<td  class="tdstyle2"><s:textfield name="REV_name"
 							theme="simple" value="%{resultClass.REV_name}"
 							cssStyle="width:100px" maxlength="20" /></td>
 				</tr>
@@ -129,8 +137,8 @@
 				</tr>
 
 				<tr>
-					<td bgcolor="#FFFFFF">FILE</td>
-					<td bgcolor="#FFFFFF"><s:file name="upload" theme="simple" />
+					<td class="tdstyle2"><b>FILE</b></td>
+					<td class="tdstyle2"><s:file name="upload" theme="simple" />
 						<s:if test="resultClass.REV_file_orgname != NULL">
         	&nbsp; * <s:property value="resultClass.REV_file_orgname" />파일이 등록 되어 있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.
         	</s:if></td>
@@ -164,8 +172,8 @@
 				<input type="hidden" name="REV_passwd" value="${session.M_ID }" />
 				<tr>
 					<td align="right" colspan="2"><input name="submit"
-						type="submit" value="OK"> <input name="list" type="button"
-							value="CANCLE"
+						type="submit" value="OK" class="submit"> <input name="list" type="button"
+							value="CANCLE" class="hreflink"
 							onClick="javascript:location.href='Review_list.action?currentPage=<s:property value="currentPage"/>'"></td>
 				</tr>
 			</c:when>
