@@ -239,6 +239,8 @@
 				<td width="120"><strong>총가격</strong></td>
 
 			</tr>
+
+          
 			<s:if test="g_resultClass.goods_no != 0">
 			
 						<s:url id="viewURL" action="GoodsView">
@@ -256,9 +258,10 @@
 						width="50"></td>
 					<td width="400">&nbsp;<s:a href="%{viewURL}">${g_resultClass.goods_content}</s:a></td>
 					<td width="80">${g_resultClass.goods_price}</td>
-					<td width="80">${g_resultClass.goods_totalcount}<%-- 	<%request.getParameterValues("goods_totalcnt"); %> --%>
-					</td>
+          <td width="80"><%= request.getParameter("sgoods_cnt") %></td>
+		
 					<td width="120">${g_resultClass.goods_price*g_resultClass.goods_totalcount}</td>
+
 				</tr>
 
 			</s:if>
