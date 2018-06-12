@@ -24,7 +24,7 @@ public class ViewAction extends ActionSupport implements SessionAware {
 
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
-	
+
 	private List<GoodsVO> rplist = new ArrayList<GoodsVO>();
 	private List<GoodsVO> list = new ArrayList<GoodsVO>();
 	private List<ReviewVO> reviewList = new ArrayList<ReviewVO>();
@@ -47,46 +47,45 @@ public class ViewAction extends ActionSupport implements SessionAware {
 	}
 
 	private int Goods_no;
-	
-	// 받아올 리뷰 정보
-		private int REV_no;
-		private String REV_subject;
-		private String REV_name;
-		private String REV_passwd;
-		private String REV_content;
-		private String REV_file_orgname;
-		private String REV_file_savname;
-		private int REV_readcnt;
-		private Date REV_regdate;
-		private int REV_ref;
-		private int REV_re_step;
-		private int REV_re_level;
-		private String REV_member_id;
-		private int REV_goods_no;
-		Calendar today = Calendar.getInstance();
 
-		// 받아올 qna 정보
-		private int qa_no;
-		private String qa_special_no;
-		private String qa_subject;
-		private String qa_name;
-		private String qa_passwd;
-		private String qa_content;
-		private int qa_readcnt;
-		private Date qa_regdate;
-		private int qa_ref;
-		private int qa_re_step;
-		private int qa_re_level;
-		private int qa_level;
-		private String qa_file_orgname;
-		private String qa_file_savname;
-		private String qa_make_public;
-		private int qa_category_no;
-		private String qa_member_id;
-		
-		Date date = new Date();
-	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	    
+	// 받아올 리뷰 정보
+	private int REV_no;
+	private String REV_subject;
+	private String REV_name;
+	private String REV_passwd;
+	private String REV_content;
+	private String REV_file_orgname;
+	private String REV_file_savname;
+	private int REV_readcnt;
+	private Date REV_regdate;
+	private int REV_ref;
+	private int REV_re_step;
+	private int REV_re_level;
+	private String REV_member_id;
+	private int REV_goods_no;
+	Calendar today = Calendar.getInstance();
+
+	// 받아올 qna 정보
+	private int qa_no;
+	private String qa_special_no;
+	private String qa_subject;
+	private String qa_name;
+	private String qa_passwd;
+	private String qa_content;
+	private int qa_readcnt;
+	private Date qa_regdate;
+	private int qa_ref;
+	private int qa_re_step;
+	private int qa_re_level;
+	private int qa_level;
+	private String qa_file_orgname;
+	private String qa_file_savname;
+	private String qa_make_public;
+	private int qa_category_no;
+	private String qa_member_id;
+
+	Date date = new Date();
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	public ViewAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
@@ -100,21 +99,18 @@ public class ViewAction extends ActionSupport implements SessionAware {
 		paramClass.setGoods_no(getGoods_no());
 
 		sqlMapper.update("goods-updateReadcnt", paramClass);
-		
-		list = sqlMapper.queryForList("review-selectAll2", getGoods_no()); 
-		
-		
-	qaList = sqlMapper.queryForList("qaView-selectAll2", getGoods_no()); 
-		
+
+		list = sqlMapper.queryForList("review-selectAll2", getGoods_no());
+
+		qaList = sqlMapper.queryForList("qaView-selectAll2", getGoods_no());
 
 		resultClass = (GoodsVO) sqlMapper.queryForObject("goods-selectOne", getGoods_no());
-		
-		rplist = sqlMapper.queryForList("goods-selectRP", getGoods_no());
 
+		rplist = sqlMapper.queryForList("goods-selectRP", getGoods_no());
 
 		return SUCCESS;
 	}
-	
+
 	public void setReviewClass(ReviewVO reviewClass) {
 		this.reviewClass = reviewClass;
 	}
@@ -124,13 +120,11 @@ public class ViewAction extends ActionSupport implements SessionAware {
 		reviewClass.setREV_no(getREV_no());
 		reviewClass.setREV_subject(getREV_subject());
 		reviewClass.setREV_content(getREV_content());
-		
-		
-	    
-	    reviewClass.setREV_regdate(today.getTime());
-	    sdf.format(REV_regdate);
-	    System.out.println(sdf.format(today.getTime()));
-	    reviewClass.setREV_regdate(REV_regdate);
+
+		reviewClass.setREV_regdate(today.getTime());
+		sdf.format(REV_regdate);
+		System.out.println(sdf.format(today.getTime()));
+		reviewClass.setREV_regdate(REV_regdate);
 
 		reviewClass.setREV_goods_no(getREV_goods_no());
 
@@ -139,54 +133,53 @@ public class ViewAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 
 	}
-	
+
 	public String ModifyAction() throws Exception {
 
-	      return SUCCESS;
+		return SUCCESS;
 	}
-	
-	 public String DeleteAction() throws Exception { 
-		 
-	      System.out.println("~~"+getREV_no());
-	      // 해당 번호의 글을 가져온다
-	      reviewClass = (ReviewVO) sqlMapper.queryForObject("review-selectOne", getREV_no()); 
-	      // 삭제할 항목 설정
-	      reviewClass.setREV_no(getREV_no());
-	      // 삭제 쿼리 수행
-	      sqlMapper.update("user.review.Review_DeleteAction", reviewClass); 
-	      return SUCCESS;
-	   }
 
-	
+	public String DeleteAction() throws Exception {
+
+		System.out.println("~~" + getREV_no());
+		// 해당 번호의 글을 가져온다
+		reviewClass = (ReviewVO) sqlMapper.queryForObject("review-selectOne", getREV_no());
+		// 삭제할 항목 설정
+		reviewClass.setREV_no(getREV_no());
+		// 삭제 쿼리 수행
+		sqlMapper.update("user.review.Review_DeleteAction", reviewClass);
+		return SUCCESS;
+	}
+
 	public String qaWrite() throws Exception {
 
-	      qaClass.setQA_NO(getQa_no());
-	      qaClass.setQA_SUBJECT(getQa_subject());
-	      qaClass.setQA_CONTENT(getQa_content());
-	      
-	      reviewClass.setREV_regdate(today.getTime());
-		  sdf.format(qa_regdate);
-		  System.out.println(sdf.format(today.getTime()));
-		  reviewClass.setREV_regdate(qa_regdate);
-	      
-	      qaClass.setQA_NO(getGoods_no());
-	      
-	      sqlMapper.insert("user.qa.qa_writeCommentAction", qaClass);
+		qaClass.setQA_NO(getQa_no());
+		qaClass.setQA_SUBJECT(getQa_subject());
+		qaClass.setQA_CONTENT(getQa_content());
 
-	      return SUCCESS;
-	   }
-	
-	public String DeleteAction1() throws Exception { 
-	       
-	      System.out.println("~~"+getQa_no());
-	      // 해당 번호의 글을 가져온다
-	      qaClass = (QaVO) sqlMapper.queryForObject("qa.qaView", getQa_no()); 
-	      // 삭제할 항목 설정
-	      qaClass.setQA_NO(getQa_no());
-	      // 삭제 쿼리 수행
-	      sqlMapper.update("user.qa.qa_deleteAction1", qaClass); 
-	      return SUCCESS;
-	   }
+		reviewClass.setREV_regdate(today.getTime());
+		sdf.format(qa_regdate);
+		System.out.println(sdf.format(today.getTime()));
+		reviewClass.setREV_regdate(qa_regdate);
+
+		qaClass.setQA_NO(getGoods_no());
+
+		sqlMapper.insert("user.qa.qa_writeCommentAction", qaClass);
+
+		return SUCCESS;
+	}
+
+	public String DeleteAction1() throws Exception {
+
+		System.out.println("~~" + getQa_no());
+		// 해당 번호의 글을 가져온다
+		qaClass = (QaVO) sqlMapper.queryForObject("qa.qaView", getQa_no());
+		// 삭제할 항목 설정
+		qaClass.setQA_NO(getQa_no());
+		// 삭제 쿼리 수행
+		sqlMapper.update("user.qa.qa_deleteAction1", qaClass);
+		return SUCCESS;
+	}
 
 	public int getGoods_no() {
 		return Goods_no;
@@ -527,7 +520,5 @@ public class ViewAction extends ActionSupport implements SessionAware {
 	public ReviewVO getReviewClass() {
 		return reviewClass;
 	}
-	
-	
 
 }

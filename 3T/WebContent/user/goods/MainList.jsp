@@ -51,7 +51,7 @@
 		cellspacing="10">
 
 		<tr>
-			<td colspan="3" align="center"><h2>new item</h2>----------------------------</td>
+			<td colspan="3" align="center"><img src="/3T/upload/mainline2.JPG"/></td>
 		</tr>
 		<tr>
 		<tr>
@@ -92,10 +92,10 @@
 	<br>
 	<br>
 	<br>
-	<table width="1100" border="1" height="300" align="center"
+	<table width="1100" border="0" height="300" align="center"
 		cellpadding="0" cellspacing="10">
 		<tr height="200">
-			<td colspan="3" align="center"><h1>3t3t3t</h1></td>
+			<td colspan="3" align="center"><img src="/3T/upload/mainline3.JPG"/></td>
 		</tr>
 	</table>
 

@@ -120,9 +120,9 @@
 		select * from QA order by QA_NO
 	</select>
 	
-	<!-- qna 상품별 리스트 -->
-	<select id="qaView-selectAll2" resultMap="qaRes">
-		select * from QA where QA_NO=#QA_NO#
+	<!-- qa 상품별 리스트 -->
+	<select id="qaView-selectAll2" resultMap="qaRes" parameterClass="int">
+		select * from QA where QA_GOODS_NO=#QA_GOODS_NO# ORDER BY QA_NO
 	</select>
 
 	<!-- qa 상세보기 -->
@@ -152,6 +152,8 @@
 	<delete id="qaDelete" parameterClass="int">
 		delete from QA where QA_NO=#QA_NO#
 	</delete>
+	
+	<!-- 상세보기 리뷰,qa 하이퍼링크 -->
    
    <!-- ===============================위시 리스트로 insert================================== -->
    
