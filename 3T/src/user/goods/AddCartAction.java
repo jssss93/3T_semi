@@ -72,7 +72,7 @@ public class AddCartAction extends ActionSupport implements SessionAware {
 
 		sqlMapper.insert("insertBasket", b_paramClass);
 
-		B_List = sqlMapper.queryForList("Basket_mem", b_paramClass);
+		B_List = sqlMapper.queryForList("basket-selectM", b_paramClass);
 
 		return SUCCESS;
 

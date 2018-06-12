@@ -22,7 +22,7 @@
 			<td height="50"></td>
 		</tr>
 	</table>
-	
+
 	<table width="900" border="0" cellspacing="0" cellpadding="2">
 		<tr align="center">
 			<td width="130"><strong>주문일자<br>[주문번호]</br></strong></td>
@@ -38,7 +38,7 @@
 		</tr>
 
 		<s:iterator value="list" status="stat">
-			<s:url id="viewURL" action="AOViewAction.action">
+			<s:url id="viewURL" action="AO_View.action">
 				<s:param name="order_no">
 					<s:property value="order_no" />
 				</s:param>
@@ -78,6 +78,20 @@
 		<tr height="50" align="center">
 			<td colspan="5"><s:property value="pagingHtml" escape="false" /></td>
 
+		</tr>
+		<tr align="center">
+			<td colspan="5">
+				<form action="AO_List.action">
+					<select name="searchNum">
+						<option value="0">주문자명</option>
+						<option value="1">구매자ID</option>
+					</select>
+					
+					<s:textfield name="searchKeyword" theme="simple" value=""
+						cssStyle="width:120px" maxlength="20" />
+					<input name="submit" type="submit" value="검색" class="inputb">
+				</form>
+			</td>
 		</tr>
 	</table>
 </body>
