@@ -52,6 +52,9 @@
 	<table width="600" border="0" cellspacing="0" cellpadding="0">
 
 		<tr>
+			<td height="1" ></td>
+		</tr>
+			<tr bgcolor="#777777">
 			<td height="1" colspan="2"></td>
 		</tr>
 
