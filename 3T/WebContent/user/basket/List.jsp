@@ -9,8 +9,29 @@
 <link rel="stylesheet" href="/3T/user/basket/common/css/css.css"
 	type="text/css">
 </head>
+<script language="javascript">
+	function sele(n) {
+		if (n == 0) {
+			document.form.action = "basket_checkdelete.action"
+		} else {
+			
+			document.form.action = "Order_Write.action";
+		}
+		return false;
+	}
 
+	function chkBox(bool) { // 전체선택/해제 
+		var obj = document.getElementsByName("chk");
+		for (var i = 0; i < obj.length; i++)
+			obj[i].checked = bool;
+		return itemSum(this.form);
+		alert("1.");
+	}
+
+
+</script>
 <body>
+<form name="form">
 	<table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td height="30"></td>
@@ -25,7 +46,7 @@
 	<table width="1000" border="1" cellspacing="0" cellpadding="2">
 		<tr>
 			<td width="50" rowspan="2" align="center">해택 정보</td>
-			<td width="400">&nbsp;&nbsp;${M_ID }회원이십니다.</td>
+			<td width="400">&nbsp;&nbsp;${session.M_ID }회원이십니다.</td>
 		</tr>
 		<tr>
 			<td width="400">&nbsp;&nbsp;쿠폰 : <font color="#FF0000">$
@@ -38,10 +59,11 @@
 			<td height="20"></td>
 		</tr>
 		<tr align="center" bgcolor="#F9F9F9">
-			<td width="50"><input name="checkbox" type="checkbox" /></td>
+			<td width="50"><input type="checkbox" value=""
+					class="checkbox" onclick=chkBox(this.checked) checked /></td>
 			<td width="130"><strong>IMAGE</strong></td>
-			<td width="100"><strong>PRODUCT INFO</strong></td>
-			<td width="400"><strong>PRICE</strong></td>
+			<td width="400"><strong>PRODUCT INFO</strong></td>
+			<td width="80"><strong>PRICE</strong></td>
 			<td width="80"><strong>QUANTITY</strong></td>
 			<td width="80"><strong>TOTAL</strong></td>
 
@@ -50,8 +72,8 @@
 
 		<s:iterator value="B_List" status="stat">
 			<!-- http://localhost:8080/StrutsBoard/viewAction.action?no=2&currentPage=1 -->
-			<s:url id="viewURL" action="BasketView">
-				<s:param name="basket_no">
+			<s:url id="viewURL" action="GoodsView">
+				<s:param name="goods_no">
 					<s:property value="basket_no" />
 				</s:param>
 				<s:param name="currentPage">
@@ -60,13 +82,13 @@
 			</s:url>
 
 			<tr align="center">
-				<td width="50"><input name="checkbox" type="checkbox" /></td>
-				<td><img src="/3T/upload/${basket_goods_img}.small.jpg"
+				<td width="50"><input type="checkbox" name="chk" checked value="<s:property value="basket_no"/>"/></td>
+				<td><img src="/3T/upload/${basket_goods_img}"
 					width="50"></td>
-				<td align="center"><s:property value="basket_name" /></td>
+				<td align="center" ><s:a href="%{viewURL}"><s:property value="basket_name" /></s:a></td>
 				<td align="center"><s:property value="basket_goods_amount" /></td>
 				<td align="center"><s:property value="basket_quantity" /></td>
-				<td align="center"><s:property value="basket_total" /></td>
+				<td align="center"><s:property value="basket_goods_amount*basket_quantity" /></td>
 
 			</tr>
 
@@ -79,7 +101,7 @@
 			</tr>
 
 		</s:if>
-		<s:iterator value="B_List" status="stat">
+
 			<tr bgcolor="#F9F9F9">
 				<td colspan="2">&nbsp;&nbsp;&nbsp;[기본배송]</td>
 				<td align="right" colspan="6">상품구매금액 <s:property
@@ -87,7 +109,7 @@
 						<s:property value="basket_goods_amount" />
 				</font></td>
 			</tr>
-		</s:iterator>
+	
 		<tr align="left">
 			<td colspan="7" bgcolor="#FFCBCB"><font color="#CC3D3D">
 					&nbsp;&nbsp;&nbsp;⊙&nbsp;&nbsp;할인적용 금액은 주문서작성의 결제예정금액에서 확인 가능합니다.</td>
@@ -96,8 +118,8 @@
 
 		<tr align="right">
 			<td width="80">선택한상품을</td>
-			<td align="left"><input name="delete" type="button"
-				value="x 삭제하기" style="background-color: #B8B8B8;" /></td>
+			<td align="left"><input name="submit" type="submit"
+				value="삭제하기" style="background-color: #B8B8B8;" onclick="sele(0);"/></td>
 
 		</tr>
 		<tr>
@@ -113,7 +135,7 @@
 			<td align="center" width="340"><font color="#5D5D5D">총
 					결제예정 금액</font></td>
 		</tr>
-		<s:iterator value="list" status="stat">
+		
 			<tr>
 				<td width="340" align="center"><font style="font-weight: bold;"><h3>
 							KRW
@@ -127,20 +149,20 @@
 							<s:property value="basket_goods_amount" />
 						</h3></font></td>
 			</tr>
-		</s:iterator>
+		
 	</table>
 	<table width="1000" border="0" cellspacing="0" cellpadding="3">
 		<tr>
 			<td height="20"></td>
 		</tr>
 		<tr>
-			<td colspan="7" align="center"><input name="order" type="button"
-				value="전체상품 주문"
+			<td colspan="7" align="center"><input name="submit" type="submit"
+				value="선택 상품 주문" onclick="sele(1)"
 				style="font-family: 돋움; background-color: #121212; color: #FFFFFF; border-color: #121212;"
 				onClick="javascript:location.href='OrderWrite.action?currentPage=<s:property value="currentPage" />'"></td>
 			<td colspan="6" align="right"><input name="Main" type="button"
 				value="쇼핑계속하기 ▶"
-				onClick="javascript:location.href='BasketMain.action?currentPage=<s:property value="currentPage" />'"></td>
+				onClick="javascript:location.href='main.action?currentPage=<s:property value="currentPage" />'"></td>
 		</tr>
 		<tr>
 			<td width="30"></td>
@@ -167,6 +189,7 @@
 			</td>
 		</tr>
 	</table>
+	</form>
 </body>
 </html>
 

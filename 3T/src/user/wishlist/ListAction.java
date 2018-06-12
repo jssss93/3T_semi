@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -13,12 +16,13 @@ import com.opensymphony.xwork2.ActionSupport;
 
 
 
-public class ListAction extends ActionSupport{
+public class ListAction extends ActionSupport implements SessionAware{
 	public static Reader reader;	//파일 스트림을 위한 reader.
 	public static SqlMapClient sqlMapper;	//SqlMapClient API를 사용하기 위한 sqlMapper 객체.
 
 	private List<WishlistVO> list = new ArrayList<WishlistVO>();	 
-	
+	public Map session;
+
 	
 	private int currentPage = 1;	//현재 페이지
 	private int totalCount; 		// 총 게시물의 수
@@ -58,6 +62,30 @@ public class ListAction extends ActionSupport{
 		list = list.subList(page.getStartCount(), lastCount);
 
 		return SUCCESS;
+	}
+
+	public static Reader getReader() {
+		return reader;
+	}
+
+	public static void setReader(Reader reader) {
+		ListAction.reader = reader;
+	}
+
+	public static SqlMapClient getSqlMapper() {
+		return sqlMapper;
+	}
+
+	public static void setSqlMapper(SqlMapClient sqlMapper) {
+		ListAction.sqlMapper = sqlMapper;
+	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
 	}
 
 	public int getCurrentPage() {

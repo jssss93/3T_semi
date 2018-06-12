@@ -61,7 +61,7 @@ public class AddCartAction extends ActionSupport implements SessionAware {
 
 		g_paramClass.setGoods_no(getGoods_no());
 		g_resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", getGoods_no());
-
+        System.out.println("getGoods_no "+getGoods_no());
 		b_paramClass.setBasket_member_id(ActionContext.getContext().getSession().get("M_ID").toString());
 		b_paramClass.setBasket_goods_amount(g_resultClass.getGoods_price());
 		b_paramClass.setBasket_goods_size(g_resultClass.getGoods_size());
@@ -69,10 +69,11 @@ public class AddCartAction extends ActionSupport implements SessionAware {
 		b_paramClass.setBasket_goods_img(g_resultClass.getGoods_file_savname().split(",")[0]);
 		b_paramClass.setBasket_quantity(getBasket_quantity());
 		b_paramClass.setBasket_name(g_resultClass.getGoods_name());
+		b_paramClass.setBasket_goods_no(g_resultClass.getGoods_no());
 
 		sqlMapper.insert("insertBasket", b_paramClass);
-
-		B_List = sqlMapper.queryForList("Basket_mem", b_paramClass);
+		
+		B_List = sqlMapper.queryForList("Basket_mem");
 
 		return SUCCESS;
 

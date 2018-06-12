@@ -443,21 +443,29 @@
 		<result property="basket_goods_img" column="basket_goods_img" />
 		<result property="basket_quantity" column="basket_quantity" />
 		<result property="basket_name" column="basket_name" />
+		<result property="basket_goods_no" column="basket_goods_no" />
 
 	</resultMap>
 
 	<select id="Basket_mem" resultMap="BasketRes">
 		SELECT * FROM BASKET 
-		ORDER BY Basket_NO DESC
+		ORDER BY basket_no DESC
 	</select>
 
 	<insert id="insertBasket" parameterClass="ABbasket">
 		INSERT INTO
 		BASKET(basket_no,basket_member_id,basket_goods_amount,basket_goods_size,basket_goods_color,
-		basket_goods_img,basket_quantity,basket_name) VALUES
+		basket_goods_img,basket_quantity,basket_name,basket_goods_no) VALUES
 		(BASKET_NO_SEQ.NEXTVAL,#basket_member_id#,#basket_goods_amount#,#basket_goods_size#,#basket_goods_color#,
-		#basket_goods_img#,#basket_quantity#,#basket_name#)
+		#basket_goods_img#,#basket_quantity#,#basket_name#,#basket_goods_no#)
 	</insert>
-
+	
+	<insert id="insertWishlist" parameterClass="ABbasket">
+		INSERT INTO
+		BASKET(basket_no,basket_member_id,basket_goods_amount,basket_goods_size,basket_goods_color,
+		basket_goods_img,basket_quantity,basket_name,basket_goods_no) VALUES
+		(BASKET_NO_SEQ.NEXTVAL,#basket_member_id#,#basket_goods_amount#,#basket_goods_size#,#basket_goods_color#,
+		#basket_goods_img#,#basket_quantity#,#basket_name#,#basket_goods_no#)
+	</insert>
 
 </sqlMap>

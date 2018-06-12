@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -13,7 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 
 
-public class ListAction extends ActionSupport{
+public class ListAction extends ActionSupport implements SessionAware{
 	public static Reader reader;	//파일 스트림을 위한 reader.
 	public static SqlMapClient sqlMapper;	//SqlMapClient API를 사용하기 위한 sqlMapper 객체.
 
@@ -29,7 +32,7 @@ public class ListAction extends ActionSupport{
 	private int blockPage = 5; 	// 한 화면에 보여줄 페이지 수
 	private String pagingHtml; 	//페이징을 구현한 HTML
 	private PagingAction page; 	// 페이징 클래스
-	
+	public Map session;
 	// 생성자
 	public ListAction() throws IOException {
 		
@@ -98,6 +101,38 @@ public class ListAction extends ActionSupport{
 	}
 
 
+
+	public static Reader getReader() {
+		return reader;
+	}
+
+	public static void setReader(Reader reader) {
+		ListAction.reader = reader;
+	}
+
+	public static SqlMapClient getSqlMapper() {
+		return sqlMapper;
+	}
+
+	public static void setSqlMapper(SqlMapClient sqlMapper) {
+		ListAction.sqlMapper = sqlMapper;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
 
 	public int getCurrentPage() {
 		return currentPage;

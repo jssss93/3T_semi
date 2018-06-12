@@ -1,6 +1,10 @@
 package user.wishlist;
 
-public class PagingAction {
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+public class PagingAction implements SessionAware{
 
 	private int currentPage;   // 현재페이지
 	private int totalCount;	 // 전체 게시물 수
@@ -11,6 +15,7 @@ public class PagingAction {
 	private int endCount;	 // 한 페이지에서 보여줄 게시글의 끝 번호
 	private int startPage;	 // 시작 페이지
 	private int endPage;	 // 마지막 페이지
+	public Map session;
 
 	private StringBuffer pagingHtml;
 
@@ -88,6 +93,14 @@ public class PagingAction {
 			pagingHtml.append("다음");
 			pagingHtml.append("</a>");
 		}
+	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
 	}
 
 	public int getCurrentPage() {

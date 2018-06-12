@@ -14,10 +14,13 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 
 
-public class ViewAction extends ActionSupport{
+public class ViewAction extends ActionSupport implements SessionAware{
 	
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
@@ -28,7 +31,7 @@ public class ViewAction extends ActionSupport{
 	
 	private Qa_CommentVO cClass = new Qa_CommentVO();
 	private Qa_CommentVO cResult = new Qa_CommentVO();
-	
+	public Map session;
 	
 	private int currentPage;
 	
@@ -83,6 +86,30 @@ public class ViewAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
+	public static Reader getReader() {
+		return reader;
+	}
+
+	public static void setReader(Reader reader) {
+		ViewAction.reader = reader;
+	}
+
+	public static SqlMapClient getSqlMapper() {
+		return sqlMapper;
+	}
+
+	public static void setSqlMapper(SqlMapClient sqlMapper) {
+		ViewAction.sqlMapper = sqlMapper;
+	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
+
 	public String checkForm() throws Exception
 	{
 		return SUCCESS;
