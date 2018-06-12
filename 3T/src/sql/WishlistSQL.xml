@@ -11,7 +11,9 @@
 		<result property="W_GOODS_AMOUNT" column="W_GOODS_AMOUNT" />
 		<result property="W_GOODS_IMG" column="W_GOODS_IMG" />
 		<result property="W_TOTAL" column="W_TOTAL" />
-		<result property="W_SELECT" column="W_SELECT" />
+		<result property="W_GOODS_NO" column="W_GOODS_NO"/>
+		<result property="W_GOODS_SIZE" column="W_GOODS_SIZE"/>
+		<result property="W_GOODS_COLOR" column="W_GOODS_COLOR"/>
 	</resultMap>
 	
 		<!-- 공통으로 사용할 select 절 정의 -->

@@ -29,6 +29,8 @@ public class AddWishAction extends ActionSupport implements SessionAware{
 	private int sgoods_cnt;
 	private String m_id;
 	private int goods_no;
+	private String sgoods_size;
+	private String sgoods_color;
 	
 	public AddWishAction() throws IOException{
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
@@ -46,6 +48,9 @@ public class AddWishAction extends ActionSupport implements SessionAware{
 		w_paramClass.setW_GOODS_AMOUNT(g_resultClass.getGoods_price());
 		w_paramClass.setW_GOODS_IMG(g_resultClass.getGoods_file_savname().split(",")[0]);
 		w_paramClass.setW_TOTAL(getSgoods_cnt());
+		w_paramClass.setW_GOODS_NO(g_resultClass.getGoods_no());
+		w_paramClass.setW_GOODS_SIZE(getSgoods_size());
+		w_paramClass.setW_GOODS_COLOR(getSgoods_color());
 		
 		sqlMapper.insert("insertWishList", w_paramClass);
 		
@@ -106,6 +111,22 @@ public class AddWishAction extends ActionSupport implements SessionAware{
 
 	public void setSgoods_cnt(int sgoods_cnt) {
 		this.sgoods_cnt = sgoods_cnt;
+	}
+
+	public String getSgoods_size() {
+		return sgoods_size;
+	}
+
+	public void setSgoods_size(String sgoods_size) {
+		this.sgoods_size = sgoods_size;
+	}
+
+	public String getSgoods_color() {
+		return sgoods_color;
+	}
+
+	public void setSgoods_color(String sgoods_color) {
+		this.sgoods_color = sgoods_color;
 	}
 	
 	

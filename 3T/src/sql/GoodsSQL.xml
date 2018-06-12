@@ -4,6 +4,9 @@
 
 
    <typeAlias alias="goods" type="admin.goods.VO.GoodsVO" />
+   <typeAlias alias="review" type="user.review.ReviewVO" />
+   <typeAlias alias="qa" type="user.qa.QaVO" />
+	<typeAlias alias="qa_board" type="user.qa.Qa_CommentVO" />
 
    <resultMap id="goodsRes" class="goods">
       <result property="goods_no" column="goods_no" />
@@ -21,6 +24,59 @@
       <result property="goods_file_orgname" column="goods_file_orgname" />
       <result property="goods_file_savname" column="goods_file_savname" />
    </resultMap>
+   
+	<!-- 리절트 맵 정의 -->
+	<resultMap id="reviewRes" class="review">
+		<result property="REV_no" column="REV_no" />
+		<result property="REV_subject" column="REV_subject" />
+		<result property="REV_name" column="REV_name" />
+		<result property="REV_passwd" column="REV_passwd" />
+		<result property="REV_content" column="REV_content" />
+		<result property="REV_file_orgname" column="REV_file_orgname" />
+		<result property="REV_file_savname" column="REV_file_savname" />
+		<result property="REV_readcnt" column="REV_readcnt" />
+		<result property="REV_regdate" column="REV_regdate" />
+		<result property="REV_ref" column="REV_ref" />
+		<result property="REV_re_step" column="REV_re_step" />
+		<result property="REV_re_level" column="REV_re_level" />
+		<result property="REV_member_id" column="REV_member_id" />
+		<result property="REV_goods_no" column="REV_goods_no" />
+	</resultMap>
+   
+	<!-- 리절트 맵 정의 -->
+	<resultMap id="qaRes" class="qa">
+		<result property="QA_NO" column="QA_NO" />
+		<result property="QA_SPECIAL_NO" column="QA_SPECIAL_NO" />
+		<result property="QA_SUBJECT" column="QA_SUBJECT" />
+		<result property="QA_NAME" column="QA_NAME" />
+		<result property="QA_PASSWD" column="QA_PASSWD" />
+		<result property="QA_CONTENT" column="QA_CONTENT" />
+		<result property="QA_READCNT" column="QA_READCNT" />
+		<result property="QA_REGDATE" column="QA_REGDATE" />
+		<result property="QA_REF" column="QA_REF" />
+		<result property="QA_RE_STEP" column="QA_RE_STEP" />
+		<result property="QA_RE_LEVEL" column="QA_RE_LEVEL" />
+		<result property="QA_FILE_ORGNAME" column="QA_FILE_ORGNAME" />
+		<result property="QA_FILE_SAVNAME" column="QA_FILE_SAVNAME" />
+		<result property="QA_MAKE_PUBLIC" column="QA_MAKE_PUBLIC" />
+		<result property="QA_CATEGORY_NO" column="QA_CATEGORY_NO" /><!-- 
+			QA_CATEGORY_NO -->
+		<result property="QA_MEMBER_ID" column="QA_MEMBER_ID" />
+	</resultMap>
+	
+	
+	<resultMap id="qaboardRes" class="qa_board">
+		<result property="QA_NO" column="QA_NO" />
+		<result property="QA_ORIGINNO" column="QA_ORIGINNO" />
+		<result property="QA_NAME" column="QA_NAME" />
+		<result property="QA_PASSWD" column="QA_PASSWD" />
+		<result property="QA_CONTENT" column="QA_CONTENT" />
+		<result property="QA_REGDATE" column="QA_REGDATE" />
+	</resultMap>
+   
+   
+   
+   
 
    <sql id="goods-select-all">
       select * from goods
@@ -48,6 +104,55 @@
    	  select * from goods where goods_category = (select goods_category from goods where goods_no = #goods_no#)
    </select>
    
+   <!-- 상세보기 리뷰 -->
+
+	<!-- 해당 상품번호에 해당하는 리뷰리스트를 가져온다 -->
+	<select id="review-selectAll2" resultMap="reviewRes"
+		parameterClass="int">
+		select * from REVIEW where REV_Goods_no =
+		#REV_Goods_no# ORDER BY REV_NO
+	</select>
+	
+	<!-- 상세보기 Qa -->
+
+	<!-- qa 리스트 -->
+	<select id="qaList" resultMap="qaRes">
+		select * from QA order by QA_NO
+	</select>
+	
+	<!-- qna 상품별 리스트 -->
+	<select id="qaView-selectAll2" resultMap="qaRes">
+		select * from QA where QA_NO=#QA_NO#
+	</select>
+
+	<!-- qa 상세보기 -->
+	<select id="qaView" resultMap="qaRes" parameterClass="int">
+		select *
+		from QA where QA_NO=#QA_NO#
+	</select>
+
+	<!-- qa 작성 -->
+	<insert id="qaWrite" parameterClass="qa">
+		insert into QA(QA_NO,
+		QA_SUBJECT, QA_NAME, QA_PASSWD, QA_CONTENT,
+		QA_REGDATE,QA_RE_STEP,QA_RE_LEVEL,QA_REF,QA_CATEGORY_NO)
+		VALUES
+		(QA_no_seq.NEXTVAL, #QA_SUBJECT#, #QA_NAME#, #QA_PASSWD#,
+		#QA_CONTENT#, #QA_REGDATE#, #QA_RE_STEP#,
+		#QA_RE_LEVEL#,QA_no_seq.CURRVAL,#QA_CATEGORY_NO#)
+	</insert>
+
+	<!-- qa 수정 -->
+	<update id="qaModify" parameterClass="qa">
+		update QA set
+		QA_SUBJECT=#QA_SUBJECT#,QA_CONTENT=#QA_CONTENT# where QA_NO=#QA_NO#
+	</update>
+	
+	<!-- qa 삭제 -->
+	<delete id="qaDelete" parameterClass="int">
+		delete from QA where QA_NO=#QA_NO#
+	</delete>
+   
    <!-- ===============================위시 리스트로 insert================================== -->
    
    <typeAlias alias="wishlist" type="user.wishlist.WishlistVO"/>
@@ -59,13 +164,15 @@
    		<result property="W_GOODS_AMOUNT" column="W_GOODS_AMOUNT" />
    		<result property="W_GOODS_IMG" column="W_GOODS_IMG" />
    		<result property="W_TOTAL" column="W_TOTAL" />
-   		<result property="W_SELECT" column="W_SELECT" />
+   		<result property="W_GOODS_NO" column="W_GOODS_NO"/>
+   		<result property="W_GOODS_SIZE" column="W_GOODS_SIZE"/>
+		<result property="W_GOODS_COLOR" column="W_GOODS_COLOR"/>
    </resultMap>
    
    <insert id="insertWishList" parameterClass="wishlist">
    		insert into
-   		wishlist(W_NO, W_MEMBER_ID, W_GOODS_NAME, W_GOODS_AMOUNT, W_GOODS_IMG, W_TOTAL, W_SELECT)
-   		values(W_NO_seq.nextval, #W_MEMBER_ID#, #W_GOODS_NAME#, #W_GOODS_AMOUNT#, #W_GOODS_IMG#, #W_TOTAL#, #W_SELECT#)
+   		wishlist(W_NO, W_MEMBER_ID, W_GOODS_NAME, W_GOODS_AMOUNT, W_GOODS_IMG, W_TOTAL, W_GOODS_NO, W_GOODS_SIZE, W_GOODS_COLOR)
+   		values(W_NO_seq.nextval, #W_MEMBER_ID#, #W_GOODS_NAME#, #W_GOODS_AMOUNT#, #W_GOODS_IMG#, #W_TOTAL#, #W_GOODS_NO#, #W_GOODS_SIZE#, #W_GOODS_COLOR#)
    </insert>
 
    <!-- ===============================메인 리스트======================================= -->
