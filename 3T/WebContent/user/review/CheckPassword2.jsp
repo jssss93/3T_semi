@@ -6,29 +6,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>비밀번호 확인</title>
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
-	<h2>비밀번호 확인</h2>
+		<table width="370">
+		<tr>
+			<td align="center" class="text01 formbar">비밀번호 확인</td>
+		</tr>
+	</table>
 	<form action="Review_CheckAction2.action" method="post">
 		<s:hidden name="REV_C_no" value="%{REV_C_no}" />
 		<s:hidden name="REV_C_originno" value="%{REV_C_originno}" />
 		<s:hidden name="currentPage" value="%{currentPage}" />
 
-		<table width="250" border="0" cellspacing="0" cellpadding="0">
-			<tr bgcolor="#777777">
-				<td height="1" colspan="2"></td>
-			</tr>
+		<table width="370" border="0" cellspacing="0" cellpadding="0" id="form">
+		
 			<tr>
-				<td width="100" bgcolor="#F4F4F4">비밀번호 입력</td>
-				<td width="150" bgcolor="#FFFFFF">&nbsp;&nbsp; <s:textfield
+				<td width="120" class="tdstyle1">비밀번호 입력</td>
+				<td width="350">&nbsp;&nbsp; <s:textfield
 						name="REV_C_passwd" theme="simple" cssStyle="width:100px"
 						maxlength="20" /> &nbsp;&nbsp; <input name="submit" type="submit"
-					value="확인" class="inputb">
+					value="확인" class="submit">
 				</td>
 			</tr>
-			<tr bgcolor="#777777">
-				<td height="1" colspan="2"></td>
-			</tr>
+			
 		</table>
 	</form>
 </body>

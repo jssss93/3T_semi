@@ -6,8 +6,8 @@
 <html>
 <head>
 <title>Basket</title>
-<link rel="stylesheet" href="/3T/user/basket/common/css/css.css"
-	type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -16,7 +16,7 @@
 			<td height="30"></td>
 		</tr>
 		<tr>
-			<td align="left"><h2>Basket</h2></td>
+			<td align="center" class="text01 formbar" >Basket</td>
 		</tr>
 		<tr>
 			<td height="50"></td>
