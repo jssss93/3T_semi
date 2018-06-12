@@ -46,7 +46,7 @@
 				<td align="center"><h2>상품 등록</h2></td>
 			</tr>
 		</table>
-		<form action="AGwriteAction.action" method="post"
+		<form action="AG_Write.action" method="post"
 			enctype="multipart/form-data" onsubmit="return validation();">
 	</s:if>
 
@@ -56,7 +56,7 @@
 				<td align="center"><h2>상품 수정</h2></td>
 			</tr>
 		</table>
-		<form action="AGmodifyAction.action" method="post"
+		<form action="AG_Modify.action" method="post"
 			enctype="multipart/form-data">
 			<s:hidden name="goods_no" value="%{resultClass.goods_no}" />
 			<s:hidden name="currentPage" value="%{currentPage}" />
@@ -183,7 +183,7 @@
 			<td align="right" colspan="2"><input name="submit" type="submit"
 				value="작성완료" class="inputb"> <input name="list"
 				type="button" value="목록" class="inputb"
-				onClick="javascript:location.href='AGlistAction.action?currentPage=<s:property value="currentPage" />'">
+				onClick="javascript:location.href='AG_List.action?currentPage=<s:property value="currentPage" />'">
 			</td>
 		</tr>
 

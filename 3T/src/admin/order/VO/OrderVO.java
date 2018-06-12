@@ -14,15 +14,16 @@ public class OrderVO {
 	private String order_phone3;
 	private String order_email1;
 	private String order_email2;
-	private String recipient_choice;
+
 	private String recipient_name;
 	private String recipient_zipcode;
 	private String recipient_phone1;
 	private String recipient_phone2;
 	private String recipient_phone3;
+	private String recipient_email1;
+	private String recipient_email2;
 	private String recipient_address1;
 	private String recipient_address2;
-	private int discount;
 
 	private String payment;
 	private String deposit_name;
@@ -36,14 +37,21 @@ public class OrderVO {
 	private String order_goods_no;
 	private String order_goods_name;
 	private int order_goods_count;
-	private String order_check;
 
-	public String getOrder_check() {
-		return order_check;
+	public String getRecipient_email1() {
+		return recipient_email1;
 	}
 
-	public void setOrder_check(String order_check) {
-		this.order_check = order_check;
+	public void setRecipient_email1(String recipient_email1) {
+		this.recipient_email1 = recipient_email1;
+	}
+
+	public String getRecipient_email2() {
+		return recipient_email2;
+	}
+
+	public void setRecipient_email2(String recipient_email2) {
+		this.recipient_email2 = recipient_email2;
 	}
 
 	public int getOrder_no() {
@@ -126,14 +134,6 @@ public class OrderVO {
 		this.order_email2 = order_email2;
 	}
 
-	public String getRecipient_choice() {
-		return recipient_choice;
-	}
-
-	public void setRecipient_choice(String recipient_choice) {
-		this.recipient_choice = recipient_choice;
-	}
-
 	public String getRecipient_name() {
 		return recipient_name;
 	}
@@ -188,14 +188,6 @@ public class OrderVO {
 
 	public void setRecipient_address2(String recipient_address2) {
 		this.recipient_address2 = recipient_address2;
-	}
-
-	public int getDiscount() {
-		return discount;
-	}
-
-	public void setDiscount(int discount) {
-		this.discount = discount;
 	}
 
 	public String getPayment() {

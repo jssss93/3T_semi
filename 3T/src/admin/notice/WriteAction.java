@@ -3,8 +3,10 @@ package admin.notice;
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -13,7 +15,16 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import admin.notice.VO.NoticeVO;
 
-public class WriteAction extends ActionSupport {
+public class WriteAction extends ActionSupport implements SessionAware {
+	private Map session;
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
 
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
