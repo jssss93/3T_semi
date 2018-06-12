@@ -11,7 +11,7 @@
 </head>
 <body>
 	<table width="1100" border="0" height="300" align="center"
-		cellpadding="0" cellspacing="3">
+		cellpadding="0" cellspacing="10">
 		<tr>
 			<td colspan=4 align="center">BEST</td>
 		</tr>
@@ -40,7 +40,8 @@
 						<img src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]"/>" width="300"
 							height="300">
 
-					</s:a></td>
+					</s:a><br> <s:property value="goods_name" /><br> \&nbsp;<s:property
+						value="goods_price" /></td>
 
 			</s:iterator>
 			
@@ -76,7 +77,7 @@
 
 						<img src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]"/>" width="500"
 							height="500">
-					</s:a><br> <s:property value="goods_name" /><br> <s:property
+					</s:a><br> <s:property value="goods_name" /><br> \&nbsp;<s:property
 						value="goods_price" /></td>
 
 			</s:iterator>

@@ -78,7 +78,7 @@
 							
 							<img src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]"/>" width="350"
 								height="400">
-						</s:a><br> <s:property value="goods_name" /><br> <s:property
+						</s:a><br> <s:property value="goods_name" /><br> \&nbsp;<s:property
 							value="goods_price" />
 							
 							</td>
@@ -131,7 +131,7 @@
 							
 							<img src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]"/>" width="350"
 								height="400">
-						</s:a><br> <s:property value="goods_name" /><br> <s:property
+						</s:a><br> <s:property value="goods_name" /><br> \&nbsp;<s:property
 							value="goods_price" />
 							
 							</td>

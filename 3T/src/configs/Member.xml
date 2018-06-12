@@ -30,7 +30,7 @@
 
 		<action name="logonAtion" class="user.member.login.LoginAction"
 			method="login">
-			<result name="success" type="tiles">LoginSuccess</result>
+			<result name="success" type="redirect-action">main</result>
 			<result name="error" type="tiles">LoginError</result>
 
 
@@ -38,15 +38,13 @@
 				<param name="actionName">AD_main</param>
 			</result>
 
-			<result name="success" type="tiles">main</result>
-
 			<result name="error">/user/login/LoginError.jsp</result>
 		</action>
 
 		<action name="logout" class="user.member.login.LoginAction"
 			method="logout">
 
-			<result name="success" type="tiles">
+			<result name="success" type="redirect-action">
 				main
 			</result>
 		</action>
