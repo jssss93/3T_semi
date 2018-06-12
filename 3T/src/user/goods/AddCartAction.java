@@ -37,6 +37,8 @@ public class AddCartAction extends ActionSupport implements SessionAware {
 
 	private List<BasketVO> B_List = new ArrayList<BasketVO>();
 
+	private int sgoods_cnt;
+	private String sgoods_size;
 	private String m_id;
 	private int goods_no;
 	private int basket_quantity;
@@ -64,16 +66,18 @@ public class AddCartAction extends ActionSupport implements SessionAware {
         System.out.println("getGoods_no "+getGoods_no());
 		b_paramClass.setBasket_member_id(ActionContext.getContext().getSession().get("M_ID").toString());
 		b_paramClass.setBasket_goods_amount(g_resultClass.getGoods_price());
-		b_paramClass.setBasket_goods_size(g_resultClass.getGoods_size());
+		b_paramClass.setBasket_goods_size(getSgoods_size());
 		b_paramClass.setBasket_goods_color(g_resultClass.getGoods_color());
 		b_paramClass.setBasket_goods_img(g_resultClass.getGoods_file_savname().split(",")[0]);
-		b_paramClass.setBasket_quantity(getBasket_quantity());
+		b_paramClass.setBasket_quantity(getSgoods_cnt());
 		b_paramClass.setBasket_name(g_resultClass.getGoods_name());
 		b_paramClass.setBasket_goods_no(g_resultClass.getGoods_no());
 
 		sqlMapper.insert("insertBasket", b_paramClass);
-		
-		B_List = sqlMapper.queryForList("Basket_mem");
+
+
+		B_List = sqlMapper.queryForList("basket-selectM", b_paramClass);
+
 
 		return SUCCESS;
 
@@ -174,4 +178,22 @@ public class AddCartAction extends ActionSupport implements SessionAware {
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
 	}
+
+	public int getSgoods_cnt() {
+		return sgoods_cnt;
+	}
+
+	public void setSgoods_cnt(int sgoods_cnt) {
+		this.sgoods_cnt = sgoods_cnt;
+	}
+
+	public String getSgoods_size() {
+		return sgoods_size;
+	}
+
+	public void setSgoods_size(String sgoods_size) {
+		this.sgoods_size = sgoods_size;
+	}
+	
+	
 }

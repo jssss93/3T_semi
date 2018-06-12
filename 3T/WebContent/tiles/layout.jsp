@@ -8,11 +8,11 @@
 </head>
 <body>
 <table width="100%" height="950" border="0" cellpadding="0" cellspacing="0">
-<tr colspan="1" height="10%" align="center" bgcolor="FAFAD2">
+<tr colspan="1" height="10%" align="center" bgcolor="#FFFFFF">
 <td><tiles:insertAttribute name="header"/></td>
 </tr>
 <tr>
-	<td valign="top" align="center" bgcolor="FFF0F5"><tiles:insertAttribute name="body" /></td>
+	<td valign="top" align="center" bgcolor="#FFFFFF"><tiles:insertAttribute name="body" /></td>
 	
 <tr>
 	

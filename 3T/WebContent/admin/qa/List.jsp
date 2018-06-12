@@ -20,7 +20,8 @@
 	<table width="1000" border="0" cellspacing="0" cellpadding="2">
 		<tr align="center" bgcolor="#f3f3f3">
 			<td width="50"><strong>번호</strong></td>
-			<td width="50"><strong>카테고리</strong></td>
+			<td width="50"><strong>ID</strong></td>
+			
 			<td width="50"><strong>제목</strong></td>
 			<td width="50"><strong>name</strong></td>
 			<td width="50"><strong>date</strong></td>
@@ -32,7 +33,7 @@
 		</tr>
 
 	<s:iterator value="list" status="stat">
-		<s:url id="viewURL" action="AFviewAction">
+		<s:url id="viewURL" action="AF_View">
 			<s:param name="qa_no">
 				<s:property value="qa_no" />
 			</s:param>
@@ -43,9 +44,10 @@
 	
 		<tr>
 			<td align="center"><s:property value="qa_no" /></td>
-			<td align="center"><s:property value="qa_category_no" /></td>
+			<td align="center"><s:property value="qa_member_id" /></td>
+			
 			<td align="center"><s:a href="%{viewURL}"><s:property value="qa_subject" /></s:a></td>
-			<td align="center"><s:property value="qa_writer" /></td>
+			<td align="center"><s:property value="qa_name" /></td>
 			<td align="center"><s:property value="qa_regdate" /></td>
 		</tr>
 

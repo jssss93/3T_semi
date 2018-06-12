@@ -53,6 +53,11 @@
 		m_id=#m_id#
 	</select>
 
+	<delete id="deleteMember" parameterClass="ad_member">
+		DELETE FROM MEMBER
+		<include refid="AMwhere-no" />
+	</delete>
+
 	<select id="AMselectLastNo" resultClass="ad_member"
 		parameterClass="int">
 		SELECT max(m_no) as m_no FROM MEMBER
@@ -385,7 +390,7 @@
 		<result property="order_phone3" column="order_phone3" />
 		<result property="order_email1" column="order_email1" />
 		<result property="order_email2" column="order_email2" />
-		<result property="recipient_choice" column="recipient_choice" />
+
 		<result property="recipient_name" column="recipient_name" />
 		<result property="recipient_zipcode" column="recipient_zipcode" />
 		<result property="recipient_address1" column="recipient_address1" />
@@ -393,7 +398,7 @@
 		<result property="recipient_phone1" column="recipient_phone1" />
 		<result property="recipient_phone2" column="recipient_phone2" />
 		<result property="recipient_phone3" column="recipient_phone3" />
-		<result property="discount" column="discount" />
+
 		<result property="payment" column="payment" />
 		<result property="deposit_name" column="deposit_name" />
 		<result property="deposit_bank" column="deposit_bank" />
@@ -406,7 +411,7 @@
 		<result property="order_goods_no" column="order_goods_no" />
 		<result property="order_goods_name" column="order_goods_name" />
 		<result property="order_goods_count" column="order_goods_count" />
-		<result property="order_check" column="order_check" />
+
 	</resultMap>
 
 
@@ -431,6 +436,19 @@
 		ORDER BY ORDER_NO DESC
 	</select>
 
+	<select id="AOselectSearchName" resultMap="OrderRes">
+		SELECT * FROM ORDER_3T where order_name like #SearchKeyword# 
+		ORDER
+		BY ORDER_NO DESC
+	</select>
+	
+	<select id="AOselectSearchID" resultMap="OrderRes">
+		SELECT * FROM ORDER_3T where order_member_id like #SearchKeyword# 
+		ORDER
+		BY ORDER_NO DESC
+	</select>
+	
+	
 	<!-- 사용자 BASKET SQL ********************************************************************************************************************** -->
 	<typeAlias alias="ABbasket" type="admin.basket.VO.BasketVO" />
 	<!-- 리절트 맵 정의 -->
@@ -447,9 +465,16 @@
 
 	</resultMap>
 
+
 	<select id="Basket_mem" resultMap="BasketRes">
-		SELECT * FROM BASKET 
+		SELECT * FROM BASKET  
 		ORDER BY basket_no DESC
+
+	<select id="basket-selectM" resultMap="BasketRes">
+		SELECT * FROM BASKET where
+		basket_member_id=#basket_member_id#
+		ORDER BY
+		Basket_NO DESC
 	</select>
 
 	<insert id="insertBasket" parameterClass="ABbasket">
@@ -467,5 +492,49 @@
 		(BASKET_NO_SEQ.NEXTVAL,#basket_member_id#,#basket_goods_amount#,#basket_goods_size#,#basket_goods_color#,
 		#basket_goods_img#,#basket_quantity#,#basket_name#,#basket_goods_no#)
 	</insert>
+
+
+	<typeAlias alias="AQqa" type="admin.qa.VO.QAVO" />
+	<!-- 리절트 맵 정의 -->
+	<resultMap id="QARes" class="AQqa">
+		<result property="qa_no" column="qa_no" />
+		<result property="qa_special_no" column="qa_special_no" />
+		<result property="qa_subject" column="qa_subject" />
+		<result property="qa_name" column="qa_name" />
+		<result property="qa_passwd" column="qa_passwd" />
+		<result property="qa_content" column="qa_content" />
+		<result property="qa_readcnt" column="qa_readcnt" />
+		<result property="qa_regdate" column="qa_regdate" />
+		<result property="qa_ref" column="qa_ref" />
+		<result property="qa_re_step" column="qa_re_step" />
+		<result property="qa_re_level" column="qa_re_level" />
+		<result property="qa_file_orgname" column="qa_file_orgname" />
+		<result property="qa_file_savname" column="qa_file_savname" />
+		<result property="qa_make_public" column="qa_make_public" />
+		<result property="qa_category_no" column="qa_category_no" />
+		<result property="qa_member_id" column="qa_member_id" />
+
+	</resultMap>
+
+	<sql id="AQselect-all">
+		SELECT * FROM QA
+	</sql>
+
+
+	<sql id="AQwhere-no">
+		WHERE QA_NO = #qa_no#
+	</sql>
+
+
+	<select id="AQselectAll" resultMap="QARes">
+		SELECT * FROM QA ORDER BY
+		QA_NO DESC
+	</select>
+
+	<select id="AQselectOne" resultMap="QARes">
+		SELECT * FROM QA where
+		qa_no=#qa_no#
+		ORDER BY QA_NO DESC
+	</select>
 
 </sqlMap>

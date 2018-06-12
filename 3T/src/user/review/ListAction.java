@@ -1,6 +1,9 @@
 package user.review;
 
 import com.opensymphony.xwork2.ActionSupport;
+
+import user.review.PagingAction;
+
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
@@ -23,6 +26,11 @@ public class ListAction extends ActionSupport {
 	private String pagingHtml; // 페이징을 구현한 HTML
 	private PagingAction page; // 페이징 클래스
 
+	private String searchKeyword;
+
+	private int searchNum;
+	private int num;
+
 	// 생성자
 	public ListAction() throws IOException {
 
@@ -33,12 +41,16 @@ public class ListAction extends ActionSupport {
 
 	// 게시판 LIST 액션
 	public String execute() throws Exception {
+
+		if (getSearchKeyword() != null) {
+			return search();
+		}
 		// 모든 글을 가져와 list에 넣는다.
 		list = sqlMapper.queryForList("review-selectAll");
 
 		totalCount = list.size(); // 전체 글 갯수를 구한다.
 		// pagingAction 객체 생성.
-		page = new PagingAction(currentPage, totalCount, blockCount, blockPage);
+		page = new PagingAction(currentPage, totalCount, blockCount, blockPage, num, "");
 		pagingHtml = page.getPagingHtml().toString(); // 페이지 HTML 생성.
 
 		// 현재 페이지에서 보여줄 마지막 글의 번호 설정.
@@ -52,6 +64,32 @@ public class ListAction extends ActionSupport {
 		// 전체 리스트에서 현재 페이지만큼의 리스트만 가져온다.
 		list = list.subList(page.getStartCount(), lastCount);
 
+		return SUCCESS;
+	}
+
+	public String search() throws Exception {
+
+		// searchKeyword = new String(searchKeyword.getBytes("iso-8859-1"), "euc-kr");
+		// System.out.println(searchKeyword);
+		// System.out.println(searchNum);
+
+		if (searchNum == 0) {
+			list = sqlMapper.queryForList("selectSearchW", "%" + getSearchKeyword() + "%");
+		}
+		if (searchNum == 1) {
+			list = sqlMapper.queryForList("selectSearchS", "%" + getSearchKeyword() + "%");
+		}
+
+		totalCount = list.size();
+		page = new PagingAction(currentPage, totalCount, blockCount, blockPage, searchNum, getSearchKeyword());
+		pagingHtml = page.getPagingHtml().toString();
+
+		int lastCount = totalCount;
+
+		if (page.getEndCount() < totalCount)
+			lastCount = page.getEndCount() + 1;
+
+		list = list.subList(page.getStartCount(), lastCount);
 		return SUCCESS;
 	}
 
@@ -109,6 +147,22 @@ public class ListAction extends ActionSupport {
 
 	public void setPage(PagingAction page) {
 		this.page = page;
+	}
+
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 }

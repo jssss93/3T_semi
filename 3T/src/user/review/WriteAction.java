@@ -13,11 +13,21 @@ import java.io.IOException;
 
 import java.io.File;
 import org.apache.commons.io.FileUtils;
+import org.apache.struts2.interceptor.SessionAware;
+
+import java.util.Map;
 
 import user.review.ReviewVO;
-import admin.goods.VO.GoodsVO;
 
-public class WriteAction extends ActionSupport {
+public class WriteAction extends ActionSupport implements SessionAware {
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
 
 	public static Reader reader; // 파일 스트림을 위한 reader.
 	public static SqlMapClient sqlMapper; // SqlMapClient API를 사용하기 위한 sqlMapper 객체.
@@ -25,8 +35,7 @@ public class WriteAction extends ActionSupport {
 	private ReviewVO paramClass; // 파라미터를 저장할 객체
 	private ReviewVO resultClass; // 쿼리 결과 값을 저장할 객체
 
-	private GoodsVO paramClass1;
-	private GoodsVO resultClass1;
+	public Map session;
 
 	private int currentPage; // 현재 페이지
 
@@ -40,13 +49,19 @@ public class WriteAction extends ActionSupport {
 	Calendar today = Calendar.getInstance();
 	private Date REV_regdate;
 
-	private String REV_member_id = "음";
+	private String REV_member_id;
 	private int REV_goods_no = 1;
 
 	private File upload; // 파일 객체
 	private String uploadContentType; // 컨텐츠 타입
 	private String uploadFileName; // 파일 이름
 	private String fileUploadPath = "C:\\Users\\호준\\Desktop\\git\\3T\\3T\\WebContent\\upload\\"; // 업로드 경로.
+
+	private int REV_ref;
+	private int REV_re_step;
+	private int REV_re_level;
+
+	boolean reply = false;
 
 	// 생성자
 	public WriteAction() throws IOException {
@@ -61,10 +76,41 @@ public class WriteAction extends ActionSupport {
 		return SUCCESS;
 	}
 
+	public String reply() throws Exception {
+		reply = true;
+		resultClass = new ReviewVO();
+
+		resultClass = (ReviewVO) sqlMapper.queryForObject("review-selectOne", getREV_no());
+		resultClass.setREV_subject("[답변] " + resultClass.getREV_subject());
+		resultClass.setREV_passwd("");
+		resultClass.setREV_name("");
+		resultClass.setREV_content("");
+		resultClass.setREV_file_orgname(null);
+		resultClass.setREV_file_savname(null);
+
+		return SUCCESS;
+
+	}
+
 	public String execute() throws Exception {
 		// 파라미터와 리절트 객체 생성.
+		session.get("M_ID");
 		paramClass = new ReviewVO();
 		resultClass = new ReviewVO();
+
+		if (REV_ref == 0) {
+			paramClass.setREV_re_step(0);
+			paramClass.setREV_re_level(0);
+		} else {
+
+			paramClass.setREV_ref(getREV_ref());
+			paramClass.setREV_re_step(getREV_re_step());
+			sqlMapper.update("review-updateReplyStep", paramClass);
+
+			paramClass.setREV_re_step(getREV_re_step() + 1);
+			paramClass.setREV_re_level(getREV_re_level() + 1);
+			paramClass.setREV_ref(getREV_ref());
+		}
 
 		// 등록할 항목 설정.
 		paramClass.setREV_subject(getREV_subject());
@@ -77,7 +123,11 @@ public class WriteAction extends ActionSupport {
 		paramClass.setREV_goods_no(getREV_goods_no()); // 상품 번호
 
 		// 등록 쿼리 수행.
-		sqlMapper.insert("review-insertReview", paramClass);
+
+		if (REV_ref == 0)
+			sqlMapper.insert("review-insertReview", paramClass);
+		else
+			sqlMapper.insert("review-insertReviewReply", paramClass);
 
 		// 첨부파일을 선택했다면 파일을 업로드한다.
 		if (getUpload() != null) {
@@ -264,6 +314,38 @@ public class WriteAction extends ActionSupport {
 
 	public void setREV_goods_no(int REV_goods_no) {
 		this.REV_goods_no = REV_goods_no;
+	}
+
+	public int getREV_ref() {
+		return REV_ref;
+	}
+
+	public void setREV_ref(int REV_ref) {
+		this.REV_ref = REV_ref;
+	}
+
+	public int getREV_re_step() {
+		return REV_re_step;
+	}
+
+	public void setREV_re_step(int REV_re_step) {
+		this.REV_re_step = REV_re_step;
+	}
+
+	public int getREV_re_level() {
+		return REV_re_level;
+	}
+
+	public void setREV_re_level(int REV_re_level) {
+		this.REV_re_level = REV_re_level;
+	}
+
+	public boolean isReply() {
+		return reply;
+	}
+
+	public void setReply(boolean reply) {
+		this.reply = reply;
 	}
 
 }

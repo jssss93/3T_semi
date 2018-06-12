@@ -10,87 +10,62 @@
 	type="text/css">
 </head>
 <body>
-	<table border=0>
+	<table border=0 width="1300">
 		<tr>
-			<td align="center" width="100" >
-				<h2><a href="main.action">3T</a></h2>
+			<td align="center" width="100"><a href="main.action"><h1>
+						3T
+						<h1></a></td>
+
+
+
+			<td align="center"><a href="listouter.action"><b>outer</b></a>&nbsp;&nbsp;│
 			</td>
-			
-			
-			<td>
-				<a href="listouter.action">outer</a>&nbsp;/
-			</td>
-			<td>
-				<a href="listsuit.action">suit</a>&nbsp;/
-			</td>
-			<td>
-				<a href="listtop.action">top</a>&nbsp;/
-			</td>
-			<td>
-				<a href="listshirt.action">shirt</a>&nbsp;/
-			</td>
-			<td>
-				<a href="listknit.action">knit</a>&nbsp;/
-			</td>
-			<td>
-				<a href="listbottom.action">bottom</a>&nbsp;/
-			</td>
-			<td>
-				<a href="listshoes.action">shoes</a>&nbsp;/
-			</td>
-			<td>
-				<a href="listacc.action">acc</a>&nbsp;/
-			</td>
-			<td>
-				<a href="listperfectline.action">perfectline</a>
-			</td>
-			
-			<td align="center" width="200">
-				<a href="UserNoticeList.action">notice</a>
-				
-				<a href="UserFaqList.action">FAQ</a>
-				
-				<a href="qa_listAction.action">Q&A</a>
-				
-				<a href="review.action">review</a>
-			</td>
-			
-			
+			<td><a href="listsuit.action"><b>suit</b></a>&nbsp;&nbsp;│</td>
+			<td><a href="listtop.action"><b>top</b></a>&nbsp;&nbsp;│</td>
+			<td><a href="listshirt.action"><b>shirt</b></a>&nbsp;&nbsp;│</td>
+			<td><a href="listknit.action"><b>knit</b></a>&nbsp;&nbsp;│</td>
+			<td><a href="listbottom.action"><b>bottom</b></a>&nbsp;&nbsp;│</td>
+			<td><a href="listshoes.action"><b>shoes</b></a>&nbsp;&nbsp;│</td>
+			<td><a href="listacc.action"><b>acc</b></a>&nbsp;&nbsp;│</td>
+			<td><a href="listperfectline.action"><b>perfectline</b></a></td>
+
+			<td align="center" width="300"><a href="UserNoticeList.action"><b>notice</b></a>&nbsp;│
+
+				<a href="UserFaqList.action"><b>FAQ</b></a>&nbsp;│ <a
+				href="qa_listAction.action"><b>Q&A</b></a>&nbsp;│ <a
+				href="Review_list.action"><b>review</b></a>&nbsp;</td>
+
+
 			<s:if test='%{session.M_ID == null}'>
 				<td align="right">
 					<!--비회원 헤더 카테고리  --> <!--비회원 로그인 폼  경로 잡아줄 것--> <a
-					href="loginAction.action" >LOGIN
-					<form action=""></form>
-					</a> &nbsp;|&nbsp;<a
-					href="join1Form.action" >JOIN</a>
+					href="loginAction.action">LOGIN
+						<form action=""></form>
+				</a> &nbsp;|&nbsp;<a href="join1Form.action">JOIN</a>
 
 				</td>
 			</s:if>
 			<s:elseif test='%{session.M_ID != null}'>
-				<td align="right">
-					<!--경로잡을것  --> <td align="right">
-					${session.M_ID }님 환영합니다</td>
-					<form action="logout">
-					<input> 
-						<input type="submit" value="로그아웃">
-						
-					</form>
-					<a href="logout.action" >LOGOUT</a> 
-					&nbsp;|&nbsp;
-					<a href="logout.action">MODIFY</a> 
-					&nbsp;|&nbsp;
-					<a href="OrderMain.action">ORDER</a> 
-					&nbsp;|&nbsp;
-					<a href="basketList.action">MYPAGE</a> 
-					&nbsp;&nbsp;
-					
-				</td>
-			</s:elseif>
-		
-			
-			
-			
-		
+
+				<!--경로잡을것  -->
+				<td align="right">${session.M_ID }님환영합니다</td>
+
+
+				</form>
 	</table>
+	<table border="0" width="1500">
+		<td align="right"><a href="logout.action"><b>LOGOUT</b></a>
+			&nbsp;|&nbsp; <a href="modifyForm.action"><b>MODIFY</b></a> &nbsp;|&nbsp; <a
+			href="OrderMain.action"><b>ORDER</b></a> &nbsp;|&nbsp; <a
+			href="MypageForm.action"><b>MYPAGE</b></a> &nbsp;&nbsp;</td>
+	</table>
+
+	</s:elseif>
+
+
+
+
+
+
 </body>
 </html>

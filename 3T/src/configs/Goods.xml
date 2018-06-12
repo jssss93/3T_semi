@@ -66,6 +66,17 @@
 			<result name="success" type="tiles">goodsview</result>
 		</action>
 		
+		<!-- wishList -->
+		<action name="AddWish" class="user.goods.AddWishAction">
+			<result name="success" type="chain">
+				<param name="actionName">GoodsView</param>
+			</result>
+		</action>
+		
+		<action name="qa_deleteAction1" class="user.qa.DeleteAction">
+			<result type="chain">GoodsView</result>
+		</action>
+		
 		
 	</package>
 </struts>

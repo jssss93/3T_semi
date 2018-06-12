@@ -35,7 +35,7 @@ public class MemberFindPwAction extends ActionSupport implements SessionAware {
 		reader.close();
 	}
 
-	public String findPw() throws Exception {
+	public String find() throws Exception {
 
 		paramClass.setM_JUMIN1(getM_JUMIN1());
 		paramClass.setM_JUMIN2(getM_JUMIN2());
@@ -43,9 +43,13 @@ public class MemberFindPwAction extends ActionSupport implements SessionAware {
 
 		resultClass = (MemberVO) sqlMapper.queryForObject("member.findPw", paramClass);
 
-		return SUCCESS;
-
-	}
+		if(resultClass != null) {
+			return SUCCESS;
+		}else {
+			return ERROR;
+		}
+		
+}
 
 	public Map getSession() {
 		return session;

@@ -11,9 +11,26 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import admin.basket.VO.BasketVO;
-public class ListAction extends ActionSupport implements SessionAware{
+
+
+import admin.member.VO.MemberVO;
+
+public class ListAction extends ActionSupport implements SessionAware {
+
+	private Map session;
+
+	public Map getSession() {
+		return session;
+	}
+
+	private BasketVO paramClass = new BasketVO();
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
+
 
 	public static Reader reader; // 파일 스트림을 위한 reader.
 	public static SqlMapClient sqlMapper; // SqlMapClient API를 사용하기 위한 sqlMapper 객체.
@@ -32,11 +49,17 @@ public class ListAction extends ActionSupport implements SessionAware{
 
 	// 게시판 LIST 액션
 	public String execute() throws Exception {
-		System.out.println("제발ㅜㅜㅜㅜ");
+
+		
 		// 모든 글을 가져와 list에 넣는다.
 		B_List = sqlMapper.queryForList("Basket_mem");
-		System.out.println("잉"+B_List);
 		
+		
+
+		paramClass.setBASKET_MEMBER_ID(ActionContext.getContext().getSession().get("M_ID").toString());
+		// 모든 글을 가져와 list에 넣는다.
+		list = sqlMapper.queryForList("basket-selectM");
+
 
 		return SUCCESS;
 	}

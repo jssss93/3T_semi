@@ -30,7 +30,7 @@
 		</tr>
 
 	<s:iterator value="list" status="stat">
-		<s:url id="viewURL" action="AFviewAction">
+		<s:url id="viewURL" action="AF_View">
 			<s:param name="faq_no">
 				<s:property value="faq_no" />
 			</s:param>
@@ -64,7 +64,7 @@
 	<tr align="right">
 		<td colspan="5">
 			
-			<input type="button" value="FAQ쓰기" class="inputb" onClick="javascript:location.href='AFwriteForm.action?currentPage=<s:property value="currentPage" />';" />
+			<input type="button" value="FAQ쓰기" class="inputb" onClick="javascript:location.href='AF_Writeform.action?currentPage=<s:property value="currentPage" />';" />
 		</td>
 	</tr>
 

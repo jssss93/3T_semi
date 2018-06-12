@@ -7,30 +7,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>REVIEW</title>
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+#form td.tdstyle2 {background-color :#000000; border:#ccc 1px solid; width:400px; padding:20px; font-size:14px; font-weight:bold; color:#000;}
 
+</style>
 </head>
 
 <body>
 
-	<table width="700" border="0" cellspacing="0" cellpadding="2">
+	<table width="600" border="0" cellspacing="0" cellpadding="1"
+		align="center">
 		<tr>
-			<td align="left"><h2>REVIEW</h2></td>
+			<td height="50"></td>
 		</tr>
 		<tr>
-			<td height="20"></td>
+			<td align="center" class="text01 formbar">REVIEW</td>
+
+		</tr>
+		<tr>
+			<td height="50"></td>
+		</tr>
+		<tr>
+			<td height="1" colspan="4"></td>
 		</tr>
 
 
-		<table width="700" border="0" cellspacing="0" cellpadding="2">
+		<table width="600" border="0" cellspacing="0" cellpadding="1"
+			align="center">
 			<tr align="center">
-				<td width="50"><strong>NO</strong></td>
-				<td width="80"><strong>ITEM </strong></td>
-				<td width="350"><strong>SUBJECT</strong></td>
-				<td width="50"><strong>NAME</strong></td>
+				<td width="50" align="center" ><strong>NO</strong></td>
+				<td width="150" align="center" class="tdstyle1"><strong>ITEM
+				</strong></td>
+				<td width="350" align="center" class="tdstyle1"><strong>SUBJECT</strong></td>
+				<td width="50" align="center" class="tdstyle1"><strong>NAME</strong></td>
 
 			</tr>
 			<tr bgcolor="#777777">
-				<td height="1" colspan="5"></td>
+				<td height="1" colspan="4"></td>
 			</tr>
 
 			<s:iterator value="list" status="stat">
@@ -46,13 +60,18 @@
 				</s:url>
 
 
-				<tr bgcolor="#FFFFFF" align="center">
-					<td><s:property value="REV_no" /></td>
-					<td align="center">&nbsp;사진 <s:property value="REV_GOODS_NO" />
-					</td>
+				<tr align="center">
+					<td class="tdstyle2"><s:property value="REV_no" /></td>
+					<td align="center">&nbsp; <img
+						src="/3T/upload/${REV_file_savname}" width="50" height="50"></td>
 
-					<td align="left">&nbsp;<s:a href="%{viewURL}">
+
+
+					<td align="center">&nbsp; <s:if test="REV_re_level != 0">
+							<c:forEach var="i" begin="${REV_re_level}" end="0">&nbsp;</c:forEach>→
+            </s:if> <s:a href="%{viewURL}">
 							<s:property value="REV_subject" />
+
 						</s:a></td>
 					<td align="center"><s:property value="REV_name" /></td>
 
@@ -62,6 +81,8 @@
 				</tr>
 
 			</s:iterator>
+
+
 
 			<s:if test="list.size() <= 0">
 				<!-- list에 들어있는게 없다면 -->
@@ -84,23 +105,26 @@
 			<tr align="center">
 				<td colspan="5">
 					<form>
-						<select name="searchNum">
+						<select name="searchNum" style="width: 100px; height: 30px;">
 							<option value="0">작성자</option>
 							<option value="1">제목</option>
 
 						</select>
 						<s:textfield name="searchKeyword" theme="simple" value=""
-							cssStyle="width:120px" maxlength="20" />
-						<input name="submit" type="submit" value="SEARCH" class="inputb">
+							cssStyle="width:200px; height:30px;" maxlength="20" />
+						<input name="submit" type="submit" value="SEARCH" class="submit">
+							
 					</form>
 				</td>
 			</tr>
+			<tr>
 
-			<tr align="right">
-				<td colspan="5"><input type="button" value="WRITE"
-					class="inputb"
+				<td colspan="5" align="center"><input type="button" value="WRITE"
+					class="hreflink"
 					onClick="javascript:location.href='ReviewWriteForm.action?currentPage=<s:property value="currentPage" />';"></td>
 			</tr>
+
+
 
 
 		</table>

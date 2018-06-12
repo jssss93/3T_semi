@@ -6,6 +6,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+
 <script language="Javascript">
 	function checkemailaddy() {
 		if (hi.email3.value == '1') {
@@ -31,7 +33,7 @@
 
 					<table width="600" height="250" border="0" class="findform">
 						<tr>
-							<td align="center"><h2>아이디 찾기</h2></td>
+							<td align="center" class="text01"><h2>아이디 찾기</h2></td>
 						</tr>
 						<tr>
 							<td align="center" style="padding-bottom: 20px;">
@@ -42,11 +44,14 @@
 											size="17" style="width: 230px; height: 26px;"></td>
 									</tr>
 									<tr>
-										<td class="tdstyle1">이메일</td>
-										<td valign="middle"><input name="M_EMAIL1" id="M_EMAIL1" size="15" style="width: 100px; height: 26px;"> @ <input
+										<td class="formtext">이메일</td>
+										<td valign="middle"><input name="M_EMAIL1" id="M_EMAIL1"
+											size="15" style="width: 100px; height: 26px;"> @ <input
 											name="M_EMAIL2" type="text" class="box" id="M_EMAIL2"
-											size="20" style="width: 100px; height: 26px;"> <select name="email3" class="box"
-											id="email_select" onChange="checkemailaddy();" style="width:100px; height: 26px;">
+											size="20" style="width: 100px; height: 26px;"> <select
+											name="email3" class="box" id="email_select"
+											onChange="checkemailaddy();"
+											style="width: 100px; height: 26px;">
 												<option value="" selected>선택하세요</option>
 												<option value="naver.com">naver.com</option>
 												<option value="hotmail.com">hotmail.com</option>
@@ -67,21 +72,27 @@
 					</table> <!-- 결과값 띄우기 -->
 					</form>
 					<table>
+
+				
+
 						<s:if test="resultClass.M_ID != null">
 							<td>RESULT&nbsp;:&nbsp;</td>
 
 							<td align="left"><br> <b><s:property
 										value="resultClass.M_NAME" /></b> 님의 ID는 <b><s:property
 										value="resultClass.M_ID" /></b>입니다.<br>&nbsp;</td>
-							<td align="middle"><a align="middle" href="loginAction.action"
-								class="login">&nbsp;&nbsp;로그인폼으로&nbsp;&nbsp;</a></td>
+							<td align="middle"><a align="middle"
+								href="loginAction.action" class="login">&nbsp;&nbsp;로그인폼으로&nbsp;&nbsp;</a></td>
 						</s:if>
+
+
+
 						<s:else>
 
 							<td></td>
 							<td></td>
-							<td align="middle"><a align="middle" href="loginAction.action"
-								class="login">&nbsp;&nbsp;로그인폼으로&nbsp;&nbsp;</a></td>
+							<td align="middle"><s:property value="" /><a align="middle"
+								href="loginAction.action" class="login">&nbsp;&nbsp;로그인폼으로&nbsp;&nbsp;</a></td>
 
 
 						</s:else>

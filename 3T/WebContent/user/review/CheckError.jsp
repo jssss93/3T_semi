@@ -8,14 +8,16 @@
 <title>비밀번호 오류</title>
 
 <script type="text/javascript">
-		function ErrorMessage() {
-			alert("비밀번호가 틀립니다.");
-			history.back(-1);
-		}
-	</script>
+	function ErrorMessage() {
+		alert("비밀번호가 틀립니다.");
+		history.back(-1);
+	}
+</script>
 </head>
 
 <body>
-	<script>ErrorMessage()</script>
+	<script>
+		ErrorMessage()
+	</script>
 </body>
 </html>

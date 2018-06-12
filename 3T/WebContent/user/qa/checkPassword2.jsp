@@ -6,29 +6,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>비밀번호 확인</title>
-<link rel="stylesheet" href="/3T/user/qa/common/css/css.css" type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 </head>
-<body>
-<h2>비밀번호 확인</h2>
+<body><table width="500">
+<tr><td align="center" class="text01 formbar">
+비밀번호 확인
+</td>
+</tr>
+</table>
 	<form action="qa_checkAction2.action" method="post">
 		<s:hidden name="QA_NO" value="%{QA_NO}" />
 		<s:hidden name="QA_ORIGINNO" value="%{QA_ORIGINNO}" />
 		<s:hidden name="currentPage" value="%{currentPage}" />
+		<br><br>
 		
-		<table width="250" border="0" cellspacing="0" cellpadding="0">
-			<tr bgcolor="#777777">
+		<table width="450" border="0" cellspacing="0" cellpadding="0" id="form">
+			<tr>
 				<td height="1" colspan="2"></td>
 			</tr>
 			<tr>
-				<td width="100" bgcolor="#F4F4F4"> 비밀번호 입력</td>
-				<td width="150" bgcolor="#FFFFFF">
-					&nbsp;&nbsp; <s:textfield name="QA_PASSWD" theme="simple" cssStyle="width:100px" maxlength="20" />
-					&nbsp;&nbsp; <input name="submit" type="submit" value="확인" class="inputb">
+				<td class="tdstyle1"> 비밀번호 입력</td>
+				<td>
+					&nbsp;&nbsp; <s:textfield name="QA_PASSWD" theme="simple"/>
+					&nbsp;&nbsp; <input name="submit"class="submit" type="submit" value="확인">
 				</td>
 			</tr>
-			<tr bgcolor="#777777">
-				<td height="1" colspan="2"></td>
-			</tr>
+		
 		</table>
 	</form>
 </body>

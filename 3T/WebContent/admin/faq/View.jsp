@@ -87,11 +87,11 @@
 						<s:property value="faq_no" />
 					</s:param>
 				</s:url> <input name="modify_b" type="button" value="수정" class="inputb"
-				onClick="javascript:open_win_noresizable('AFmodifyForm.action?faq_no=<s:property value="resultClass.faq_no" />&currentPage=<s:property value="currentPage" />','modify')">
+				onClick="javascript:location.href='AF_Modifyform.action?faq_no=<s:property value="resultClass.faq_no" />&currentPage=<s:property value="currentPage" />','modify'">
 				<input name="delete_b" type="button" value="삭제" class="inputb"
-				onClick="javascript:open_win_noresizable('AFdeleteAction.action?faq_no=<s:property value="resultClass.faq_no" />&currentPage=<s:property value="currentPage" />','delete')">
+				onClick="javascript:location.href='AF_Delete.action?faq_no=<s:property value="resultClass.faq_no" />&currentPage=<s:property value="currentPage" />','delete'">
 				<input name="list_b" type="button" value="목록" class="inputb"
-				onClick="javascript:location.href='AFlistAction.action?currentPage=<s:property value="currentPage" />'">
+				onClick="javascript:location.href='AF_List.action?currentPage=<s:property value="currentPage" />'">
 			</td>
 		</tr>
 
