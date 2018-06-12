@@ -10,9 +10,10 @@
 		  	<result property="BASKET_GOODS_AMOUNT" column="BASKET_GOODS_AMOUNT"/>
 		  	<result property="BASKET_GOODS_SIZE" column="BASKET_GOODS_SIZE"/>
 		  	<result property="BASKET_GOODS_COLOR" column="BASKET_GOODS_COLOR"/>
-		  	<result property="BASKET_GOODS_img" column="BASKET_GOODS_img"/>
+		  	<result property="BASKET_GOODS_IMG" column="BASKET_GOODS_IMG"/>
 		  	<result property="BASKET_QUANTITY" column="BASKET_QUANTITY"/>
 		  	<result property="BASKET_NAME" column="BASKET_NAME"/>
+		  	<result property="BASKET_GOODS_NO" column="BASKET_GOODS_NO"/>
 		</resultMap>
 		
 		<!-- 공통으로 사용할 select 절 정의 -->
@@ -27,6 +28,12 @@
 	
 		<!-- select 쿼리문 정의 --> 
 		<select id="basket-selectAll" resultMap="basketRes">
-			SELECT * FROM  BASKET ORDER BY BASKET_NO DESC
+			SELECT * FROM  BASKET 
 		</select>
+		
+		<!-- 선택삭제  -->
+		<delete id="basketdelete" parameterClass="int">
+			delete from BASKET where BASKET_NO=#BASKET_NO#
+		</delete>
+		
 </sqlMap>

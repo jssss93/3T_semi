@@ -18,6 +18,16 @@
 			<result type="tiles">basketmain</result>
 		</action>
 		<!-- 장바구니 삭제하기 -->
+	   <action name="basket_checkdelete" class="user.basket.BasketDeleteAction">
+          <result type="redirect-action">
+				<param name="actionName">BasketMain</param>
+			</result>
+       </action>
 		<!-- 장바구니 전체 상품 주문 페이지 이동 -->
+	   <action name="Order_Write" class="user.order.WriteAction" method="form">
+          <result type="redirect-action">
+				<param name="actionName">OrderWrite</param>
+			</result>
+       </action>
 	</package>
 </struts>

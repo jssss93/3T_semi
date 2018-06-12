@@ -15,7 +15,7 @@
 		  	<result property="ORDER_PHONE3" column="ORDER_PHONE3"/>
 		  	<result property="ORDER_EMAIL1" column="ORDER_EMAIL1"/>
 		  	<result property="ORDER_EMAIL2" column="ORDER_EMAIL2"/>
-		  	<result property="RECIPIENT_CHOICE" column="RECIPIENT_CHOICE"/>
+		  	
 		  	<result property="RECIPIENT_NAME" column="RECIPIENT_NAME"/>
 		  	<result property="RECIPIENT_ZIPCODE" column="RECIPIENT_ZIPCODE"/>
 		  	<result property="RECIPIENT_ADDRESS1" column="RECIPIENT_ADDRESS1"/>
@@ -23,7 +23,7 @@
 		  	<result property="RECIPIENT_PHONE1" column="RECIPIENT_PHONE1"/>
 		  	<result property="RECIPIENT_PHONE2" column="RECIPIENT_PHONE2"/>
 		  	<result property="RECIPIENT_PHONE3" column="RECIPIENT_PHONE3"/>
-		  	<result property="DISCOUNT" column="DISCOUNT"/>
+		  	
 		  	<result property="PAYMENT" column="PAYMENT"/>
 		  	<result property="DEPOSIT_NAME" column="DEPOSIT_NAME"/>
 		  	<result property="DEPOSIT_BANK" column="DEPOSIT_BANK"/>
@@ -78,7 +78,7 @@
                          		ORDER_PHONE3,
                          		ORDER_EMAIL1,
                          		ORDER_EMAIL2,
-                         		RECIPIENT_CHOICE,
+                         		
                          		RECIPIENT_NAME,
                          		RECIPIENT_ZIPCODE,
                          		RECIPIENT_ADDRESS1,
@@ -86,7 +86,7 @@
                          		RECIPIENT_PHONE1,
                          		RECIPIENT_PHONE2,
                          		RECIPIENT_PHONE3,
-                         		DISCOUNT,
+                         		
                          		PAYMENT,
                          		DEPOSIT_NAME,
                          		DEPOSIT_BANK,
@@ -110,7 +110,7 @@
                          	#ORDER_PHONE3#,
                          	#ORDER_EMAIL1#,
                          	#ORDER_EMAIL2#,
-                         	#RECIPIENT_CHOICE#,
+                         	
                          	#RECIPIENT_NAME#,
                          	#RECIPIENT_ZIPCODE#,
                          	#RECIPIENT_ADDRESS1#,
@@ -118,7 +118,7 @@
                          	#RECIPIENT_PHONE1#,
                          	#RECIPIENT_PHONE2#,
                          	#RECIPIENT_PHONE3#,
-                         	#DISCOUNT#,
+                       
                          	#PAYMENT#,
                          	#DEPOSIT_NAME#,
                          	#DEPOSIT_BANK#,

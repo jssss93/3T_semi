@@ -9,9 +9,10 @@ public class BasketVO {
 	private int BASKET_GOODS_AMOUNT;// 상품가격
 	private String BASKET_GOODS_SIZE;// 상품사이즈
 	private String BASKET_GOODS_COLOR;// 상품 색상
-	private String BASKET_GOODS_img;// 상품 이미지
+	private String BASKET_GOODS_IMG;// 상품 이미지
 	private int BASKET_QUANTITY;// 상품수량
 	private String BASKET_NAME;// 상품 이름
+	private int BASKET_GOODS_NO;
 
 	public int getBASKET_NO() {
 		return BASKET_NO;
@@ -53,12 +54,12 @@ public class BasketVO {
 		BASKET_GOODS_COLOR = bASKET_GOODS_COLOR;
 	}
 
-	public String getBASKET_GOODS_img() {
-		return BASKET_GOODS_img;
+	public String getBASKET_GOODS_IMG() {
+		return BASKET_GOODS_IMG;
 	}
 
-	public void setBASKET_GOODS_img(String bASKET_GOODS_img) {
-		BASKET_GOODS_img = bASKET_GOODS_img;
+	public void setBASKET_GOODS_IMG(String bASKET_GOODS_IMG) {
+		BASKET_GOODS_IMG = bASKET_GOODS_IMG;
 	}
 
 	public int getBASKET_QUANTITY() {
@@ -75,6 +76,14 @@ public class BasketVO {
 
 	public void setBASKET_NAME(String bASKET_NAME) {
 		BASKET_NAME = bASKET_NAME;
+	}
+
+	public int getBASKET_GOODS_NO() {
+		return BASKET_GOODS_NO;
+	}
+
+	public void setBASKET_GOODS_NO(int bASKET_GOODS_NO) {
+		BASKET_GOODS_NO = bASKET_GOODS_NO;
 	}
 
 }

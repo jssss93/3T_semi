@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.net.URLEncoder;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -15,7 +18,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import admin.notice.VO.NoticeVO;
 
 
-public class viewAction extends ActionSupport{
+public class viewAction extends ActionSupport implements SessionAware {
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 
@@ -24,7 +27,7 @@ public class viewAction extends ActionSupport{
 
 	private int currentPage;
 	private int notice_no;
-
+	public Map session;
 	private String fileUploadPath = "C:\\Java\\upload\\";
 
 	private InputStream inputStream;
@@ -46,6 +49,31 @@ public class viewAction extends ActionSupport{
 		resultClass = (NoticeVO) sqlMapper.queryForObject("usernotice-selectOne", getNotice_no());
 		return SUCCESS;
 	}
+	
+	public static Reader getReader() {
+		return reader;
+	}
+
+	public static void setReader(Reader reader) {
+		viewAction.reader = reader;
+	}
+
+	public static SqlMapClient getSqlMapper() {
+		return sqlMapper;
+	}
+
+	public static void setSqlMapper(SqlMapClient sqlMapper) {
+		viewAction.sqlMapper = sqlMapper;
+	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
+
 	public String getFileUploadPath() {
 		return fileUploadPath;
 	}

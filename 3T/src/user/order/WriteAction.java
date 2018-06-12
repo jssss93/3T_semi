@@ -6,13 +6,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class WriteAction extends ActionSupport {
+import admin.basket.VO.BasketVO;
+import admin.member.VO.MemberVO;
+
+public class WriteAction extends ActionSupport implements SessionAware{
 	
 	public static Reader reader;	
 	public static SqlMapClient sqlMapper;	
@@ -20,7 +27,21 @@ public class WriteAction extends ActionSupport {
 	private OrderVO paramClass; 
 	private OrderVO resultClass; 
 
-	private List<OrderVO> list = new ArrayList<OrderVO>();;	 
+	
+	private MemberVO m_paramClass = new MemberVO();
+	private MemberVO m_resultClass = new MemberVO();
+	
+	public Map session;
+	public Map getSession() {
+		return session;
+	}
+
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
+
+	private List<BasketVO> B_List = new ArrayList<BasketVO>();;	 
 	
 	private int totalCount; 
 	
@@ -33,7 +54,7 @@ public class WriteAction extends ActionSupport {
 	private String ORDER_PHONE3;
 	private String ORDER_EMAIL1;
 	private String ORDER_EMAIL2;
-	private String RECIPIENT_CHOICE;
+
 	private String RECIPIENT_NAME;
 	private String RECIPIENT_ZIPCODE;
 	private String RECIPIENT_PHONE1;
@@ -66,8 +87,16 @@ public class WriteAction extends ActionSupport {
 	
 	public String form() throws Exception {
 		
-		list = sqlMapper.queryForList("order-selectAll");
-		totalCount = list.size(); 
+
+		m_paramClass.setM_id(ActionContext.getContext().getSession().get("M_ID").toString());
+		m_resultClass = (MemberVO) sqlMapper.queryForObject("AMselectOne_ID", m_paramClass);
+		
+		System.out.println("m_resultClass.getM_name "+m_resultClass.getM_name());
+		System.out.println("장바구니에서 오더");
+		B_List = sqlMapper.queryForList("basket-selectAll");
+		System.out.println("장바구니에서 오더 list "+B_List);
+		
+		totalCount = B_List.size(); 
 		return SUCCESS;
 	}
 	public String execute() throws Exception {
@@ -87,7 +116,7 @@ public class WriteAction extends ActionSupport {
 		paramClass.setORDER_PHONE3(getORDER_PHONE3());
 		paramClass.setORDER_EMAIL1(getORDER_EMAIL1());
 		paramClass.setORDER_EMAIL2(getORDER_EMAIL2());
-		paramClass.setRECIPIENT_CHOICE(getRECIPIENT_CHOICE());
+		
 		paramClass.setRECIPIENT_NAME(getRECIPIENT_NAME());
 		paramClass.setRECIPIENT_ZIPCODE(getRECIPIENT_ZIPCODE());
 		paramClass.setRECIPIENT_ADDRESS1(getRECIPIENT_ADDRESS1());
@@ -117,6 +146,26 @@ public class WriteAction extends ActionSupport {
 	}
 	
 	
+	public MemberVO getM_paramClass() {
+		return m_paramClass;
+	}
+
+
+	public void setM_paramClass(MemberVO m_paramClass) {
+		this.m_paramClass = m_paramClass;
+	}
+
+
+	public MemberVO getM_resultClass() {
+		return m_resultClass;
+	}
+
+
+	public void setM_resultClass(MemberVO m_resultClass) {
+		this.m_resultClass = m_resultClass;
+	}
+
+
 	public String getORDER_STATE() {
 		return ORDER_STATE;
 	}
@@ -126,14 +175,15 @@ public class WriteAction extends ActionSupport {
 		ORDER_STATE = oRDER_STATE;
 	}
 
-
-	public List<OrderVO> getList() {
-		return list;
+	public List<BasketVO> getB_List() {
+		return B_List;
 	}
 
-	public void setList(List<OrderVO> list) {
-		this.list = list;
+
+	public void setB_List(List<BasketVO> b_List) {
+		B_List = b_List;
 	}
+
 
 	public String getORDER_NAME() {
 		return ORDER_NAME;
@@ -161,14 +211,6 @@ public class WriteAction extends ActionSupport {
 		ORDER_IMG = oRDER_IMG;
 	}
 
-
-	public String getRECIPIENT_CHOICE() {
-		return RECIPIENT_CHOICE;
-	}
-
-	public void setRECIPIENT_CHOICE(String rECIPIENT_CHOICE) {
-		RECIPIENT_CHOICE = rECIPIENT_CHOICE;
-	}
 
 	public String getRECIPIENT_NAME() {
 		return RECIPIENT_NAME;
