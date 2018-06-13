@@ -9,7 +9,7 @@
 <title>새 상품 등록</title>
 
 
-<link rel="stylesheet" href="/3T/common/css/css.css" type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript">
 	function validation() {
@@ -43,7 +43,7 @@
 	<s:if test="resultClass == NULL">
 		<table width="600" border="0" cellspacing="0" cellpadding="2">
 			<tr>
-				<td align="center"><h2>상품 등록</h2></td>
+				<td align="center" class="text01 formbar"><h2>상품 등록</h2></td>
 			</tr>
 		</table>
 		<form action="AG_Write.action" method="post"
@@ -53,7 +53,7 @@
 	<s:else>
 		<table width="600" border="0" cellspacing="0" cellpadding="2">
 			<tr>
-				<td align="center"><h2>상품 수정</h2></td>
+				<td align="center" class="text01 formbar"><h2>상품 수정</h2></td>
 			</tr>
 		</table>
 		<form action="AG_Modify.action" method="post"
@@ -76,7 +76,7 @@
 		<tr>
 			<td width="150" bgcolor="#F4F4F4"><font color="#FF0000">*</font>
 				상품명</td>
-			<td width="500" bgcolor="#FFFFFF"><s:textfield name="goods_name"
+			<td width="500" class="tdstyle2"><s:textfield name="goods_name"
 					theme="simple" value="%{resultClass.goods_name}"
 					cssStyle="width:370px" maxlength="50" /></td>
 		</tr>
@@ -84,7 +84,7 @@
 		<tr>
 			<td width="150" bgcolor="#F4F4F4"><font color="#FF0000">*</font>
 				상품 색상</td>
-			<td width="500" bgcolor="#FFFFFF"><s:textfield
+			<td width="500" class="tdstyle2"><s:textfield
 					name="goods_color" theme="simple"
 					value="%{resultClass.goods_color}" cssStyle="width:370px"
 					maxlength="50" /></td>
@@ -92,7 +92,7 @@
 		<tr>
 			<td width="150" bgcolor="#F4F4F4"><font color="#FF0000">*</font>
 				상품 가격</td>
-			<td width="500" bgcolor="#FFFFFF"><s:textfield
+			<td width="500"class="tdstyle2""><s:textfield
 					name="goods_price" theme="simple"
 					value="%{resultClass.goods_price}" cssStyle="width:370px"
 					maxlength="50" /></td>
@@ -100,14 +100,14 @@
 		<tr>
 			<td width="150" bgcolor="#F4F4F4"><font color="#FF0000">*</font>
 				상품 사이즈</td>
-			<td width="500" bgcolor="#FFFFFF"><s:textfield name="goods_size"
+			<td   width="500"class="tdstyle2"><s:textfield name="goods_size"
 					theme="simple" value="%{resultClass.goods_size}"
 					cssStyle="width:370px" maxlength="50" /></td>
 		</tr>
 		<tr>
 			<td width="150" bgcolor="#F4F4F4"><font color="#FF0000">*</font>
 				상품 카테고리</td>
-			<td width="500" bgcolor="#FFFFFF"><s:textfield
+			<td   width="500" class="tdstyle2"><s:textfield
 					name="goods_category" theme="simple"
 					value="%{resultClass.goods_category}" cssStyle="width:370px"
 					maxlength="50" /></td>
@@ -115,7 +115,7 @@
 		<tr>
 			<td width="150" bgcolor="#F4F4F4"><font color="#FF0000">*</font>
 				상품 총 개수</td>
-			<td width="500" bgcolor="#FFFFFF"><s:textfield
+			<td  class="tdstyle2" width="500"><s:textfield
 					name="goods_totalcount" theme="simple"
 					value="%{resultClass.goods_totalcount}" cssStyle="width:370px"
 					maxlength="50" /></td>
@@ -123,7 +123,7 @@
 		<tr>
 			<td width="150" bgcolor="#F4F4F4"><font color="#FF0000">*</font>
 				관련상품</td>
-			<td width="500" bgcolor="#FFFFFF"><s:textfield
+			<td  class="tdstyle2"  width="500"><s:textfield
 					name="goods_related_product" theme="simple"
 					value="%{resultClass.goods_related_product}" cssStyle="width:370px"
 					maxlength="50" /></td>
@@ -132,7 +132,7 @@
 
 		<tr>
 			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 상품 내용</td>
-			<td bgcolor="#FFFFFF"><s:textarea name="goods_content"
+			<td  class="tdstyle2"><s:textarea name="goods_content"
 					theme="simple" value="%{resultClass.goods_content}" cols="50"
 					rows="10" /></td>
 		</tr>
@@ -142,30 +142,30 @@
 
 		<tr>
 			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 첨부파일1</td>
-			<td bgcolor="#FFFFFF"><s:file label="File1" name="uploads"
+			<td class="tdstyle2"><s:file label="File1" name="uploads"
 					theme="simple" /> <s:if test="resultClass.goods_org_file != NULL">
 				&nbsp; * 파일이 등록되어 있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.
 			</s:if></td>
 		</tr>
 		<tr>
 			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 첨부파일2</td>
-			<td bgcolor="#FFFFFF"><s:file label="File2" name="uploads"
+			<td class="tdstyle2"><s:file label="File2" name="uploads"
 					theme="simple" /></td>
 
 		</tr>
 		<tr>
 			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 첨부파일3</td>
-			<td bgcolor="#FFFFFF"><s:file label="File3" name="uploads"
+			<td class="tdstyle2"><s:file label="File3" name="uploads"
 					theme="simple" /> 
 		</tr>
 			<tr>
 			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 첨부파일4</td>
-			<td bgcolor="#FFFFFF"><s:file label="File4" name="uploads"
+			<td class="tdstyle2"><s:file label="File4" name="uploads"
 					theme="simple" /> 
 		</tr>
 			<tr>
 			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 첨부파일5</td>
-			<td bgcolor="#FFFFFF"><s:file label="File5" name="uploads"
+			<td class="tdstyle2"><s:file label="File5" name="uploads"
 					theme="simple" /> 
 		</tr>
 		
@@ -181,8 +181,8 @@
 
 		<tr>
 			<td align="right" colspan="2"><input name="submit" type="submit"
-				value="작성완료" class="inputb"> <input name="list"
-				type="button" value="목록" class="inputb"
+				value="작성완료" class="submit"> <input name="list"
+				type="button" value="목록" class="hreflink"
 				onClick="javascript:location.href='AG_List.action?currentPage=<s:property value="currentPage" />'">
 			</td>
 		</tr>

@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>등록 상품 상세보기</title>
-<link rel="stylesheet" href="/3T/common/css/css.css" type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript">
 	function open_win_noresizable(url, name)
@@ -20,7 +20,7 @@
 <body>
 	<table width="600" border="0" cellspacing="0" cellpadding="2">
 	<tr>
-		<td align="center"><h2>공지사항 상세보기</h2></td>
+		<td align="center" class="text01 formbar"><h2>공지사항 상세보기</h2></td>
 	</tr>
 	</table>
 
@@ -85,9 +85,9 @@
 						<s:property value="no" />
 					</s:param>
 				</s:url>
-				<input name="modify_b" type="button" value="수정" class="inputb" onClick="javascript:location.href='AN_ModifyForm.action?notice_no=<s:property value="resultClass.notice_no" />&currentPage=<s:property value="currentPage" />','modify'">
-				<input name="delete_b" type="button" value="삭제" class="inputb" onClick="javascript:location.href='AN_Delete.action?notice_no=<s:property value="resultClass.notice_no" />&currentPage=<s:property value="currentPage" />','delete'">
-				<input name="list_b" type="button" value="목록" class="inputb" onClick="javascript:location.href='AN_List.action?currentPage=<s:property value="currentPage" />'">
+				<input name="modify_b" type="button" value="수정" class="submit" onClick="javascript:location.href='AN_ModifyForm.action?notice_no=<s:property value="resultClass.notice_no" />&currentPage=<s:property value="currentPage" />','modify'">
+				<input name="delete_b" type="button" value="삭제" class="hreflink" onClick="javascript:location.href='AN_Delete.action?notice_no=<s:property value="resultClass.notice_no" />&currentPage=<s:property value="currentPage" />','delete'">
+				<input name="list_b" type="button" value="목록" class="submit" onClick="javascript:location.href='AN_List.action?currentPage=<s:property value="currentPage" />'">
 			</td>
 		</tr>
 		

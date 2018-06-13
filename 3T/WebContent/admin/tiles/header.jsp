@@ -16,7 +16,7 @@
 
 		<tr>
 			<td align="left" width="300" >
-				<h1><a href="AD_main.action">3T</a></h1>
+				<a href="AD_main.action"><h1>3T</h1></a>
 				<a href="main.action">(회원용페이지로이동)</a>
 			</td>
 			
@@ -37,7 +37,7 @@
 			<td>
 				<a href="AQ_List.action">QA(아직)</a>&nbsp;|
 			</td>
-			<td>
+			<td width="70">
 				<a href="AO_List.action">주문목록</a>&nbsp;
 			</td>
 			
