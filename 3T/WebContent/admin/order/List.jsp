@@ -6,17 +6,17 @@
 <html>
 <head>
 <title>주문목록</title>
-<link rel="stylesheet" href="/3T/user/order/common/css/css.css"
-	type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
-	<table width="600" border="0" cellspacing="0" cellpadding="2">
+	<table width="900" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td height="30"></td>
 		</tr>
 		<tr>
-			<td align="left"><h2>주문목록</h2></td>
+			<td align="center" class="text01 formbar"><h2>주문목록</h2></td>
 		</tr>
 		<tr>
 			<td height="50"></td>
@@ -82,14 +82,14 @@
 		<tr align="center">
 			<td colspan="5">
 				<form action="AO_List.action">
-					<select name="searchNum">
+					<select name="searchNum" style="width: 100px; height: 30px;">
 						<option value="0">주문자명</option>
 						<option value="1">구매자ID</option>
 					</select>
 					
 					<s:textfield name="searchKeyword" theme="simple" value=""
-						cssStyle="width:120px" maxlength="20" />
-					<input name="submit" type="submit" value="검색" class="inputb">
+						cssStyle="width:200px; height:30px;" maxlength="20" />
+					<input name="submit" type="submit" value="검색" class="submit">
 				</form>
 			</td>
 		</tr>

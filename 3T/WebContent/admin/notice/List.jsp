@@ -33,9 +33,9 @@
 </head>
 
 <body>
-	<table  width="1300" height="950" border="0" cellpadding="0" cellspacing="0">
+	<table  width="1000" height="950" border="0" cellpadding="0" cellspacing="0">
 		<tr>
-			<td align="center"><h1>공지사항 리스트</h1></td>
+			<td align="center" class="text01 formbar"><h1>공지사항 리스트</h1></td>
 		</tr>
 	</table>
 
@@ -73,8 +73,7 @@
 				<td height="1" colspan="8"></td>
 			</tr>
 
-		</s:iterator>
-
+		</s:iterator>`
 		<s:if test="list.size() <= 0">
 			<tr>
 				<td colspan="5" align="center">등록된 게시물이 없습니다</td>
@@ -94,13 +93,13 @@
 		<tr align="center">
 			<td colspan="5">
 				<form action="AN_List.action" method="search">
-					<select name="searchNum">
+					<select name="searchNum" style="width: 100px; height: 30px;">
 						<option value="0">제목</option>
 						<option value="1">내용</option>
 					</select>
 					<s:textfield name="searchKeyword" theme="simple" value=""
-						cssStyle="width:120px" maxlength="20" />
-					<input name="submit" type="submit" value="검색" class="inputb">
+						cssStyle="width:200px; height:30px;" maxlength="20" />
+					<input name="submit" type="submit" value="검색" class="submit">
 				</form>
 			</td>
 		</tr>

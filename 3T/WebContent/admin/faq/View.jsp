@@ -6,7 +6,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>등록 상품 상세보기</title>
-<link rel="stylesheet" href="/3T/common/css/css.css" type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+#form td.tdstyle2 {
+	background-color: #000000;
+	border: #ccc 1px solid;
+	width: 400px;
+	padding: 20px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000;
+}
+</style>
 
 <script type="text/javascript">
 	function open_win_noresizable(url, name) {
@@ -21,7 +32,7 @@
 <body>
 	<table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
-			<td align="center"><h2>상세보기</h2></td>
+			<td align="center" class="text01 farmbar"><h2>상세보기</h2></td>
 		</tr>
 	</table>
 
@@ -31,23 +42,23 @@
 		</tr>
 
 		<tr>
-			<td width="100">번호</td>
+			<td width="100"><b>번호</b></td>
 			<td width="500"><s:property value="resultClass.faq_no" /></td>
 		</tr>
 
 		<tr>
-			<td width="100">작성자</td>
+			<td width="100"><b>작성자</b></td>
 			<td width="500"><s:property value="resultClass.faq_writer" />
 			</td>
 		</tr>
 		<tr>
-			<td width="100">제목</td>
+			<td width="100"><b>제목</b></td>
 			<td width="500"><s:property value="resultClass.faq_subject" />
 			</td>
 		</tr>
 
 		<tr>
-			<td width="100">내용</td>
+			<td width="100"><b>내용</b></td>
 			<td width="500">
 				<!-- 이렇게도 쓸수 있다는거다 이자식들아 --> ${resultClass.faq_content }
 			</td>
@@ -86,11 +97,11 @@
 					<s:param name="faq_no">
 						<s:property value="faq_no" />
 					</s:param>
-				</s:url> <input name="modify_b" type="button" value="수정" class="inputb"
+				</s:url> <input name="modify_b" type="button" value="수정" class="submit"
 				onClick="javascript:location.href='AF_Modifyform.action?faq_no=<s:property value="resultClass.faq_no" />&currentPage=<s:property value="currentPage" />','modify'">
-				<input name="delete_b" type="button" value="삭제" class="inputb"
+				<input name="delete_b" type="button" value="삭제" class="hreflink"
 				onClick="javascript:location.href='AF_Delete.action?faq_no=<s:property value="resultClass.faq_no" />&currentPage=<s:property value="currentPage" />','delete'">
-				<input name="list_b" type="button" value="목록" class="inputb"
+				<input name="list_b" type="button" value="목록" class="submit"
 				onClick="javascript:location.href='AF_List.action?currentPage=<s:property value="currentPage" />'">
 			</td>
 		</tr>
