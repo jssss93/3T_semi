@@ -109,6 +109,16 @@
 		<action name="Review_WriteCommentAction" class="user.review.CommentWriteAction">
 			<result type="chain">Review_View</result>
 		</action>
+		<action name="Review_SearchGoodsForm" class="user.review.SearchGoods" method="checkForm3">
+			<result>/user/review/SearchGoods.jsp</result>
+		</action>
+		<action name="Review_SearchGoods" class="user.review.SearchGoods" method="search">
+			<result>/user/review/SearchGoods.jsp</result>
+		</action>
+<action name="SearchGoodsSuccess" class="user.review.SearchGoods" method="search">
+			<result>/user/review/SearchGoodsSuccess.jsp</result>
+		</action>
+		
 		
 
 		

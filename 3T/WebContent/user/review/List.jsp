@@ -16,31 +16,30 @@
 
 <body>
 
-	<table width="600" border="0" cellspacing="0" cellpadding="1"
-		align="center">
+
+	<table width="600" border="0" cellspacing="0" cellpadding="1">
 		<tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
-			<td align="center" class="text01 formbar">REVIEW</td>
+
+			<td align="left"><h2>REVIEW&nbsp;|&nbsp;</h2></td>
 
 		</tr>
 		<tr>
 			<td height="50"></td>
 		</tr>
-		<tr>
-			<td height="1" colspan="4"></td>
-		</tr>
+		
+		
 
 
-		<table width="600" border="0" cellspacing="0" cellpadding="1"
-			align="center">
+		<table width="600" border="0" cellspacing="0" cellpadding="1">
 			<tr align="center">
-				<td width="50" align="center" ><strong>NO</strong></td>
-				<td width="150" align="center" class="tdstyle1"><strong>ITEM
-				</strong></td>
-				<td width="350" align="center" class="tdstyle1"><strong>SUBJECT</strong></td>
-				<td width="50" align="center" class="tdstyle1"><strong>NAME</strong></td>
+				<td width="50"><strong>NO</strong></td>
+				<td width="80"><strong>ITEM </strong></td>
+				<td width="350" align="left"><strong>SUBJECT</strong></td>
+				<td width="50"><strong>NAME</strong></td>
+
 
 			</tr>
 			<tr bgcolor="#777777">
@@ -77,7 +76,7 @@
 
 				</tr>
 				<tr bgcolor="#777777">
-					<td height="1" colspan="5"></td>
+					<td height="0" colspan="5"></td>
 				</tr>
 
 			</s:iterator>
@@ -96,13 +95,12 @@
 
 			</s:if>
 
-
-			<tr align="center">
-				<td colspan="5"><s:property value="pagingHtml" escape="false" /></td>
+				<tr align="right">
+				<td colspan="5"><input type="button" value="WRITE"
+					class="inputb"
+					onClick="javascript:location.href='ReviewWriteForm.action?currentPage=<s:property value="currentPage" />';"></td>
 			</tr>
-
-
-			<tr align="center">
+				<tr align="center">
 				<td colspan="5">
 					<form>
 						<select name="searchNum" style="width: 100px; height: 30px;">
@@ -119,11 +117,15 @@
 			</tr>
 			<tr>
 
+
 				<td colspan="5" align="center"><input type="button" value="WRITE"
 					class="hreflink"
 					onClick="javascript:location.href='ReviewWriteForm.action?currentPage=<s:property value="currentPage" />';"></td>
-			</tr>
 
+			</tr>
+	
+
+		
 
 
 

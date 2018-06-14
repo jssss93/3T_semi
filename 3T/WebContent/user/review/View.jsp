@@ -13,7 +13,7 @@
 	//새창이 열리는 함수를 만들어줌
 	function open_win_noresizable(url, name) {
 		var oWin = window.open(url, name,
-				"scrollbars=no,status=no,resizable=no,width=300,height=150");
+				"scrollbars=no,status=no,resizable=no,width=420,height=190");
 	}
 </script>
 <script type="text/javascript">
@@ -123,12 +123,13 @@
 									<tr>
 										<h3>COMMENTS</h3>
 										<td width="170">이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름&nbsp;&nbsp;
-											${session.M_ID } <br> <%--  비밀번호 ${session.M_PASSWD } --%>
+											${session.M_ID } <br> 비밀번호 <s:textfield
+										name="REV_C_passwd" theme="simple" value=""
+										cssStyle="width:100px" maxlength="20" />
 										</td>
 										<input type="hidden" name="REV_C_name"
 											value="${session.M_ID }" />
-										<input type="hidden" name="REV_C_passwd"
-											value="${session.M_PASSWD }" />
+										
 
 										<s:hidden name="REV_C_originno" value="%{resultClass.REV_no}" />
 										<!-- !!!!!!!!!!!!!!!!!!!!!!!!수정!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
@@ -193,7 +194,7 @@
 					<!-- @@@@@@@@@@@@코멘트 삭제@@@@@@@@@@@@ --> <s:property
 						value="REV_C_content" /> <a
 					href="javascript:open_win_noresizable('Review_CheckForm2.action?REV_C_no=<s:property value="REV_C_no" />
-					&REV_C_originno=<s:property value="REV_C_originno" />&currentPage=<s:property value="currentPage" />','cdelete')">[삭제]</a>
+					&REV_C_originno=<s:property value="REV_C_originno" />&currentPage=<s:property value="currentPage" />','cdelete')">[delete]</a>
 				</td>
 			</tr>
 			<tr bgcolor="#777777">
@@ -221,9 +222,11 @@
 					<s:param name="REV_no">
 						<s:property value="REV_no" />
 					</s:param>
+
 				</s:url> <input name="list" type="button" value="답변달기" class="submit"
 				onClick="javascript:location.href='Review_ReplyForm.action?REV_no=<s:property value="REV_no" />&currentPage=<s:property value="currentPage" />'">
 					<input name="list" type="button" value="modify" class="hreflink"
+
 					onClick="javascript:open_win_noresizable('Review_CheckForm.action?REV_no=<s:property value="resultClass.REV_no" />&currentPage=<s:property value="currentPage" />','modify')">
 
 						<input name="list" type="button" value="delete" class="submit"

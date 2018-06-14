@@ -95,6 +95,7 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	public String execute() throws Exception {
 		// 파라미터와 리절트 객체 생성.
 		session.get("M_ID");
+		System.out.println(getREV_passwd());
 		paramClass = new ReviewVO();
 		resultClass = new ReviewVO();
 

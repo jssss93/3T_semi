@@ -10,28 +10,48 @@
 </head>
 
 <body>
-	<table width="370">
+
+<table width="400" border="0" cellspacing="0" cellpadding="1">
 		<tr>
-			<td align="center" class="text01 formbar">비밀번호 확인</td>
+			<td align="left"><h3>REVIEW</h3></td>
 		</tr>
+		<tr bgcolor="#777777">
+			<td height="1" colspan="2"></td>
+		</tr>
+	
+		
 	</table>
+	
+
+
 	<form action="Review_CheckAction.action" method="post">
 		<s:hidden name="REV_no" value="%{REV_no}" />
 		<s:hidden name="currentPage" value="%{currentPage}" />
 
-		<table width="370" border="0" cellspacing="0" cellpadding="0"  id="form">
 
-		
+		<table width="400" border="0" cellspacing="0" cellpadding="1">
 
 			<tr>
-				<td width="120" class="tdstyle1">비밀번호 입력</td>
-				<td width="350" bgcolor="#FFFFFF">&nbsp;&nbsp;<s:textfield
-						name="REV_passwd" theme="simple" cssStyle="width:100px"
-						maxlength="20" /> &nbsp;&nbsp;<input name="submit" type="submit"
-					value="확인" class="submit"></td>
+				<td align="left" width="130" >리뷰 등록 시 비밀번호를 입력하여 주십시오</td>
+				
 			</tr>
-
-	
+				<tr>
+			<td height="20"></td>
+		</tr>
+			
+			
+			<td align="left" width="200" bgcolor="#FFFFFF">&nbsp;&nbsp;PASSWORD <s:textfield
+						name="REV_passwd" theme="simple" cssStyle="width:160px"
+						maxlength="20" /> &nbsp;&nbsp; <input name="submit" type="submit"
+					value="확인" class="inputb">
+				</td>
+				<tr>
+			<td height="20"></td>
+		</tr>
+				<tr bgcolor="#777777">
+			<td height="1" colspan="2"></td>
+		</tr>
+			
 
 		</table>
 
