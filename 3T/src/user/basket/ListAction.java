@@ -14,7 +14,7 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-import admin.member.VO.MemberVO;
+import admin.basket.VO.BasketVO;
 
 public class ListAction extends ActionSupport implements SessionAware {
 
@@ -39,11 +39,11 @@ public class ListAction extends ActionSupport implements SessionAware {
 	public String execute() throws Exception {
 
 		// 모든 글을 가져와 list에 넣는다.
-		B_List = sqlMapper.queryForList("Basket_mem");
+		
 
-		paramClass.setBASKET_MEMBER_ID(ActionContext.getContext().getSession().get("M_ID").toString());
+		paramClass.setBasket_member_id(ActionContext.getContext().getSession().get("M_ID").toString());
 		// 모든 글을 가져와 list에 넣는다.
-
+		B_List = sqlMapper.queryForList("basket-selectM",paramClass);
 		return SUCCESS;
 	}
 

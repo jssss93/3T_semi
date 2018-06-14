@@ -31,7 +31,11 @@
 		<select id="wishlist-selectAll" resultMap="wishlistRes">
 			SELECT * FROM  WISHLIST ORDER BY W_NO DESC
 		</select>
-		
+	   <select id="wishlist-selectAll_M" resultMap="wishlistRes">
+			SELECT * FROM  WISHLIST 
+			WHERE W_MEMBER_ID=#W_MEMBER_ID#
+			ORDER BY W_NO DESC
+		</select>
 	   <select id="wishlist-selectone" resultMap="wishlistRes" parameterClass="int">
 			SELECT * FROM  WISHLIST where W_NO=#W_NO#
 		</select>

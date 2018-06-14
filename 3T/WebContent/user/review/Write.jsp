@@ -14,7 +14,13 @@
 </style>
 
 <title>REVIEW</title>
-
+<script type="text/javascript">
+	function open_win_noresizable(url, name)
+	{
+		var oWin = window.open(url, name, "scrollbars=no, status=no, resizable=no, width=600, height=500");
+		
+	}
+</script>
 
 
 <script type="text/javascript">
@@ -28,10 +34,10 @@
 		} else if (frm.REV_name.value == "") {
 			alert("이름을 입력해주세요.");
 			return false;
-		}/*  else if (frm.REV_passwd.value == "") {
+		} else if (frm.REV_passwd.value == "") {
 					alert("비밀번호를 입력해주세요.");
 					return false;
-				} */else if (frm.REV_content.value == "") {
+				} else if (frm.REV_content.value == "") {
 			alert("내용을 입력해주세요.");
 			return false;
 		}/*  else if (frm.objChkBox.value == "") {
@@ -48,9 +54,11 @@
 
 
 
+
 	<table width="600" border="0" cellspacing="0" cellpadding="2" align="center">
 		<tr>
-			<td align="center" class="text01 formbar">REVIEW</td>
+			<td align="center" class="text01 formbar">REVIEW&nbsp;|&nbsp;</td>
+
 		</tr>
 		<tr>
 			<td height="20"></td>
@@ -85,15 +93,21 @@
 
 
 	<table width="600" border="0" cellspacing="0" cellpadding="0">
-		<tr>
-			<td align="right" colspan="2" ></td>
-		</tr>
 
-		<tr bgcolor="#777777">
-			<td height="1" colspan="2"></td>
-		</tr>
+
+		
 		<c:choose>
 			<c:when test="${session.M_ID != NULL}">
+			<tr>
+			<td>>>><s:property value="resultClass.Goods_name" /></td>
+			<td><s:property value="resultClass.Goods_no"/></td>
+			</tr>
+			<tr align="right">
+				<td colspan="5"><input type="button" value="WRITE"
+					class="inputb"
+					onClick="javascript:open_win_noresizable('Review_SearchGoodsForm.action?currentPage=<s:property value="currentPage" />', write)"></td>
+			</tr>
+			
 				<tr>
 					<td width="100" class="tdstyle2"><b>SUBJECT</b></td>
 					<td width="500"  class="tdstyle2"><s:textfield
@@ -101,9 +115,7 @@
 							value="%{resultClass.REV_subject}" cssStyle="width:370px"
 							maxlength="50" /></td>
 				</tr>
-				<tr bgcolor="#777777">
-					<td height="1" colspan="2"></td>
-				</tr>
+				
 
 				<tr>
 
@@ -112,29 +124,17 @@
 							theme="simple" value="%{resultClass.REV_name}"
 							cssStyle="width:100px" maxlength="20" /></td>
 				</tr>
-				<tr bgcolor="#777777">
-					<td height="1" colspan="2"></td>
-				</tr>
+				
 
-				<%-- <tr>
-			<td bgcolor="#FFFFFF"><font color="#FF0000"></font>PASSWORD</td>
-			<td bgcolor="#FFFFFF"><s:textfield name="REV_passwd"
-					theme="simple" value="%{resultClass.REV_passwd}"
-					cssStyle="width:100px" maxlength="20" /></td>
-		</tr>  --%>
-				<tr bgcolor="#777777">
-					<td height="1" colspan="2"></td>
-				</tr>
-
+			
+				
 				<tr>
 
 					<td colspan="2" bgcolor="#FFFFFF"><s:textarea
 							name="REV_content" theme="simple"
 							value="%{resultClass.REV_content}" cols="100" rows="20" /></td>
 				</tr>
-				<tr bgcolor="#777777">
-					<td height="1" colspan="2"></td>
-				</tr>
+				
 
 				<tr>
 					<td class="tdstyle2"><b>FILE</b></td>
@@ -143,6 +143,12 @@
         	&nbsp; * <s:property value="resultClass.REV_file_orgname" />파일이 등록 되어 있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.
         	</s:if></td>
 				</tr>
+					 <tr>
+			<td bgcolor="#FFFFFF"><font color="#FF0000"></font>PASSWORD</td>
+			<td bgcolor="#FFFFFF"><s:textfield name="REV_passwd"
+					theme="simple" value="%{resultClass.REV_passwd}"
+					cssStyle="width:100px" maxlength="20" /></td>
+				</tr>  
 				<%-- <tr>
 			<td bgcolor="#FFFFF">개인정보 수집 및 이용 동의</td>
 			<td bgcolor="#FFFFF"><s:textarea name="content" theme="simple"
@@ -162,14 +168,10 @@
 				type="radio" name="objChkBox" value="동의안함">동의안함</input>
 			</td>
 		</tr> --%>
-				<tr bgcolor="#777777">
-					<td height="1" colspan="2"></td>
-				</tr>
-				<tr>
-					<td height="10" colspan="2"></td>
-				</tr>
+				
+				
 				<input type="hidden" name="REV_member_id" value="${session.M_ID }" />
-				<input type="hidden" name="REV_passwd" value="${session.M_ID }" />
+				
 				<tr>
 					<td align="right" colspan="2"><input name="submit"
 						type="submit" value="OK" class="submit"> <input name="list" type="button"
@@ -180,8 +182,12 @@
 			<c:when test="${session.M_ID == NULL }">
 				<tr>
 					<td><h4>회원에게만 리뷰 작성 권한이 있습니다.</h4></td>
+					
 
 				</tr>
+				<tr bgcolor="#777777">
+			<td height="1" colspan="2"></td>
+		</tr>
 			</c:when>
 		</c:choose>
 	</table>

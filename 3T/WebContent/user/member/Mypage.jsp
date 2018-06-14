@@ -33,7 +33,7 @@
 						주문조회가 가능합니다.</a></td>
 			</tr>
 			<tr>
-				<td class="tdstyle2" height=120><a href="영민이누나 위시리스트 액션값"><strong>wish
+				<td class="tdstyle2" height=120><a href="WishlistMain.action"><strong>wish
 							list</strong><br>관심상품으로 등록하신 상품의 목록을 보여드립니다.</a></td>
 				<td class="tdstyle2" height=120 ><a href="MyboardAction.action"><strong>MY
 							BOARD</strong><br>고객님께서 작성하신 게시물을 관리하는 공간입니다.<br>고객님께서 작성하신 글을

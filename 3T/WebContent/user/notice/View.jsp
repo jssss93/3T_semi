@@ -7,7 +7,6 @@
 <head>
 <title>스트럿츠2 게시판</title>
 <link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
-
 	<script type="text/javascript">
 		function open_win_noresizable(url, name) {
 			var oWin = window
@@ -37,7 +36,7 @@
 		</tr>
 
 		<tr>
-			<td bgcolor="#F4F4F4"><b>번호</b></td>
+			<td bgcolor="#F2FFED" align="center">번호</td>
 			<td class="tdstyle2">&nbsp;&nbsp;<s:property
 					value="resultClass.notice_no" />
 			</td>
@@ -47,7 +46,7 @@
 		</tr>
 
 		<tr>
-			<td width="100" bgcolor="#F4F4F4"><b>제목</b></td>
+			<td width="100" bgcolor="#F2FFED" align="center">제목</td>
 			<td width="500" class="tdstyle2">&nbsp;&nbsp;<s:property
 					value="resultClass.notice_subject" />
 			</td>
@@ -58,7 +57,7 @@
 		</tr>
 
 		<tr>
-			<td bgcolor="#F4F4F4"><b>글쓴이</b></td>
+			<td bgcolor="#F2FFED" align="center">글쓴이</td>
 			<td class="tdstyle2">&nbsp;&nbsp;<s:property
 					value="resultClass.notice_writer" />
 			</td>
@@ -68,7 +67,7 @@
 		</tr>
 
 		<tr>
-			<td bgcolor="#F4F4F4"><b>내용</b></td>
+			<td bgcolor="#F2FFED" align="center">내용</td>
 			<td class="tdstyle2">&nbsp;&nbsp;<pre>
 					<s:property value="resultClass.notice_content" />
 				</pre>
@@ -79,7 +78,7 @@
 		</tr>
 
 		<tr>
-			<td bgcolor="#F4F4F4"><b>첨부파일</b></td>
+			<td bgcolor="#F2FFED" align="center">첨부파일</td>
 			<td class="tdstyle2">&nbsp;&nbsp; <s:url id="download"
 					action="UserNotice-fileDownloadAction">
 					<s:param name="notice_no">
