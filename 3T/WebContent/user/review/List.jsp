@@ -9,8 +9,15 @@
 <title>REVIEW</title>
 <link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 	<style type="text/css">
-#form td.tdstyle2 {background-color :#000000; border:#ccc 1px solid; width:400px; padding:20px; font-size:14px; font-weight:bold; color:#000;}
-
+#form td.tdstyle2 {
+	background-color: #000000;
+	border: #ccc 1px solid;
+	width: 400px;
+	padding: 20px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000;
+}
 </style>
 </head>
 
@@ -23,14 +30,14 @@
 		</tr>
 		<tr>
 
-			<td align="left"><h2>REVIEW&nbsp;|&nbsp;</h2></td>
+			<td align="center" class="text01 formbar"><h2>REVIEW</h2></td>
 
 		</tr>
 		<tr>
 			<td height="50"></td>
 		</tr>
-		
-		
+
+
 
 
 		<table width="600" border="0" cellspacing="0" cellpadding="1">
@@ -95,12 +102,8 @@
 
 			</s:if>
 
-				<tr align="right">
-				<td colspan="5"><input type="button" value="WRITE"
-					class="inputb"
-					onClick="javascript:location.href='ReviewWriteForm.action?currentPage=<s:property value="currentPage" />';"></td>
-			</tr>
-				<tr align="center">
+			
+			<tr align="center">
 				<td colspan="5">
 					<form>
 						<select name="searchNum" style="width: 100px; height: 30px;">
@@ -111,21 +114,20 @@
 						<s:textfield name="searchKeyword" theme="simple" value=""
 							cssStyle="width:200px; height:30px;" maxlength="20" />
 						<input name="submit" type="submit" value="SEARCH" class="submit">
-							
 					</form>
 				</td>
 			</tr>
 			<tr>
 
 
-				<td colspan="5" align="center"><input type="button" value="WRITE"
-					class="hreflink"
+				<td colspan="5" align="center"><input class="hreflink"
+					type="button" value="WRITE"
 					onClick="javascript:location.href='ReviewWriteForm.action?currentPage=<s:property value="currentPage" />';"></td>
 
 			</tr>
-	
 
-		
+
+
 
 
 

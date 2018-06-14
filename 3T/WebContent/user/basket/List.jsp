@@ -54,7 +54,7 @@
 </script>
 <body onload="itemSum(this.form)">
 <form name="form">
-	<table width="600" border="0" cellspacing="0" cellpadding="2">
+	<table width="1000" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td height="30"></td>
 		</tr>
@@ -139,7 +139,7 @@
 		<tr align="right">
 			<td width="80">선택한상품을</td>
 			<td align="left"><input name="submit" type="submit"
-				value="삭제하기" style="background-color: #B8B8B8;" onclick="sele(0);"/></td>
+				value="삭제하기" class="hreflink" onclick="sele(0);"/></td>
 
 		</tr>
 		<tr>
@@ -178,10 +178,10 @@
 		<tr>
 			<td colspan="7" align="center"><input name="submit" type="submit"
 				value="선택 상품 주문" onclick="sele(1)"
-				style="font-family: 돋움; background-color: #121212; color: #FFFFFF; border-color: #121212;"
+				class="submit"
 				onClick="javascript:location.href='OrderWrite.action?currentPage=<s:property value="currentPage" />'"></td>
 			<td colspan="6" align="right"><input name="Main" type="button"
-				value="쇼핑계속하기 ▶"
+				value="쇼핑계속하기 ▶" class="hreflink"
 				onClick="javascript:location.href='main.action?currentPage=<s:property value="currentPage" />'"></td>
 		</tr>
 		<tr>
