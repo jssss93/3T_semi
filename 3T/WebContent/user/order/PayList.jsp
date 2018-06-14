@@ -8,9 +8,11 @@
 <title>총주문 상세내역</title>
 </head>
 <body>
+	<form name="form">
 	<table width="300" border="0" cellspacing="0" cellpadding="2">
 			<tr>
-				<td colspan="2" align="right"><font style="font-weight: bold;" color="#FF0000"><h3> KRW ${g_resultClass.goods_price*g_resultClass.goods_totalcount}</h3></font></td>
+			
+				<td colspan="2" align="right"><font style="font-weight: bold;" color="#FF0000"><h3> KRW ${g_resultClass.goods_price*sgoods_cnt}</h3></font></td>
 			</tr>
 			<p>
 			<tr>
@@ -27,7 +29,7 @@
 					ㆍ수량
 				</td>
 				<td align="right">
-					<font style="font-weight: bold;"><h5>= KRW ${g_resultClass.goods_totalcount}</h5></font>
+					<font style="font-weight: bold;"><h5>= KRW <%= request.getParameter("sgoods_cnt") %></h5></font>
 				</td>
 			</tr>
 			<tr>
@@ -42,5 +44,6 @@
 				<td align="right"><input type="button" name="close" onclick="window.close()" value="닫기"/></td>
 			</tr>
 	</table>
+	</form>
 </body>
 </html>

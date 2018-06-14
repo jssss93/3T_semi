@@ -28,9 +28,31 @@
 		alert("1.");
 	}
 
+	function itemSum(frm) {
+		var sum = 0;
+		var sum1 = 0;
+		var sum2 = 0;
+		var count = frm.chk.length;
+		for (var i = 0; i < count; i++) {
+			if (frm.chk[i].checked == true) {
+				sum += parseInt(frm.price[i].value);
+				sum1 += parseInt(frm.discount[i].value);
+				sum2 += parseInt(frm.payment[i].value);
+
+			}
+		}
+		frm.total_sum.value = sum;
+		frm.discount_sum.value = sum1;
+		frm.payment_sum.value = sum2;
+	}
+ //F5키 막기
+	window.onkeydown = function() {
+		var kcode = event.keyCode;
+		if(kcode == 8 || kcode == 116) event.returnValue = false;
+	}
 
 </script>
-<body>
+<body onload="itemSum(this.form)">
 <form name="form">
 	<table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
@@ -49,7 +71,7 @@
 			<td width="400">&nbsp;&nbsp;${session.M_ID }회원이십니다.</td>
 		</tr>
 		<tr>
-			<td width="400">&nbsp;&nbsp;쿠폰 : <font color="#FF0000">$
+			<td width="400">&nbsp;&nbsp;쿠폰 : <font color="#FF0000">0
 					개</font></td>
 		</tr>
 	</table>
@@ -74,7 +96,7 @@
 			<!-- http://localhost:8080/StrutsBoard/viewAction.action?no=2&currentPage=1 -->
 			<s:url id="viewURL" action="GoodsView">
 				<s:param name="goods_no">
-					<s:property value="basket_no" />
+					<s:property value="basket_goods_no" />
 				</s:param>
 				<s:param name="currentPage">
 					<s:property value="currentPage" />
@@ -82,9 +104,8 @@
 			</s:url>
 
 			<tr align="center">
-				<td width="50"><input type="checkbox" name="chk" checked value="<s:property value="basket_no"/>"/></td>
-				<td><img src="/3T/upload/${basket_goods_img}"
-					width="50"></td>
+				<td width="50"><input type="checkbox" name="chk" onClick="itemSum(this.form)" onload="itemSum(this.form)" checked value="<s:property value="basket_no"/>"/></td>
+				<td><img src="/3T/upload/${basket_goods_img}" width="50"></td>
 				<td align="center" ><s:a href="%{viewURL}"><s:property value="basket_name" /></s:a></td>
 				<td align="center"><s:property value="basket_goods_amount" /></td>
 				<td align="center"><s:property value="basket_quantity" /></td>
@@ -104,9 +125,8 @@
 
 			<tr bgcolor="#F9F9F9">
 				<td colspan="2">&nbsp;&nbsp;&nbsp;[기본배송]</td>
-				<td align="right" colspan="6">상품구매금액 <s:property
-						value="basket_goods_amount" /> +배송비 0 =합계 :<font color="#FF0000">KRW
-						<s:property value="basket_goods_amount" />
+				<td align="right" colspan="6">상품구매금액 <s:property value="basket_goods_amount" /> 
+				+배송비 0 =합계 :<font color="#FF0000">KRW <s:property value="basket_goods_amount*basket_quantity" />
 				</font></td>
 			</tr>
 	
@@ -187,6 +207,9 @@
 				<li class="item3">단, 전체 상품을 주문/결제하실 경우, 상품별 무이자할부 혜택을 받으실 수
 					없습니다.</li>
 			</td>
+		</tr>
+		<tr>
+			<td height="20"></td>
 		</tr>
 	</table>
 	</form>

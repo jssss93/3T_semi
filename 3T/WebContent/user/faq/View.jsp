@@ -52,14 +52,11 @@
 	<table width="600" border="0" cellspacing="0" cellpadding="0">
 
 		<tr>
-			<td height="1" ></td>
-		</tr>
-			<tr bgcolor="#777777">
 			<td height="1" colspan="2"></td>
 		</tr>
 
 		<tr>
-			<td><b>번호</b></td>
+			<td bgcolor="#F2FFED" align="center"><b>번호</b></td>
 			<td>&nbsp;&nbsp;<s:property value="resultClass.FAQ_NO" />
 			</td>
 		</tr>
@@ -68,7 +65,7 @@
 		</tr>
 
 		<tr>
-			<td width="100" bgcolor="#F4F4F4"><b>제목</b></td>
+			<td width="100" bgcolor="#F2FFED" align="center"><b>제목</b></td>
 			<td width="500" class="tdstyle1">&nbsp;&nbsp;<s:property
 					value="resultClass.FAQ_SUBJECT" />
 			</td>
@@ -79,7 +76,7 @@
 		</tr>
 
 		<tr>
-			<td bgcolor="#F4F4F4"><b>글쓴이</b></td>
+			<td bgcolor="#F2FFED" align="center"><b>글쓴이</b></td>
 			<td class="tdstyle2">&nbsp;&nbsp;<s:property
 					value="resultClass.FAQ_WRITER" />
 			</td>
@@ -89,7 +86,7 @@
 		</tr>
 
 		<tr>
-			<td bgcolor="#F4F4F4"><b>내용</b></td>
+			<td bgcolor="#F2FFED" align="center"><b>내용</b></td>
 			<td class="tdstyle1">&nbsp;&nbsp;<pre>
 					<s:property value="resultClass.FAQ_CONTENT" />
 				</pre>
@@ -99,9 +96,6 @@
 			<td height="1" colspan="2"></td>
 		</tr>
 
-		<tr bgcolor="#777777">
-			<td height="1" colspan="2"></td>
-		</tr>
 
 		<tr>
 			<td height="10" colspan="2"></td>

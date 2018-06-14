@@ -34,10 +34,10 @@
 	</table>
 
 
-	<table width="1000" border="0" cellspacing="0" cellpadding="2" >
+	<table width="1000" border="0" cellspacing="0" cellpadding="2" id="form">
 		<tr align="center">
 			<td width="50" align="center"><strong><h2>NO</h2></strong></td>
-			<td width="400"><strong></strong></td>
+			<td width="850"><strong></strong></td>
 			<td width="50" align="center"><strong><h2>ÀÛ¼ºÀÚ</h2></strong></td>
 		</tr>
 		<tr bgcolor="#777777">
@@ -55,16 +55,14 @@
 				</s:param>
 			</s:url>
 
-			<tr align="center" class="tdstyle2" >
-				<td class="tdstyle2"><s:property value="notice_no" /></td>
+			<tr align="center">
+				<td ><s:property value="notice_no" /></td>
 				<td align="center">&nbsp;<s:a href="%{viewURL}">
 						<s:property value="notice_subject" />
 					</s:a></td>
 				<td align="center"><s:property value="notice_writer" /></td>
 			</tr>
-			<tr bgcolor="#777777">
-				<td height="1" colspan="3"></td>
-			</tr>
+	
 
 		</s:iterator>
 
@@ -77,6 +75,8 @@
 				<td height="1" colspan="3"></td>
 			</tr>
 		</s:if>
+	</table>
+	<table>
 		<tr height="50" align="center">
 			<td colspan="3"><s:property value="pagingHtml" escape="false" /></td>
 		</tr>
@@ -94,6 +94,7 @@
 				</form>
 			</td>
 		</tr>
+
 	</table>
 </body>
 </html>

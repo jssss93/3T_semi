@@ -11,7 +11,10 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+
+
 
 
 
@@ -22,7 +25,9 @@ public class ListAction extends ActionSupport implements SessionAware{
 
 	private List<WishlistVO> list = new ArrayList<WishlistVO>();	 
 	public Map session;
-
+	
+	private WishlistVO paramClass = new WishlistVO();
+	private WishlistVO resultClass = new WishlistVO();
 	
 	private int currentPage = 1;	//현재 페이지
 	private int totalCount; 		// 총 게시물의 수
@@ -41,9 +46,9 @@ public class ListAction extends ActionSupport implements SessionAware{
 
 	// 게시판 LIST 액션
 	public String execute() throws Exception {
-		
+		paramClass.setW_MEMBER_ID(ActionContext.getContext().getSession().get("M_ID").toString());
 		// 모든 글을 가져와 list에 넣는다.
-		list = sqlMapper.queryForList("wishlist-selectAll");
+		list = sqlMapper.queryForList("wishlist-selectAll",paramClass);
 
 		totalCount = list.size(); // 전체 글 갯수를 구한다.
 		// pagingAction 객체 생성.
