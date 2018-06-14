@@ -6,16 +6,16 @@
 <html >
 <head>
 	<title>Order</title>
-	<link rel="stylesheet" href="/3T/user/order/common/css/css.css" type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 </head>
 
   <body>
-  	<table width="600" border="0" cellspacing="0" cellpadding="2">
+  	<table width="900" border="0" cellspacing="0" cellpadding="2">
   		<tr>
   			<td height="30"></td>
   		</tr>
   		<tr>
-  			<td align="left"><h2>Order</h2></td>
+  			<td align="center" class="text01 formbar"><h2>Order</h2></td>
   		</tr>
   		<tr>
   			<td height="50"></td>
@@ -49,7 +49,7 @@
 			</s:url>
 			
      	      <tr bgcolor="#FFFFFF"  align="center">
-        		<td><s:property value="ORDER_REGDATE" /><br>[<s:property value="ORDER_GOODS_NO" />]</br></td>
+        		<td><s:property value="ORDER_REGDATE" /><br>[<s:property value="ORDER_GOODS_NO" /></br></td>
         		<td align="center"><img src="/3T/upload/${ORDER_IMG}" width="50"></td>
         		<td align="center">&nbsp;<s:a href="%{viewURL}"><s:property value="ORDER_GOODS_NAME" /></s:a></td>
 				<td align="center"><s:property value="ORDER_GOODS_COUNT" /></td>
@@ -78,7 +78,7 @@
 			
 	      <tr height="50" align="center">
     		<td colspan="7"><s:property value="pagingHtml"  escape="false" /></td>
-    				<%-- 	<td colspan="7"><input name="Main" type="button" value="주문하기 ▶"
+    				<%-- 	<td colspan="7"><input name="Main" type="button" value="주문하기 ▶" class="submit"
 				onClick="javascript:location.href='OrderWrite.action?currentPage=<s:property value="currentPage" />'"></td> --%>
     	   </tr>
 	</table>

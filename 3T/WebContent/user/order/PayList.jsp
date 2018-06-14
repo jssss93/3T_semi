@@ -6,43 +6,47 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>총주문 상세내역</title>
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
+<h2>
 	<form name="form">
-	<table width="300" border="0" cellspacing="0" cellpadding="2">
+	<table width="400" border="0" cellspacing="0" cellpadding="2" id="form" border=1>
 			<tr>
 			
-				<td colspan="2" align="right"><font style="font-weight: bold;" color="#FF0000"><h3> KRW ${g_resultClass.goods_price*sgoods_cnt}</h3></font></td>
+				<td colspan="2" align="right"><font style="font-weight: bold;" color="#FF0000"><h1> KRW ${g_resultClass.goods_price*sgoods_cnt}</h1></font></td>
 			</tr>
 			<p>
 			<tr>
-				<td>
-					ㆍ상품금액
+				<td class="tdstyle1">
+					<h3>ㆍ상품금액</h3>
 				</td>
-				<td align="right">
-				  <font style="font-weight: bold;"><h5>= KRW ${g_resultClass.goods_price} </h5></font>
+				<td align="right"  >
+				  <font style="font-weight: bold;"><h3>= KRW ${g_resultClass.goods_price}</h3> </font>
 
 				</td>
 			</tr>
 			<tr>
-				<td>
-					ㆍ수량
+				<td class="tdstyle1">
+					<h3>ㆍ수량</h3>
 				</td>
 				<td align="right">
-					<font style="font-weight: bold;"><h5>= KRW <%= request.getParameter("sgoods_cnt") %></h5></font>
+					<font style="font-weight: bold;"><h3>= KRW <%= request.getParameter("sgoods_cnt") %></h3></font>
 				</td>
 			</tr>
 			<tr>
-				<td>
-					ㆍ배송비
+				<td class="tdstyle1">
+					<h3>ㆍ배송비</h3>
 				</td>
 				<td align="right">
-					<font style="font-weight: bold;"><h5>= KRW 0</h5></font>
+					<font style="font-weight: bold;"><h3>= KRW 0</h3></font>
 				</td>
 			</tr>
 			<tr>
-				<td align="right"><input type="button" name="close" onclick="window.close()" value="닫기"/></td>
+				<td align="right" colspan="2"><input  class="hreflink" type="button" name="close" onclick="window.close()" value="닫기"/></td>
 			</tr>
+			</h2>
 	</table>
 	</form>
 </body>
