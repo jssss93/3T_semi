@@ -53,6 +53,8 @@
                <a href="OrderMain.action"><b>ORDER</b></a> 
                &nbsp;|&nbsp;
                <a href="MypageForm.action"><b>MYPAGE</b></a> 
+               &nbsp;|&nbsp;
+               <a href="BasketMain.action"><b>CART</b></a> 
                &nbsp;&nbsp;
                </td>
                </tr>

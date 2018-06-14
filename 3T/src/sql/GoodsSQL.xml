@@ -219,12 +219,12 @@
    <select id="select-All-outer" resultMap="goodsRes"
       parameterClass="int">
       <include refid="goods-select-all" />
-      where goods_category= '1' order by goods_regdate desc
+      where goods_category= 'outer' order by goods_regdate desc
    </select>
    <!-- outer best4개 출력 -->
    <select id="select-All-outer-best" resultMap="goodsRes"
       parameterClass="int">
-      select * from (select * from goods where goods_category = '1'order by
+      select * from (select * from goods where goods_category = 'outer'order by
       goods_recommend desc) where rownum <![CDATA[<]]>=
       4
    </select>
@@ -233,12 +233,12 @@
    <select id="select-All-suit" resultMap="goodsRes"
       parameterClass="int">
       <include refid="goods-select-all" />
-      where goods_category= '22' order by goods_regdate desc
+      where goods_category= 'suit' order by goods_regdate desc
    </select>
    <!-- suit best4개 출력 -->
    <select id="select-All-suit-best" resultMap="goodsRes"
       parameterClass="int">
-      select * from (select * from goods where goods_category = '22' order
+      select * from (select * from goods where goods_category = 'suit' order
       by goods_recommend desc) where rownum <![CDATA[<]]>=
       4
    </select>

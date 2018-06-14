@@ -39,6 +39,11 @@
 							BOARD</strong><br>고객님께서 작성하신 게시물을 관리하는 공간입니다.<br>고객님께서 작성하신 글을
 						한눈에 관리하실 수 있습니다.</a></td>
 			</tr>
+			<tr>
+				<td class="tdstyle2" height=120><a href="BasketMain.action"><strong>cart
+							list</strong><br>장바구니로 등록하신 상품의 목록을 보여드립니다.</a></td>
+				<td></td>
+			</tr>
 
 
 
