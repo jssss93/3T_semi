@@ -32,6 +32,7 @@ public class BuyAction extends ActionSupport implements SessionAware {
 	private GoodsVO g_paramClass = new GoodsVO();
 	private GoodsVO g_resultClass = new GoodsVO();
 
+	private int sgoods_cnt;
 	private String m_id;
 	private int goods_no;
 
@@ -128,4 +129,13 @@ public class BuyAction extends ActionSupport implements SessionAware {
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
 	}
+
+	public int getSgoods_cnt() {
+		return sgoods_cnt;
+	}
+
+	public void setSgoods_cnt(int sgoods_cnt) {
+		this.sgoods_cnt = sgoods_cnt;
+	}
+	
 }

@@ -6,19 +6,22 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
 import java.util.*;
+
+import org.apache.struts2.interceptor.SessionAware;
+
 import java.io.Reader;
 import java.io.IOException;
 
 import java.net.*;
 
-public class ListAction extends ActionSupport{
+public class ListAction extends ActionSupport implements SessionAware{
 
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 
 	
 	private List<QaVO> list = new ArrayList<QaVO>();
-	
+	public Map session;
 	
 	private String searchKeyword;
 	private int searchNum;
@@ -92,6 +95,46 @@ public class ListAction extends ActionSupport{
 	}
 
 
+
+	public static Reader getReader() {
+		return reader;
+	}
+
+	public static void setReader(Reader reader) {
+		ListAction.reader = reader;
+	}
+
+	public static SqlMapClient getSqlMapper() {
+		return sqlMapper;
+	}
+
+	public static void setSqlMapper(SqlMapClient sqlMapper) {
+		ListAction.sqlMapper = sqlMapper;
+	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
+
+	public PagingAction getPage() {
+		return page;
+	}
+
+	public void setPage(PagingAction page) {
+		this.page = page;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
 
 	public List<QaVO> getList() {
 		return list;

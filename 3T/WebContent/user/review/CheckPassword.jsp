@@ -6,10 +6,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>비밀번호 확인</title>
-
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
+
 <table width="400" border="0" cellspacing="0" cellpadding="1">
 		<tr>
 			<td align="left"><h3>REVIEW</h3></td>
@@ -22,9 +23,11 @@
 	</table>
 	
 
+
 	<form action="Review_CheckAction.action" method="post">
 		<s:hidden name="REV_no" value="%{REV_no}" />
 		<s:hidden name="currentPage" value="%{currentPage}" />
+
 
 		<table width="400" border="0" cellspacing="0" cellpadding="1">
 
@@ -49,6 +52,7 @@
 			<td height="1" colspan="2"></td>
 		</tr>
 			
+
 		</table>
 
 	</form>

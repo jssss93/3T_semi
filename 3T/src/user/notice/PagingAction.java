@@ -1,6 +1,10 @@
 package user.notice;
 
-public class PagingAction {
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+public class PagingAction implements SessionAware{
 
 	private int currentPage;
 	private int totalCount;
@@ -11,7 +15,7 @@ public class PagingAction {
 	private int endCount;
 	private int startPage;
 	private int endPage;
-	
+	public Map session;
 	private StringBuffer pagingHtml;
 	
 	public PagingAction(int currentPage, int totalCount, int blockCount, int blockPage, int searchNum, String isSearch)
@@ -97,6 +101,18 @@ public class PagingAction {
 	}
 
 	
+
+	public Map getSession() {
+		return session;
+	}
+
+
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
+
+
 
 	public int getCurrentPage() {
 		return currentPage;

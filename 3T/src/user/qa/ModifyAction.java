@@ -6,16 +6,18 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
 import java.io.Reader;
+import java.util.Map;
 import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.struts2.interceptor.SessionAware;
 
-public class ModifyAction extends ActionSupport{
+public class ModifyAction extends ActionSupport implements SessionAware{
 
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
-	
+	public Map session;
 	private QaVO paramClass;
 	private QaVO resultClass;
 	
@@ -78,6 +80,30 @@ public class ModifyAction extends ActionSupport{
 		return SUCCESS;
 		
 		
+	}
+
+	public static Reader getReader() {
+		return reader;
+	}
+
+	public static void setReader(Reader reader) {
+		ModifyAction.reader = reader;
+	}
+
+	public static SqlMapClient getSqlMapper() {
+		return sqlMapper;
+	}
+
+	public static void setSqlMapper(SqlMapClient sqlMapper) {
+		ModifyAction.sqlMapper = sqlMapper;
+	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
 	}
 
 	public QaVO getParamClass() {

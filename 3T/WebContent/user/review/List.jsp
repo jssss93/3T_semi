@@ -7,23 +7,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>REVIEW</title>
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+#form td.tdstyle2 {background-color :#000000; border:#ccc 1px solid; width:400px; padding:20px; font-size:14px; font-weight:bold; color:#000;}
 
+</style>
 </head>
 
 <body>
+
 
 	<table width="600" border="0" cellspacing="0" cellpadding="1">
 		<tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
+
 			<td align="left"><h2>REVIEW&nbsp;|&nbsp;</h2></td>
+
 		</tr>
 		<tr>
 			<td height="50"></td>
 		</tr>
 		
 		
+
 
 		<table width="600" border="0" cellspacing="0" cellpadding="1">
 			<tr align="center">
@@ -31,6 +39,7 @@
 				<td width="80"><strong>ITEM </strong></td>
 				<td width="350" align="left"><strong>SUBJECT</strong></td>
 				<td width="50"><strong>NAME</strong></td>
+
 
 			</tr>
 			<tr bgcolor="#777777">
@@ -50,16 +59,16 @@
 				</s:url>
 
 
-				<tr bgcolor="#FFFFFF" align="center">
-					<td><s:property value="REV_no" /></td>
+				<tr align="center">
+					<td class="tdstyle2"><s:property value="REV_no" /></td>
 					<td align="center">&nbsp; <img
 						src="/3T/upload/${REV_file_savname}" width="50" height="50"></td>
 
 
 
-					<td align="left">&nbsp; <s:if test="REV_re_level != 0">
+					<td align="center">&nbsp; <s:if test="REV_re_level != 0">
 							<c:forEach var="i" begin="${REV_re_level}" end="0">&nbsp;</c:forEach>→
-				</s:if> <s:a href="%{viewURL}">
+            </s:if> <s:a href="%{viewURL}">
 							<s:property value="REV_subject" />
 
 						</s:a></td>
@@ -94,24 +103,31 @@
 				<tr align="center">
 				<td colspan="5">
 					<form>
-						<select name="searchNum">
+						<select name="searchNum" style="width: 100px; height: 30px;">
 							<option value="0">작성자</option>
 							<option value="1">제목</option>
 
 						</select>
 						<s:textfield name="searchKeyword" theme="simple" value=""
-							cssStyle="width:120px" maxlength="20" />
-						<input name="submit" type="submit" value="SEARCH" class="inputb">
+							cssStyle="width:200px; height:30px;" maxlength="20" />
+						<input name="submit" type="submit" value="SEARCH" class="submit">
+							
 					</form>
 				</td>
 			</tr>
+			<tr>
 
-			<tr align="center">
-				<td colspan="5"><s:property value="pagingHtml" escape="false" /></td>
+
+				<td colspan="5" align="center"><input type="button" value="WRITE"
+					class="hreflink"
+					onClick="javascript:location.href='ReviewWriteForm.action?currentPage=<s:property value="currentPage" />';"></td>
+
 			</tr>
 	
 
 		
+
+
 
 		</table>
 </body>

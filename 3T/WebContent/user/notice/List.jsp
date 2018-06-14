@@ -6,17 +6,27 @@
 <html>
 <head>
 <title>Notice</title>
-<link rel="stylesheet" href="/3T/user/notice/common/css/css.css"
-	type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+#form td.tdstyle2 {
+	background-color: #000000;
+	border: #ccc 1px solid;
+	width: 400px;
+	padding: 20px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000;
+}
+</style>
 </head>
 
 <body>
-	<table width="600" border="0" cellspacing="0" cellpadding="2">
+	<table width="1000" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td height="30"></td>
 		</tr>
 		<tr>
-			<td align="left"><h2>Notice</h2></td>
+			<td align="center" class="text01 formbar">Notice</td>
 		</tr>
 		<tr>
 			<td height="50"></td>
@@ -24,11 +34,11 @@
 	</table>
 
 
-	<table width="1000" border="0" cellspacing="0" cellpadding="2">
+	<table width="1000" border="0" cellspacing="0" cellpadding="2" id="form">
 		<tr align="center">
-			<td width="50" align="center"><strong>NO</strong></td>
-			<td width="400"><strong></strong></td>
-			<td width="50" align="center"><strong>작성자</strong></td>
+			<td width="50" align="center"><strong><h2>NO</h2></strong></td>
+			<td width="850"><strong></strong></td>
+			<td width="50" align="center"><strong><h2>작성자</h2></strong></td>
 		</tr>
 		<tr bgcolor="#777777">
 			<td height="1" colspan="3"></td>
@@ -45,16 +55,14 @@
 				</s:param>
 			</s:url>
 
-			<tr bgcolor="#FFFFFF" align="center">
-				<td><s:property value="notice_no" /></td>
+			<tr align="center">
+				<td ><s:property value="notice_no" /></td>
 				<td align="center">&nbsp;<s:a href="%{viewURL}">
 						<s:property value="notice_subject" />
 					</s:a></td>
 				<td align="center"><s:property value="notice_writer" /></td>
 			</tr>
-			<tr bgcolor="#777777">
-				<td height="1" colspan="3"></td>
-			</tr>
+	
 
 		</s:iterator>
 
@@ -67,22 +75,26 @@
 				<td height="1" colspan="3"></td>
 			</tr>
 		</s:if>
+	</table>
+	<table>
 		<tr height="50" align="center">
-    		<td colspan="3"><s:property value="pagingHtml"  escape="false" /></td>
-       </tr>
-	<tr align="center">
-		<td colspan="3">
-			<form>
-				<select name="searchNum" >
-					<option value="0">작성자</option>
-					<option value="1">제목</option>
-					<option value="2">내용</option>
-				</select>
-				<s:textfield name="searchKeyword" theme="simple" value="" cssStyle="width:120px" maxlength="20" />
-				<input name="submit" type="submit" value="검색" class="inputb">
-			</form>
-		</td>
-	</tr>
+			<td colspan="3"><s:property value="pagingHtml" escape="false" /></td>
+		</tr>
+		<tr align="center">
+			<td colspan="3">
+				<form>
+					<select name="searchNum" style="width: 100px; height: 30px;">
+						<option value="0">작성자</option>
+						<option value="1">제목</option>
+						<option value="2">내용</option>
+					</select>
+					<s:textfield name="searchKeyword" theme="simple" value=""
+						cssStyle="width:200px; height:30px;" maxlength="20" />
+					<input name="submit" type="submit" value="검색" class="submit">
+				</form>
+			</td>
+		</tr>
+
 	</table>
 </body>
 </html>

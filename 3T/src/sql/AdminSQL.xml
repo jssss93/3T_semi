@@ -390,7 +390,7 @@
 		<result property="order_phone3" column="order_phone3" />
 		<result property="order_email1" column="order_email1" />
 		<result property="order_email2" column="order_email2" />
-		<result property="recipient_choice" column="recipient_choice" />
+
 		<result property="recipient_name" column="recipient_name" />
 		<result property="recipient_zipcode" column="recipient_zipcode" />
 		<result property="recipient_address1" column="recipient_address1" />
@@ -398,7 +398,7 @@
 		<result property="recipient_phone1" column="recipient_phone1" />
 		<result property="recipient_phone2" column="recipient_phone2" />
 		<result property="recipient_phone3" column="recipient_phone3" />
-		<result property="discount" column="discount" />
+
 		<result property="payment" column="payment" />
 		<result property="deposit_name" column="deposit_name" />
 		<result property="deposit_bank" column="deposit_bank" />
@@ -411,7 +411,7 @@
 		<result property="order_goods_no" column="order_goods_no" />
 		<result property="order_goods_name" column="order_goods_name" />
 		<result property="order_goods_count" column="order_goods_count" />
-		<result property="order_check" column="order_check" />
+
 	</resultMap>
 
 
@@ -436,6 +436,21 @@
 		ORDER BY ORDER_NO DESC
 	</select>
 
+	<select id="AOselectSearchName" resultMap="OrderRes">
+		SELECT * FROM ORDER_3T
+		where order_name like #SearchKeyword#
+		ORDER
+		BY ORDER_NO DESC
+	</select>
+
+	<select id="AOselectSearchID" resultMap="OrderRes">
+		SELECT * FROM ORDER_3T
+		where order_member_id like #SearchKeyword#
+		ORDER
+		BY ORDER_NO DESC
+	</select>
+
+
 	<!-- 사용자 BASKET SQL ********************************************************************************************************************** -->
 	<typeAlias alias="ABbasket" type="admin.basket.VO.BasketVO" />
 	<!-- 리절트 맵 정의 -->
@@ -448,11 +463,20 @@
 		<result property="basket_goods_img" column="basket_goods_img" />
 		<result property="basket_quantity" column="basket_quantity" />
 		<result property="basket_name" column="basket_name" />
+		<result property="basket_goods_no" column="basket_goods_no" />
 
 	</resultMap>
 
+
 	<select id="Basket_mem" resultMap="BasketRes">
 		SELECT * FROM BASKET
+		ORDER BY basket_no DESC
+	</select>
+	
+	
+	<select id="basket-selectM" resultMap="BasketRes">
+		SELECT * FROM BASKET where
+		basket_member_id=#basket_member_id#
 		ORDER BY
 		Basket_NO DESC
 	</select>
@@ -460,11 +484,18 @@
 	<insert id="insertBasket" parameterClass="ABbasket">
 		INSERT INTO
 		BASKET(basket_no,basket_member_id,basket_goods_amount,basket_goods_size,basket_goods_color,
-		basket_goods_img,basket_quantity,basket_name) VALUES
+		basket_goods_img,basket_quantity,basket_name,basket_goods_no) VALUES
 		(BASKET_NO_SEQ.NEXTVAL,#basket_member_id#,#basket_goods_amount#,#basket_goods_size#,#basket_goods_color#,
-		#basket_goods_img#,#basket_quantity#,#basket_name#)
+		#basket_goods_img#,#basket_quantity#,#basket_name#,#basket_goods_no#)
 	</insert>
 
+	<insert id="insertWishlist" parameterClass="ABbasket">
+		INSERT INTO
+		BASKET(basket_no,basket_member_id,basket_goods_amount,basket_goods_size,basket_goods_color,
+		basket_goods_img,basket_quantity,basket_name,basket_goods_no) VALUES
+		(BASKET_NO_SEQ.NEXTVAL,#basket_member_id#,#basket_goods_amount#,#basket_goods_size#,#basket_goods_color#,
+		#basket_goods_img#,#basket_quantity#,#basket_name#,#basket_goods_no#)
+	</insert>
 
 
 	<typeAlias alias="AQqa" type="admin.qa.VO.QAVO" />
@@ -488,7 +519,7 @@
 		<result property="qa_member_id" column="qa_member_id" />
 
 	</resultMap>
-	
+
 	<sql id="AQselect-all">
 		SELECT * FROM QA
 	</sql>
@@ -500,7 +531,8 @@
 
 
 	<select id="AQselectAll" resultMap="QARes">
-		SELECT * FROM QA ORDER BY QA_NO DESC
+		SELECT * FROM QA ORDER BY
+		QA_NO DESC
 	</select>
 
 	<select id="AQselectOne" resultMap="QARes">

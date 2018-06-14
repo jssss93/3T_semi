@@ -6,6 +6,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 <head>
 <title>REVIEW</title>
 <script type="text/javascript">
@@ -37,9 +38,10 @@
 </head>
 <body>
 
-	<table width="700" border="0" cellspacing="0" cellpadding="2">
+	<table width="600" border="0" cellspacing="0" cellpadding="2"align="cneter">
 		<tr>
-			<td align="left"><h2>REVIEW</h2></td>
+			<td align="center" class="text01 formbar">REVIEW</td>
+
 		</tr>
 		<tr>
 			<td height="20"></td>
@@ -48,16 +50,16 @@
 
 	<table width="600" border="0" cellspacing="0" cellpadding="0">
 		<tr>
-			<td align="right" colspan="2"><font color="#FF0000"></td>
+			<td align="right" colspan="2"></td>
 		</tr>
 
-		<tr bgcolor="#777777">
+		<tr>
 			<td height="1" colspan="2"></td>
 		</tr>
 
 		<tr>
-			<td width="100" bgcolor="#FFFFFF"><font color="#FF0000"></font>SUBJECT</td>
-			<td width="500" bgcolor="#FFFFFF"><s:property
+			<td width="100" class="tdstyle2"><b>SUBJECT</b></td>
+			<td width="500" ><s:property
 					value="resultClass.REV_subject" /></td>
 		</tr>
 		<tr bgcolor="#777777">
@@ -65,8 +67,8 @@
 		</tr>
 
 		<tr>
-			<td bgcolor="#FFFFFF"><font color="#FF0000"></font>NAME</td>
-			<td bgcolor="#FFFFFF"><s:property value="resultClass.REV_name" />
+			<td class="tdstyle1"><b>NAME</b></td>
+			<td><s:property value="resultClass.REV_name" />
 			</td>
 		</tr>
 		<tr bgcolor="#777777">
@@ -220,15 +222,17 @@
 					<s:param name="REV_no">
 						<s:property value="REV_no" />
 					</s:param>
-				</s:url> <%-- <input name="list" type="button" value="답변달기" class="inputb"
-				onClick="javascript:location.href='Review_ReplyForm.action?REV_no=<s:property value="REV_no" />&currentPage=<s:property value="currentPage" />'"> --%>
-					<input name="list" type="button" value="modify" class="inputb"
+
+				</s:url> <input name="list" type="button" value="답변달기" class="submit"
+				onClick="javascript:location.href='Review_ReplyForm.action?REV_no=<s:property value="REV_no" />&currentPage=<s:property value="currentPage" />'">
+					<input name="list" type="button" value="modify" class="hreflink"
+
 					onClick="javascript:open_win_noresizable('Review_CheckForm.action?REV_no=<s:property value="resultClass.REV_no" />&currentPage=<s:property value="currentPage" />','modify')">
 
-						<input name="list" type="button" value="delete" class="inputb"
+						<input name="list" type="button" value="delete" class="submit"
 						onClick="javascript:open_win_noresizable('Review_CheckForm.action?REV_no=<s:property value="resultClass.REV_no" />&currentPage=<s:property value="currentPage" />','delete')">
 
-							<input name="list" type="button" value="list" class="inputb"
+							<input name="list" type="button" value="list" class="hreflink"
 							onClick="javascript:location.href='Review_list.action?currentPage=<s:property value="currentPage" />'"></td>
 		</tr>
 	</table>

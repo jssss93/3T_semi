@@ -7,6 +7,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>MY BOARD LIST</title>
+	<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+
 	
 </head>
   
@@ -14,26 +16,27 @@
  
  <table width="700" border="0" cellspacing="0" cellpadding="2">
   		<tr>
-  			<td align="left"><h2>MY BOARD LIST</h2></td>
+  			<td align="center" class="text01 formbar">MY BOARD LIST</td>
   		</tr>
   		<tr>
   			<td height="20"></td>
   		</tr>
   	
   
-	<table width="700" border="0" cellspacing="0" cellpadding="2">
+	<table width="700" border="0" cellspacing="0" cellpadding="2" id="form" >
 	            ${session.M_ID}님 환영합니다.<br/>
 	
 	      <tr align="center">
-      		<td width="50"><strong>NO</strong></td>
-        		<td width="400"><strong>SUBJECT</strong></td>
-       			<td width="80"><strong>DATE</strong></td>
-        		<td width="80"><strong>NAME</strong></td>
+      		<td width="50" class="tdstyle1"><strong>NO</strong></td>
+        		<td width="400" class="tdstyle1"><strong>SUBJECT</strong></td>
+       			<td width="80" class="tdstyle1"><strong>DATE</strong></td>
+        		<td width="80" class="tdstyle1"><strong>NAME</strong></td>
 		
       	      </tr>
-      	      <tr bgcolor="#777777">
+      	      <tr>
         		<td height="1" colspan="5"></td>
       	      </tr>
+
 
 	  <s:iterator value="list" status="stat"><!-- listAction에서의 Arraylist에 넣어논걸 for문을 돌려 한줄한줄 꺼낸다 -->
 
@@ -47,16 +50,16 @@
 		</s:url>
 		
 			
-     	      <tr bgcolor="#FFFFFF"  align="center">
-        		<td><s:property value="REV_no" /></td> 
+     	      <tr  align="center">
+        		<td ><s:property value="REV_no"/></td> 
         		<td align="center"> &nbsp;<s:a href="%{viewURL}"><s:property value="REV_subject" />
         		</td>
         		
         		<td align="left">&nbsp;<s:property value="REV_regdate" /></s:a></td>
-		<td align="center"><s:property value="REV_name" /></td>
+		<td align="center" ><s:property value="REV_name" /></td>
         		
       	      </tr>
-      	      <tr bgcolor="#777777">
+      	      <tr >
         		<td height="1" colspan="5"></td>
       	      </tr>
       
@@ -78,20 +81,20 @@
    
       <tr>
          <td align="center"><s:property value="QA_NO" /></td>
-         <td align="center">
+         <td align="center" >
             <s:if test="QA_RE_LEVEL != 0">
                <c:forEach var = "i" begin = "${QA_RE_LEVEL}" end = "0">&nbsp;</c:forEach>→
             </s:if>   
              <s:a href="%{viewURL}"><s:property value="QA_SUBJECT" /></s:a>
           </td>
-          <td align="center"><s:property value="QA_REGDATE" /></td>
+          <td align="center" ><s:property value="QA_REGDATE" /></td>
           
-         <td align="center"><s:property value="QA_NAME" /></td>
+         <td align="center" ><s:property value="QA_NAME" /></td>
          
       </tr>
 
-      <tr bgcolor="#777777">
-         <td height="1" colspan="6"></td>
+      <tr>
+         <td height="1" colspan="6" class="tdstyle1"></td>
       </tr>
 
    </s:iterator>
@@ -99,16 +102,16 @@
 			
 	      <s:if test="list.size() <= 0"><!-- list에 들어있는게 없다면 -->
 				
-	      <tr bgcolor="#FFFFFF"  align="center">
-		<td colspan="5">등록된 게시물이 없습니다.</td>
+	      <tr align="center">
+		<td colspan="5" >등록된 게시물이 없습니다.</td>
                   </tr>						
-	      <tr bgcolor="#777777">
+	      <tr>
       		<td height="1" colspan="5"></td>
     	      </tr>
     		
 	      </s:if>
 	        <tr align="center">
-    		<td colspan="5"><s:property value="pagingHtml"  escape="false" /></td>
+    		<td colspan="5" class="tdstyle1"><s:property value="pagingHtml"  escape="false" /></td>
     	      </tr>
 			
 	   

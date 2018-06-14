@@ -7,13 +7,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>스트럿츠2 게시판</title>
-<link rel="stylesheet" href="/3T/common/css/css.css" type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-	<table width="600" border="0" cellspacing="0" cellpadding="2">
+	<table width="1000" border="0" cellspacing="0" cellpadding="2">
 		<tr>
-			<td align="center"><h1>QA리스트 </h1></td>
+			<td align="center" class="text01 formbar"><h1>QA리스트 </h1></td>
 		</tr>
 	</table>
 	
@@ -76,14 +76,14 @@
 	<tr align="center">
 		<td colspan="5">
 			<form action="AQlistAction.action">
-				<select name="searchNum" >
+				<select name="searchNum" style="width: 100px; height: 30px;" >
 					<option value="0">작성자</option>
 					<option value="1">ID</option>
 					<option value="2">내용</option>
 					<option value="3">제목</option>
 				</select>
-				<s:textfield name="searchKeyword" theme="simple" value="" cssStyle="width:120px" maxlength="20" />
-				<input name="submit" type="submit" value="검색" class="inputb">
+				<s:textfield name="searchKeyword" theme="simple" value="" cssStyle="width:200px; height:30px;" maxlength="20" />
+				<input name="submit" type="submit" value="검색" class="submit">
 			</form>
 		</td>
 	</tr>

@@ -8,8 +8,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>새 상품 등록</title>
 
-
-<link rel="stylesheet" href="/3T/common/css/css.css" type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#form td.tdstyle2 {
+	background-color: #000000;
+	border: #ccc 1px solid;
+	width: 400px;
+	padding: 20px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000;
+}
+</style>
 
 <script type="text/javascript">
 	function validation() {
@@ -43,7 +53,7 @@
 	<s:if test="resultClass == NULL">
 		<table width="600" border="0" cellspacing="0" cellpadding="2">
 			<tr>
-				<td align="center"><h2>FAQ 등록</h2></td>
+				<td align="center" class="text01 farmbar"><h2>FAQ 등록</h2></td>
 			</tr>
 		</table>
 		<form action="AF_Write.action" method="post"
@@ -53,7 +63,7 @@
 	<s:else>
 		<table width="600" border="0" cellspacing="0" cellpadding="2">
 			<tr>
-				<td align="center"><h2>FAQ 수정</h2></td>
+				<td align="center" class="text01 farmbar"><h2>FAQ 수정</h2></td>
 			</tr>
 		</table>
 		<form action="AF_Modify.action" method="post">
@@ -72,15 +82,15 @@
 		</tr>
 		<tr>
 			<td width="150" bgcolor="#F4F4F4"><font color="#FF0000">*</font>작성자</td>
-			<td width="500" bgcolor="#FFFFFF"><s:textfield name="faq_writer"
+			<td width="500" class="tdstyle2" ><s:textfield name="faq_writer"
 					theme="simple" value="%{resultClass.faq_writer}"
 					cssStyle="width:370px" maxlength="50" /></td>
 		</tr>
-		
+
 
 		<tr>
 			<td width="150" bgcolor="#F4F4F4"><font color="#FF0000">*</font>제목</td>
-			<td width="500" bgcolor="#FFFFFF"><s:textfield
+			<td width="500" class="tdstyle2"><s:textfield
 					name="faq_subject" theme="simple"
 					value="%{resultClass.faq_subject}" cssStyle="width:370px"
 					maxlength="50" /></td>
@@ -88,7 +98,7 @@
 
 		<tr>
 			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 상품 내용</td>
-			<td bgcolor="#FFFFFF"><s:textarea name="faq_content"
+			<td class="tdstyle2"><s:textarea name="faq_content"
 					theme="simple" value="%{resultClass.faq_content}" cols="50"
 					rows="10" /></td>
 		</tr>
@@ -107,8 +117,8 @@
 
 		<tr>
 			<td align="right" colspan="2"><input name="submit" type="submit"
-				value="작성완료" class="inputb"> <input name="list"
-				type="button" value="목록" class="inputb"
+				value="작성완료" class="submit"> <input name="list"
+				type="button" value="목록" class="hreflink"
 				onClick="javascript:location.href='AF_List.action?currentPage=<s:property value="currentPage" />'">
 			</td>
 		</tr>

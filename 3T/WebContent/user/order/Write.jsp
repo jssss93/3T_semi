@@ -120,94 +120,77 @@
 
 	}
 
-	function validation() {
-
-		var frm = document.Orderinformation;
-
-		if (frm.Order_Name.value == "") {
-			alert("제목을 입력해주세요.");
-			return false;
+	//주문자와 동일 
+	function Copy() {
+		if (document.getElementById("cb1").checked) {
+			document.getElementById("recipient_name").value = document
+					.getElementById("order_name").value;
+			document.getElementById("sample6_postcode").value = document
+					.getElementById("sample7_postcode").value;
+			document.getElementById("sample6_address").value = document
+					.getElementById("sample7_address").value;
+			document.getElementById("sample6_address2").value = document
+					.getElementById("sample7_address2").value;
+			document.getElementById("recipient_phone1").value = document
+					.getElementById("order_phone1").value;
+			document.getElementById("recipient_phone2").value = document
+					.getElementById("order_phone2").value;
+			document.getElementById("recipient_phone3").value = document
+					.getElementById("order_phone3").value;
 		}
-
-		else if (frm.name.value == "") {
-			alert("이름을 입력해주세요.");
-			return false;
+		if (document.getElementById("cb2").checked) {
+			document.getElementById("recipient_name").value = null;
+			document.getElementById("sample6_postcode").value = null;
+			document.getElementById("sample6_address").value = null;
+			document.getElementById("sample6_address2").value = null;
+			document.getElementById("recipient_phone1").value = null;
+			document.getElementById("recipient_phone2").value = null;
+			document.getElementById("recipient_phone3").value = null;
 		}
+	}
 
-		else if (frm.password.value == "") {
-			alert("비밀번호를 입력해주세요.");
-			return false;
-		}
+	function sele(n) {
+		if (n == 0) {
+			document.form.action = "order_checkdelete.action"
+		} 
+		return false;
+	}
 
-		else if (frm.content.value == "") {
-			alert("내용을 입력해주세요.");
-			return false;
-		}
-
-		return true;
+	function chkBox(bool) { // 전체선택/해제 
+		var obj = document.getElementsByName("chk");
+		for (var i = 0; i < obj.length; i++)
+			obj[i].checked = bool;
+		/* return itemSum(this.form); */
+		return success;
+		
 	}
 	
-    
 
-	//주문자와 동일 
-	     function Copy() {
-	         if (document.getElementById("cb1").checked)
-	         {
-	               document.getElementById("recipient_name").value =document.getElementById("order_name").value;
-	               document.getElementById("sample6_postcode").value =document.getElementById("sample7_postcode").value;
-	               document.getElementById("sample6_address").value =document.getElementById("sample7_address").value;
-	               document.getElementById("sample6_address2").value =document.getElementById("sample7_address2").value;
-	               document.getElementById("recipient_phone1").value =document.getElementById("order_phone1").value;
-	               document.getElementById("recipient_phone2").value =document.getElementById("order_phone2").value;
-	               document.getElementById("recipient_phone3").value =document.getElementById("order_phone3").value;            
-	         }
-	         if(document.getElementById("cb2").checked){
-	             document.getElementById("recipient_name").value =null;
-	             document.getElementById("sample6_postcode").value =null;
-	             document.getElementById("sample6_address").value =null;
-	             document.getElementById("sample6_address2").value =null;
-	             document.getElementById("recipient_phone1").value =null;
-	             document.getElementById("recipient_phone2").value =null;
-	             document.getElementById("recipient_phone3").value =null;  
-	         }
-	    }
-	    
+	function itemSum(frm) {
+		var sum = 0;
+		var sum2 = 0;
+		var count = frm.chk.length;
+		for (var i = 0; i < count; i++) {
+			if (frm.chk[i] == true) {
+				sum += parseInt(frm.BASKET_GOODS_AMOUNT[i].value);
+			}
+		}
+		frm.total_sum.value = sum;
+	}
 
-	
-    //체크박스 
-    var check = false;
-
-    function CheckAll(){
-
-    var chk = document.getElementsByName("del_unit[]");
-
-    if(check == false){
-
-    check = true;
-
-    for(var i=0; i<chk.length;i++){                                                                    
-
-    chk[i].checked = true;     //모두 체크
-
+    function CheckForm(Join){
+        
+        //체크박스 체크여부 확인 [
+        var chk1=document.Orderinformation.checkbox_agree.checked;
+   
+        if(!chk1){
+            alert('동의해 주세요');
+            return false;
+        } 
     }
-
-    }else{
-
-    check = false;
-
-    for(var i=0; i<chk.length;i++){                                                                    
-
-    chk[i].checked = false;     //모두 해제
-
-    }
-
-    }
-
-    }
-
 </script>
 </head>
-<body>
+<body onload="itemSum(this.form)">
 
 	<table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
@@ -224,14 +207,14 @@
 	<table width="1000" border="1" cellspacing="0" cellpadding="2">
 		<tr>
 			<td width="50" rowspan="2" align="center">해택 정보</td>
-			<td width="400">&nbsp;&nbsp;${m_resultClass.m_name } 회원님의 구매하기</td>
+			<td width="400">&nbsp;&nbsp;${session.M_ID} 회원님의 구매하기</td>
 		</tr>
 		<tr>
 			<td width="400">&nbsp;&nbsp;쿠폰 : <font color="#FF0000">$
 					개</font></td>
 		</tr>
 	</table>
-	<form name="checkTest">
+	<form name="form">
 
 		<table width="1000" border="0" cellspacing="0" cellpadding="2">
 			<tr>
@@ -243,8 +226,8 @@
 			</tr>
 
 			<tr align="center" bgcolor="#F9F9F9">
-				<td width="50"><input type="checkbox" name="checkall"
-					onclick="javascript:CheckAll()" /></td>
+				<td width="50"><input type="checkbox" value=""
+					class="checkbox" onclick=chkBox(this.checked) checked /></td>
 				<td width="100"><strong>이미지 </strong></td>
 
 				<td width="400"><strong>상품정보</strong></td>
@@ -253,55 +236,38 @@
 				<td width="120"><strong>총가격</strong></td>
 
 			</tr>
-			<tr align="center">
-				<td width="50"><input type="checkbox" id="del_id"
-					name="del_unit[]" value="ORDER_CHECK" /></td>
-				<td width="100"><img
-					src="/3T/upload/<s:property value="g_resultClass.goods_file_savname.split(',')[0]"/>"
-					width="50"></td>
-				<td width="400">${g_resultClass.goods_content}</td>
-				<td width="80">${g_resultClass.goods_price}</td>
-				<td width="80">${g_resultClass.goods_totalcount}
-				<%-- 	<%request.getParameterValues("goods_totalcnt"); %> --%>
-				</td>
-				<td width="120">${g_resultClass.goods_price*g_resultClass.goods_totalcount}</td>
-			</tr>
 
+          
+			<s:if test="g_resultClass.goods_no != 0">
+			
+						<s:url id="viewURL" action="GoodsView">
+							<s:param name="goods_no">
+								<s:property value="goods_no" />
+							</s:param>
+							<s:param name="currentPage">
+								<s:property value="currentPage" />
+							</s:param>
+						</s:url>
+			
+				<tr align="center">
+					<td width="50"><input type="checkbox" name="chk" 
+					checked value="<s:property value="g_resultClass.goods_no"/>"/></td>
+					<td width="100"><img
+						src="/3T/upload/<s:property value="g_resultClass.goods_file_savname.split(',')[0]"/>"
+						width="50"></td>
+					<td width="400">&nbsp;<s:a href="%{viewURL}">${g_resultClass.goods_name}</s:a></td>
+					<td width="80">${g_resultClass.goods_price}</td>
+          			<td width="80"><%=request.getParameter("sgoods_cnt") %></td>
+		
+					<td width="120">${g_resultClass.goods_price*sgoods_cnt}</td>
 
-			<%-- <s:iterator value="G_List" status="stat">
-			<!-- http://localhost:8080/StrutsBoard/viewAction.action?no=2&currentPage=1 -->
-			<s:url id="viewURL" action="viewAction">
-				<s:param name="goods_no">
-					<s:property value="goods_no" />
-				</s:param>
-				<s:param name="currentPage">
-					<s:property value="currentPage" />
-				</s:param>
-			</s:url>
-
-			<tr bgcolor="#F9F9F9" align="center">
-				<td><img src="/3T/upload/${goods_file_savname}.small.jpg" width="50"></td>
-				<td align="center">${goods_content }</td>
-				<td align="center">${goods_price }</td>
-				<td align="center">${goods_totalcount }</td>
-				<td align="center">${goods_price }</td>
-			</tr>
-
-
-		</s:iterator> --%>
-
-			<s:if test="g_resultClass == 0">
-				<tr bgcolor="#FFFFFF" align="center">
-					<td colspan="6">등록된 게시물이 없습니다.</td>
 				</tr>
-
-			</s:if>
-			<tr bgcolor="#F9F9F9">
+				<tr bgcolor="#F9F9F9">
 				<td colspan="2">&nbsp;&nbsp;&nbsp;[기본배송]</td>
 
 
-				<td align="right" colspan="6">상품구매금액${g_resultClass.goods_price}
-					+배송비 0 =합계 :<font color="#FF0000">${g_resultClass.goods_price*g_resultClass.goods_totalcount}
+				<td align="right" colspan="6">상품구매금액 ${g_resultClass.goods_price}
+					+배송비 0 =합계 :<font color="#FF0000">${g_resultClass.goods_price*sgoods_cnt}
 				</font>
 				</td>
 
@@ -315,18 +281,82 @@
 
 			<tr align="right">
 				<td width="80">선택한상품을</td>
-				<td align="left"><input name="delete" type="button"
-					value="x 삭제하기" style="background-color: #B8B8B8;" /></td>
+				<td align="left"><input name="submit" type="submit"
+					value="삭제하기" style="background-color: #B8B8B8;" onclick="sele(0);" /></td>
 				<td colspan="6"><input name="Main" type="button"
-					value="이전페이지 ▶"
+					value="주문페이지 ▶"
 					onClick="javascript:location.href='OrderMain.action'"></td>
 			</tr>
 			<tr>
 				<td height="20"></td>
 			</tr>
-		</table>
+			</table>
+			</s:if>
+			
+			
+			<s:else>
+				<s:iterator value="B_List" status="stat">
+					<!-- http://localhost:8080/StrutsBoard/viewAction.action?no=2&currentPage=1 -->
+					<s:url id="viewURL" action="GoodsView">
+						<s:param name="goods_no">
+							<s:property value="BASKET_GOODS_NO" />
+						</s:param>
+						<s:param name="currentPage">
+							<s:property value="currentPage" />
+						</s:param>
+					</s:url>
+
+					
+					<tr bgcolor="#F9F9F9" align="center">
+						<td width="50"><input type="checkbox" onClick="itemSum(this.form)" onload="itemSum(this.form)"
+						name="chk" value="<s:property value="BASKET_NO"/>" /></td>
+						<td><img src="/3T/upload/${BASKET_GOODS_IMG}" width="50"></td>
+						<td align="center">&nbsp;<s:a href="%{viewURL}"><s:property value="BASKET_NAME" /></s:a></td>
+						<td align="center"><s:property value="BASKET_GOODS_AMOUNT" /></td>
+						<td align="center"><s:property value="BASKET_QUANTITY" /></td>
+						<td><s:property value="BASKET_GOODS_AMOUNT*BASKET_QUANTITY" /></td>
+					</tr>
+
+
+				</s:iterator>
+				<tr bgcolor="#F9F9F9">
+				<td colspan="2">&nbsp;&nbsp;&nbsp;[기본배송]</td>
+
+
+				<td align="right" colspan="6">상품구매금액 ${BASKET_GOODS_AMOUNT}
+					+배송비 0 =합계 :<font color="#FF0000"> ${BASKET_GOODS_AMOUNT*BASKET_QUANTITY}
+				</font>
+				</td>
+
+				</tr>
+				<tr align="left">
+					<td colspan="6" bgcolor="#FFCBCB"><font color="#CC3D3D">
+							&nbsp;&nbsp;&nbsp;⊙&nbsp;&nbsp;상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서
+							가능합니다.</td>
+					</font>
+				</tr>
+
+				<tr align="right">
+					<td width="80">선택한상품을</td>
+					<td align="left"><input name="submit" type="submit"
+						value="삭제하기" style="background-color: #B8B8B8;" onclick="sele(0);" /></td>
+					<td colspan="6"><input name="Main" type="button"
+						value="이전페이지 ▶"
+						onClick="javascript:location.href='OrderMain.action'"></td>
+				</tr>
+				<tr>
+					<td height="20"></td>
+				</tr>
+			</table>
+			</s:else>
+
+			<s:if test="B_List.size() == 0">
+				<script>location.href = "main.action"; </script>
+
+			</s:if>
+			
 	</form>
-	<hr align="left" width="1000" color="#8C8C8C">
+	<hr align="center" width="1000" color="#8C8C8C">
 	<table width="1000" border="0" cellspacing="0" cellpadding="3">
 		<tr>
 			<td height="10"></td>
@@ -342,7 +372,7 @@
 		</tr>
 	</table>
 	<form method="post" action="OrderWriteAction.action"
-		name="Orderinformation" onSubmit="">
+		name="Orderinformation" onSubmit="return CheckForm(this)">
 		<table width="1000" border="1" cellspacing="0" cellpadding="3">
 			<tr>
 				<td width="100" align="center" bgcolor="#F9F9F9">주문하시는분 <font
@@ -359,8 +389,8 @@
 					<input type="button" onclick="sample7_execDaumPostcode()"
 					value="우편번호 찾기"><br> <input type="text"
 					name="ORDER_ADDRESS1" id="sample7_address"
-					value="${m_resultClass.m_addr1 }" size="100"> <br>
-				<input type="text" name="ORDER_ADDRESS2" id="sample7_address2"
+					value="${m_resultClass.m_addr1 }" size="100"> <br> <input
+					type="text" name="ORDER_ADDRESS2" id="sample7_address2"
 					value="${m_resultClass.m_addr2 }" size="100"></td>
 
 			</tr>
@@ -389,9 +419,9 @@
 				</td>
 				<td width="400"><input type="text" name="ORDER_EMAIL1"
 					value="${m_resultClass.m_email1 }" onfocus="this.value='';"
-					id="order_email1"> @ <input type="text"
-					name="ORDER_EMAIL2" value="${m_resultClass.m_email2}" disabled>
-					<select name="email" onchange="email_change()" id="order_email2">
+					id="order_email1"> @ <input type="text" name="ORDER_EMAIL2"
+					value="선택하세요" disabled> <select
+					name="email" onchange="email_change()" id="order_email2">
 						<option value="0">선택하세요</option>
 						<option value="9">직접입력</option>
 						<option value="naver.com">naver.com</option>
@@ -432,7 +462,7 @@
 				<td width="400"><input type="radio" id="cb1" onclick="Copy();"
 					name="RECIPIENT_CHOICE" /> <label for="cb1">주문자와 동일합니다.</label> <input
 					type="radio" name="RECIPIENT_CHOICE" id="cb2" onclick="Copy();" /><label
-					for="cb1">새로운배송지</label> <input type="button" value="주소록보기 " /></td>
+					for="cb1">새로운배송지</label> </td>
 
 			</tr>
 
@@ -491,7 +521,7 @@
 				<td align="center" height="60" width="340"><font
 					color="#5D5D5D">총 주문 금액 </font> <input type="button"
 					value=" 내역보기 >"
-					OnClick="window.open('Orderpaylist.action?goods_no=<s:property value="goods_no" />','window_name','width=300,height=320,location=no,status=no,toolbar=no,scrollbars=no');" /></td>
+					OnClick="window.open('Orderpaylist.action?goods_no=<s:property value="goods_no" />&sgoods_cnt=<s:property value="sgoods_cnt" />','window_name','width=300,height=320,location=no,status=no,toolbar=no,scrollbars=no');" /></td>
 				<td align="center" width="340"><font color="#5D5D5D">총
 						할인 + 부가결제 금액</font></td>
 				<td align="center" width="340"><font color="#5D5D5D">총
@@ -499,12 +529,12 @@
 			</tr>
 			<tr>
 				<td width="340" align="center"><font style="font-weight: bold;"><h3>KRW
-							${g_resultClass.goods_price*g_resultClass.goods_totalcount}</h3></font></td>
+							${g_resultClass.goods_price*sgoods_cnt}</h3></font></td>
 				<td width="340" align="center"><font style="font-weight: bold;"><h3>-
 							KRW 0</h3></font></td>
 				<td align="center"><font style="font-weight: bold;"
 					color="#FF0000"><h3>= KRW
-							${g_resultClass.goods_price*g_resultClass.goods_totalcount}</h3></font></td>
+							${g_resultClass.goods_price*sgoods_cnt}</h3></font></td>
 			</tr>
 		</table>
 		<table width="1000" border="0" cellspacing="0" cellpadding="3">
@@ -536,10 +566,10 @@
 							<td align="center" width="40"><font
 								style="font-weight: bold;" color="#FF0000"><h4>KRW</h4></font></td>
 							<td align="right"><font style="font-weight: bold;"
-								color="#FF0000"><h2>$</h2></font></td>
+								color="#FF0000"><h2>${g_resultClass.goods_price*sgoods_cnt}</h2></font></td>
 						</tr>
 						<tr>
-							<td align="center"><input type="checkbox" name="checkbox" /></td>
+							<td align="center"><input type="checkbox" name="checkbox_agree" id="checkbox_agree" /></td>
 							<td align="left"><font style="font-weight: bold;"><h4>결제정보를
 										확인하였으며, 구매진행에 동의합니다.</h4></font></td>
 						</tr>
@@ -549,18 +579,13 @@
 								style="width: 22em; font-family: 돋움; background-color: #121212; color: #FFFFFF; line-height: 5em; border-color: #121212;"
 								value="결제하기 " /> <input type="hidden" name="ORDER_IMG"
 								value="<s:property value="g_resultClass.goods_file_savname.split(',')[0]"/>">
-								<input type="hidden" name="ORDER_GOODS_NAME"
-								value="${g_resultClass.goods_content}"> <input
-								type="hidden" name="ORDER_PRICE"
-								value="${g_resultClass.goods_price}"> <input
-								type="hidden" name="ORDER_GOODS_COUNT"
-								value="${g_resultClass.goods_totalcount}"> <input
-								type="hidden" name="ORDER_TOTAL"
-								value="${g_resultClass.goods_price}"> <input
-								type="hidden" name="ORDER_GOODS_NO"
-								value="${g_resultClass.goods_no}"> <input type="hidden"
-								name="ORDER_MEMBER_ID" value="${session.M_ID}"> <input
-								type="hidden" name="ORDER_STATE" value="입금확인중">
+								<input type="hidden" name="ORDER_GOODS_NAME" value="${g_resultClass.goods_name}"> 
+								<input type="hidden" name="ORDER_PRICE" value="${g_resultClass.goods_price}"> 
+								<input type="hidden" name="ORDER_GOODS_COUNT" value="${sgoods_cnt}"> 
+								<input type="hidden" name="ORDER_TOTAL" value="${g_resultClass.goods_price*sgoods_cnt}">
+								<input type="hidden" name="ORDER_GOODS_NO" value="${g_resultClass.goods_no}"> 
+								<input type="hidden" name="ORDER_MEMBER_ID" value="${session.M_ID}"> 
+								<input type="hidden" name="ORDER_STATE" value="입금확인중">
 						</tr>
 						<tr>
 							<td height="20"></td>

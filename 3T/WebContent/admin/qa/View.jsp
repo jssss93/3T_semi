@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>등록 상품 상세보기</title>
-<link rel="stylesheet" href="/3T/common/css/css.css" type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript">
 	function open_win_noresizable(url, name)
@@ -20,18 +20,18 @@
 <body>
 	<table width="600" border="0" cellspacing="0" cellpadding="2">
 	<tr>
-		<td align="center"><h2>QA 상세보기</h2></td>
+		<td align="center" class="text01 formbar"><h2>QA 상세보기</h2></td>
 	</tr>
 	</table>
 
-	<table width="600" border="0" cellspacing="0" cellpadding="0">
+	<table width="600" border="0" cellspacing="0" cellpadding="0" id="form">
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>
 		</tr>
 		
 		
 		<tr>
-			<td width="100">제목</td>
+			<td width="100" class="tdstyle1">제목</td>
 			<td width="500">
 			<!-- 이렇게도 쓸수 있다는거다 이자식들아 -->
 				${resultClass.qa_subject }
@@ -39,7 +39,7 @@
 		</tr>
 		
 		<tr>
-			<td width="100">내용</td>
+			<td width="100" class="tdstyle1">내용</td>
 			<td width="500">
 			<!-- 이렇게도 쓸수 있다는거다 이자식들아 -->
 				${resultClass.qa_content }
@@ -48,26 +48,7 @@
 		
 		
 		
-		<tr bgcolor="#777777">
-			<td colspan="2" height="1"></td>
-		</tr>
-		<tr>
-			<td colspan="2" height="10"></td>
-		</tr>
-		<tr>
-			<td colspan="2" height="10">
-				
-			</td>
-		</tr>
-	
-		<tr bgcolor="#777777">
-			<td colspan="2" height="1"></td>
-		</tr>
 
-	
-		<tr bgcolor="#777777">
-			<td colspan="2" height="1"></td>
-		</tr>
 		<tr>
 			<td colspan="2" height="10"></td>
 		</tr>
@@ -85,9 +66,9 @@
 						<s:property value="qa_no" />
 					</s:param>
 				</s:url>
-				<input name="modify_b" type="button" value="수정" class="inputb" onClick="javascript:location.href='AQ_ModifyForm.action?qa_no=<s:property value="resultClass.qa_no" />&currentPage=<s:property value="currentPage" />','modify'">
-				<input name="delete_b" type="button" value="삭제" class="inputb" onClick="javascript:location.href='AQ_Delete.action?qa_no=<s:property value="resultClass.qa_no" />&currentPage=<s:property value="currentPage" />','delete'">
-				<input name="list_b" type="button" value="목록" class="inputb" onClick="javascript:location.href='AQ_List.action?currentPage=<s:property value="currentPage" />'">
+				<input name="modify_b" type="button" value="수정" class="submit" onClick="javascript:location.href='AQ_ModifyForm.action?qa_no=<s:property value="resultClass.qa_no" />&currentPage=<s:property value="currentPage" />','modify'">
+				<input name="delete_b" type="button" value="삭제" class="hreflink" onClick="javascript:location.href='AQ_Delete.action?qa_no=<s:property value="resultClass.qa_no" />&currentPage=<s:property value="currentPage" />','delete'">
+				<input name="list_b" type="button" value="목록" class="submit" onClick="javascript:location.href='AQ_List.action?currentPage=<s:property value="currentPage" />'">
 			</td>
 		</tr>
 		

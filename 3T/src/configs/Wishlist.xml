@@ -20,7 +20,18 @@
 
 		
 		<!-- 찜 삭제하기 -->
+		<action name="wishlist_checkdelete" class="user.wishlist.WishlistDeleteAction">
+          <result type="redirect-action">
+				<param name="actionName">WishlistMain</param>
+			</result>
+       </action>
+		
 		<!-- 찜 전체 상품 주문 페이지 이동 -->
+		<action name="wishlist_basketlist" class="user.wishlist.WishlistBasketlistAction">
+          <result type="redirect-action">
+				<param name="actionName">BasketMain</param>
+			</result>
+       </action>
 		<!-- 관심상품 비우기 -->
 		<!-- 개별삭제 -->
 		<!-- 개별 주문하기 -->

@@ -73,6 +73,10 @@
 			</result>
 		</action>
 		
+		<action name="qa_deleteAction1" class="user.qa.DeleteAction">
+			<result type="chain">GoodsView</result>
+		</action>
+		
 		
 	</package>
 </struts>

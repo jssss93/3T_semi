@@ -8,13 +8,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>스트럿츠2 게시판</title>
-<link rel="stylesheet" href="/3T/common/css/css.css" type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+#form td.tdstyle2 {
+	background-color: #000000;
+	border: #ccc 1px solid;
+	width: 400px;
+	padding: 20px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000;
+}
+</style>
 </head>
 
 <body>
-	<table width="600" border="0" cellspacing="0" cellpadding="2">
+	<table width="1000" border="0" cellspacing="0" cellpadding="2">
 		<tr>
-			<td align="center"><h1>상품 리스트</h1></td>
+			<td align="center" class="text01 formbar"><h1>상품 리스트</h1></td>
 		</tr>
 	</table>
 
@@ -79,7 +90,7 @@
 		</tr>
 
 		<tr align="right">
-			<td colspan="5"><input type="button" value="글쓰기" class="inputb"
+			<td colspan="5"><input type="button" value="글쓰기" class="submit"
 				onClick="javascript:location.href='AG_Writeform.action?currentPage=<s:property value="currentPage" />';" />
 			</td>
 		</tr>
@@ -87,14 +98,14 @@
 		<tr align="center">
 			<td colspan="5">
 				<form action="AG_List.action" method="search">
-					<select name="searchNum">
+					<select name="searchNum" style="width: 100px; height: 30px;">
 						<option value="0">이름</option>
 						<option value="1">카테고리</option>
 						<option value="2">사이즈</option>
 					</select>
 					<s:textfield name="searchKeyword" theme="simple" value=""
-						cssStyle="width:120px" maxlength="20" />
-					<input name="submit" type="submit" value="검색" class="inputb">
+						cssStyle="width:200px; height:30px;" maxlength="20" />
+					<input name="submit" type="submit" value="검색" class="hreflink">
 				</form>
 			</td>
 		</tr>

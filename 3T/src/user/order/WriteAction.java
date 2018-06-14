@@ -6,24 +6,44 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class WriteAction extends ActionSupport {
-	
-	public static Reader reader;	
-	public static SqlMapClient sqlMapper;	
+import admin.basket.VO.BasketVO;
+import admin.member.VO.MemberVO;
 
-	private OrderVO paramClass; 
-	private OrderVO resultClass; 
+public class WriteAction extends ActionSupport implements SessionAware {
 
-	private List<OrderVO> list = new ArrayList<OrderVO>();;	 
-	
-	private int totalCount; 
-	
+	public static Reader reader;
+	public static SqlMapClient sqlMapper;
+
+	private OrderVO paramClass;
+	private OrderVO resultClass;
+
+	private MemberVO m_paramClass = new MemberVO();
+	private MemberVO m_resultClass = new MemberVO();
+
+	public Map session;
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
+
+	private List<BasketVO> B_List = new ArrayList<BasketVO>();;
+
+	private int totalCount;
+
 	private String ORDER_NAME;
 	private String ORDER_ZIPCODE;
 	private String ORDER_ADDRESS1;
@@ -33,7 +53,7 @@ public class WriteAction extends ActionSupport {
 	private String ORDER_PHONE3;
 	private String ORDER_EMAIL1;
 	private String ORDER_EMAIL2;
-	private String RECIPIENT_CHOICE;
+
 	private String RECIPIENT_NAME;
 	private String RECIPIENT_ZIPCODE;
 	private String RECIPIENT_PHONE1;
@@ -53,31 +73,33 @@ public class WriteAction extends ActionSupport {
 	private int ORDER_GOODS_COUNT;
 	private String ORDER_IMG;
 	private String ORDER_STATE;
-	Calendar today = Calendar.getInstance(); 
-	
-	
+	Calendar today = Calendar.getInstance();
+
 	public WriteAction() throws IOException {
-		
-		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); 
-		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);	
+
+		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
+		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 		reader.close();
 	}
 
-	
 	public String form() throws Exception {
-		
-		list = sqlMapper.queryForList("order-selectAll");
-		totalCount = list.size(); 
+
+		m_paramClass.setM_id(ActionContext.getContext().getSession().get("M_ID").toString());
+		m_resultClass = (MemberVO) sqlMapper.queryForObject("AMselectOne_ID", m_paramClass);
+
+		B_List = sqlMapper.queryForList("basket-selectAll");
+
+		totalCount = B_List.size();
 		return SUCCESS;
 	}
+
 	public String execute() throws Exception {
 
-		
 		paramClass = new OrderVO();
 		resultClass = new OrderVO();
-		
-		System.out.println("getORDER_IMG"+getORDER_IMG());
-	
+
+		System.out.println("getORDER_IMG" + getORDER_IMG());
+
 		paramClass.setORDER_NAME(getORDER_NAME());
 		paramClass.setORDER_ZIPCODE(getORDER_ZIPCODE());
 		paramClass.setORDER_ADDRESS1(getORDER_ADDRESS1());
@@ -87,7 +109,7 @@ public class WriteAction extends ActionSupport {
 		paramClass.setORDER_PHONE3(getORDER_PHONE3());
 		paramClass.setORDER_EMAIL1(getORDER_EMAIL1());
 		paramClass.setORDER_EMAIL2(getORDER_EMAIL2());
-		paramClass.setRECIPIENT_CHOICE(getRECIPIENT_CHOICE());
+
 		paramClass.setRECIPIENT_NAME(getRECIPIENT_NAME());
 		paramClass.setRECIPIENT_ZIPCODE(getRECIPIENT_ZIPCODE());
 		paramClass.setRECIPIENT_ADDRESS1(getRECIPIENT_ADDRESS1());
@@ -106,33 +128,42 @@ public class WriteAction extends ActionSupport {
 		paramClass.setORDER_GOODS_COUNT(getORDER_GOODS_COUNT());
 		paramClass.setORDER_IMG(getORDER_IMG());
 		paramClass.setORDER_STATE(getORDER_STATE());
-		
-		
-		
+
 		sqlMapper.insert("order-insertBoard", paramClass);
-		
-		System.out.println("paramClass.ORDER_IMG"+paramClass.getORDER_IMG());
-		
+
 		return SUCCESS;
 	}
-	
-	
+
+	public MemberVO getM_paramClass() {
+		return m_paramClass;
+	}
+
+	public void setM_paramClass(MemberVO m_paramClass) {
+		this.m_paramClass = m_paramClass;
+	}
+
+	public MemberVO getM_resultClass() {
+		return m_resultClass;
+	}
+
+	public void setM_resultClass(MemberVO m_resultClass) {
+		this.m_resultClass = m_resultClass;
+	}
+
 	public String getORDER_STATE() {
 		return ORDER_STATE;
 	}
-
 
 	public void setORDER_STATE(String oRDER_STATE) {
 		ORDER_STATE = oRDER_STATE;
 	}
 
-
-	public List<OrderVO> getList() {
-		return list;
+	public List<BasketVO> getB_List() {
+		return B_List;
 	}
 
-	public void setList(List<OrderVO> list) {
-		this.list = list;
+	public void setB_List(List<BasketVO> b_List) {
+		B_List = b_List;
 	}
 
 	public String getORDER_NAME() {
@@ -151,23 +182,12 @@ public class WriteAction extends ActionSupport {
 		ORDER_ZIPCODE = oRDER_ZIPCODE;
 	}
 
-
 	public String getORDER_IMG() {
 		return ORDER_IMG;
 	}
 
-
 	public void setORDER_IMG(String oRDER_IMG) {
 		ORDER_IMG = oRDER_IMG;
-	}
-
-
-	public String getRECIPIENT_CHOICE() {
-		return RECIPIENT_CHOICE;
-	}
-
-	public void setRECIPIENT_CHOICE(String rECIPIENT_CHOICE) {
-		RECIPIENT_CHOICE = rECIPIENT_CHOICE;
 	}
 
 	public String getRECIPIENT_NAME() {
@@ -217,7 +237,6 @@ public class WriteAction extends ActionSupport {
 	public void setORDER_REGDATE(Date oRDER_REGDATE) {
 		ORDER_REGDATE = oRDER_REGDATE;
 	}
-
 
 	public int getORDER_TOTAL() {
 		return ORDER_TOTAL;
@@ -410,6 +429,5 @@ public class WriteAction extends ActionSupport {
 	public void setORDER_GOODS_COUNT(int oRDER_GOODS_COUNT) {
 		ORDER_GOODS_COUNT = oRDER_GOODS_COUNT;
 	}
-
 
 }

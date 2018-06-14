@@ -14,7 +14,7 @@
 	<table width="1100" border="0" height="300" align="center"
 		cellpadding="0" cellspacing="3">
 		<tr>
-			<td colspan=3 align="center"><h2>3t3t3t</h2>3t3t3t3t3t3t3t3t<br>------------------------</td>
+			<td colspan=3 align="center"><h2>New Item</h2><img src="/3T/upload/mainline.PNG"/></td>
 		</tr>
 		<tr>
 			<s:iterator value="list1" status="stat1">
@@ -51,7 +51,7 @@
 		cellspacing="10">
 
 		<tr>
-			<td colspan="3" align="center"><h2>new item</h2>----------------------------</td>
+			<td colspan="3" align="center"><img src="/3T/upload/mainline2.JPG"/></td>
 		</tr>
 		<tr>
 		<tr>
@@ -78,7 +78,7 @@
 							
 							<img src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]"/>" width="350"
 								height="400">
-						</s:a><br> <s:property value="goods_name" /><br> <s:property
+						</s:a><br> <s:property value="goods_name" /><br> \&nbsp;<s:property
 							value="goods_price" />
 							
 							</td>
@@ -92,10 +92,10 @@
 	<br>
 	<br>
 	<br>
-	<table width="1100" border="1" height="300" align="center"
+	<table width="1100" border="0" height="300" align="center"
 		cellpadding="0" cellspacing="10">
 		<tr height="200">
-			<td colspan="3" align="center"><h1>3t3t3t</h1></td>
+			<td colspan="3" align="center"><img src="/3T/upload/mainline3.JPG"/></td>
 		</tr>
 	</table>
 
@@ -131,7 +131,7 @@
 							
 							<img src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]"/>" width="350"
 								height="400">
-						</s:a><br> <s:property value="goods_name" /><br> <s:property
+						</s:a><br> <s:property value="goods_name" /><br> \&nbsp;<s:property
 							value="goods_price" />
 							
 							</td>

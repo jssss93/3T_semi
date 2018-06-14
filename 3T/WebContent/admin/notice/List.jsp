@@ -8,13 +8,34 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>스트럿츠2 게시판</title>
-<link rel="stylesheet" href="/3T/common/css/css.css" type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+#form td.tdstyle2 {
+	background-color: #000000;
+	border: #ccc 1px solid;
+	width: 400px;
+	padding: 20px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000;
+}
+
+#form td.tdstyle2 {
+	background: #2bae9f;
+	border: #ccc 1px solid;
+	width: 400px;
+	padding: 20px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #fff;
+}
+</style>
 </head>
 
 <body>
-	<table width="600" border="0" cellspacing="0" cellpadding="2">
+	<table  width="1000" height="950" border="0" cellpadding="0" cellspacing="0">
 		<tr>
-			<td align="center"><h1>공지사항 리스트</h1></td>
+			<td align="center" class="text01 formbar"><h1>공지사항 리스트</h1></td>
 		</tr>
 	</table>
 
@@ -52,8 +73,7 @@
 				<td height="1" colspan="8"></td>
 			</tr>
 
-		</s:iterator>
-
+		</s:iterator>`
 		<s:if test="list.size() <= 0">
 			<tr>
 				<td colspan="5" align="center">등록된 게시물이 없습니다</td>
@@ -73,13 +93,13 @@
 		<tr align="center">
 			<td colspan="5">
 				<form action="AN_List.action" method="search">
-					<select name="searchNum">
+					<select name="searchNum" style="width: 100px; height: 30px;">
 						<option value="0">제목</option>
 						<option value="1">내용</option>
 					</select>
 					<s:textfield name="searchKeyword" theme="simple" value=""
-						cssStyle="width:120px" maxlength="20" />
-					<input name="submit" type="submit" value="검색" class="inputb">
+						cssStyle="width:200px; height:30px;" maxlength="20" />
+					<input name="submit" type="submit" value="검색" class="submit">
 				</form>
 			</td>
 		</tr>

@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -15,7 +17,16 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import admin.goods.VO.GoodsVO;
 
-public class ModifyAction extends ActionSupport {
+public class ModifyAction extends ActionSupport implements SessionAware {
+	private Map session;
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
 
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
@@ -86,9 +97,9 @@ public class ModifyAction extends ActionSupport {
 			String file_name = "goods_" + resultClass.getGoods_no();
 			String file_ext = getUploadsFileName().get(i).substring(getUploadsFileName().get(i).lastIndexOf('.') + 1,
 					getUploadsFileName().get(i).length());
-			file_savname = file_savname + file_name + "(" + (i + 1) + ")"+ "." + file_ext ;
+			file_savname = file_savname + file_name + "(" + (i + 1) + ")" + "." + file_ext;
 
-			File destFile = new File(fileUploadPath + file_name + "(" + (i + 1) + ")"+ "." + file_ext);
+			File destFile = new File(fileUploadPath + file_name + "(" + (i + 1) + ")" + "." + file_ext);
 			FileUtils.copyFile(getUploads().get(i), destFile);
 
 			paramClass.setGoods_no(resultClass.getGoods_no());
@@ -98,7 +109,6 @@ public class ModifyAction extends ActionSupport {
 			sqlMapper.update("AGupdateFile", paramClass);
 		}
 
-		
 		return SUCCESS;
 
 	}
@@ -222,8 +232,6 @@ public class ModifyAction extends ActionSupport {
 	public void setGoods_file_savname(String goods_file_savname) {
 		this.goods_file_savname = goods_file_savname;
 	}
-
-
 
 	public String getFile_orgname() {
 		return file_orgname;

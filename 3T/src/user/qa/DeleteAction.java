@@ -7,14 +7,18 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
 import java.io.File;
 import java.io.Reader;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
 import java.io.IOException;
 
 
-public class DeleteAction extends ActionSupport{
+public class DeleteAction extends ActionSupport implements SessionAware{
 	
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
-	
+	public Map session;
 	private QaVO paramClass;
 	private QaVO resultClass;
 	
@@ -58,6 +62,46 @@ public class DeleteAction extends ActionSupport{
 		sqlMapper.update("qa_deleteComment",cClass);
 		
 		return SUCCESS;
+	}
+
+	public static Reader getReader() {
+		return reader;
+	}
+
+	public static void setReader(Reader reader) {
+		DeleteAction.reader = reader;
+	}
+
+	public static SqlMapClient getSqlMapper() {
+		return sqlMapper;
+	}
+
+	public static void setSqlMapper(SqlMapClient sqlMapper) {
+		DeleteAction.sqlMapper = sqlMapper;
+	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
+
+	public Qa_CommentVO getcClass() {
+		return cClass;
+	}
+
+	public void setcClass(Qa_CommentVO cClass) {
+		this.cClass = cClass;
+	}
+
+	public Qa_CommentVO getcResult() {
+		return cResult;
+	}
+
+	public void setcResult(Qa_CommentVO cResult) {
+		this.cResult = cResult;
 	}
 
 	public QaVO getParamClass() {

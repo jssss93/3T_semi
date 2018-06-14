@@ -25,7 +25,7 @@
   
 	<table width="900" border="0" cellspacing="0" cellpadding="2">
 	      <tr align="center" >
-      		<td width="130"><strong>주문일자<br>[주문번호]</br></strong></td>
+      		<td width="130"><strong>주문일자<br>[상품번호]</br></strong></td>
 			<td width="100"><strong>이미지</strong></td>
         	<td width="400"><strong>상품정보</strong></td>
         	<td width="80"><strong>수량</strong></td>
@@ -41,7 +41,7 @@
 			<!-- http://localhost:8080/StrutsBoard/viewAction.action?no=2&currentPage=1 -->
 			<s:url id="viewURL" action="GoodsView" >
 				<s:param name="goods_no">
-					<s:property value="ORDER_NO" />
+					<s:property value="ORDER_GOODS_NO" />
 				</s:param>
 				<s:param name="currentPage">
 					<s:property value="currentPage" />
@@ -49,7 +49,7 @@
 			</s:url>
 			
      	      <tr bgcolor="#FFFFFF"  align="center">
-        		<td><s:property value="ORDER_REGDATE" /><br>[<s:property value="ORDER_NO" />]</br></td>
+        		<td><s:property value="ORDER_REGDATE" /><br>[<s:property value="ORDER_GOODS_NO" />]</br></td>
         		<td align="center"><img src="/3T/upload/${ORDER_IMG}" width="50"></td>
         		<td align="center">&nbsp;<s:a href="%{viewURL}"><s:property value="ORDER_GOODS_NAME" /></s:a></td>
 				<td align="center"><s:property value="ORDER_GOODS_COUNT" /></td>

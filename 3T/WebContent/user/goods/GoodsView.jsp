@@ -11,13 +11,13 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script><!-- 컨트롤러 사용을 위한 jquery -->
 <script type="text/javascript">
 	/* 종합개수 카운트 */
-	/* function change(num) {
+	function change(num) {
 	 var x = document.form;
-	 var y = Number(x.goods_qty.value) + num;
+	 var y = Number(x.sgoods_cnt.value) + num;
 	 if (y < 1)
 	 y = 1;
-	 x.goods_qty.value = y;
-	 } */
+	 x.sgoods_cnt.value = y;
+	 } 
 
 	function BuyCheck(index) {
 		if (index == 1) {
@@ -27,7 +27,7 @@
 			document.form.action = 'AddCart.action?goods_no=${resultClass.goods_no}';
 		}
 		if (index == 3) {
-			document.form.action = 'loginForm.action';
+			document.form.action = 'loginAction.action';
 		}
 		if (index == 4) {
 			document.form.action = 'AddWish.action?goods_no=${resultClass.goods_no}';
@@ -38,11 +38,11 @@
 </head>
 
 <center>
-	<table width="1000" border="1" cellpadding="0" cellspacing="0">
+	<table width="1000" height="300" border="0" cellpadding="5" cellspacing="0">
 		<body>
 		<tr>
 			<!-- 상품 메인 이미지-->
-			<td height="490" align="center" valign="middle"><img
+			<td height="490" align="center" valign="TOP"><img
 				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[0]"/> "
 				width"="490" height="490"></td>
 
@@ -50,56 +50,69 @@
 			<!-- 상품 상세 내용 -->
 			<td>
 				<form name="form" id="form" method="post">
-					<table class="font-price" border="1" cellpadding="0"
+					<table class="font-price" border="0" cellpadding="0"
 						cellspacing="0">
 						<tr>
-							<td style="text-align: left; font-size: 30pt;" colspan="2">
+							<td style="text-align: left; font-size: 18pt;" colspan="2">
 								<!-- 상품 이름 --> <s:property value="resultClass.goods_name" />
 							</td>
-						</tr>
+							</tr>
+
 						<!-- 상품가격 텍스트 -->
 						<tr>
-							<td width="280"><br> <br>
-								<p></p> <!--상품 가격  --> Price : \&nbsp; <input name="goods_price"
-								type="hidden" value="9000"> <s:property
+							<td style="width: 280; font-size: 13pt;" colspan="2"><br>
+								<p></p> <!--상품 가격  --> Price : KRW&nbsp;  <s:property
 									value="resultClass.goods_price" />
-								<p></p></td>
-							<td></td>
+								</td>				
 						</tr>
 						<!-- TOTAL -->
-						<%
-							int totalcnt = 0;
-						%>
-						<tr>
-							<td style="font-size: 17pt; align: left;" rowspan="2">TOTAL
-								<s:property value="resultClass.goods_totalcount" /> <input
-								name="goods_totalcnt"
-								style="width: 25px; text-align: center; -ms-ime-mode: disabled;"
-								onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"
-								type="text" maxlength="3" value="1"> <!--  카운트 0이되면 품절이되는 카운트 추가해야됨
+						
+					<tr>
+						<td width="100" style="font-size: 15pt; align: left;" >TOTAL
+							 <input name="sgoods_cnt" value="1"
+								style="width: 20px; height: 20px; text-align: center;" />
+						</td>
+								  
+						<td>
+								<!-- +,-버튼 -->
+								<table>
+									<tr>
+										<td>
+										<img width="20px"id="plus" onclick="change(1);" 
+										    src="/3T/upload/up.JPG" border="0">
+										</td>
+									<tr>
+										<td>
+											<img width="20px" id="minus" onclick="change(-1);"
+											src="/3T/upload/down.JPG" border="0">
+											</td>
+									</tr>
+								</table>
+						</td>
+								  
+								  
+								   <!--  카운트 0이되면 품절이되는 카운트 추가해야됨
 							 -----------------------------------
 							 ----------------------------------
 							 ---------------------------------- -->
 
-							</td>
-						</tr>
-						<tr>
-							<!-- +,-버튼 -->
-							<td style="align: left;"><img width="30" align="left"
-								id="plus" onclick="change(1);" src="/3T/upload/+.jsp" border="1">
-							</td>
-							<td><img width="30" id="minus" onclick="change(-1);"
-								src="/3T/upload/-.jsp" border="1"></td>
-						</tr>
+							
+					</tr>
+						
 						<!-- SIZE 텍스트, 텍스트박스 -->
 						<tr>
-							<td style="width: 170px; font-size: 17pt; align: left;">
-								<p></p> Size : <select name="goods_size" id="goods_size"
+							<td style="width: 160px; font-size: 18pt; align: left;" colspan="2">
+								<p></p> Size : <select name="sgoods_size" id="goods_size"
 								size="1">
-									<option value="-"><s:property
+									<option value="<s:property
+											value="resultClass.goods_size.split(',')[0]" />"><s:property
 											value="resultClass.goods_size.split(',')[0]" /></option>
-									<option value="-"><s:property
+									<option value="<s:property
+											value="resultClass.goods_size.split(',')[1]" />"><s:property
 											value="resultClass.goods_size.split(',')[1]" /></option>
+											<option value="<s:property
+											value="resultClass.goods_size.split(',')[2]" />"><s:property
+											value="resultClass.goods_size.split(',')[2]" /></option>
 									<!-- size 고르는거 추후에 option이용해서 넣을지 생각해야됨 -->
 									<!-- -----------------------------------------------------
 							-----------------------------------------------------
@@ -108,106 +121,120 @@
 							</select>
 							</td>
 						</tr>
+						
+						
+						<!-- color -->
+						<tr>
+							<td style="width: 170px; font-size: 17pt; align: left;" colspan="2">
+								<p></p> color : <select name="sgoods_color" id="goods_color"
+								size="1">
+									<option value="<s:property
+											value="resultClass.goods_color.split(',')[0]" />"><s:property
+											value="resultClass.goods_color.split(',')[0]" /></option>
+									<option value="<s:property
+											value="resultClass.goods_color.split(',')[1]" />"><s:property
+											value="resultClass.goods_color.split(',')[1]" /></option>
+											<option value="<s:property
+											value="resultClass.goods_color.split(',')[2]" />"><s:property
+											value="resultClass.goods_color.split(',')[2]" /></option>
+									<!-- size 고르는거 추후에 option이용해서 넣을지 생각해야됨 -->
+									<!-- -----------------------------------------------------
+							-----------------------------------------------------
+							-----------------------------------------------------
+							----------------------------------------------------- -->
+							</select>
+							</td>
+						</tr>
+						
+						
+						
 						<!-- BUY,ADD CART추가하기 -->
 						<tr>
-							<td>
-								<!-- 구매상품→구매페이지 --> <!-- 상품번호 전송 --> <input name="goods_no"
-								type="hidden" value="572" /> <s:property
-									value="resultClass.goods_no" /> <tabel>
-								<tr>
-									<td></td>
+
 								</tr>
 								<tr>
-									<td colspan="2">
-										<hr />
-									</td>
-								</tr>
-								<tr>
-									<td>
+									<td colspan="2"> 
+									<br/>
 										<!-- 상품구매버튼 --> <!-- 로그인 o --> <s:if
 											test='%{session.M_ID != null}'>
 
 
-											<input name="Buy" style=""
-												onmouseover="this.src='/goods/upload/buy2.JPG'"
-												onmouseout="this.src='/goods/upload/buy.JPG'"
-												onclick="BuyCheck(1);" type="image" src="/3T/upload/buy.JPG"
-												value="상품구매" />
-										</s:if> <s:else>
-											<img src="/goods/upload/buy.JPG"
-												onmouseover="this.src='/3T/upload/buy2.JPG'"
-												onmouseout="this.src='/3T/upload/buy.JPG'" border="0"></img>
+											<input name="Buy" style="" src="/3T/upload/buy.PNG"
+												onmouseover="this.src='/3T/upload/buy1.png'"
+												onmouseout="this.src='/3T/upload/buy.PNG'"
+												onclick="BuyCheck(1);" type="image" src="/3T/upload/buy.PNG"
+												 />
+										</s:if>
 
+                                 <s:else>
 											<!-- 상품구매버튼 -->
 											<!-- 로그인 x -->
-											<input name="Buy"
-												onmouseover="this.src='/goods/upload/buy2.JPG'"
-												onmouseout="this.src='/goods/upload/buy.JPG'"
-												onclick='BuyCheck(3)' type="image" src="/3T/upload/buy.JPG"
-												value="상품구매(로그인하세요 창)" />
+											<input name="Buy" src="/3T/upload/buy.PNG"
+												onmouseover="this.src='/3T/upload/buy1.png'"
+												onmouseout="this.src='/3T/upload/buy.PNG'"
+												onclick='BuyCheck(3)' type="image" src="/3T/upload/buy.PNG"
+												 />
 										</s:else>
+										
 
 									</td>
-									
-									
-									
-									
-									
-									
-									
-									
-									<td>
+
+									<tr>
+									<td colspan="2">
+									<br>
 										<!-- 장바구니버튼 --> <!-- 로그인 o --> <s:if
 											test='%{session.M_ID != null}'>
 											
 												<input name="BuyCart"
-													onmouseover="this.src='/3T/upload/add to cart2.JPG'"
-													onmouseout="this.src='/3T/upload/add to cart.JPG'"
+													onmouseover="this.src='/3T/upload/cart.PNG'"
+													onmouseout="this.src='/3T/upload/cart.PNG'"
 													onclick="BuyCheck(2);" type="image"
 
-													src="/3T/upload/add to cart.JPG" value="장바구니 추가" />
+													src="/3T/upload/cart.PNG" value="장바구니 추가" />
 											
 											
-												<img src="/3T/upload/add to cart.JPG"
-													onmouseover="this.src='/3T/upload/add to cart2.JPG'"
-													onmouseout="this.src='/3T/upload/add to cart.JPG'"
-													border="0"></img>
 											
-									</td></s:if><s:else>
-									<td>
+									</s:if><s:else>
+									
 										<!-- 장바구니버튼 --> <!-- 로그인 x --> <input name="BuyCart" style=""
-										onmouseover="this.src='/3T/upload/add to cart2.JPG'"
-										onmouseout="this.src='/3T/upload/add to cart.JPG'"
-										onclick="BuyCheck(4);" type="image"
-										src="/3T/upload/add to cart.JPG" value="장바구니 (로그인하세요창)" /></s:else>
+										onmouseover="this.src='/3T/upload/cart.PNG'"
+										onmouseout="this.src='/3T/upload/cart.PNG'"
+										onclick="BuyCheck(3);" type="image"
+										src="/3T/upload/cart.PNG" value="장바구니 (로그인하세요창)" /></td></s:else>
 
 								</tr>
 								
 								<tr>
-									<td>
+								<td colspan="2">
+								<!-- wishlist버튼  로그인 o-->
+								<s:if test='%{session.M_ID != null}'>
+								<input name="WishList" onclick="BuyCheck(4);" type="image" src="/3T/upload/wishlist.PNG"
+								value="WishList"/>
+								</s:if>
+								<!-- wishlist --> <!-- 로그인 x -->
+								<s:else>
+								 <input name="WishList" onclick="BuyCheck(3);" type="image" src="/3T/upload/wishlist.PNG"
+								value="비로그인 WishList" />
+											</s:else>
+							
+								</td>
+								<tr>
+								<td colspan="2">
+								<!-- 리뷰,q&a 하이퍼링크 추가 -->
+								<a href='Review_list.action?Goods_no=${resultClass.goods_no}'>REVIEW&nbsp;( 0 )</a>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href='qa_listAction.action?Goods_no=${resultClass.goods_no}'>QA&nbsp;( 0 )</a>
+								</td>
+								</tr>
+								
+								<tr>
+									<td align="left" colspan="2">
+									<br>
 										<!-- 옷 정보 --> <pre>
-					    <font color="#de1616">INFO</font>
+	                    <font color="#de1616">INFO</font>
                         <s:property value="resultClass.goods_content" />
 
-                        <font color="#de1616">SIZE</font>
-                                                     상의
-                        S : 어깨 40.5 / 가슴 46 / 소매길이 62 / 총길이 71.5
-                        M : 어깨 42.5 / 가슴 48 / 소매길이 63 / 총길이 73
-                        L : 어깨 44.5 / 가슴 51.5 / 소매길이 64 / 총길이 74.5 (모델착용)
-
-                                                    하의
-                        S : 허리 38 / 밑위 23 / 허벅지 27.5 / 밑단 16.5 / 총기장 96 (모델착용)
-                        M : 허리 40 / 밑위 24 / 허벅지 29 / 밑단 17.5 / 총기장 97
-                        L : 허리 42 / 밑위 25 / 허벅지 30.5 / 밑단 18.5 / 총기장 98
-                       (측정 방법에따라 1~3cm의 오차는 있을 수 있습니다)
-
-                       <font color="#de1616">FABRIC</font>
-                       TR (레이온55% + 폴리 40% + 스판 5%)
-
-                       <font color="#de1616">MODEL</font>
-                       181cm / 68kg / 상의 100 / 허리 28
-                       * 상의는 크게입는걸 좋아해 무조건 제일 큰 사이즈착용
-                             </pre>
+                             
 								</tr>
 							</td>
 							</body>
@@ -220,132 +247,243 @@
 
 	<!-- 상품 상세 이미지 -->
 	<br> <br> <br>
-	<table width="1000" border="1" height="631" align="CENTER"
-		cellpadding="0" cellspacing="0">
+	<table width="200" border="0" height="0"
+		cellpadding="0" cellspacing="-300">
 
 		<tr>
 			<td colspan="0" align="center"><img
 				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[1]"/> "
-				width"="490" height="490"></td>
+				width"="1000" height="1000"></td>
 
 		</tr>
 		<tr>
-			<td width="100" height="100" align="center"><h2>Main logo</h2> <img
+		<td>
+		<br><br><br>
+		<br><br><br>
+			 <img
 				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[2]"/> "
-				width"="490" height="490"></td>
+				width"="850" height="850"></td>
 
 		</tr>
 	</table>
-	<br> <br> <br>
-	<table width="960" border="1" height="631" align="CENTER"
+	<br><br><br>
+	<br><br><br>
+	<table width="200" border="0" height="0" align="CENTER"
 		cellpadding="0" cellspacing="0">
 
 		<tr>
 			<td colspan="0" align="center"><img
 				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[3]"/> "
-				width"="490" height="490"></td>
+				width"="1000" height="1000"></td>
 
 		</tr>
 	</table>
-	<br> <br> <br>
-	<table width="960" border="1" height="631" align="CENTER"
+
+	<table width="200" border="0" height="0" align="CENTER"
 		cellpadding="0" cellspacing="0">
 
 		<tr>
 			<td colspan="0" align="center"><img
 				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[4]"/> "
-				width"="490" height="490"></td>
+				width"="1000" height="1000"></td>
 
 		</tr>
-	</table>
-	<!-- 옷 자세히 보기 -->
-	<br> <br> <br>
-	<table width="960" border="1" height="631" align="CENTER"
-		cellpadding="0" cellspacing="0">
-
-		<tr>
-			<td colspan="3" align="center"><h2>Main logo</h2> <img
-				src="/3T/upload/${goods_file_savname}"></td>
-		</tr>
-		<tr>
-			<td width="200" height="200" align="center"><h2>clothes
-					ditail img</h2> <img src="/3T/upload/${goods_file_savname}"></td>
-		</tr>
-		<tr>
-			<td width="200" height="200" align="center"><h2>clothes
-					ditail img</h2> <img src="/3T/upload/${goods_file_savname}"></td>
-		</tr>
-		<tr>
-			<td width="200" height="200" align="center"><h2>clothes
-					ditail img</h2> <img src="/3T/upload/${goods_file_savname}"></td>
-		</tr>
-	</table>
+	
 </center>
-<!-- 모델 정보 -->
-<br>
-<br>
-<br>
+<br><br><br>
+		<br><br><br>
 <table width="500" border="1" height="500" align="CENTER"
-	cellpadding="0" cellspacing="0">
+	cellpadding="0" cellspacing="0"><br><br><br>관련상품
 
-	<tr>
-		<td colspan="0" align="center"><h2>Model info</h2> <img
-			src="/3T/upload/${goods_file_savname}"></td>
-	</tr>
+
 </table>
 <!-- 관련상품 -->
 <br>
-<br>
-<br>
-<table width="500" border="1" height="150" align="LEFT" cellpadding="15"
+<table width="200" border="0" height="0" align="center" cellpadding="10"
 	cellspacing="10">
-	<tr>
-		<td rowspan="2" align="center" width="400" height="150"><h2>related
-				product</h2></td>
-		<td rowspan="2" align="center" width="400" height="150"><h2>related
-				product</h2></td>
-	</tr>
-</table>
-<!-- 리뷰 게시판 -->
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<table width="960" border="1" height="200" align="center"
-	cellpadding="0" cellspacing="10">
 	<tr>
 		<td colspan=1 align="center"><h2 id="REVIEW" >review</h2></td>
 	</tr>
 
-	<tr>
-	<tr>
-		<td width="150" height="400"></td>
-	</tr>
+		<s:iterator value="rplist" status="stat">
 
+				<s:if test="#stat.index % 5 eq 0">
+					<tr></tr>
+				</s:if>
+      
+				<s:url id="viewURL" action="GoodsView">
+					<s:param name="goods_no">
+						<s:property value="goods_no" />
+					</s:param>
+				</s:url>
+
+
+
+
+
+				<td width="200" height="0" align="center"><s:a
+						href="%{viewURL}">
+
+						<img src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]"/>" width="200"
+								height="150">
+					</s:a><br> <s:property value="goods_name" /><br> <s:property
+						value="goods_price" /></td>
+
+			</s:iterator>
+			
+	</tr>
 </table>
+<!-- 리뷰 게시판 -->
+<br><br><br>
+<table>
+         <strong>리뷰 목록</strong>
+         <br />
+         <s:if test="">
+            등록된 리뷰가 없습니다.
+      </s:if>
+         <s:else>
+            <tr align="center" bgcolor="#D5D5D5">
+               <td width="100" height="30" valign="middle" class="body_grey"><strong>리뷰글번호</strong></td>
+               <td width="300" height="30" valign="middle" class="body_grey"><strong>리뷰제목</strong></td>
+               <td width="100" height="30" valign="middle" class="body_grey"><strong>글쓴이</strong></td>
+               <td width="200" height="30" valign="middle" class="body_grey"><strong>등록일시</strong></td>
+               <td width="50" height="30" valign="middle" class="body_grey"><strong>관리</strong></td>
+            </tr>
+
+
+            <tr>
+               <td height="1" colspan="100%" bgcolor="#000000"></td>
+            </tr>
+
+            <s:iterator value="list" status="stat">
+            
+               <tr align="center" bgcolor="#F3F3F3">
+                  <td width="100" height="30" align="center"><s:property
+                        value="REV_no" /></td>
+                  <td width="300" height="30" align="left"><s:property
+                        value="REV_subject" /> <details> <summary>내용보기</summary>
+                     <s:property value="REV_content" /></details></td>
+                  <td width="100" height="30" align="center"><s:property
+                        value="REV_member_id" /></td>
+                  <td width="100" height="30" align="center"><s:property
+                        value="REV_regdate" /></td>
+
+
+                  <td width="50" valign="middle">
+                  <s:if
+                        test='%{session.id == M_ID}'>
+                        <p align="center">
+                             <!-- 작성버튼 -->
+                        <a href="ReviewWriteForm.action?REV_goods_no=<s:property value="REV_goods_no" />&currentPage=<s:property value="currentPage" />">
+                           <img src="/3T/upload/write.JPG" border="0" />
+                        </a>
+                        
+                              <!-- 수정 버튼 -->
+                        <a href="Review_ModifyAction.action?REV_goods_no=<s:property value="REV_goods_no" />&currentPage=<s:property value="currentPage" />">
+                           <img src="/3T/upload/modify.JPG" border="0" />
+                        </a>
+                         
+                           <!-- 삭제 버튼 -->
+                           <a
+                              href="Review_DeleteAction.action?REV_goods_no=<s:property value="REV_goods_no" />&no=<s:property value="no" />">
+                              <img src="/3T/upload/delete.JPG" border="0" />
+                           </a>
+                        </p>
+                     </s:if> 
+                     <s:if test='%{session.id == "M_ID"}'>
+                        <a
+                           href="Review_DeleteAction.action?REV_goods_no=<s:property value="REV_goods_no" />&no=<s:property value="no" />">
+                           <img src="/3T/upload/delete.JPG" border="0" />
+                        </a>
+                     </s:if></td>
+
+               </tr>
+
+            </s:iterator>
+
+            <tr>
+               <td height="1" colspan="100%" bgcolor="#000000"></td>
+            </tr>
+         </s:else>
+      </table>
+   
+   <br></br>
+   <hr></hr>
 <!-- Q & A 게시판 -->
 <br>
 <br>
 <br>
-<table width="960" border="1" height="200" align="center"
-	cellpadding="0" cellspacing="10">
-	<tr>
+
 		<td colspan=1 align="center"><h2 id="QNA">Q & A</h2></td>
-	</tr>
 
-	<tr>
-	<tr>
-		<td width="150" height="400"></td>
-	</tr>
+ <table>
+         <strong>q&a 목록</strong>
+         <br />
+         <s:if test="">
+            등록된 q&a가 없습니다.
+      </s:if>
+         <s:else>
+            <tr align="center" bgcolor="#D5D5D5">
+               <td width="100" height="30" valign="middle" class="body_grey"><strong>q&a글번호</strong></td>
+               <td width="300" height="30" valign="middle" class="body_grey"><strong>q&a제목</strong></td>
+               <td width="100" height="30" valign="middle" class="body_grey"><strong>ID</strong></td>
+               <td width="200" height="30" valign="middle" class="body_grey"><strong>등록일시</strong></td>
+               <td width="50" height="30" valign="middle" class="body_grey"><strong>관리</strong></td>
+            </tr>
 
+
+            <tr>
+               <td height="1" colspan="100%" bgcolor="#000000"></td>
+            </tr>
+
+            <s:iterator value="qaList" status="stat">
+               <s:param name="no">
+                  <s:property value="QA_no" />
+               </s:param>
+               <s:param name="id">
+                  <s:property value="QA_member_id" />
+               </s:param>
+               <tr align="center" bgcolor="#F3F3F3">
+                  <td width="100" height="30" align="center"><s:property
+                        value="QA_no" /></td>
+                  <td width="300" height="30" align="left"><s:property
+                        value="QA_subject" /> <details> <summary>내용보기</summary>
+                     <s:property value="QA_content" /></details></td>
+                  <td width="100" height="30" align="center"><s:property
+                        value="QA_member_id" /></td>
+                  <td width="100" height="30" align="center"><s:property
+                        value="QA_regdate" /></td>
+
+
+                  <td width="50" valign="middle"><s:if
+                        test='%{session.id == M_ID}'>
+                        `````````````````````````````````````<p align="center">
+                              <!-- 수정 버튼 -->
+                        <a href="qa_modifyAction.action?QA_goods_no=<s:property value="QA_goods_no" />&currentPage=<s:property value="currentPage" />">
+                           <img src="/3T/upload/modify.JPG" border="0" />
+                        </a>
+                        
+                           <!-- 삭제 버튼 -->
+                           <a
+                              href="qa_deleteAction1.action?QA_goods_no=<s:property value="QA_goods_no" />&no=<s:property value="no" />">
+                              <img src="/3T/upload/delete.JPG" border="0" />
+                           </a>
+                        </p>
+                     </s:if> <s:if test='%{session.id == "M_ID"}'>
+                        <a
+                           href="qa_deleteAction1.action?QA_goods_no=<s:property value="QA_goods_no" />&no=<s:property value="no" />">
+                           <img src="/3T/upload/delete.JPG" border="0" />
+                        </a>
+                     </s:if></td>
+
+               </tr>
+
+            </s:iterator>
+
+            <tr>
+               <td height="1" colspan="100%" bgcolor="#000000"></td>
+            </tr>
+         </s:else>
 
 	</center>
 

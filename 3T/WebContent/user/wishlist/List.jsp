@@ -9,8 +9,30 @@
 <link rel="stylesheet" href="/3T/user/wishlist/common/css/css.css"
 	type="text/css">
 </head>
+<script language="javascript">
+	function sele(n) {
+		if (n == 0) { //삭제
+			
+			document.form.action = "wishlist_checkdelete.action"
+		}else if (n == 1) {//장바구니 : insert 필요 
+			
+			document.form.action = "wishlist_basketlist.action"
+		}
+		return false;
+	}
 
+	function chkBox(bool) { // 전체선택/해제 
+		var obj = document.getElementsByName("chk");
+		for (var i = 0; i < obj.length; i++)
+			obj[i].checked = bool;
+		return itemSum(this.form);
+		alert("1.");
+	}
+
+
+</script>
 <body>
+<form name="form">
 	<table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td height="30"></td>
@@ -29,11 +51,12 @@
 			<td height="20"></td>
 		</tr>
 		<tr align="center" bgcolor="#F9F9F9">
-			<td width="50"><input name="checkbox" type="checkbox" /></td>
+			<td width="50"><input type="checkbox" value=""
+					class="checkbox" onclick=chkBox(this.checked) checked /></td>
 			<td width="130"><strong>IMAGE</strong></td>
 			<td width="300"><strong>PRODUCT INFO</strong></td>
 			<td width="80"><strong>TOTAL</strong></td>
-			<td width="120"><strong>SELECT</strong></td>
+			
 		</tr>
 
 
@@ -41,7 +64,7 @@
 			<!-- http://localhost:8080/StrutsBoard/viewAction.action?no=2&currentPage=1 -->
 			<s:url id="viewURL" action="GoodsView">
 				<s:param name="goods_no">
-					<s:property value="W_NO" />
+					<s:property value="W_GOODS_NO" />
 				</s:param>
 				<s:param name="currentPage">
 					<s:property value="currentPage" />
@@ -49,12 +72,11 @@
 			</s:url>
 
 			<tr  align="center">
-				<td><img src="/3T/image/${W_GOODS_IMG}.small.jpg"
+				<td width="50"><input type="checkbox" name="chk" checked value="<s:property value="W_NO"/>"/></td>
+				<td><img src="/3T/upload/${W_GOODS_IMG}"
 					width="50"></td>
-				<td align="center"><s:property value="W_GOODS_NAME" /></td>
-				<td align="center"><s:property value="BASKET_GOODS_AMOUNT" /></td>
-				<td align="center"><s:property value="W_TOTAL" /></td>
-				<td><s:property value="W_SELECT" /></td>
+				<td align="center"><s:a href="%{viewURL}"><s:property value="W_GOODS_NAME" /></s:a></td>
+				<td align="center"><s:property value="W_GOODS_AMOUNT" /></td>
 			</tr>
 
 
@@ -62,36 +84,30 @@
 
 		<s:if test="list.size() <= 0">
 			<tr bgcolor="#FFFFFF" align="center">
-				<td colspan="5">등록된 게시물이 없습니다.</td>
+				<td colspan="4">등록된 게시물이 없습니다.</td>
 			</tr>
 
 		</s:if>
 
 		<tr align="right">
 			<td width="80">선택한상품을</td>
-			<td align="left"><input name="delete" type="button"
-				value="x 삭제하기" style="background-color: #B8B8B8;" /></td>
-			<td align="center"><input name="delete" type="button"
-				value="장바구니 담기" style="background-color: #B8B8B8;" />
-			<input name="order" type="button"
-				value="전체상품 주문" style=" font-family:돋움; background-color:#121212; color:#FFFFFF; border-color:#121212; "
-				onClick="javascript:location.href='OrderWrite.action?currentPage=<s:property value="currentPage" />'">
+			<td align="left"><input name="submit" type="submit"
+				value="삭제하기" style="background-color: #B8B8B8;"  onclick="sele(0);"/></td>
+			<td align="center"><input name="submit" type="submit"
+				value="장바구니 담기" style="background-color: #B8B8B8;" onclick="sele(1);"/>
 			</td>
-			<td colspan="5" align="right"><input name="Main" type="button"
-				value="관심상품 비우기 "
-				onClick="javascript:location.href=''">
-			</td>
+			
 		</tr>
 		<tr>
 			<td height="20"></td>
 		</tr>
    		<tr height="50" align="center">
-    		<td colspan="5"><s:property value="pagingHtml"  escape="false" /></td>
+    		<td colspan="4"><s:property value="pagingHtml"  escape="false" /></td>
     	   </tr>
 			
 		
 		</table>
-		
+		</form>
 </body>
 </html>
 

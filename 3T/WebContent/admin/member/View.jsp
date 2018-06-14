@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>회원정보 상세보기</title>
-<link rel="stylesheet" href="/3T/common/css/css.css" type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript">
 	function open_win_noresizable(url, name) {
@@ -28,68 +28,68 @@
 <body>
 	<table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
-			<td align="center"><h2>회원정보 상세보기</h2></td>
+			<td align="center"class="text01 formbar" ><h2>회원정보 상세보기</h2></td>
 		</tr>
 	</table>
 
-	<table width="600" border="0" cellspacing="0" cellpadding="0">
+	<table width="600" border="0" cellspacing="0" cellpadding="0"  id="form">
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>
 		</tr>
 
 		<tr>
-			<td width="100">회원번호</td>
+			<td width="100" class="tdstyle1">회원번호</td>
 			<td width="500"><s:property value="resultClass.m_no" /></td>
 		</tr>
 
 		<tr>
-			<td width="100">이름</td>
+			<td width="100" class="tdstyle1">이름</td>
 			<td width="500"><s:property value="resultClass.m_name" /></td>
 		</tr>
 		<tr>
-			<td width="100">id</td>
+			<td width="100" class="tdstyle1">id</td>
 			<td width="500"><s:property value="resultClass.m_id" /></td>
 		</tr>
 
 		<tr>
-			<td width="100">passwd</td>
+			<td width="100" class="tdstyle1">passwd</td>
 			<td width="500">
 				<!-- 이렇게도 쓸수 있다는거다 이자식들아 --> ${resultClass.m_passwd }
 			</td>
 		</tr>
 
 		<tr>
-			<td width="100">주민등록번호</td>
+			<td width="100" class="tdstyle1">주민등록번호</td>
 			<td width="500"><s:property value="resultClass.m_jumin1" />-<s:property
 					value="resultClass.m_jumin2" /></td>
 		</tr>
 		<tr>
-			<td width="100">TEL</td>
+			<td width="100" class="tdstyle1">TEL</td>
 			<td width="500"><s:property value="resultClass.m_phone" /></td>
 		</tr>
 		<tr>
-			<td width="100">email</td>
+			<td width="100" class="tdstyle1">email</td>
 			<td width="500"><s:property value="resultClass.m_email1" />@<s:property
 					value="resultClass.m_email2" /></td>
 		</tr>
 		<tr>
-			<td width="100">주소</td>
+			<td width="100" class="tdstyle1">주소</td>
 			<td width="500">( <s:property value="resultClass.m_zipcode" />)
 				<s:property value="resultClass.m_addr1" /> <s:property
 					value="resultClass.m_addr1" />
 			</td>
 		</tr>
 		<tr>
-			<td width="100">가입날짜</td>
+			<td width="100" class="tdstyle1">가입날짜</td>
 			<td width="500"><s:property value="resultClass.m_regdate" /></td>
 		</tr>
 		<tr>
-			<td width="100">예금주</td>
+			<td width="100" class="tdstyle1">예금주</td>
 			<td width="500"><s:property value="resultClass.m_depositor" />
 			</td>
 		</tr>
 		<tr>
-			<td width="100">계좌번호</td>
+			<td width="100" class="tdstyle1">계좌번호</td>
 			<td width="500">( <s:property value="resultClass.m_name_bank" />
 				) <s:property value="resultClass.account_no" />
 			</td>
@@ -98,25 +98,7 @@
 
 
 
-		<tr bgcolor="#777777">
-			<td colspan="2" height="1"></td>
-		</tr>
-		<tr>
-			<td colspan="2" height="10"></td>
-		</tr>
-		
-		<tr>
-			<td colspan="2" height="10"></td>
-		</tr>
 
-		<tr bgcolor="#777777">
-			<td colspan="2" height="1"></td>
-		</tr>
-
-
-		<tr bgcolor="#777777">
-			<td colspan="2" height="1"></td>
-		</tr>
 		<tr>
 			<td colspan="2" height="10"></td>
 		</tr>
@@ -129,23 +111,24 @@
 					<input type="hidden" name="m_id_f" value="${resultClass.m_id}">
 					<input type="hidden" name="m_no" value="${resultClass.m_no}">
 					<input type="hidden" name="currentPage" value="${currentPage}">
-					<input type="text" name="m_coupon_content_f"> <input
-						type="submit" value="쿠폰주기">
+					<input type="text" name="m_coupon_content_f"  style="width: 100px; height: 30px;"> <input
+						type="submit" value="쿠폰주기" class="submit">
 				</form>
-				
+				<br>
 				<form action="AM_Msg.action">
 
 					<input type="hidden" name="m_id_f" value="${resultClass.m_id}">
 					<input type="hidden" name="m_no" value="${resultClass.m_no}">
 					<input type="hidden" name="currentPage" value="${currentPage}">
-					<input type="text" name="m_msg_content_f"> <input
-						type="submit" value="쪽지보내기">
+					<input type="text" name="m_msg_content_f"  style="width: 100px; height: 30px;"> <input
+						type="submit" value="쪽지보내기" class="submit">
 				</form>
+								<br>
 				
 				<form name="form">
-				<input name="delete_b" type="button" value="삭제" class="inputb"
+				<input name="delete_b" type="button" value="삭제" class="hreflink"
 				onClick="javascript:location.href=('AM_Delete.action?m_no=<s:property value="resultClass.m_no" />&currentPage=<s:property value="currentPage" />','delete')">
-				<input name="list_b" type="button" value="목록" class="inputb"
+				<input name="list_b" type="button" value="목록" class="submit"
 				onClick="javascript:location.href='AM_List.action?currentPage=<s:property value="currentPage" />'">
 			
 				</form>
