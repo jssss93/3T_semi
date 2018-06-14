@@ -30,6 +30,18 @@
    <sql id="goods-where-no">
       where goods_no = #goods_no#
    </sql>
+   <!--리뷰 상품검색 -->
+<select id="goods-selectall1" resultClass="goods">
+		select goods_no, goods_name, goods_price, goods_file_savname
+		 from goods order by goods_no desc
+	</select>
+	<select id="selectSearchQ" resultMap="goodsRes" parameterClass="string">
+		<include refid="goods-select-all" />
+		 WHERE goods_name like #searchKeyword#
+		 ORDER BY goods_no DESC
+	</select>
+	
+<!--리뷰 상품검색 -->
 
    <!-- =================================상세보기========================================= -->
 

@@ -12,25 +12,29 @@
 
 <body>
 
-	<table width="700" border="0" cellspacing="0" cellpadding="2">
+	<table width="600" border="0" cellspacing="0" cellpadding="1">
 		<tr>
-			<td align="left"><h2>REVIEW</h2></td>
+			<td height="50"></td>
 		</tr>
 		<tr>
-			<td height="20"></td>
+			<td align="left"><h2>REVIEW&nbsp;|&nbsp;</h2></td>
 		</tr>
+		<tr>
+			<td height="50"></td>
+		</tr>
+		
+		
 
-
-		<table width="700" border="0" cellspacing="0" cellpadding="2">
+		<table width="600" border="0" cellspacing="0" cellpadding="1">
 			<tr align="center">
 				<td width="50"><strong>NO</strong></td>
 				<td width="80"><strong>ITEM </strong></td>
-				<td width="350"><strong>SUBJECT</strong></td>
+				<td width="350" align="left"><strong>SUBJECT</strong></td>
 				<td width="50"><strong>NAME</strong></td>
 
 			</tr>
 			<tr bgcolor="#777777">
-				<td height="1" colspan="5"></td>
+				<td height="1" colspan="4"></td>
 			</tr>
 
 			<s:iterator value="list" status="stat">
@@ -63,7 +67,7 @@
 
 				</tr>
 				<tr bgcolor="#777777">
-					<td height="1" colspan="5"></td>
+					<td height="0" colspan="5"></td>
 				</tr>
 
 			</s:iterator>
@@ -82,13 +86,12 @@
 
 			</s:if>
 
-
-			<tr align="center">
-				<td colspan="5"><s:property value="pagingHtml" escape="false" /></td>
+				<tr align="right">
+				<td colspan="5"><input type="button" value="WRITE"
+					class="inputb"
+					onClick="javascript:location.href='ReviewWriteForm.action?currentPage=<s:property value="currentPage" />';"></td>
 			</tr>
-
-
-			<tr align="center">
+				<tr align="center">
 				<td colspan="5">
 					<form>
 						<select name="searchNum">
@@ -103,12 +106,12 @@
 				</td>
 			</tr>
 
-			<tr align="right">
-				<td colspan="5"><input type="button" value="WRITE"
-					class="inputb"
-					onClick="javascript:location.href='ReviewWriteForm.action?currentPage=<s:property value="currentPage" />';"></td>
+			<tr align="center">
+				<td colspan="5"><s:property value="pagingHtml" escape="false" /></td>
 			</tr>
+	
 
+		
 
 		</table>
 </body>

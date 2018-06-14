@@ -8,6 +8,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script><!-- 컨트롤러 사용을 위한 jquery -->
 <script type="text/javascript">
 	/* 종합개수 카운트 */
 	/* function change(num) {
@@ -321,7 +322,7 @@
 <table width="960" border="1" height="200" align="center"
 	cellpadding="0" cellspacing="10">
 	<tr>
-		<td colspan=1 align="center"><h2>review</h2></td>
+		<td colspan=1 align="center"><h2 id="REVIEW" >review</h2></td>
 	</tr>
 
 	<tr>
@@ -337,7 +338,7 @@
 <table width="960" border="1" height="200" align="center"
 	cellpadding="0" cellspacing="10">
 	<tr>
-		<td colspan=1 align="center"><h2>Q & A</h2></td>
+		<td colspan=1 align="center"><h2 id="QNA">Q & A</h2></td>
 	</tr>
 
 	<tr>
@@ -347,6 +348,30 @@
 
 
 	</center>
+
 </table>
+<!-- 컨트롤러  -->
+<div id="scroll" style="position:absolute;top: 10px; left: 10px;"> 
+<ul>
+<li><a href="#REVIEW"><h3>REVIEW</h3></a>
+<li><a href="#QNA"><h3>QnA</h3></a>
+</ul>
+</div>
+
+<script type="text/javascript"> 
+function scroll_follow( id )
+{
+  $(window).scroll(function( ) //스크롤이 움직일때마다 이벤트 발생
+  { 
+      var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+    
+      $( id ).stop().animate({top:position+"px"}, 300); //해당 오브젝트 위치값 재설정
+   });
+}
+ scroll_follow( "#scroll" );
+	 //스크롤이 생기도록 
+
+</script> 
+<!-- 컨트롤러 -->
 </body>
 </html>

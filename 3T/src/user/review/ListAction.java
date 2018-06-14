@@ -11,8 +11,18 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 import java.util.*;
 import java.io.Reader;
 import java.io.IOException;
+import org.apache.struts2.interceptor.SessionAware;
 
-public class ListAction extends ActionSupport {
+import java.util.Map;
+
+public class ListAction extends ActionSupport implements SessionAware{
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
 
 	public static Reader reader; // 파일 스트림을 위한 reader.
 	public static SqlMapClient sqlMapper; // SqlMapClient API를 사용하기 위한 sqlMapper 객체.
@@ -30,6 +40,8 @@ public class ListAction extends ActionSupport {
 
 	private int searchNum;
 	private int num;
+	
+	public Map session;
 
 	// 생성자
 	public ListAction() throws IOException {

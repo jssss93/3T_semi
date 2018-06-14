@@ -15,8 +15,20 @@ import java.net.URLEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.struts2.interceptor.SessionAware;
 
-public class ViewAction extends ActionSupport {
+import java.util.Map;
+
+
+
+public class ViewAction extends ActionSupport implements SessionAware {
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 
@@ -42,6 +54,7 @@ public class ViewAction extends ActionSupport {
 	private InputStream inputStream;
 	private String contentDisposition;
 	private long contentLength;
+	public Map session;
 
 	// 생성자
 	public ViewAction() throws IOException {
@@ -102,7 +115,7 @@ public class ViewAction extends ActionSupport {
 		paramClass.setREV_passwd(getREV_passwd());
 
 		// System.out.println("getREV_no" + getREV_no());
-		// System.out.println("getREV_passwd" + getREV_passwd());
+		 System.out.println("getREV_passwd" + getREV_passwd());
 
 		// 현재 글의 비밀번호 가져오기.
 		resultClass = (ReviewVO) sqlMapper.queryForObject("review-selectPassword", paramClass);
@@ -115,9 +128,9 @@ public class ViewAction extends ActionSupport {
 
 	public String checkAction2() throws Exception {
 
-		System.out.println("getREV_C_no" + getREV_C_no());
-		System.out.println("getREV_C_passwd" + getREV_C_passwd());
-		System.out.print("getREV_C_originno" + getREV_C_originno());
+		//System.out.println("getREV_C_no" + getREV_C_no());
+		//System.out.println("getREV_C_passwd" + getREV_C_passwd());
+		//System.out.print("getREV_C_originno" + getREV_C_originno());
 
 		cClass.setREV_C_no(getREV_C_no());
 		cClass.setREV_C_passwd(getREV_C_passwd());
