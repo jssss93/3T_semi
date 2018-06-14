@@ -37,7 +37,7 @@
 	<table width="1000" border="0" cellspacing="0" cellpadding="2" id="form">
 		<tr align="center">
 			<td width="50" align="center"><strong>NO</strong></td>
-			<td width="400" align="center"><strong></strong></td>
+			<td width="850" align="center"><strong></strong></td>
 			<td width="50" align="center"><strong>ÀÛ¼ºÀÚ</strong></td>
 		</tr>
 		<tr bgcolor="#777777">
@@ -62,9 +62,7 @@
 					</s:a></td>
 				<td align="center"><s:property value="FAQ_WRITER" /></td>
 			</tr>
-			<tr>
-				<td height="1" colspan="3"></td>
-			</tr>
+
 
 		</s:iterator>
 
@@ -77,9 +75,13 @@
 				<td height="1" colspan="3"></td>
 			</tr>
 		</s:if>
+	</table>
+	
+	<table  width="1000" border="0" cellspacing="0" cellpadding="2">
 		<tr height="50" align="center">
 			<td colspan="3"><s:property value="pagingHtml" escape="false" /></td>
 		</tr>
+		
 		<tr align="center">
 			<td colspan="3">
 				<form>
@@ -94,6 +96,7 @@
 				</form>
 			</td>
 		</tr>
+
 	</table>
 </body>
 </html>
