@@ -7,12 +7,72 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet" href="/3T/user/notice/common/css/css.css"
-	type="text/css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.mySlides {display:none}
+.w3-left, .w3-right, .w3-badge {cursor:pointer}
+.w3-badge {height:13px;width:13px;padding:0}
+
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+#myimg2:hover {opacity: 0.9;}
+</style>
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace(" w3-white", "");
+  }
+  x[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " w3-white";
+}
+</script>	
 </head>
+
 <body>
+
+<div class="w3-container">
+  
+</div>
+
+<div class="w3-content w3-display-container" style="max-width:1500px">
+  <s:a href="listouter.action"><img id="myimg2" class="mySlides" src="/3T/upload/mainslide1.PNG" width="100%" height="600" style="display:block;"></s:a>
+  <s:a href="GoodsView.action?goods_no=496"><img id="myimg2" class="mySlides" src="/3T/upload/mainline3.JPG" width=100% height=600></s:a>
+  <s:a href="listsuit.action"><img id="myimg2" class="mySlides" src="/3T/upload/mainslide2.PNG" width=100% height=600></s:a>
+  <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+    <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+    <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+  </div>
+</div>
+<br>
 	<table width="1100" border="0" height="300" align="center"
-		cellpadding="0" cellspacing="3">
+		cellpadding="0" cellspacing="6">
 		<tr>
 			<td colspan=3 align="center"><h2>New Item</h2><img src="/3T/upload/mainline.PNG"/></td>
 		</tr>
@@ -37,8 +97,8 @@
 					<td width="100" height="200" align="center"><s:a
 							href="%{viewURL}">
 							
-							<img src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]"/>" width="350"
-								height="200">   
+							<img id="myImg" src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]"/>" width="430"
+								height="290">   
 						</s:a></td>
 
 			</s:iterator>
@@ -46,14 +106,12 @@
 	</table>
 	<br>
 	<br>
-	<br>
 	<table width="1100" border="0" align="center" cellpadding="0"
-		cellspacing="10">
+		cellspacing="30">
 
 		<tr>
 			<td colspan="3" align="center"><img src="/3T/upload/mainline2.JPG"/></td>
 		</tr>
-		<tr>
 		<tr>
 
 			<s:iterator value="list" status="stat">
@@ -76,9 +134,9 @@
 					<td width="150" height="400" align="center"><s:a
 							href="%{viewURL}">
 							
-							<img src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]"/>" width="350"
-								height="400">
-						</s:a><br> <s:property value="goods_name" /><br> \&nbsp;<s:property
+							<img id="myImg" src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]"/>" width="450"
+								height="570">
+						</s:a><br><br> <s:property value="goods_name" /><br> \&nbsp;<s:property
 							value="goods_price" />
 							
 							</td>
@@ -103,7 +161,7 @@
 	<br>
 	<br>
 	<table width="1100" border="0" height="300" align="center"
-		cellpadding="0" cellspacing="10">
+		cellpadding="0" cellspacing="30">
 		<tr>
 			<td colspan=3 align="center"><h2>best</h2> <br>------------------------</td>
 		</tr>
@@ -129,9 +187,9 @@
 					<td width="150" height="400" align="center"><s:a
 							href="%{viewURL}">
 							
-							<img src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]"/>" width="350"
-								height="400">
-						</s:a><br> <s:property value="goods_name" /><br> \&nbsp;<s:property
+							<img id="myImg" src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]"/>" width="450"
+								height="570">
+						</s:a><br><br> <s:property value="goods_name" /><br> \&nbsp;<s:property
 							value="goods_price" />
 							
 							</td>

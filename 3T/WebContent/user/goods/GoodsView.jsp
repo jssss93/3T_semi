@@ -61,7 +61,7 @@
 						<!-- 상품가격 텍스트 -->
 						<tr>
 							<td style="width: 280; font-size: 13pt;" colspan="2"><br>
-								<p></p> <!--상품 가격  --> Price : KRW&nbsp;  <s:property
+								<p></p> <!--상품 가격  --> KRW&nbsp;  <s:property
 									value="resultClass.goods_price" />
 								</td>				
 						</tr>
