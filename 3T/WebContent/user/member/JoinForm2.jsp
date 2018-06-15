@@ -246,7 +246,7 @@
 						<tr>
 							<td class="tdstyle1">비밀번호확인<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="password" maxlength="7" maxlength="14"
+							<td valign="middle"><input type="password"  maxlength="14"
 								name="M_PASSWD2" size="30"> 비밀번호를 재입력 해주세요</td>
 						</tr>
 						<tr>
