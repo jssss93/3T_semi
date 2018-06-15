@@ -18,11 +18,13 @@
   		<tr>
   			<td align="center" class="text01 formbar">MY BOARD LIST</td>
   		</tr>
-  
+  		<tr>
+  			<td height="20"></td>
+  		</tr>
   	
   
 	<table width="700" border="0" cellspacing="0" cellpadding="2" id="form" >
-	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;${session.M_ID}님 환영합니다.<br/>
+	            ${session.M_ID}님 환영합니다.<br/>
 	
 	      <tr align="center">
       		<td width="50" class="tdstyle1"><strong>NO</strong></td>
@@ -57,7 +59,10 @@
 		<td align="center" ><s:property value="REV_name" /></td>
         		
       	      </tr>
-      	 
+      	      <tr >
+        		<td height="1" colspan="5"></td>
+      	      </tr>
+      
 	      </s:iterator>
 	      
 	      
@@ -88,7 +93,9 @@
          
       </tr>
 
-
+      <tr>
+         <td height="1" colspan="6" class="tdstyle1"></td>
+      </tr>
 
    </s:iterator>
 
@@ -98,11 +105,13 @@
 	      <tr align="center">
 		<td colspan="5" >등록된 게시물이 없습니다.</td>
                   </tr>						
-	
+	      <tr>
+      		<td height="1" colspan="5"></td>
+    	      </tr>
     		
 	      </s:if>
-	        <tr>
-    		<td   align="right" colspan="4" class="tdstyle1"><s:property value="pagingHtml"  escape="false" /></td>
+	        <tr align="center">
+    		<td colspan="5" class="tdstyle1"><s:property value="pagingHtml"  escape="false" /></td>
     	      </tr>
 			
 	   
