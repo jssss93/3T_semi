@@ -12,13 +12,13 @@
 </head>
 
 <body>
-	<table width="1000" border="0" cellspacing="0" cellpadding="2">
+	<table width="80%" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td align="center" class="text01 formbar"><h1>회원 리스트</h1></td>
 		</tr>
 	</table>
 
-	<table width="1000" border="0" cellspacing="0" cellpadding="2">
+	<table width="80%" border="0" cellspacing="0" cellpadding="2">
 		<tr align="center" bgcolor="#f3f3f3">
 			<td width="50"><strong>번호</strong></td>
 			<td width="50"><strong>이름</strong></td>
