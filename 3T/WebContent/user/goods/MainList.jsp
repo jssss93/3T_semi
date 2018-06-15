@@ -106,8 +106,8 @@ function showDivs(n) {
 	</table>
 	<br>
 	<br>
-	<table width="1100" border="0" align="center" cellpadding="0"
-		cellspacing="30">
+	<table width="80%" border="0" align="center" cellpadding="0"
+		cellspacing="25">
 
 		<tr>
 			<td colspan="3" align="center"><img src="/3T/upload/mainline2.JPG"/></td>
@@ -150,20 +150,20 @@ function showDivs(n) {
 	<br>
 	<br>
 	<br>
-	<table width="1100" border="0" height="300" align="center"
-		cellpadding="0" cellspacing="10">
+	<table width="1300" border="0" height="300" align="center"
+		cellpadding="0" cellspacing="0">
 		<tr height="200">
-			<td colspan="3" align="center"><img src="/3T/upload/mainline3.JPG"/></td>
+			<td colspan="3" align="center"><a href="main.action"><img width="1350" src="/3T/upload/mainline4.png"/></td></a>
 		</tr>
 	</table>
 
 	<br>
 	<br>
 	<br>
-	<table width="1100" border="0" height="300" align="center"
-		cellpadding="0" cellspacing="30">
+	<table width="80%" border="0" height="300" align="center"
+		cellpadding="0" cellspacing="25">
 		<tr>
-			<td colspan=3 align="center"><h2>best</h2> <br>------------------------</td>
+			<td colspan=3 align="center"><img src="/3T/upload/mainline5."/></td>
 		</tr>
 
 		<tr>
