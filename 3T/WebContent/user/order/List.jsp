@@ -55,7 +55,7 @@
 				<td align="center"><s:property value="ORDER_GOODS_COUNT" /></td>
         		<td><s:property value="ORDER_TOTAL" /></td>
         		<td><s:property value="ORDER_STATE" /></td>
-        		<td><input type="button"value="내역보기 " class="hreflink"
+        		<td><input type="button"value="내역보기 " 
         		OnClick="window.open('Ordergoodslist.action?ORDER_NO=<s:property value="ORDER_NO" />','window_name','width=700,height=600,location=no,status=no,toolbar=no,scrollbars=no');" /></td></td>
         		   
         		
