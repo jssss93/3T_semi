@@ -15,7 +15,7 @@
 			document.form.action = "basket_checkdelete.action"
 		} else {
 			
-			document.form.action = "Order_Write.action";
+			document.form.action = "OrderWrite.action";
 		}
 		return false;
 	}
@@ -28,23 +28,7 @@
 		alert("1.");
 	}
 
-	function itemSum(frm) {
-		var sum = 0;
-		var sum1 = 0;
-		var sum2 = 0;
-		var count = frm.chk.length;
-		for (var i = 0; i < count; i++) {
-			if (frm.chk[i].checked == true) {
-				sum += parseInt(frm.price[i].value);
-				sum1 += parseInt(frm.discount[i].value);
-				sum2 += parseInt(frm.payment[i].value);
 
-			}
-		}
-		frm.total_sum.value = sum;
-		frm.discount_sum.value = sum1;
-		frm.payment_sum.value = sum2;
-	}
  //F5키 막기
 	window.onkeydown = function() {
 		var kcode = event.keyCode;
@@ -52,9 +36,9 @@
 	}
 
 </script>
-<body onload="itemSum(this.form)">
+<body>
 <form name="form">
-	<table width="1000" border="0" cellspacing="0" cellpadding="2">
+	<table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td height="30"></td>
 		</tr>
@@ -104,32 +88,37 @@
 			</s:url>
 
 			<tr align="center">
-				<td width="50"><input type="checkbox" name="chk" onClick="itemSum(this.form)" onload="itemSum(this.form)" checked value="<s:property value="basket_no"/>"/></td>
+				<td width="50"><input type="checkbox" name="chk" checked value="<s:property value="basket_no"/>"/></td>
 				<td><img src="/3T/upload/${basket_goods_img}" width="50"></td>
 				<td align="center" ><s:a href="%{viewURL}"><s:property value="basket_name" /></s:a></td>
 				<td align="center"><s:property value="basket_goods_amount" /></td>
 				<td align="center"><s:property value="basket_quantity" /></td>
 				<td align="center"><s:property value="basket_goods_amount*basket_quantity" /></td>
-
 			</tr>
-
-
+			
 		</s:iterator>
-	
 		<s:if test="B_List.size() <= 0">
 			<tr bgcolor="#FFFFFF" align="center">
 				<td colspan="7">등록된 게시물이 없습니다.</td>
 			</tr>
 
 		</s:if>
-
+		<s:if test="Pay_List<=0">
 			<tr bgcolor="#F9F9F9">
 				<td colspan="2">&nbsp;&nbsp;&nbsp;[기본배송]</td>
-				<td align="right" colspan="6">상품구매금액 <s:property value="basket_goods_amount" /> 
-				+배송비 0 =합계 :<font color="#FF0000">KRW <s:property value="basket_goods_amount*basket_quantity" />
+				<td align="right" colspan="6">상품구매금액 
+				+배송비 0 =합계 :<font color="#FF0000">KRW 
 				</font></td>
 			</tr>
-	
+		</s:if>
+		<s:else>
+			<tr bgcolor="#F9F9F9">
+				<td colspan="2">&nbsp;&nbsp;&nbsp;[기본배송]</td>
+				<td align="right" colspan="6">상품구매금액 <s:property value="Pay_List" /> 
+				+배송비 0 =합계 :<font color="#FF0000">KRW <s:property value="PayTotal_List" />
+				</font></td>
+			</tr>
+		</s:else>
 		<tr align="left">
 			<td colspan="7" bgcolor="#FFCBCB"><font color="#CC3D3D">
 					&nbsp;&nbsp;&nbsp;⊙&nbsp;&nbsp;할인적용 금액은 주문서작성의 결제예정금액에서 확인 가능합니다.</td>
@@ -139,7 +128,7 @@
 		<tr align="right">
 			<td width="80">선택한상품을</td>
 			<td align="left"><input name="submit" type="submit"
-				value="삭제하기" class="hreflink" onclick="sele(0);"/></td>
+				value="삭제하기" style="background-color: #B8B8B8;" onclick="sele(0);"/></td>
 
 		</tr>
 		<tr>
@@ -159,14 +148,14 @@
 			<tr>
 				<td width="340" align="center"><font style="font-weight: bold;"><h3>
 							KRW
-							<s:property value="basket_goods_amount" />
+							<s:property value="PayTotal_List" />
 						</h3></font></td>
 				<td width="340" align="center"><font style="font-weight: bold;"><h3>-
 							KRW 0</h3></font></td>
 				<td align="center"><font style="font-weight: bold;"
 					color="#FF0000"><h3>
 							= KRW
-							<s:property value="basket_goods_amount" />
+							<s:property value="PayTotal_List" />
 						</h3></font></td>
 			</tr>
 		
@@ -178,10 +167,10 @@
 		<tr>
 			<td colspan="7" align="center"><input name="submit" type="submit"
 				value="선택 상품 주문" onclick="sele(1)"
-				class="submit"
+				style="font-family: 돋움; background-color: #121212; color: #FFFFFF; border-color: #121212;"
 				onClick="javascript:location.href='OrderWrite.action?currentPage=<s:property value="currentPage" />'"></td>
 			<td colspan="6" align="right"><input name="Main" type="button"
-				value="쇼핑계속하기 ▶" class="hreflink"
+				value="쇼핑계속하기 ▶"
 				onClick="javascript:location.href='main.action?currentPage=<s:property value="currentPage" />'"></td>
 		</tr>
 		<tr>

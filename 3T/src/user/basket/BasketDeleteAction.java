@@ -53,9 +53,7 @@ public class BasketDeleteAction extends ActionSupport implements SessionAware {
 
 	@Override
 	public String execute() throws Exception {
-		g_resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", getGoods_no());
-		System.out.println("getBASKET_NO :" + getBasket_no());
-		System.out.println("getChk :" + getChk());
+
 		if (getChk() != null) {
 			for (int i = 0; i < this.getChk().length; i++) {
 				String chkValue = this.getChk()[i];

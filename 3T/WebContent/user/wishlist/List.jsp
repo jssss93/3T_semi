@@ -6,8 +6,8 @@
 <html>
 <head>
 <title>Wishlist</title>
-<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
-
+<link rel="stylesheet" href="/3T/user/wishlist/common/css/css.css"
+	type="text/css">
 </head>
 <script language="javascript">
 	function sele(n) {
@@ -33,12 +33,12 @@
 </script>
 <body>
 <form name="form">
-	<table width="1000" border="0" cellspacing="0" cellpadding="2">
+	<table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td height="30"></td>
 		</tr>
 		<tr>
-			<td align="center" class="text01 formbar"><h2>MY Wishlist</h2></td>
+			<td align="left"><h2>MY Wishlist</h2></td>
 		</tr>
 		<tr>
 			<td height="50"></td>
@@ -90,10 +90,10 @@
 		</s:if>
 
 		<tr align="right">
-			<td width="80"><h2>선택한상품을</h2></td>
-			<td align="left"><input name="submit" type="submit" class="submit"
+			<td width="80">선택한상품을</td>
+			<td align="left"><input name="submit" type="submit"
 				value="삭제하기" style="background-color: #B8B8B8;"  onclick="sele(0);"/></td>
-			<td align="center"><input name="submit" type="submit" class="hreflink"
+			<td align="center"><input name="submit" type="submit"
 				value="장바구니 담기" style="background-color: #B8B8B8;" onclick="sele(1);"/>
 			</td>
 			

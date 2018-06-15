@@ -1,6 +1,9 @@
 package user.qa;
 
 import com.opensymphony.xwork2.ActionSupport;
+
+import admin.goods.VO.GoodsVO;
+
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
@@ -40,11 +43,15 @@ public class ViewAction extends ActionSupport implements SessionAware{
 	
 	private String QA_PASSWD;
 	
-	private String fileUploadPath = "C:\\git\\3T\\3T\\WebContent\\upload\\";
+	private String fileUploadPath = "C:\\git\\3T\\3T\\WebContent\\upload";
 	
 	private InputStream inputStream;
 	private String contentDisposition;
 	private long contentLength;
+	
+	private GoodsVO goods_paramClass =new GoodsVO();
+	private GoodsVO goods_resultClass=new GoodsVO();
+	private int goods_no;
 	
 	public ViewAction() throws IOException
 	{
@@ -62,6 +69,10 @@ public class ViewAction extends ActionSupport implements SessionAware{
 		
 		commentlist = sqlMapper.queryForList("qa_commentSelectAll", getQA_NO());
 		
+		
+		goods_paramClass.setGoods_no(resultClass.getQA_GOODS_NO());
+		
+		goods_resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", resultClass.getQA_GOODS_NO());
 		return SUCCESS;
 	}
 	
@@ -86,6 +97,30 @@ public class ViewAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	
+	public GoodsVO getGoods_paramClass() {
+		return goods_paramClass;
+	}
+
+	public void setGoods_paramClass(GoodsVO goods_paramClass) {
+		this.goods_paramClass = goods_paramClass;
+	}
+
+	public GoodsVO getGoods_resultClass() {
+		return goods_resultClass;
+	}
+
+	public void setGoods_resultClass(GoodsVO goods_resultClass) {
+		this.goods_resultClass = goods_resultClass;
+	}
+
+	public int getGoods_no() {
+		return goods_no;
+	}
+
+	public void setGoods_no(int goods_no) {
+		this.goods_no = goods_no;
+	}
+
 	public static Reader getReader() {
 		return reader;
 	}

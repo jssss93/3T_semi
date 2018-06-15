@@ -31,9 +31,25 @@
 			SELECT * FROM  BASKET 
 		</select>
 		
+		<select id="basket-pay"  resultClass="int" parameterClass="String">
+		select sum(BASKET_GOODS_AMOUNT) from BASKET where BASKET_MEMBER_ID=#BASKET_MEMBER_ID#
+		</select>
+		
+		<select id="basket-paytotal" resultClass="int" parameterClass="String">
+		select sum(basket_goods_amount*BASKET_QUANTITY) from basket where BASKET_MEMBER_ID=#BASKET_MEMBER_ID#
+		</select>
+
+		
 		<!-- 선택삭제  -->
 		<delete id="basketdelete" parameterClass="int">
 			delete from BASKET where BASKET_NO=#BASKET_NO#
 		</delete>
+		<!--장바구니에서 오더로  -->
+		<select id="basket-orderselect" parameterClass="int" resultMap="basketRes">
+			Select * from basket where BASKET_NO=#BASKET_NO#
+		</select>
 		
+		<select id="basket_order_selectOne" resultMap="basketRes" parameterClass="int">
+			Select * from basket where BASKET_NO=#BASKET_NO#
+		</select>
 </sqlMap>

@@ -1,6 +1,11 @@
 package user.qa;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+
+import admin.goods.VO.GoodsVO;
+import admin.member.VO.MemberVO;
+
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
@@ -12,7 +17,7 @@ import java.io.IOException;
 import java.io.File;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.interceptor.SessionAware;
-
+import admin.goods.VO.GoodsVO;
 
 public class WriteAction extends ActionSupport implements SessionAware{
 	
@@ -21,6 +26,11 @@ public class WriteAction extends ActionSupport implements SessionAware{
 	
 	private QaVO paramClass;
 	private QaVO resultClass;
+	
+	private GoodsVO goods_paramClass =new GoodsVO();
+	private GoodsVO goods_resultClass=new GoodsVO();
+	
+
 	public Map session;
 	
 	private int currentPage;
@@ -33,17 +43,21 @@ public class WriteAction extends ActionSupport implements SessionAware{
 	private String QA_FILE_ORGNAME;
 	private String QA_FILE_SAVNAME;
 	private int QA_CATEGORY_NO; 
+	private String QA_MEMBER_ID;
+	private int QA_GOODS_NO;
+	private String QA_GOODS_NAME;
+	private String QA_GOODS_IMG;
 	Calendar today = Calendar.getInstance();
 	
 	private File upload;
 	private String uploadContentType;
 	private String uploadFileName;
-	private String fileUploadPath="C:\\git\\3T\\3T\\WebContent\\upload\\";
+	private String fileUploadPath="C:\\git\\3T\\3T\\WebContent\\upload";
 	
 	private int QA_REF;
 	private int QA_RE_STEP;
 	private int QA_RE_LEVEL;
-	
+	private int goods_no;
 
 	boolean reply = false;
 	
@@ -57,10 +71,19 @@ public class WriteAction extends ActionSupport implements SessionAware{
 	
 	public String form() throws Exception
 	{
+		
 		return SUCCESS;
 		
 	}
-	
+	public String form1() throws Exception
+	{	
+
+		goods_paramClass.setGoods_no(getGoods_no());
+		goods_resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", getGoods_no());
+		
+		return SUCCESS;
+		
+	}
 	public String reply() throws Exception
 	{
 		reply=true;
@@ -79,8 +102,10 @@ public class WriteAction extends ActionSupport implements SessionAware{
 		
 	}
 
+
 	public String execute() throws Exception {
-		System.out.println("test");
+	
+		
 		paramClass = new QaVO();
 		resultClass = new QaVO();
 		
@@ -107,9 +132,14 @@ public class WriteAction extends ActionSupport implements SessionAware{
 		paramClass.setQA_NAME(getQA_NAME());
 		paramClass.setQA_PASSWD(getQA_PASSWD());
 		paramClass.setQA_CONTENT(getQA_CONTENT());
-		
 		paramClass.setQA_REGDATE(today.getTime());
-		System.out.println("paramClass.getQA_CATEGORY_NO "+paramClass.getQA_CATEGORY_NO());
+		paramClass.setQA_MEMBER_ID(ActionContext.getContext().getSession().get("M_ID").toString());
+		
+		goods_paramClass.setGoods_no(getGoods_no());
+		goods_resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", getGoods_no());
+		paramClass.setQA_GOODS_NO(goods_resultClass.getGoods_no());
+		paramClass.setQA_GOODS_NAME(goods_resultClass.getGoods_name());
+		paramClass.setQA_GOODS_IMG(goods_resultClass.getGoods_file_savname().split(",")[0]);
 		
 		if(QA_REF == 0)
 			sqlMapper.insert("qa_insertBoard", paramClass);
@@ -135,8 +165,66 @@ public class WriteAction extends ActionSupport implements SessionAware{
 			
 			sqlMapper.update("qa_updateFile", paramClass);
 		}
-
+		
+		
 		return SUCCESS;
+	}
+
+	
+	public String getQA_GOODS_IMG() {
+		return QA_GOODS_IMG;
+	}
+
+	public void setQA_GOODS_IMG(String qA_GOODS_IMG) {
+		QA_GOODS_IMG = qA_GOODS_IMG;
+	}
+
+	public String getQA_GOODS_NAME() {
+		return QA_GOODS_NAME;
+	}
+
+	public void setQA_GOODS_NAME(String qA_GOODS_NAME) {
+		QA_GOODS_NAME = qA_GOODS_NAME;
+	}
+
+	public String getQA_MEMBER_ID() {
+		return QA_MEMBER_ID;
+	}
+
+	public void setQA_MEMBER_ID(String qA_MEMBER_ID) {
+		QA_MEMBER_ID = qA_MEMBER_ID;
+	}
+
+	public int getQA_GOODS_NO() {
+		return QA_GOODS_NO;
+	}
+
+	public void setQA_GOODS_NO(int qA_GOODS_NO) {
+		QA_GOODS_NO = qA_GOODS_NO;
+	}
+
+	public GoodsVO getGoods_paramClass() {
+		return goods_paramClass;
+	}
+
+	public void setGoods_paramClass(GoodsVO goods_paramClass) {
+		this.goods_paramClass = goods_paramClass;
+	}
+
+	public GoodsVO getGoods_resultClass() {
+		return goods_resultClass;
+	}
+
+	public void setGoods_resultClass(GoodsVO goods_resultClass) {
+		this.goods_resultClass = goods_resultClass;
+	}
+
+	public int getGoods_no() {
+		return goods_no;
+	}
+
+	public void setGoods_no(int goods_no) {
+		this.goods_no = goods_no;
 	}
 
 	public Map getSession() {
@@ -322,7 +410,5 @@ public class WriteAction extends ActionSupport implements SessionAware{
 	public void setReply(boolean reply) {
 		this.reply = reply;
 	}
-
-
 
 }
