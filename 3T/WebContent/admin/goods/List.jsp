@@ -23,13 +23,13 @@
 </head>
 
 <body>
-	<table width="1000" border="0" cellspacing="0" cellpadding="2">
+	<table width="80%" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td align="center" class="text01 formbar"><h1>상품 리스트</h1></td>
 		</tr>
 	</table>
 
-	<table width="1000" border="0" cellspacing="0" cellpadding="2">
+	<table width="80%" border="0" cellspacing="0" cellpadding="2">
 		<tr align="center" bgcolor="#f3f3f3">
 			<td width="50"><strong>번호</strong></td>
 			<td width="50"><strong>이미지</strong></td>
@@ -60,7 +60,7 @@
 			<tr>
 				<td align="center"><s:property value="goods_no" /></td>
 				<td align="center"><img
-					src="\\3T\\WebContent\\upload\\<s:property value="goods_sav_filename" />"
+					src="/3T/upload/<s:property value="goods_file_savname.split(',')[0]" />"
 					width="50" height="50" />
 				<td align="center"><s:a href="%{viewURL}">
 						<s:property value="goods_name" />
