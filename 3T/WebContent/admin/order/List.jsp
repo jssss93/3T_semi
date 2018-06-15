@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<table width="900" border="0" cellspacing="0" cellpadding="2">
+	<table width="80%" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td height="30"></td>
 		</tr>
@@ -23,7 +23,7 @@
 		</tr>
 	</table>
 
-	<table width="900" border="0" cellspacing="0" cellpadding="2">
+	<table width="80%" border="0" cellspacing="0" cellpadding="2">
 		<tr align="center">
 			<td width="130"><strong>주문일자<br>[주문번호]</br></strong></td>
 			<td width="60"><strong>구매자 ID</strong></td>
