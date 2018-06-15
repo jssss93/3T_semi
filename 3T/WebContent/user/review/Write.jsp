@@ -57,7 +57,7 @@
 
 	<table width="600" border="0" cellspacing="0" cellpadding="2" align="center">
 		<tr>
-			<td align="center" class="text01 formbar">REVIEW&nbsp;|&nbsp;</td>
+			<td align="center" class="text01 formbar">REVIEW</td>
 
 		</tr>
 		<tr>

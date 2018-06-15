@@ -10,7 +10,7 @@
 	type="text/css">
 </head>
 <body>
-	<table border=0>
+	<table border=0 height="100">
 		<tr>
 			<td align="center" width="80"><a href="main.action"><h1>3T</h1></a>
 
@@ -53,6 +53,8 @@
                <a href="OrderMain.action"><b>ORDER</b></a> 
                &nbsp;|&nbsp;
                <a href="MypageForm.action"><b>MYPAGE</b></a> 
+               &nbsp;|&nbsp;
+               <a href="BasketMain.action"><b>CART</b></a> 
                &nbsp;&nbsp;
                </td>
                </tr>

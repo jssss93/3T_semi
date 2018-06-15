@@ -24,8 +24,10 @@
 		<action name="qa_writeForm" class="user.qa.WriteAction" method="form">
 			<result type="tiles">qawrite</result>
 		</action>
-
-		<action name="qa_writeAction" class="user.qa.WriteAction">
+		<action name="qa_writeForm1" class="user.qa.WriteAction" method="form1">
+			<result type="tiles">qawrite1</result>
+		</action>
+		<action name="Qa_writeAction" class="user.qa.WriteAction" >
 			<result type="redirect-action">
 				<param name="actionName">qa_listAction</param>
 			</result>
@@ -98,6 +100,17 @@
 			<result type="chain">
 				qa_viewAction
 			</result>
+		</action>
+		
+		<!-- 상품정보가져오기 -->
+		<action name="qa_SearchGoodsForm" class="user.qa.SearchGoods" method="form">
+			<result>/user/qa/SearchGoods.jsp</result>
+		</action>
+		<action name="qa_SearchGoods" class="user.qa.SearchGoods">
+			<result>/user/qa/SearchGoods.jsp</result>
+		</action>
+		<action name="qa_SearchGoodsSuccess" class="user.qa.SearchGoods">
+			<result>/user/qa/SearchGoodsSuccess.jsp</result>
 		</action>
 	</package>
 

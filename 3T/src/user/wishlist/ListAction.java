@@ -48,8 +48,8 @@ public class ListAction extends ActionSupport implements SessionAware{
 	public String execute() throws Exception {
 		paramClass.setW_MEMBER_ID(ActionContext.getContext().getSession().get("M_ID").toString());
 		// 모든 글을 가져와 list에 넣는다.
-		list = sqlMapper.queryForList("wishlist-selectAll",paramClass);
-
+		list = sqlMapper.queryForList("wishlist-selectAll_M",paramClass);
+		System.out.println("list"+list);
 		totalCount = list.size(); // 전체 글 갯수를 구한다.
 		// pagingAction 객체 생성.
 		page = new PagingAction(currentPage, totalCount, blockCount, blockPage);

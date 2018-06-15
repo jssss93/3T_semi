@@ -54,8 +54,20 @@
         		<td align="center">&nbsp;<s:a href="%{viewURL}"><s:property value="ORDER_GOODS_NAME" /></s:a></td>
 				<td align="center"><s:property value="ORDER_GOODS_COUNT" /></td>
         		<td><s:property value="ORDER_TOTAL" /></td>
-        		<td><s:property value="ORDER_STATE" /></td>
+
+        		<td>
+        		<s:if test="ORDER_STATE==1">
+					<input type="text" value="입금확인중" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
+				</s:if>
+				<s:if test="ORDER_STATE==2">
+					<input type="text" value="배송중" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
+				</s:if>
+				<s:if test="ORDER_STATE==3">
+					<input type="text" value="배송완료" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
+				</s:if>
+        		</td>
         		<td><input type="button"value="내역보기 " 
+
         		OnClick="window.open('Ordergoodslist.action?ORDER_NO=<s:property value="ORDER_NO" />','window_name','width=700,height=600,location=no,status=no,toolbar=no,scrollbars=no');" /></td></td>
         		   
         		

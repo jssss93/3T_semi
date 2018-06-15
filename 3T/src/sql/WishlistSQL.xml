@@ -36,7 +36,7 @@
 			WHERE W_MEMBER_ID=#W_MEMBER_ID#
 			ORDER BY W_NO DESC
 		</select>
-	   <select id="wishlist-selectone" resultMap="wishlistRes" parameterClass="int">
+ 		<select id="wishlist-selectone" resultMap="wishlistRes" parameterClass="int">
 			SELECT * FROM  WISHLIST where W_NO=#W_NO#
 		</select>
 		<!-- 선택삭제  -->

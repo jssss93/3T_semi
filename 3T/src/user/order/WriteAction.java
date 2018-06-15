@@ -16,8 +16,11 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-import admin.basket.VO.BasketVO;
+import user.basket.BasketVO;
+import admin.goods.VO.GoodsVO;
 import admin.member.VO.MemberVO;
+import user.qa.QaVO;
+import user.wishlist.WishlistVO;
 
 public class WriteAction extends ActionSupport implements SessionAware {
 
@@ -29,7 +32,7 @@ public class WriteAction extends ActionSupport implements SessionAware {
 
 	private MemberVO m_paramClass = new MemberVO();
 	private MemberVO m_resultClass = new MemberVO();
-
+	
 	public Map session;
 
 	public Map getSession() {
@@ -40,7 +43,8 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		this.session = session;
 	}
 
-	private List<BasketVO> B_List = new ArrayList<BasketVO>();;
+	private List<BasketVO> B_List = new ArrayList<BasketVO>();
+	private List basket_List=new ArrayList();
 
 	private int totalCount;
 
@@ -74,7 +78,19 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	private String ORDER_IMG;
 	private String ORDER_STATE;
 	Calendar today = Calendar.getInstance();
-
+	
+	private Integer PayTotal_List;
+	private Integer Pay_List ;
+	
+	private String[] chk;
+	private int basket_no;
+	private GoodsVO goods_paramClass =new GoodsVO();
+	private GoodsVO goods_resultClass=new GoodsVO();
+	private int goods_no;
+	private BasketVO basket_paramClass = new BasketVO();
+	private BasketVO basket_resultClass = new BasketVO();
+	private int BASKET_NO; // 상품 번호
+	
 	public WriteAction() throws IOException {
 
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
@@ -84,13 +100,36 @@ public class WriteAction extends ActionSupport implements SessionAware {
 
 	public String form() throws Exception {
 
-		m_paramClass.setM_id(ActionContext.getContext().getSession().get("M_ID").toString());
-		m_resultClass = (MemberVO) sqlMapper.queryForObject("AMselectOne_ID", m_paramClass);
-
-		B_List = sqlMapper.queryForList("basket-selectAll");
-
-		totalCount = B_List.size();
+		System.out.println("!!!!!!!(getChk()!!!!!!!"+getChk());
+		if (getChk() != null) {
+			for (int i = 0; i < this.getChk().length; i++) {
+				
+				String chkValue =this.getChk()[i];
+				B_List = sqlMapper.queryForList("basket-orderselect", Integer.parseInt(chkValue));
+				basket_List.add(B_List);
+			}
+			System.out.println("basket_List"+basket_List);
+			
+		} else {
+			B_List = sqlMapper.queryForList("basket-orderselect", getBasket_no());
+		}
 		return SUCCESS;
+	}
+
+	public List getBasket_List() {
+		return basket_List;
+	}
+
+	public void setBasket_List(List basket_List) {
+		this.basket_List = basket_List;
+	}
+
+	public int getBasket_no() {
+		return basket_no;
+	}
+
+	public void setBasket_no(int basket_no) {
+		this.basket_no = basket_no;
 	}
 
 	public String execute() throws Exception {
@@ -132,6 +171,78 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		sqlMapper.insert("order-insertBoard", paramClass);
 
 		return SUCCESS;
+	}
+
+	public BasketVO getBasket_paramClass() {
+		return basket_paramClass;
+	}
+
+	public void setBasket_paramClass(BasketVO basket_paramClass) {
+		this.basket_paramClass = basket_paramClass;
+	}
+
+	public BasketVO getBasket_resultClass() {
+		return basket_resultClass;
+	}
+
+	public void setBasket_resultClass(BasketVO basket_resultClass) {
+		this.basket_resultClass = basket_resultClass;
+	}
+
+	public int getBASKET_NO() {
+		return BASKET_NO;
+	}
+
+	public void setBASKET_NO(int bASKET_NO) {
+		BASKET_NO = bASKET_NO;
+	}
+
+	public GoodsVO getGoods_paramClass() {
+		return goods_paramClass;
+	}
+
+	public void setGoods_paramClass(GoodsVO goods_paramClass) {
+		this.goods_paramClass = goods_paramClass;
+	}
+
+	public GoodsVO getGoods_resultClass() {
+		return goods_resultClass;
+	}
+
+	public void setGoods_resultClass(GoodsVO goods_resultClass) {
+		this.goods_resultClass = goods_resultClass;
+	}
+
+	public int getGoods_no() {
+		return goods_no;
+	}
+
+	public void setGoods_no(int goods_no) {
+		this.goods_no = goods_no;
+	}
+
+	public String[] getChk() {
+		return chk;
+	}
+
+	public void setChk(String[] chk) {
+		this.chk = chk;
+	}
+
+	public Integer getPayTotal_List() {
+		return PayTotal_List;
+	}
+
+	public void setPayTotal_List(Integer payTotal_List) {
+		PayTotal_List = payTotal_List;
+	}
+
+	public Integer getPay_List() {
+		return Pay_List;
+	}
+
+	public void setPay_List(Integer pay_List) {
+		Pay_List = pay_List;
 	}
 
 	public MemberVO getM_paramClass() {
@@ -262,12 +373,13 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		ORDER_MEMBER_ID = oRDER_MEMBER_ID;
 	}
 
+
 	public String getORDER_GOODS_NO() {
 		return ORDER_GOODS_NO;
 	}
 
-	public void setORDER_GOODS_NO(String oRDER_GOODS_No) {
-		ORDER_GOODS_NO = oRDER_GOODS_No;
+	public void setORDER_GOODS_NO(String oRDER_GOODS_NO) {
+		ORDER_GOODS_NO = oRDER_GOODS_NO;
 	}
 
 	public Calendar getToday() {

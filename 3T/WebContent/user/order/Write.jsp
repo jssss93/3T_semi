@@ -164,19 +164,6 @@
 		return success;
 		
 	}
-	
-
-	function itemSum(frm) {
-		var sum = 0;
-		var sum2 = 0;
-		var count = frm.chk.length;
-		for (var i = 0; i < count; i++) {
-			if (frm.chk[i] == true) {
-				sum += parseInt(frm.BASKET_GOODS_AMOUNT[i].value);
-			}
-		}
-		frm.total_sum.value = sum;
-	}
 
     function CheckForm(Join){
         
@@ -264,10 +251,9 @@
 				</tr>
 				<tr bgcolor="#F9F9F9">
 				<td colspan="2">&nbsp;&nbsp;&nbsp;[기본배송]</td>
-
-
-				<td align="right" colspan="6">상품구매금액 ${g_resultClass.goods_price}
-					+배송비 0 =합계 :<font color="#FF0000">${g_resultClass.goods_price*sgoods_cnt}
+				</td>
+					<td align="right" colspan="6">상품구매금액 ${g_resultClass.goods_price}
+					+배송비 0 =합계 :<font color="#FF0000"> ${g_resultClass.goods_price*sgoods_cnt}
 				</font>
 				</td>
 
@@ -291,11 +277,12 @@
 				<td height="20"></td>
 			</tr>
 			</table>
-			</s:if>
+		</s:if>
 			
 			
 			<s:else>
-				<s:iterator value="B_List" status="stat">
+			
+				<s:iterator value="basket_List" status="stat">
 					<!-- http://localhost:8080/StrutsBoard/viewAction.action?no=2&currentPage=1 -->
 					<s:url id="viewURL" action="GoodsView">
 						<s:param name="goods_no">
@@ -319,12 +306,11 @@
 
 
 				</s:iterator>
+				
 				<tr bgcolor="#F9F9F9">
 				<td colspan="2">&nbsp;&nbsp;&nbsp;[기본배송]</td>
-
-
-				<td align="right" colspan="6">상품구매금액 ${BASKET_GOODS_AMOUNT}
-					+배송비 0 =합계 :<font color="#FF0000"> ${BASKET_GOODS_AMOUNT*BASKET_QUANTITY}
+				<td align="right" colspan="6">상품구매금액 <s:property value="Pay_List" /> 
+					+배송비 0=합계 :<font color="#FF0000"><s:property value="PayTotal_List" />
 				</font>
 				</td>
 
@@ -350,7 +336,7 @@
 			</table>
 			</s:else>
 
-			<s:if test="B_List.size() == 0">
+			<s:if test="basket_List.size() == 0">
 				<script>location.href = "main.action"; </script>
 
 			</s:if>
@@ -378,7 +364,7 @@
 				<td width="100" align="center" bgcolor="#F9F9F9">주문하시는분 <font
 					color="red" size="1">★</font></td>
 				<td width="400"><input type="text" name="ORDER_NAME" size="15"
-					maxlength="12" value="${m_resultClass.m_name }" id="order_name"></td>
+					maxlength="12" value="${m_resultClass.m_name}" id="order_name"></td>
 
 			</tr>
 			<tr>
@@ -516,27 +502,54 @@
 				<td height="10"></td>
 			</tr>
 		</table>
-		<table width="1000" border="1" cellspacing="0" cellpadding="3">
-			<tr bgcolor="#F9F9F9">
-				<td align="center" height="60" width="340"><font
-					color="#5D5D5D">총 주문 금액 </font> <input type="button"
-					value=" 내역보기 >"
-					OnClick="window.open('Orderpaylist.action?goods_no=<s:property value="goods_no" />&sgoods_cnt=<s:property value="sgoods_cnt" />','window_name','width=300,height=320,location=no,status=no,toolbar=no,scrollbars=no');" /></td>
-				<td align="center" width="340"><font color="#5D5D5D">총
-						할인 + 부가결제 금액</font></td>
-				<td align="center" width="340"><font color="#5D5D5D">총
-						결제예정 금액</font></td>
-			</tr>
-			<tr>
-				<td width="340" align="center"><font style="font-weight: bold;"><h3>KRW
-							${g_resultClass.goods_price*sgoods_cnt}</h3></font></td>
-				<td width="340" align="center"><font style="font-weight: bold;"><h3>-
-							KRW 0</h3></font></td>
-				<td align="center"><font style="font-weight: bold;"
-					color="#FF0000"><h3>= KRW
-							${g_resultClass.goods_price*sgoods_cnt}</h3></font></td>
-			</tr>
-		</table>
+		<s:if test="g_resultClass.goods_no != 0">
+			<table width="1000" border="1" cellspacing="0" cellpadding="3">
+				<tr bgcolor="#F9F9F9">
+					<td align="center" height="60" width="340"><font
+						color="#5D5D5D">총 주문 금액 </font> <input type="button"
+						value=" 내역보기 >"
+						OnClick="window.open('Orderpaylist.action?goods_no=<s:property value="goods_no" />&sgoods_cnt=<s:property value="sgoods_cnt" />','window_name','width=300,height=320,location=no,status=no,toolbar=no,scrollbars=no');" /></td>
+					<td align="center" width="340"><font color="#5D5D5D">총
+							할인 + 부가결제 금액</font></td>
+					<td align="center" width="340"><font color="#5D5D5D">총
+							결제예정 금액</font></td>
+				</tr>
+				<tr>
+					<td width="340" align="center"><font style="font-weight: bold;"><h3>KRW
+								${g_resultClass.goods_price*sgoods_cnt}</h3></font></td>
+					<td width="340" align="center"><font style="font-weight: bold;"><h3>-
+								KRW 0</h3></font></td>
+					<td align="center"><font style="font-weight: bold;"
+						color="#FF0000"><h3>= KRW
+								${g_resultClass.goods_price*sgoods_cnt}</h3></font></td>
+				</tr>
+			</table>
+		</s:if>
+		<s:else>
+			<table width="1000" border="1" cellspacing="0" cellpadding="3">
+				<tr bgcolor="#F9F9F9">
+					<td align="center" height="60" width="340"><font
+						color="#5D5D5D">총 주문 금액 </font> <input type="button"
+						value=" 내역보기 >"
+						OnClick="window.open('Orderpaylist.action?goods_no=<s:property value="goods_no" />&sgoods_cnt=<s:property value="sgoods_cnt" />','window_name','width=300,height=320,location=no,status=no,toolbar=no,scrollbars=no');" /></td>
+					<td align="center" width="340"><font color="#5D5D5D">총
+							할인 + 부가결제 금액</font></td>
+					<td align="center" width="340"><font color="#5D5D5D">총
+							결제예정 금액</font></td>
+				</tr>
+				
+				<tr>
+					<td width="340" align="center"><font style="font-weight: bold;"><h3>KRW
+								<s:property value="PayTotal_List" /></h3></font></td>
+					<td width="340" align="center"><font style="font-weight: bold;"><h3>-
+								KRW 0</h3></font></td>
+					<td align="center"><font style="font-weight: bold;"
+						color="#FF0000"><h3>= KRW
+								<s:property value="PayTotal_List" /></h3></font></td>
+								
+				</tr>
+			</table>
+		</s:else>
 		<table width="1000" border="0" cellspacing="0" cellpadding="3">
 			<tr>
 				<td height="10"></td>
@@ -585,7 +598,7 @@
 								<input type="hidden" name="ORDER_TOTAL" value="${g_resultClass.goods_price*sgoods_cnt}">
 								<input type="hidden" name="ORDER_GOODS_NO" value="${g_resultClass.goods_no}"> 
 								<input type="hidden" name="ORDER_MEMBER_ID" value="${session.M_ID}"> 
-								<input type="hidden" name="ORDER_STATE" value="입금확인중">
+								<input type="hidden" name="ORDER_STATE" value="1">
 						</tr>
 						<tr>
 							<td height="20"></td>

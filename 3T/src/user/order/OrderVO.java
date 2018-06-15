@@ -124,12 +124,7 @@ public class OrderVO {
 	public void setORDER_MEMBER_ID(String oRDER_MEMBER_ID) {
 		ORDER_MEMBER_ID = oRDER_MEMBER_ID;
 	}
-	public String getORDER_GOODS_NO() {
-		return ORDER_GOODS_NO;
-	}
-	public void setORDER_GOODS_NO(String oRDER_GOODS_No) {
-		ORDER_GOODS_NO = oRDER_GOODS_No;
-	}
+
 	public String getORDER_ADDRESS1() {
 		return ORDER_ADDRESS1;
 	}
@@ -213,6 +208,12 @@ public class OrderVO {
 	}
 	public void setORDER_GOODS_COUNT(int oRDER_GOODS_COUNT) {
 		ORDER_GOODS_COUNT = oRDER_GOODS_COUNT;
+	}
+	public String getORDER_GOODS_NO() {
+		return ORDER_GOODS_NO;
+	}
+	public void setORDER_GOODS_NO(String oRDER_GOODS_NO) {
+		ORDER_GOODS_NO = oRDER_GOODS_NO;
 	}
 	
 	

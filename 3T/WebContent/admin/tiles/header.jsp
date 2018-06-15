@@ -10,11 +10,11 @@
 	type="text/css">
 </head>
 <body>
-	<table border=0>
+	<table border=0 width="80%">
 
 
 
-		<tr>
+		
 			<td align="left" width="300" >
 				<a href="AD_main.action"><h1>3T</h1></a>
 				<a href="main.action">(회원용페이지로이동)</a>
@@ -23,21 +23,21 @@
 			
 			
 			<td>
-				<a href="AM_List.action">회원목록</a>&nbsp;|
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="AM_List.action">회원목록</a>&nbsp;|
 			</td>
 			<td>
-				<a href="AG_List.action">상품목록</a>&nbsp;|
+				<a href="AG_List.action">상품목록</a>&nbsp;|&nbsp;
 			</td>
 			<td>
-				<a href="AN_List.action">공지사항</a>&nbsp;|	
+				<a href="AN_List.action">공지사항</a>&nbsp;|&nbsp;
 			</td>
 			<td>
-				<a href="AF_List.action">FAQ</a>&nbsp;|
+				<a href="AF_List.action">FAQ</a>&nbsp;|&nbsp;
 			</td>
 			<td>
-				<a href="AQ_List.action">QA(아직)</a>&nbsp;|
+				<a href="AQ_List.action">QA(아직)</a>&nbsp;|&nbsp;
 			</td>
-			<td width="70">
+			<td>
 				<a href="AO_List.action">주문목록</a>&nbsp;
 			</td>
 			
@@ -47,8 +47,8 @@
 			<s:if test='%{session.M_ID == null}'>
 				<td align="right">
 					<!--비회원 헤더 카테고리  --> <!--비회원 로그인 폼  경로 잡아줄 것--> <a
-					href="login.action" >LOGIN</a> &nbsp;|&nbsp;<a
-					href="joinForm.action" >JOIN</a>
+					href="loginAction.action" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LOGIN</a> &nbsp;|&nbsp;<a
+					href="join1Form.action" >JOIN</a>
 
 				</td>
 			</s:if>

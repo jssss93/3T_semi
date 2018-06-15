@@ -34,6 +34,20 @@
 		}
 		document.form.submit();
 	}
+	
+	function scroll_follow( id )
+	{
+	  $(window).scroll(function( ) //스크롤이 움직일때마다 이벤트 발생
+	  { 
+	      var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+	    
+	      $( id ).stop().animate({top:position+"px"}, 1); //해당 오브젝트 위치값 재설정
+	   });
+	}
+	 scroll_follow( "#scroll" );
+		 //스크롤이 생기도록 
+
+	
 </script>
 </head>
 
@@ -489,27 +503,13 @@
 
 </table>
 <!-- 컨트롤러  -->
-<div id="scroll" style="position:absolute;top: 10px; left: 10px;"> 
+<div id="scroll" style="position:absolute; top: 400px; left: 10px;"> 
 <ul>
-<li><a href="#REVIEW"><h3>REVIEW</h3></a>
-<li><a href="#QNA"><h3>QnA</h3></a>
+<a href="#REVIEW"><h1>REVIEW</h1></a>
+<a href="#QNA"><h1>QnA</h1></a>
 </ul>
 </div>
 
-<script type="text/javascript"> 
-function scroll_follow( id )
-{
-  $(window).scroll(function( ) //스크롤이 움직일때마다 이벤트 발생
-  { 
-      var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
-    
-      $( id ).stop().animate({top:position+"px"}, 300); //해당 오브젝트 위치값 재설정
-   });
-}
- scroll_follow( "#scroll" );
-	 //스크롤이 생기도록 
 
-</script> 
-<!-- 컨트롤러 -->
 </body>
 </html>

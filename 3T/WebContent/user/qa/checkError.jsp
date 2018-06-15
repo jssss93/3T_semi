@@ -5,7 +5,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>checkError</title>
+<script type="text/javascript">
+	function ErrorMessage() {
+		alert("비밀번호가 틀립니다.");
+		history.back(-1);
+	}
+</script>
 </head>
+
 <body>
+	<script>
+		ErrorMessage()
+	</script>
 </body>
 </html>

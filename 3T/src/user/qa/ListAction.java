@@ -1,6 +1,9 @@
 package user.qa;
 
 import com.opensymphony.xwork2.ActionSupport;
+
+import admin.goods.VO.GoodsVO;
+
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
@@ -21,6 +24,7 @@ public class ListAction extends ActionSupport implements SessionAware{
 
 	
 	private List<QaVO> list = new ArrayList<QaVO>();
+	
 	public Map session;
 	
 	private String searchKeyword;
@@ -35,7 +39,9 @@ public class ListAction extends ActionSupport implements SessionAware{
 	private PagingAction page;
 	private int num = 0;
 
-
+	private GoodsVO g_paramClass = new GoodsVO();
+	private GoodsVO g_resultClass = new GoodsVO();
+	
 	public ListAction() throws IOException
 	{
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
@@ -46,6 +52,7 @@ public class ListAction extends ActionSupport implements SessionAware{
 	
 	public String execute() throws Exception {
 		
+	
 		
 		if(getSearchKeyword() != null)
 		{
@@ -62,7 +69,10 @@ public class ListAction extends ActionSupport implements SessionAware{
 		if(page.getEndCount() < totalCount)
 			lastCount = page.getEndCount() + 1;
 		
+
 		list = list.subList(page.getStartCount(), lastCount);
+	/*	g_paramClass.setGoods_no(getGoods_no());
+		g_resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", getGoods_no());*/
 		return SUCCESS;
 	}
 	
@@ -96,6 +106,22 @@ public class ListAction extends ActionSupport implements SessionAware{
 
 
 
+	public GoodsVO getG_paramClass() {
+		return g_paramClass;
+	}
+
+	public void setG_paramClass(GoodsVO g_paramClass) {
+		this.g_paramClass = g_paramClass;
+	}
+
+	public GoodsVO getG_resultClass() {
+		return g_resultClass;
+	}
+
+	public void setG_resultClass(GoodsVO g_resultClass) {
+		this.g_resultClass = g_resultClass;
+	}
+
 	public static Reader getReader() {
 		return reader;
 	}
@@ -119,6 +145,8 @@ public class ListAction extends ActionSupport implements SessionAware{
 	public void setSession(Map session) {
 		this.session = session;
 	}
+
+
 
 	public PagingAction getPage() {
 		return page;

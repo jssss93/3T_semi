@@ -6,8 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Q&A</title>
-<link rel="stylesheet" href="/3T/user/qa/common/css/css.css"
-	type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#form td.tdstyle2 {background-color :#000000; border:#ccc 1px solid; width:400px; padding:20px; font-size:14px; font-weight:bold; color:#000;}
+
+</style>
 
 <script type="text/javascript">
 	function open_win_noresizable(url, name)
@@ -21,30 +24,89 @@
 <body>
 	<table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
-			<td align="center"><h2>Q&A</h2></td>
+			<td align="center" class="text01 formbar"><h2>Q&A</h2></td>
 		</tr>
+		<tr>
+          <td height="20" colspan="2"></td>
+        </tr>
 	</table>
 
+	<table width="600" border="0" cellspacing="0" cellpadding="0" height="120" background="/3T/upload/QA_BG.png">
+			<tr >
+				<td colspan="2" height="1"></td>
+			</tr>
+			
+			<s:url id="viewURL" action="GoodsView">
+				<s:param name="goods_no">
+					<s:property value="goods_resultClass.goods_no" />
+			 	</s:param>
+				<s:param name="currentPage">
+			 		<s:property value="currentPage" />
+				</s:param>
+			</s:url>
+			<tr>                                             
+					<td align="center" width="120"><img src="/3T/upload/<s:property value="goods_resultClass.goods_file_savname.split(',')[0]"/>" width="80" height="100"></td>
+				
+					<td colspan="2"> <s:property value="goods_resultClass.goods_name" /><br>KRW <s:property value="goods_resultClass.goods_price" />
+					<hr align="center" width="470" color="#8C8C8C"  ><br>
+						<s:a href="%{viewURL}"><input type="button" name="button" value="상품 상세보기 ▶"/></s:a>
+					</td>
+			</tr>
+		</table>
 	<table width="600" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+          <td height="5" colspan="2"></td>
+        </tr>
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>
 		</tr>
 		<tr>
-			<td width="100">번호</td>
+			<td height="20" colspan="2"></td>
+		</tr>
+		<tr>
+			<td width="100" class="tdstyle1">번호</td>
 			<td width="500"><s:property value="resultClass.QA_NO" /></td>
 		</tr>
 		<tr>
-			<td width="100">제목</td>
+			<td width="100" class="tdstyle1">제목</td>
 			<td width="500"><s:property value="resultClass.QA_SUBJECT" /></td>
 		</tr>
 		<tr>
 			<td width="100">이름</td>
 			<td width="500"><s:property value="resultClass.QA_NAME" /></td>
 		</tr>
-
+		<tr>
+			<td height="20" colspan="2"></td>
+		</tr>
+		<tr bgcolor="#777777">
+			<td height="1" colspan="2"></td>
+		</tr>
+		<tr>
+			<td height="20" colspan="2"></td>
+		</tr>
 		<tr>
 			<td width="100">내용</td>
-			<td width="500">${resultClass.QA_CONTENT}</td>
+			<td width="500">${resultClass.QA_CONTENT}<br><br>
+			<s:if test="resultClass.QA_FILE_SAVNAME !=null">
+					<img
+				src="/3T/upload/<s:property value="resultClass.QA_FILE_SAVNAME"/>"
+				width"="300" height="300"> 
+			</s:if>
+			<s:else>
+				<td height="100" colspan="2"></td>
+			</s:else>
+			
+			</td> 
+			
+		</tr>
+		<tr>
+			<td height="20" colspan="2"></td>
+		</tr>
+		<tr bgcolor="#777777">
+			<td height="1" colspan="2"></td>
+		</tr>
+		<tr>
+			<td height="20" colspan="2"></td>
 		</tr>
 		<tr>
 			<td width="100">조회수</td>
@@ -65,6 +127,9 @@
 					<s:property value="resultClass.QA_FILE_ORGNAME" />
 				</s:a>
 			</td>
+		</tr>
+		<tr>
+			<td height="20" colspan="2"></td>
 		</tr>
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>
