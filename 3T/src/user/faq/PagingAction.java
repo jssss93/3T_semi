@@ -51,9 +51,9 @@ public class PagingAction implements SessionAware{
 		if(currentPage > blockPage)
 		{
 			if(isSearch != "")
-				pagingHtml.append("<a href=listAction.action?currentPage=" + (startPage - 1) + "&searchKeyword="+isSearch+"&searchNum="+searchNum+">");
+				pagingHtml.append("<a href=UserFaqList.action?currentPage=" + (startPage - 1) + "&searchKeyword="+isSearch+"&searchNum="+searchNum+">");
 			else
-				pagingHtml.append("<a href=listAction.action?currentPage=" + (startPage - 1) + ">");
+				pagingHtml.append("<a href=UserFaqList.action?currentPage=" + (startPage - 1) + ">");
 			pagingHtml.append("¿Ã¿¸");
 			pagingHtml.append("</a>");
 		}
@@ -74,7 +74,7 @@ public class PagingAction implements SessionAware{
 			}
 			else
 			{
-				pagingHtml.append("&nbsp;<a href='listAction.action?currentPage=");
+				pagingHtml.append("&nbsp;<a href='UserFaqList.action?currentPage=");
 				pagingHtml.append(i);
 				if(isSearch != "")
 					pagingHtml.append("&searchKeyword="+isSearch);
@@ -90,7 +90,7 @@ public class PagingAction implements SessionAware{
 		
 		if(totalPage - startPage >= blockPage)
 		{
-			pagingHtml.append("&nbsp;<a href='listAction.action?currentPage=");
+			pagingHtml.append("&nbsp;<a href='UserFaqList.action?currentPage=");
 			pagingHtml.append((endPage+1));
 			if(isSearch != "")
 				pagingHtml.append("&searchKeyword="+isSearch);

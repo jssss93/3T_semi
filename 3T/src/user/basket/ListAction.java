@@ -26,7 +26,9 @@ public class ListAction extends ActionSupport implements SessionAware {
 	public Map session;
 
 	private List<BasketVO> B_List = new ArrayList<BasketVO>();
-
+	private Integer PayTotal_List;
+	private Integer Pay_List ;
+	
 	// 생성자
 	public ListAction() throws IOException {
 
@@ -39,12 +41,38 @@ public class ListAction extends ActionSupport implements SessionAware {
 	public String execute() throws Exception {
 
 		// 모든 글을 가져와 list에 넣는다.
-		
-
 		paramClass.setBasket_member_id(ActionContext.getContext().getSession().get("M_ID").toString());
 		// 모든 글을 가져와 list에 넣는다.
 		B_List = sqlMapper.queryForList("basket-selectM",paramClass);
+		
+		//장바구니 계산 
+		Pay_List = (Integer)sqlMapper.queryForObject("basket-pay",paramClass.getBasket_member_id());
+		PayTotal_List = (Integer) sqlMapper.queryForObject("basket-paytotal",paramClass.getBasket_member_id());
 		return SUCCESS;
+	}
+	
+	public int getPayTotal_List() {
+		return PayTotal_List;
+	}
+
+	public void setPayTotal_List(int payTotal_List) {
+		PayTotal_List = payTotal_List;
+	}
+
+	public int getPay_List() {
+		return Pay_List;
+	}
+
+	public void setPay_List(int pay_List) {
+		Pay_List = pay_List;
+	}
+
+	public BasketVO getParamClass() {
+		return paramClass;
+	}
+
+	public void setParamClass(BasketVO paramClass) {
+		this.paramClass = paramClass;
 	}
 
 	public static Reader getReader() {

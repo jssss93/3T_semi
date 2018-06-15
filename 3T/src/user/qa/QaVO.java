@@ -20,6 +20,29 @@ public class QaVO {
 	private String QA_MAKE_PUBLIC;
 	private int QA_CATEGORY_NO; //QA_CATEGORY_NO
 	private String QA_MEMBER_ID;
+	private int QA_GOODS_NO;
+	private String QA_GOODS_NAME;
+	private String QA_GOODS_IMG;
+	
+	
+	public String getQA_GOODS_IMG() {
+		return QA_GOODS_IMG;
+	}
+	public void setQA_GOODS_IMG(String qA_GOODS_IMG) {
+		QA_GOODS_IMG = qA_GOODS_IMG;
+	}
+	public String getQA_GOODS_NAME() {
+		return QA_GOODS_NAME;
+	}
+	public void setQA_GOODS_NAME(String qA_GOODS_NAME) {
+		QA_GOODS_NAME = qA_GOODS_NAME;
+	}
+	public int getQA_GOODS_NO() {
+		return QA_GOODS_NO;
+	}
+	public void setQA_GOODS_NO(int qA_GOODS_NO) {
+		QA_GOODS_NO = qA_GOODS_NO;
+	}
 	public int getQA_NO() {
 		return QA_NO;
 	}
@@ -116,6 +139,6 @@ public class QaVO {
 	public void setQA_MEMBER_ID(String qA_MEMBER_ID) {
 		QA_MEMBER_ID = qA_MEMBER_ID;
 	}
-	
+
 	
 }

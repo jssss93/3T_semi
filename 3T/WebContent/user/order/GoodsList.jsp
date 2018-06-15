@@ -6,18 +6,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
-<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
-
 </head>
 <body>
-<table width="700" border="0" cellspacing="0" cellpadding="0" id="form">
+<table width="700" border="0" cellspacing="0" cellpadding="0">
 			<tr>
 				<td colspan="2" align="right"><font style="font-weight: bold;" color="#FF0000"><h3> ♥ </h3></font></td>
 			</tr>
 			<p>
 			<s:iterator value="list1" status="stat">
 			<tr>
-				<td width="120" class="tdstyle1">
+				<td width="120">
 					ㆍ주문자 ID
 				</td>
 				<td align="right">
@@ -25,15 +23,15 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="tdstyle1">
+				<td>
 					ㆍ주문자 이름
 				</td>
-				<td align="right" >
+				<td align="right">
 					<font style="font-weight: bold;"><h5>= <s:property value="ORDER_NAME" /></h5></font>
 				</td>
 			</tr>
 			<tr>
-				<td class="tdstyle1">
+				<td>
 					ㆍ주문자 주소
 				</td>
 				<td align="right" >
@@ -41,7 +39,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="tdstyle1">
+				<td>
 					ㆍ주문자 연락처
 				</td>
 				<td align="right">
@@ -49,7 +47,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="tdstyle1">
+				<td>
 					ㆍ받는자 이름
 				</td>
 				<td align="right">
@@ -57,7 +55,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="tdstyle1">
+				<td>
 					ㆍ받는자 주소
 				</td>
 				<td align="right">
@@ -65,7 +63,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="tdstyle1">
+				<td>
 					ㆍ받는자 연락처 
 				</td>
 				<td align="right">
@@ -73,7 +71,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="tdstyle1">
+				<td>
 					ㆍ총금액 
 				</td>
 				<td align="right">
@@ -81,7 +79,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="center" colspan="2"><input  class="hreflink" type="button" name="close" onclick="window.close()" value="닫기"/></td>
+				<td align="center" colspan="2"><input type="button" name="close" onclick="window.close()" value="닫기"/></td>
 			</tr>
 		</s:iterator>
 	</table>

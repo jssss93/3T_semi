@@ -11,7 +11,10 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+
+import user.wishlist.WishlistVO;
 
 public class ListAction extends ActionSupport implements SessionAware{
 
@@ -30,6 +33,9 @@ public class ListAction extends ActionSupport implements SessionAware{
 	
 	public Map session;
 
+	private OrderVO paramClass = new OrderVO();
+	private OrderVO resultClass = new OrderVO();
+	
 	// 생성자
 	public ListAction() throws IOException {
 
@@ -41,9 +47,9 @@ public class ListAction extends ActionSupport implements SessionAware{
 
 	// 게시판 LIST 액션
 	public String execute() throws Exception {
-
+		paramClass.setORDER_MEMBER_ID(ActionContext.getContext().getSession().get("M_ID").toString());
 		// 모든 글을 가져와 list에 넣는다.
-		list = sqlMapper.queryForList("selectOrder");
+		list = sqlMapper.queryForList("selectOrder",paramClass);
 		list1 = sqlMapper.queryForList("selectOrder1", getORDER_NO());
 		System.out.println("testtest" + list);
 		totalCount = list.size(); // 전체 글 갯수를 구한다.

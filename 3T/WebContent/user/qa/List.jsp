@@ -8,23 +8,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Q&A</title>
-<link rel="stylesheet" href="/3T/user/qa/common/css/css.css" type="text/css">
+<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+#form td.tdstyle2 {background-color :#000000; border:#ccc 1px solid; width:400px; padding:20px; font-size:14px; font-weight:bold; color:#000;}
+
+</style>
 </head>
 <body>
-	<table width="600" border="0" cellspacing="0" cellpadding="2">
+	<table width="1000" border="0" cellspacing="0" cellpadding="2">
 		<tr>
-			<td align="left"><h2>Q&A</h2></td>
+			<td height="50"></td>
+		</tr>
+		<tr>
+			<td align="center" class="text01 formbar"><h2>Q&A</h2></td>
+		</tr>
+		<tr>
+			<td height="50"></td>
 		</tr>
 	</table>
-	
-	<table width="600" border="0" cellspacing="0" cellpadding="2">
-		<tr align="center" bgcolor="#f3f3f3">
-			<td width="50"><strong>NO</strong></td>
-			<td width="350"><strong>ITEM</strong></td>
+	<form name="inputForm">
+	<table width="1000" border="0" cellspacing="0" cellpadding="2">
+		<tr align="center" >
+			<td width="70"><strong>NO</strong></td>
+			<td width="70"><strong>ITEM</strong></td>
 			<td width="70"><strong>CATEGORY</strong></td>
-			<td width="80"><strong> </strong></td>
-			<td width="50"><strong>NAME</strong></td>
-			<td width="50"><strong>DATE</strong></td>
+			<td width="600"><strong> </strong></td>
+			<td width="70"><strong>NAME</strong></td>
+			<td width="70"><strong>DATE</strong></td>
 		</tr>
 
 		<tr bgcolor="#777777">
@@ -41,15 +51,28 @@
 			</s:param>
 		</s:url>
 	
-		<tr>
+		<tr align="center">
 			<td align="center"><s:property value="QA_NO" /></td>
-			<td align="center"><img src="/3T/upload/${QA_FILE_SAVNAME}" width="50"></td>
-			<td align="center"><s:property value="QA_CATEGORY_NO" /></td>
-			<td align="left">
+			<td align="center"><img src="/3T/upload/${QA_GOODS_IMG}" width="50"></td>
+			<td align="center">
+				<s:if test="QA_CATEGORY_NO==1">
+					<input type="text" value="상품문의" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
+				</s:if>
+				<s:if test="QA_CATEGORY_NO==2">
+					<input type="text" value="배송문의" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
+				</s:if>
+				<s:if test="QA_CATEGORY_NO==3">
+					<input type="text" value="입금확인문의" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
+				</s:if>
+				<s:if test="QA_CATEGORY_NO==4">
+					<input type="text" value="기타문의" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" />
+				</s:if>
+			</td>				
+			<td align="center">
 				<s:if test="QA_RE_LEVEL != 0">
 					<c:forEach var = "i" begin = "${QA_RE_LEVEL}" end = "0">&nbsp;</c:forEach>→
 				</s:if>	
- 				<s:a href="%{viewURL}"><s:property value="QA_SUBJECT" /></s:a>
+ 				<s:a href="%{viewURL}"><s:property value="QA_GOODS_NAME" /><br><s:property value="QA_SUBJECT"/></s:a>
  			</td>
 			<td align="center"><s:property value="QA_NAME" /></td>
 			<td align="center"><s:property value="QA_REGDATE" /></td>
@@ -74,24 +97,25 @@
 
 	<tr align="right">
 		<td colspan="6">
-			<input type="button" value="글쓰기" class="inputb" onClick="javascript:location.href='qa_writeForm.action?currentPage=<s:property value="currentPage" />';" />
+			<input type="button" value="글쓰기" class="hreflink" onClick="javascript:location.href='qa_writeForm.action?currentPage=<s:property value="currentPage" />';" />
 		</td>
 	</tr>
 
 	<tr align="center">
 		<td colspan="6">
 			<form>
-				<select name="searchNum" >
+				<select name="searchNum" style="width: 100px; height: 30px;" >
 					<option value="0">작성자</option>
 					<option value="1">제목</option>
 					<option value="2">내용</option>
 				</select>
-				<s:textfield name="searchKeyword" theme="simple" value="" cssStyle="width:120px" maxlength="20" />
-				<input name="submit" type="submit" value="검색" class="inputb">
+				<s:textfield name="searchKeyword" theme="simple" value="" cssStyle="width:200px; height:30px;" maxlength="20" />
+				<input name="submit" type="submit" value="SEARCH" class="submit" >
 			</form>
 		</td>
 	</tr>
 </table>
+</form>
 </body>
 </html>
 

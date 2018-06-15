@@ -32,8 +32,6 @@
 				<param name="actionName">BasketMain</param>
 			</result>
        </action>
-		<!-- 관심상품 비우기 -->
-		<!-- 개별삭제 -->
-		<!-- 개별 주문하기 -->
+
 	</package>
 </struts>

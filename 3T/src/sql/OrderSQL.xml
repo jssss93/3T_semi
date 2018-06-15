@@ -54,7 +54,9 @@
 		</select>
 		<!-- order 조회 쿼리 -->
 		<select id="selectOrder" resultMap="orderRes">
-		 SELECT * FROM  ORDER_3T ORDER BY ORDER_NO DESC
+		 SELECT * FROM  ORDER_3T 
+		 WHERE ORDER_MEMBER_ID=#ORDER_MEMBER_ID#
+		 ORDER BY ORDER_NO DESC
 		 <!--  SELECT * FROM  ORDER_3T WHERE ORDER_NO=#ORDER_NO# -->
 		</select>
 		
@@ -67,6 +69,8 @@
 		 SELECT * FROM  ORDER_3T WHERE ORDER_NO=#ORDER_NO#
 		</select>
 		<!-- insert 쿼리문 정의 -->
+		
+		
 		<insert id="order-insertBoard" parameterClass="order">		
       		INSERT INTO ORDER_3T (ORDER_NO,
       							ORDER_NAME,
@@ -133,6 +137,5 @@
                          	#ORDER_GOODS_COUNT#
                          )
 		</insert>
-		
 		
 </sqlMap>

@@ -51,10 +51,10 @@ public class PagingAction implements SessionAware{
 		if(currentPage > blockPage)
 		{
 			if(isSearch != "")
-				pagingHtml.append("<a href=listAction.action?currentPage=" + (startPage - 1) + "&searchKeyword="+isSearch+"&searchNum="+searchNum+">");
+				pagingHtml.append("<a href=qa_listAction.action?currentPage=" + (startPage - 1) + "&searchKeyword="+isSearch+"&searchNum="+searchNum+">");
 			else
-				pagingHtml.append("<a href=listAction.action?currentPage=" + (startPage - 1) + ">");
-			pagingHtml.append("?씠?쟾");
+				pagingHtml.append("<a href=qa_listAction.action?currentPage=" + (startPage - 1) + ">");
+			pagingHtml.append("이전");
 			pagingHtml.append("</a>");
 		}
 		
@@ -74,7 +74,7 @@ public class PagingAction implements SessionAware{
 			}
 			else
 			{
-				pagingHtml.append("&nbsp;<a href='listAction.action?currentPage=");
+				pagingHtml.append("&nbsp;<a href='qa_listAction.action?currentPage=");
 				pagingHtml.append(i);
 				if(isSearch != "")
 					pagingHtml.append("&searchKeyword="+isSearch);
@@ -90,12 +90,12 @@ public class PagingAction implements SessionAware{
 		
 		if(totalPage - startPage >= blockPage)
 		{
-			pagingHtml.append("&nbsp;<a href='listAction.action?currentPage=");
+			pagingHtml.append("&nbsp;<a href='qa_listAction.action?currentPage=");
 			pagingHtml.append((endPage+1));
 			if(isSearch != "")
 				pagingHtml.append("&searchKeyword="+isSearch);
 			pagingHtml.append("'>");
-			pagingHtml.append("?떎?쓬");
+			pagingHtml.append("다음");
 			pagingHtml.append("</a>");
 		}
 	}

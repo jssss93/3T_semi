@@ -7,33 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Order</title>
-<link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
-
-<style type="text/css">
-.text01 {
-	color: #000000;
-	font-size: 18px;
-	font-weight: bold;
-	padding-bottom: 15px;
-}
-
-input.hreflink {
-	background-color: #eee;
-	border: 1px solid #bbb;
-	border-radius: 5px;
-	color: #555;
-	padding: 8px 30px;
-	font-weight: bold;
-}
-
-}
-.formbar {
-	border-top: #000000 1px solid;
-	border-bottom: #000000 1px solid;
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
-</style>
+<link rel="stylesheet" href="/3T/user/order/common/css/css.css"
+	type="text/css">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 	function sample6_execDaumPostcode() {
@@ -177,7 +152,7 @@ input.hreflink {
 	function sele(n) {
 		if (n == 0) {
 			document.form.action = "order_checkdelete.action"
-		}
+		} 
 		return false;
 	}
 
@@ -187,53 +162,39 @@ input.hreflink {
 			obj[i].checked = bool;
 		/* return itemSum(this.form); */
 		return success;
-
+		
 	}
 
-	function itemSum(frm) {
-		var sum = 0;
-		var sum2 = 0;
-		var count = frm.chk.length;
-		for (var i = 0; i < count; i++) {
-			if (frm.chk[i] == true) {
-				sum += parseInt(frm.BASKET_GOODS_AMOUNT[i].value);
-			}
-		}
-		frm.total_sum.value = sum;
-	}
-
-	function CheckForm(Join) {
-
-		//체크박스 체크여부 확인 [
-		var chk1 = document.Orderinformation.checkbox_agree.checked;
-
-		if (!chk1) {
-			alert('동의해 주세요');
-			return false;
-		}
-	}
+    function CheckForm(Join){
+        
+        //체크박스 체크여부 확인 [
+        var chk1=document.Orderinformation.checkbox_agree.checked;
+   
+        if(!chk1){
+            alert('동의해 주세요');
+            return false;
+        } 
+    }
 </script>
 </head>
 <body onload="itemSum(this.form)">
 
-	<table width="1000" border="0" cellspacing="0" cellpadding="2">
+	<table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td height="30"></td>
 		</tr>
 		<tr>
-			<td align="center" class="text01 formbar"><h2>Order</h2></td>
+			<td align="left"><h2>Order</h2></td>
 		</tr>
 		<tr>
 			<td height="50"></td>
 		</tr>
 	</table>
 
-	<table width="1000" border="1" cellspacing="0" cellpadding="2"
-		id="form">
+	<table width="1000" border="1" cellspacing="0" cellpadding="2">
 		<tr>
-			<td width="100" rowspan="2" align="center" class="tdstyle2">해택
-				정보</td>
-			<td width="900">&nbsp;&nbsp;${session.M_ID} 회원님의 구매하기</td>
+			<td width="50" rowspan="2" align="center">해택 정보</td>
+			<td width="400">&nbsp;&nbsp;${session.M_ID} 회원님의 구매하기</td>
 		</tr>
 		<tr>
 			<td width="400">&nbsp;&nbsp;쿠폰 : <font color="#FF0000">$
@@ -242,19 +203,18 @@ input.hreflink {
 	</table>
 	<form name="form">
 
-		<table width="1000" border="0" cellspacing="0" cellpadding="2"
-			id="form">
+		<table width="1000" border="0" cellspacing="0" cellpadding="2">
 			<tr>
 				<td height="20"></td>
 			</tr>
 			<tr>
-				<td colspan="6" align="left" width="70" class="tdstyle2"><h4>&nbsp;&nbsp;국내배송상품
+				<td colspan="6" align="left" width="70"><h4>&nbsp;&nbsp;국내배송상품
 						주문내역</h4></td>
 			</tr>
 
 			<tr align="center" bgcolor="#F9F9F9">
-				<td width="50"><input type="checkbox" value="" class="checkbox"
-					onclick=chkBox(this.checked) checked /></td>
+				<td width="50"><input type="checkbox" value=""
+					class="checkbox" onclick=chkBox(this.checked) checked /></td>
 				<td width="100"><strong>이미지 </strong></td>
 
 				<td width="400"><strong>상품정보</strong></td>
@@ -264,100 +224,37 @@ input.hreflink {
 
 			</tr>
 
-
+          
 			<s:if test="g_resultClass.goods_no != 0">
-
-				<s:url id="viewURL" action="GoodsView">
-					<s:param name="goods_no">
-						<s:property value="goods_no" />
-					</s:param>
-					<s:param name="currentPage">
-						<s:property value="currentPage" />
-					</s:param>
-				</s:url>
-
+			
+						<s:url id="viewURL" action="GoodsView">
+							<s:param name="goods_no">
+								<s:property value="goods_no" />
+							</s:param>
+							<s:param name="currentPage">
+								<s:property value="currentPage" />
+							</s:param>
+						</s:url>
+			
 				<tr align="center">
-					<td width="50"><input type="checkbox" name="chk" checked
-						value="<s:property value="g_resultClass.goods_no"/>" /></td>
+					<td width="50"><input type="checkbox" name="chk" 
+					checked value="<s:property value="g_resultClass.goods_no"/>"/></td>
 					<td width="100"><img
 						src="/3T/upload/<s:property value="g_resultClass.goods_file_savname.split(',')[0]"/>"
 						width="50"></td>
 					<td width="400">&nbsp;<s:a href="%{viewURL}">${g_resultClass.goods_name}</s:a></td>
 					<td width="80">${g_resultClass.goods_price}</td>
-					<td width="80"><%=request.getParameter("sgoods_cnt")%></td>
-
+          			<td width="80"><%=request.getParameter("sgoods_cnt") %></td>
+		
 					<td width="120">${g_resultClass.goods_price*sgoods_cnt}</td>
 
 				</tr>
 				<tr bgcolor="#F9F9F9">
-					<td colspan="2">&nbsp;&nbsp;&nbsp;[기본배송]</td>
-
-
-					<td align="right" colspan="6">상품구매금액
-						${g_resultClass.goods_price} +배송비 0 =합계 :<font color="#FF0000">${g_resultClass.goods_price*sgoods_cnt}
-					</font>
-					</td>
-
-				</tr>
-				<tr align="left">
-					<td colspan="6" bgcolor="#FFCBCB"><font color="#CC3D3D">
-							&nbsp;&nbsp;&nbsp;⊙&nbsp;&nbsp;상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서
-							가능합니다.</td>
-					</font>
-				</tr>
-
-
-				<tr align="right">
-					<td width="120">선택한상품</td>
-					<td align="left"><input name="submit" type="submit"
-						class="hreflink" value="삭제하기" onclick="sele(0);"></td>
-					<td colspan="6"><input name="Main" type="button"
-						value="주문페이지 ▶"
-						onClick="javascript:location.href='OrderMain.action'"
-						class="hreflink"></td>
-				</tr>
-				<tr>
-					<td height="20"></td>
-				</tr>
-		</table>
-		</s:if>
-
-
-		<s:else>
-			<s:iterator value="B_List" status="stat">
-				<!-- http://localhost:8080/StrutsBoard/viewAction.action?no=2&currentPage=1 -->
-				<s:url id="viewURL" action="GoodsView">
-					<s:param name="goods_no">
-						<s:property value="BASKET_GOODS_NO" />
-					</s:param>
-					<s:param name="currentPage">
-						<s:property value="currentPage" />
-					</s:param>
-				</s:url>
-
-
-				<tr bgcolor="#F9F9F9" align="center">
-					<td width="50"><input type="checkbox"
-						onClick="itemSum(this.form)" onload="itemSum(this.form)"
-						name="chk" value="<s:property value="BASKET_NO"/>" /></td>
-					<td><img src="/3T/upload/${BASKET_GOODS_IMG}" width="50"></td>
-					<td align="center">&nbsp;<s:a href="%{viewURL}">
-							<s:property value="BASKET_NAME" />
-						</s:a></td>
-					<td align="center"><s:property value="BASKET_GOODS_AMOUNT" /></td>
-					<td align="center"><s:property value="BASKET_QUANTITY" /></td>
-					<td><s:property value="BASKET_GOODS_AMOUNT*BASKET_QUANTITY" /></td>
-				</tr>
-
-
-			</s:iterator>
-			<tr bgcolor="#F9F9F9">
 				<td colspan="2">&nbsp;&nbsp;&nbsp;[기본배송]</td>
-
-
-				<td align="right" colspan="6">상품구매금액 ${BASKET_GOODS_AMOUNT}
-					+배송비 0 =합계 :<font color="#FF0000">
-						${BASKET_GOODS_AMOUNT*BASKET_QUANTITY} </font>
+				</td>
+					<td align="right" colspan="6">상품구매금액 ${g_resultClass.goods_price}
+					+배송비 0 =합계 :<font color="#FF0000"> ${g_resultClass.goods_price*sgoods_cnt}
+				</font>
 				</td>
 
 			</tr>
@@ -369,42 +266,92 @@ input.hreflink {
 			</tr>
 
 			<tr align="right">
-				<td width="80">선택한상품</td>
+				<td width="80">선택한상품을</td>
 				<td align="left"><input name="submit" type="submit"
-					class="hreflink" value="삭제하기" style="background-color: #B8B8B8;"
-					onclick="sele(0);" /></td>
+					value="삭제하기" style="background-color: #B8B8B8;" onclick="sele(0);" /></td>
 				<td colspan="6"><input name="Main" type="button"
-					value="이전페이지 ▶"
-					onClick="javascript:location.href='OrderMain.action'"
-					class="submit"></td>
+					value="주문페이지 ▶"
+					onClick="javascript:location.href='OrderMain.action'"></td>
 			</tr>
 			<tr>
 				<td height="20"></td>
 			</tr>
 			</table>
-		</s:else>
-
-		<s:if test="B_List.size() == 0">
-			<script>
-				location.href = "main.action";
-			</script>
-
 		</s:if>
+			
+			
+			<s:else>
+			
+				<s:iterator value="basket_List" status="stat">
+					<!-- http://localhost:8080/StrutsBoard/viewAction.action?no=2&currentPage=1 -->
+					<s:url id="viewURL" action="GoodsView">
+						<s:param name="goods_no">
+							<s:property value="BASKET_GOODS_NO" />
+						</s:param>
+						<s:param name="currentPage">
+							<s:property value="currentPage" />
+						</s:param>
+					</s:url>
 
+					
+					<tr bgcolor="#F9F9F9" align="center">
+						<td width="50"><input type="checkbox" onClick="itemSum(this.form)" onload="itemSum(this.form)"
+						name="chk" value="<s:property value="BASKET_NO"/>" /></td>
+						<td><img src="/3T/upload/${BASKET_GOODS_IMG}" width="50"></td>
+						<td align="center">&nbsp;<s:a href="%{viewURL}"><s:property value="BASKET_NAME" /></s:a></td>
+						<td align="center"><s:property value="BASKET_GOODS_AMOUNT" /></td>
+						<td align="center"><s:property value="BASKET_QUANTITY" /></td>
+						<td><s:property value="BASKET_GOODS_AMOUNT*BASKET_QUANTITY" /></td>
+					</tr>
+
+
+				</s:iterator>
+				
+				<tr bgcolor="#F9F9F9">
+				<td colspan="2">&nbsp;&nbsp;&nbsp;[기본배송]</td>
+				<td align="right" colspan="6">상품구매금액 <s:property value="Pay_List" /> 
+					+배송비 0=합계 :<font color="#FF0000"><s:property value="PayTotal_List" />
+				</font>
+				</td>
+
+				</tr>
+				<tr align="left">
+					<td colspan="6" bgcolor="#FFCBCB"><font color="#CC3D3D">
+							&nbsp;&nbsp;&nbsp;⊙&nbsp;&nbsp;상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서
+							가능합니다.</td>
+					</font>
+				</tr>
+
+				<tr align="right">
+					<td width="80">선택한상품을</td>
+					<td align="left"><input name="submit" type="submit"
+						value="삭제하기" style="background-color: #B8B8B8;" onclick="sele(0);" /></td>
+					<td colspan="6"><input name="Main" type="button"
+						value="이전페이지 ▶"
+						onClick="javascript:location.href='OrderMain.action'"></td>
+				</tr>
+				<tr>
+					<td height="20"></td>
+				</tr>
+			</table>
+			</s:else>
+
+			<s:if test="basket_List.size() == 0">
+				<script>location.href = "main.action"; </script>
+
+			</s:if>
+			
 	</form>
 	<hr align="center" width="1000" color="#8C8C8C">
-	<table width="1000" border="0" cellspacing="0" cellpadding="3"
-		id="form">
+	<table width="1000" border="0" cellspacing="0" cellpadding="3">
 		<tr>
 			<td height="10"></td>
 		</tr>
-
 		<tr>
-			<td height="39" align="left" class="tdstyle2" colspan="2"><font
-				style="font-weight: bold;">주문 정보</font>&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<font color="red" size="1">★</font><font color="#ffffff">필수입력사항</font></td>
-
+			<td height="39" align="left"><font style="font-weight: bold;">주문
+					정보</font></td>
+			<td align="right"><font color="red" size="1">★</font><font
+				color="#A6A6A6">필수입력사항</font></td>
 		</tr>
 		<tr>
 			<td height="10"></td>
@@ -412,17 +359,16 @@ input.hreflink {
 	</table>
 	<form method="post" action="OrderWriteAction.action"
 		name="Orderinformation" onSubmit="return CheckForm(this)">
-		<table width="1000" border="1" cellspacing="0" cellpadding="3"
-			id="form">
+		<table width="1000" border="1" cellspacing="0" cellpadding="3">
 			<tr>
-				<td width="100" align="center" class="tdstyle1">주문하시는분 <font
+				<td width="100" align="center" bgcolor="#F9F9F9">주문하시는분 <font
 					color="red" size="1">★</font></td>
 				<td width="400"><input type="text" name="ORDER_NAME" size="15"
-					maxlength="12" value="${m_resultClass.m_name }" id="order_name"></td>
+					maxlength="12" value="${m_resultClass.m_name}" id="order_name"></td>
 
 			</tr>
 			<tr>
-				<td align="center" valign="top" class="tdstyle1">주소 <font
+				<td align="center" valign="top" bgcolor="#F9F9F9">주소 <font
 					color="red" size="1">★</font></td>
 				<td><input type="text" name="ORDER_ZIPCODE"
 					id="sample7_postcode" value="${m_resultClass.m_zipcode }">
@@ -435,7 +381,7 @@ input.hreflink {
 
 			</tr>
 			<tr>
-				<td width="50" align="center" class="tdstyle1">휴대전화 <font
+				<td width="50" align="center" bgcolor="#F9F9F9">휴대전화 <font
 					color="red" size="1">★</font></td>
 				<td width="400"><select name="ORDER_PHONE1"
 					onchange="Phone_change()" id="order_phone1">
@@ -454,14 +400,14 @@ input.hreflink {
 
 			</tr>
 			<tr>
-				<td width="50" align="center" rowspan="2" class="tdstyle1">이메일
+				<td width="50" align="center" rowspan="2" bgcolor="#F9F9F9">이메일
 					<font color="red" size="1">★</font>
 				</td>
 				<td width="400"><input type="text" name="ORDER_EMAIL1"
 					value="${m_resultClass.m_email1 }" onfocus="this.value='';"
 					id="order_email1"> @ <input type="text" name="ORDER_EMAIL2"
-					value="선택하세요" disabled> <select name="email"
-					onchange="email_change()" id="order_email2">
+					value="선택하세요" disabled> <select
+					name="email" onchange="email_change()" id="order_email2">
 						<option value="0">선택하세요</option>
 						<option value="9">직접입력</option>
 						<option value="naver.com">naver.com</option>
@@ -481,41 +427,40 @@ input.hreflink {
 		</table>
 
 
-		<table width="1000" border="0" cellspacing="0" cellpadding="3"
-			id="form">
+		<table width="1000" border="0" cellspacing="0" cellpadding="3">
 			<tr>
 				<td height="10"></td>
 			</tr>
 			<tr>
-				<td height="39" align="left" colspan="2" class="tdstyle2"><font
-					style="font-weight: bold;">배송 정보</font>&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<font color="red" size="1">★</font><font color="#ffffff">필수입력사항</font></td>
+				<td height="39" align="left"><font style="font-weight: bold;">배송
+						정보</font></td>
+				<td align="right"><font color="red" size="1">★</font><font
+					color="#A6A6A6">필수입력사항</font></td>
 			</tr>
 			<tr>
 				<td height="10"></td>
 			</tr>
 		</table>
 
-		<table width="1000" border="1" cellspacing="0" cellpadding="3" id="form">
+		<table width="1000" border="1" cellspacing="0" cellpadding="3">
 			<tr>
-				<td width="100" align="center" class="tdstyle1">배송지 선택</td>
+				<td width="100" align="center" bgcolor="#F9F9F9">배송지 선택</td>
 				<td width="400"><input type="radio" id="cb1" onclick="Copy();"
 					name="RECIPIENT_CHOICE" /> <label for="cb1">주문자와 동일합니다.</label> <input
 					type="radio" name="RECIPIENT_CHOICE" id="cb2" onclick="Copy();" /><label
-					for="cb1">새로운배송지</label></td>
+					for="cb1">새로운배송지</label> </td>
 
 			</tr>
 
 			<tr>
-				<td width="50" align="center" class="tdstyle1">받으시는분 <font
+				<td width="50" align="center" bgcolor="#F9F9F9">받으시는분 <font
 					color="red" size="1">★</font></td>
 				<td width="400"><input type="text" name="RECIPIENT_NAME"
 					size="15" maxlength="12" id="recipient_name"></td>
 
 			</tr>
 			<tr>
-				<td align="center" valign="top" class="tdstyle1">주소 <font
+				<td align="center" valign="top" bgcolor="#F9F9F9">주소 <font
 					color="red" size="1">★</font></td>
 				<td><input type="text" name="RECIPIENT_ZIPCODE"
 					id="sample6_postcode" placeholder="우편번호"> <input
@@ -527,7 +472,7 @@ input.hreflink {
 
 			</tr>
 			<tr>
-				<td width="50" align="center" class="tdstyle1">휴대전화 <font
+				<td width="50" align="center" bgcolor="#F9F9F9">휴대전화 <font
 					color="red" size="1">★</font></td>
 				<td width="400"><select name="RECIPIENT_PHONE1"
 					onchange="Phone_change()" id="recipient_phone1">
@@ -545,45 +490,72 @@ input.hreflink {
 			</tr>
 		</table>
 
-		<table width="1000" border="0" cellspacing="0" cellpadding="3" id="form">
+		<table width="1000" border="0" cellspacing="0" cellpadding="3">
 			<tr>
 				<td height="10"></td>
 			</tr>
 			<tr>
-				<td height="39" align="left" class="tdstyle2"><font style="font-weight: bold;">결제
+				<td height="39" align="left"><font style="font-weight: bold;">결제
 						예정 금액</font></td>
 			</tr>
 			<tr>
 				<td height="10"></td>
 			</tr>
 		</table>
-		<table width="1000" border="1" cellspacing="0" cellpadding="3" >
-			<tr bgcolor="#F9F9F9">
-				<td align="center" height="60" width="340" ><font
-					color="#5D5D5D">총 주문 금액 </font> <input type="button"
-					value=" 내역보기 >" class="submit"
-					OnClick="window.open('Orderpaylist.action?goods_no=<s:property value="goods_no" />&sgoods_cnt=<s:property value="sgoods_cnt" />','window_name','width=300,height=320,location=no,status=no,toolbar=no,scrollbars=no');" /></td>
-				<td align="center" width="340"><font color="#5D5D5D">총
-						할인 + 부가결제 금액</font></td>
-				<td align="center" width="340"><font color="#5D5D5D">총
-						결제예정 금액</font></td>
-			</tr>
-			<tr>
-				<td width="340" align="center" height="30"><font style="font-weight: bold;"><h3>KRW
-							${g_resultClass.goods_price*sgoods_cnt}</h3></font></td>
-				<td width="340" align="center"><font style="font-weight: bold;"><h3>-
-							KRW 0</h3></font></td>
-				<td align="center"><font style="font-weight: bold;"
-					color="#FF0000"><h3>= KRW
-							${g_resultClass.goods_price*sgoods_cnt}</h3></font></td>
-			</tr>
-		</table>
-		<table width="1000" border="0" cellspacing="0" cellpadding="3" id="form">
+		<s:if test="g_resultClass.goods_no != 0">
+			<table width="1000" border="1" cellspacing="0" cellpadding="3">
+				<tr bgcolor="#F9F9F9">
+					<td align="center" height="60" width="340"><font
+						color="#5D5D5D">총 주문 금액 </font> <input type="button"
+						value=" 내역보기 >"
+						OnClick="window.open('Orderpaylist.action?goods_no=<s:property value="goods_no" />&sgoods_cnt=<s:property value="sgoods_cnt" />','window_name','width=300,height=320,location=no,status=no,toolbar=no,scrollbars=no');" /></td>
+					<td align="center" width="340"><font color="#5D5D5D">총
+							할인 + 부가결제 금액</font></td>
+					<td align="center" width="340"><font color="#5D5D5D">총
+							결제예정 금액</font></td>
+				</tr>
+				<tr>
+					<td width="340" align="center"><font style="font-weight: bold;"><h3>KRW
+								${g_resultClass.goods_price*sgoods_cnt}</h3></font></td>
+					<td width="340" align="center"><font style="font-weight: bold;"><h3>-
+								KRW 0</h3></font></td>
+					<td align="center"><font style="font-weight: bold;"
+						color="#FF0000"><h3>= KRW
+								${g_resultClass.goods_price*sgoods_cnt}</h3></font></td>
+				</tr>
+			</table>
+		</s:if>
+		<s:else>
+			<table width="1000" border="1" cellspacing="0" cellpadding="3">
+				<tr bgcolor="#F9F9F9">
+					<td align="center" height="60" width="340"><font
+						color="#5D5D5D">총 주문 금액 </font> <input type="button"
+						value=" 내역보기 >"
+						OnClick="window.open('Orderpaylist.action?goods_no=<s:property value="goods_no" />&sgoods_cnt=<s:property value="sgoods_cnt" />','window_name','width=300,height=320,location=no,status=no,toolbar=no,scrollbars=no');" /></td>
+					<td align="center" width="340"><font color="#5D5D5D">총
+							할인 + 부가결제 금액</font></td>
+					<td align="center" width="340"><font color="#5D5D5D">총
+							결제예정 금액</font></td>
+				</tr>
+				
+				<tr>
+					<td width="340" align="center"><font style="font-weight: bold;"><h3>KRW
+								<s:property value="PayTotal_List" /></h3></font></td>
+					<td width="340" align="center"><font style="font-weight: bold;"><h3>-
+								KRW 0</h3></font></td>
+					<td align="center"><font style="font-weight: bold;"
+						color="#FF0000"><h3>= KRW
+								<s:property value="PayTotal_List" /></h3></font></td>
+								
+				</tr>
+			</table>
+		</s:else>
+		<table width="1000" border="0" cellspacing="0" cellpadding="3">
 			<tr>
 				<td height="10"></td>
 			</tr>
 			<tr>
-				<td height="39" align="left" class="tdstyle2"><font style="font-weight: bold;">결제
+				<td height="39" align="left"><font style="font-weight: bold;">결제
 						수단</font></td>
 			</tr>
 			<tr>
@@ -610,28 +582,23 @@ input.hreflink {
 								color="#FF0000"><h2>${g_resultClass.goods_price*sgoods_cnt}</h2></font></td>
 						</tr>
 						<tr>
-							<td align="center"><input type="checkbox"
-								name="checkbox_agree" id="checkbox_agree" /></td>
+							<td align="center"><input type="checkbox" name="checkbox_agree" id="checkbox_agree" /></td>
 							<td align="left"><font style="font-weight: bold;"><h4>결제정보를
 										확인하였으며, 구매진행에 동의합니다.</h4></font></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center"><input name="submit"
-								type="submit" class="submit"
+								type="submit"
 								style="width: 22em; font-family: 돋움; background-color: #121212; color: #FFFFFF; line-height: 5em; border-color: #121212;"
 								value="결제하기 " /> <input type="hidden" name="ORDER_IMG"
 								value="<s:property value="g_resultClass.goods_file_savname.split(',')[0]"/>">
-								<input type="hidden" name="ORDER_GOODS_NAME"
-								value="${g_resultClass.goods_name}"> <input
-								type="hidden" name="ORDER_PRICE"
-								value="${g_resultClass.goods_price}"> <input
-								type="hidden" name="ORDER_GOODS_COUNT" value="${sgoods_cnt}">
-								<input type="hidden" name="ORDER_TOTAL"
-								value="${g_resultClass.goods_price*sgoods_cnt}"> <input
-								type="hidden" name="ORDER_GOODS_NO"
-								value="${g_resultClass.goods_no}"> <input type="hidden"
-								name="ORDER_MEMBER_ID" value="${session.M_ID}"> <input
-								type="hidden" name="ORDER_STATE" value="입금확인중">
+								<input type="hidden" name="ORDER_GOODS_NAME" value="${g_resultClass.goods_name}"> 
+								<input type="hidden" name="ORDER_PRICE" value="${g_resultClass.goods_price}"> 
+								<input type="hidden" name="ORDER_GOODS_COUNT" value="${sgoods_cnt}"> 
+								<input type="hidden" name="ORDER_TOTAL" value="${g_resultClass.goods_price*sgoods_cnt}">
+								<input type="hidden" name="ORDER_GOODS_NO" value="${g_resultClass.goods_no}"> 
+								<input type="hidden" name="ORDER_MEMBER_ID" value="${session.M_ID}"> 
+								<input type="hidden" name="ORDER_STATE" value="1">
 						</tr>
 						<tr>
 							<td height="20"></td>
@@ -642,14 +609,14 @@ input.hreflink {
 			</tr>
 			<tr>
 				<td style="padding: 3em;" valign="top">
-					<table width="530" border="1" cellspacing="0" cellpadding="3" id="form">
+					<table width="530" border="1" cellspacing="0" cellpadding="3">
 						<tr>
-							<td width="104" align="center" class="tdstyle1">입금자명</td>
+							<td width="104" align="center" bgcolor="#F9F9F9">입금자명</td>
 							<td><input type="text" name="DEPOSIT_NAME" size="30"
 								value="곽영민" /></td>
 						</tr>
 						<tr>
-							<td width="104" align="center" class="tdstyle1">입금은행</td>
+							<td width="104" align="center" bgcolor="#F9F9F9">입금은행</td>
 							<td><input type="text" name="DEPOSIT_BANK" size="30"
 								value="신한은행" /></td>
 						</tr>

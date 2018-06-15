@@ -69,37 +69,29 @@ public class WishlistBasketlistAction extends ActionSupport implements SessionAw
 		if (getChk() != null) {
 			for (int i = 0; i < this.getChk().length; i++) {
 				String chkValue = this.getChk()[i];
-				System.out.println("chkValue "+chkValue);
 				W_paramClass.setW_NO(Integer.parseInt(chkValue));
-				
 				W_resultClass = (WishlistVO)sqlMapper.queryForObject("wishlist-selectone",W_paramClass.getW_NO());
-				System.out.println("W_paramClass.getW_NO() = "+W_paramClass.getW_NO());
-				System.out.println("W_resultClass "+W_resultClass);
+				
+				// 등록할 항목 설정.
+				b_paramClass.setBasket_member_id(W_resultClass.getW_MEMBER_ID());
+				b_paramClass.setBasket_name(W_resultClass.getW_GOODS_NAME());
+				b_paramClass.setBasket_goods_amount(W_resultClass.getW_GOODS_AMOUNT());
+				b_paramClass.setBasket_goods_img(W_resultClass.getW_GOODS_IMG());
+				b_paramClass.setBasket_quantity(W_resultClass.getW_TOTAL());//수량
+				b_paramClass.setBasket_goods_no(W_resultClass.getW_GOODS_NO());
+				b_paramClass.setBasket_goods_size(W_resultClass.getW_GOODS_SIZE());
+				b_paramClass.setBasket_goods_color(W_resultClass.getW_GOODS_COLOR());
+
+				System.out.println("getW_MEMBER_ID "+W_resultClass.getW_MEMBER_ID());
+				System.out.println("wishlist에서 basket으로 gogob_paramClass"+b_paramClass);
+				// 등록 쿼리 수행.
+				sqlMapper.insert("insertBasket", b_paramClass);
 
 			}
 		} else {
 			W_resultClass = (WishlistVO) sqlMapper.queryForObject("wishlist-selectone", getW_NO());
 		}
 		
-		
-		
-		// 등록할 항목 설정.
-		b_paramClass.setBasket_member_id(W_resultClass.getW_MEMBER_ID());
-		b_paramClass.setBasket_name(W_resultClass.getW_GOODS_NAME());
-		b_paramClass.setBasket_goods_amount(W_resultClass.getW_GOODS_AMOUNT());
-		b_paramClass.setBasket_goods_img(W_resultClass.getW_GOODS_IMG());
-		b_paramClass.setBasket_quantity(W_resultClass.getW_TOTAL());//수량
-		b_paramClass.setBasket_goods_no(W_resultClass.getW_GOODS_NO());
-		b_paramClass.setBasket_goods_size(W_resultClass.getW_GOODS_SIZE());
-		b_paramClass.setBasket_goods_color(W_resultClass.getW_GOODS_COLOR());
-
-		System.out.println("getW_MEMBER_ID "+W_resultClass.getW_MEMBER_ID());
-		System.out.println("wishlist에서 basket으로 gogob_paramClass"+b_paramClass);
-		// 등록 쿼리 수행.
-		sqlMapper.insert("insertWishlist", b_paramClass);
-
-		
-
 		return SUCCESS;
 	}
 
