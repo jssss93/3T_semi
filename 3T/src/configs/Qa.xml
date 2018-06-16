@@ -24,7 +24,7 @@
 		<action name="qa_writeForm" class="user.qa.WriteAction" method="form">
 			<result type="tiles">qawrite</result>
 		</action>
-		<action name="qa_writeForm1" class="user.qa.WriteAction" method="form1">
+	<action name="qa_writeForm1" class="user.qa.WriteAction" method="form1">
 			<result type="tiles">qawrite1</result>
 		</action>
 		<action name="Qa_writeAction" class="user.qa.WriteAction" >

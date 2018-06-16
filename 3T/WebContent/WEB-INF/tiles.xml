@@ -230,6 +230,9 @@
 	<definition name="Review_WriteForm" extends="main">
 		<put-attribute name="body" value="/user/review/Write.jsp"></put-attribute>
 	</definition>
+	<definition name="Review_WriteForm1" extends="main">
+		<put-attribute name="body" value="/user/review/Write.jsp"></put-attribute>
+	</definition>
 
 	<definition name="Review_View" extends="main">
 		<put-attribute name="body" value="/user/review/View.jsp"></put-attribute>
@@ -256,7 +259,10 @@
 	<definition name="qawrite" extends="main">
 		<put-attribute name="body" value="/user/qa/Write.jsp" />
 	</definition>
-
+	
+	<definition name="qawrite1" extends="main">
+		<put-attribute name="body" value="/user/qa/Write.jsp" />
+	</definition>
 	<definition name="qaview" extends="main">
 		<put-attribute name="body" value="/user/qa/View.jsp" />
 	</definition>

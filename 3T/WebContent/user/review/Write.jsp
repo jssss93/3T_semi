@@ -75,7 +75,7 @@
 
 
 	<s:elseif test="resultClass == NULL">
-		<form action="Review_Write.action" method="post"
+		<form action="Review_Write.action?goods_no=${goods_no }" method="post"
 			enctype="multipart/form-data" onsubmit="return validation();">
 			<s:param name="REV_goods_no">
 				<s:property value="REV_goods_no" />
@@ -90,7 +90,41 @@
 			<s:hidden name="currentPage" value="%{currentPage}" />
 			<s:hidden name="old_file" value="%{resultClass.REV_file_savname}" />
 	</s:else>
-
+<table width="600" border="0" cellspacing="0" height="120">
+<s:if test="goods_no <=0">
+<input type="hidden" name="REV_goods_no" value="goods_no"/>
+<tr>
+<td align="center" width="120"><img src="/3T/upload/QA.PNG" width="80" height="100"></td>
+	<td colspan="2"><hr align="center" width="470" color="#8C8C8C"  ><br>
+	<input type="button" name="button" value="상품정보선택 ▶"
+					class="inputb"
+					onClick="javascript:open_win_noresizable('Review_SearchGoodsForm.action?currentPage=<s:property value="currentPage" />', write)">
+					</td>
+			
+			</tr>
+			
+				
+			</s:if>
+			<s:else>
+					<s:url id="viewURL" action="GoodsView">
+							<s:param name="goods_no">
+								<s:property value="goods_no" />
+							</s:param>
+							<s:param name="currentPage">
+								<s:property value="currentPage" />
+							</s:param>
+						</s:url>
+				<tr>                                             
+					<td align="center" width="120"><img src="/3T/upload/<s:property value="goods_resultClass.goods_file_savname.split(',')[0]"/>" width="80" height="100"></td>
+				
+					<td colspan="2"> <s:property value="goods_resultClass.goods_name" /><br>KRW <s:property value="goods_resultClass.goods_price" />
+					<hr align="center" width="470" color="#8C8C8C"  ><br>
+						<s:a href="%{viewURL}"><input type="button" name="button" value="상품 상세보기 ▶"/></s:a>
+						<input type="button" name="button" value="상품정보 선택 ▶"  onclick="javascript:open_win_noresizable('Review_SearchGoodsForm.action?currentPage=<s:property value="currentPage" />', write)"/>
+					</td>
+				</tr>
+			</s:else>
+</table>
 
 	<table width="600" border="0" cellspacing="0" cellpadding="0">
 
@@ -98,15 +132,7 @@
 		
 		<c:choose>
 			<c:when test="${session.M_ID != NULL}">
-			<tr>
-			<td>>>><s:property value="resultClass.Goods_name" /></td>
-			<td><s:property value="resultClass.Goods_no"/></td>
-			</tr>
-			<tr align="right">
-				<td colspan="5"><input type="button" value="WRITE"
-					class="inputb"
-					onClick="javascript:open_win_noresizable('Review_SearchGoodsForm.action?currentPage=<s:property value="currentPage" />', write)"></td>
-			</tr>
+			
 			
 				<tr>
 					<td width="100" class="tdstyle2"><b>SUBJECT</b></td>

@@ -46,10 +46,8 @@
 			<td height="20"></td>
 		</tr>
 	</table>
-	<form action="SearchGoodsSuccess.action" method="post">
-		
-		<s:hidden name="currentPage" value="%{currentPage}" />
-		<s:hidden name="Goods_no" value="%{resultClass.Goods_no}"/>
+	
+	
 	<table width="500" border="0" cellspacing="0" cellpadding="1">
 			<tr align="center">
 				<%-- <td width="40"><strong>상품번호</strong></td> --%>
@@ -58,6 +56,9 @@
 				<td width="50"><strong>선택</strong></td>
 
 			</tr>
+			<tr bgcolor="#777777">
+					<td height="1" colspan="3"></td>
+				</tr>
 				<tr>
 			<td height="20"></td>
 		</tr>
@@ -65,6 +66,14 @@
 			
 			<tr>
 			<s:iterator value="list2" status="stat">
+			<s:url id="viewURL" action="Review_SearchGoodsSuccess">
+							<s:param name="goods_no">
+								<s:property value="goods_no" />
+							</s:param>
+							<s:param name="currentPage">
+								<s:property value="currentPage" />
+							</s:param>
+						</s:url>
 					<tr>
 			<td height="10"></td>
 		</tr>
@@ -77,11 +86,12 @@
 			</td>
 			<td>
 			<s:property value="goods_name"/><br>
-			KRW&nbsp;<s:property value="goods_price"/>
+			KRW&nbsp;<s:property value="goods_price"/>&nbsp;<s:property value="goods_no"/>
 			</td>
 			<td align="center">
-			<input name="submit" type="submit"
-					value="선택" class="inputb">
+		<s:hidden name="currentPage" value="%{currentPage}" />
+						<s:hidden name="goods_no" value="%{goods_no}" />
+						<s:a href="%{viewURL}"><input name="button" type="button" value="선택" class="inputb" /></s:a>
 			</td>
 			</tr>
 			
