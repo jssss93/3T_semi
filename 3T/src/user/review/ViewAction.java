@@ -18,8 +18,7 @@ import java.util.List;
 import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.Map;
-
-
+import admin.goods.VO.GoodsVO;
 
 public class ViewAction extends ActionSupport implements SessionAware {
 	public Map getSession() {
@@ -29,6 +28,7 @@ public class ViewAction extends ActionSupport implements SessionAware {
 	public void setSession(Map session) {
 		this.session = session;
 	}
+
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 
@@ -55,6 +55,10 @@ public class ViewAction extends ActionSupport implements SessionAware {
 	private String contentDisposition;
 	private long contentLength;
 	public Map session;
+
+	private GoodsVO goods_paramClass = new GoodsVO();
+	private GoodsVO goods_resultClass = new GoodsVO();
+	private int goods_no;
 
 	// 생성자
 	public ViewAction() throws IOException {
@@ -83,7 +87,9 @@ public class ViewAction extends ActionSupport implements SessionAware {
 		commentlist = sqlMapper.queryForList("commentSelectAll", paramClass.getREV_no()); // paramClass.getREV_no() 로
 																							// 가져와야함
 																							// getREV_C_no() 로 했을때 안가져옴
-																							// 댓글
+		goods_paramClass.setGoods_no(resultClass.getREV_goods_no());
+
+		goods_resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", resultClass.getREV_goods_no()); // 댓글
 
 		return SUCCESS;
 	}
@@ -115,7 +121,7 @@ public class ViewAction extends ActionSupport implements SessionAware {
 		paramClass.setREV_passwd(getREV_passwd());
 
 		// System.out.println("getREV_no" + getREV_no());
-		 System.out.println("getREV_passwd" + getREV_passwd());
+		System.out.println("getREV_passwd" + getREV_passwd());
 
 		// 현재 글의 비밀번호 가져오기.
 		resultClass = (ReviewVO) sqlMapper.queryForObject("review-selectPassword", paramClass);
@@ -128,9 +134,9 @@ public class ViewAction extends ActionSupport implements SessionAware {
 
 	public String checkAction2() throws Exception {
 
-		//System.out.println("getREV_C_no" + getREV_C_no());
-		//System.out.println("getREV_C_passwd" + getREV_C_passwd());
-		//System.out.print("getREV_C_originno" + getREV_C_originno());
+		// System.out.println("getREV_C_no" + getREV_C_no());
+		// System.out.println("getREV_C_passwd" + getREV_C_passwd());
+		// System.out.print("getREV_C_originno" + getREV_C_originno());
 
 		cClass.setREV_C_no(getREV_C_no());
 		cClass.setREV_C_passwd(getREV_C_passwd());
@@ -277,6 +283,30 @@ public class ViewAction extends ActionSupport implements SessionAware {
 
 	public void setREV_C_passwd(String REV_C_passwd) {
 		this.REV_C_passwd = REV_C_passwd;
+	}
+
+	public GoodsVO getGoods_paramClass() {
+		return goods_paramClass;
+	}
+
+	public void setGoods_paramClass(GoodsVO goods_paramClass) {
+		this.goods_paramClass = goods_paramClass;
+	}
+
+	public GoodsVO getGoods_resultClass() {
+		return goods_resultClass;
+	}
+
+	public void setGoods_resultClass(GoodsVO goods_resultClass) {
+		this.goods_resultClass = goods_resultClass;
+	}
+
+	public int getGoods_no() {
+		return goods_no;
+	}
+
+	public void setGoods_no(int goods_no) {
+		this.goods_no = goods_no;
 	}
 
 }
