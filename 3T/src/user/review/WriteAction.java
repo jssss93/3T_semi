@@ -18,6 +18,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import java.util.Map;
 
 import user.review.ReviewVO;
+import admin.goods.VO.GoodsVO;
 
 public class WriteAction extends ActionSupport implements SessionAware {
 
@@ -35,6 +36,9 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	private ReviewVO paramClass; // 파라미터를 저장할 객체
 	private ReviewVO resultClass; // 쿼리 결과 값을 저장할 객체
 
+	private GoodsVO goods_paramClass = new GoodsVO();
+	private GoodsVO goods_resultClass = new GoodsVO();
+
 	public Map session;
 
 	private int currentPage; // 현재 페이지
@@ -46,16 +50,20 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	private String REV_content;
 	private String REV_file_orgname; // 업로드 파일의 원래 이름
 	private String REV_file_savname; // 서버에 저장할 업로드 파일의 이름. 고유 번호로 구분한다.
+
 	Calendar today = Calendar.getInstance();
 	private Date REV_regdate;
 
 	private String REV_member_id;
-	private int REV_goods_no = 1;
+	private int REV_goods_no;
+	private String REV_goods_name;
+	private String REV_goods_img;
+	private int goods_no;
 
 	private File upload; // 파일 객체
 	private String uploadContentType; // 컨텐츠 타입
 	private String uploadFileName; // 파일 이름
-	private String fileUploadPath = "C:\\Users\\호준\\Desktop\\git\\3T\\3T\\WebContent\\upload\\"; // 업로드 경로.
+	private String fileUploadPath = "C:\\Users\\호준\\Desktop\\git\\3TT\\3T\\WebContent\\upload\\"; // 업로드 경로.
 
 	private int REV_ref;
 	private int REV_re_step;
@@ -74,6 +82,15 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	public String form() throws Exception {
 		// 등록 폼.
 		return SUCCESS;
+	}
+
+	public String form1() throws Exception {
+
+		goods_paramClass.setGoods_no(getGoods_no());
+		goods_resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", getGoods_no());
+
+		return SUCCESS;
+
 	}
 
 	public String reply() throws Exception {
@@ -121,7 +138,11 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		paramClass.setREV_regdate(today.getTime());
 
 		paramClass.setREV_member_id(getREV_member_id()); // 아이디
-		paramClass.setREV_goods_no(getREV_goods_no()); // 상품 번호
+		goods_paramClass.setGoods_no(getGoods_no());
+		goods_resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", getGoods_no());
+		paramClass.setREV_goods_no(goods_resultClass.getGoods_no());
+		paramClass.setREV_goods_name(goods_resultClass.getGoods_name());
+		paramClass.setREV_goods_img(goods_resultClass.getGoods_file_savname().split(",")[0]);
 
 		// 등록 쿼리 수행.
 
@@ -137,7 +158,7 @@ public class WriteAction extends ActionSupport implements SessionAware {
 			resultClass = (ReviewVO) sqlMapper.queryForObject("review-selectLastNo");
 
 			// 실제 서버에 저장될 파일 이름과 확장자 설정.
-			String file_name = "file_" + resultClass.getREV_no();
+			String file_name = "review_" + resultClass.getREV_no();
 			String file_ext = getUploadFileName().substring(getUploadFileName().lastIndexOf('.') + 1,
 					getUploadFileName().length());
 
@@ -347,6 +368,46 @@ public class WriteAction extends ActionSupport implements SessionAware {
 
 	public void setReply(boolean reply) {
 		this.reply = reply;
+	}
+
+	public GoodsVO getGoods_paramClass() {
+		return goods_paramClass;
+	}
+
+	public void setGoods_paramClass(GoodsVO goods_paramClass) {
+		this.goods_paramClass = goods_paramClass;
+	}
+
+	public GoodsVO getGoods_resultClass() {
+		return goods_resultClass;
+	}
+
+	public void setGoods_resultClass(GoodsVO goods_resultClass) {
+		this.goods_resultClass = goods_resultClass;
+	}
+
+	public String getREV_goods_name() {
+		return REV_goods_name;
+	}
+
+	public void setREV_goods_name(String REV_goods_name) {
+		this.REV_goods_name = REV_goods_name;
+	}
+
+	public String getREV_goods_img() {
+		return REV_goods_img;
+	}
+
+	public void setREV_goods_img(String REV_goods_img) {
+		this.REV_goods_img = REV_goods_img;
+	}
+
+	public int getGoods_no() {
+		return goods_no;
+	}
+
+	public void setGoods_no(int goods_no) {
+		this.goods_no = goods_no;
 	}
 
 }
