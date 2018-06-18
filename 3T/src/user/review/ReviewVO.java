@@ -20,6 +20,8 @@ public class ReviewVO {
 
 	private String REV_member_id;
 	private int REV_goods_no;
+	private String REV_goods_name;
+	private String REV_goods_img;
 
 	public int getREV_no() {
 		return REV_no;
@@ -131,6 +133,22 @@ public class ReviewVO {
 
 	public void setREV_goods_no(int rEV_goods_no) {
 		REV_goods_no = rEV_goods_no;
+	}
+
+	public String getREV_goods_name() {
+		return REV_goods_name;
+	}
+
+	public void setREV_goods_name(String rEV_goods_name) {
+		REV_goods_name = rEV_goods_name;
+	}
+
+	public String getREV_goods_img() {
+		return REV_goods_img;
+	}
+
+	public void setREV_goods_img(String rEV_goods_img) {
+		REV_goods_img = rEV_goods_img;
 	}
 
 }

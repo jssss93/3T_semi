@@ -19,7 +19,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.Map;
 
-
+import admin.goods.VO.GoodsVO;
 
 public class ViewAction extends ActionSupport implements SessionAware {
 	public Map getSession() {
@@ -49,12 +49,16 @@ public class ViewAction extends ActionSupport implements SessionAware {
 	private int REV_C_originno;
 	private String REV_C_passwd;
 
-	private String fileUploadPath = "C:\\Users\\호준\\Desktop\\git\\3T\\3T\\WebContent\\upload\\";
-
+	private String fileUploadPath = "C:\\Users\\호준\\Desktop\\git\\3TT\\3T\\WebContent\\upload\\";
+										
 	private InputStream inputStream;
 	private String contentDisposition;
 	private long contentLength;
 	public Map session;
+	
+	private GoodsVO goods_paramClass =new GoodsVO();
+	private GoodsVO goods_resultClass=new GoodsVO();
+	private int goods_no;
 
 	// 생성자
 	public ViewAction() throws IOException {
@@ -83,7 +87,9 @@ public class ViewAction extends ActionSupport implements SessionAware {
 		commentlist = sqlMapper.queryForList("commentSelectAll", paramClass.getREV_no()); // paramClass.getREV_no() 로
 																							// 가져와야함
 																							// getREV_C_no() 로 했을때 안가져옴
-																							// 댓글
+goods_paramClass.setGoods_no(resultClass.getREV_goods_no());
+		
+		goods_resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", resultClass.getREV_goods_no());																			// 댓글
 
 		return SUCCESS;
 	}
@@ -277,6 +283,30 @@ public class ViewAction extends ActionSupport implements SessionAware {
 
 	public void setREV_C_passwd(String REV_C_passwd) {
 		this.REV_C_passwd = REV_C_passwd;
+	}
+
+	public GoodsVO getGoods_paramClass() {
+		return goods_paramClass;
+	}
+
+	public void setGoods_paramClass(GoodsVO goods_paramClass) {
+		this.goods_paramClass = goods_paramClass;
+	}
+
+	public GoodsVO getGoods_resultClass() {
+		return goods_resultClass;
+	}
+
+	public void setGoods_resultClass(GoodsVO goods_resultClass) {
+		this.goods_resultClass = goods_resultClass;
+	}
+
+	public int getGoods_no() {
+		return goods_no;
+	}
+
+	public void setGoods_no(int goods_no) {
+		this.goods_no = goods_no;
 	}
 
 }
