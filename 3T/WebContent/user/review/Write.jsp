@@ -84,7 +84,7 @@
 
 
 	<s:else>
-		<form action="Review_ModifyAction.action" method="post"
+		<form action="Review_ModifyAction.action?goods_no=${goods_no }" method="post"
 			enctype="multipart/form-data">
 			<s:hidden name="REV_no" value="%{resultClass.REV_no}" />
 			<s:hidden name="currentPage" value="%{currentPage}" />

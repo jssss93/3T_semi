@@ -44,7 +44,7 @@
 			<tr align="center">
 				<td width="50"><strong>NO</strong></td>
 				<td width="80"><strong>ITEM </strong></td>
-				<td width="350" align="left"><strong>SUBJECT</strong></td>
+				<td width="350"><strong>SUBJECT</strong></td>
 				<td width="50"><strong>NAME</strong></td>
 
 
@@ -68,14 +68,13 @@
 
 				<tr align="center">
 					<td class="tdstyle2"><s:property value="REV_no" /></td>
-					<td align="center">&nbsp; <img
-						src="/3T/upload/${REV_file_savname}" width="50" height="50"></td>
+				<td align="center"><img src="/3T/upload/${REV_goods_img}" width="50"></td>
 
 
 
 					<td align="center">&nbsp; <s:if test="REV_re_level != 0">
 							<c:forEach var="i" begin="${REV_re_level}" end="0">&nbsp;</c:forEach>→
-            </s:if> <s:a href="%{viewURL}">
+            </s:if> <s:a href="%{viewURL}"><s:property value="REV_goods_name" /><br>
 							<s:property value="REV_subject" />
 
 						</s:a></td>

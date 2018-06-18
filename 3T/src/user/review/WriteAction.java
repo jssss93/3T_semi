@@ -63,7 +63,7 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	private File upload; // 파일 객체
 	private String uploadContentType; // 컨텐츠 타입
 	private String uploadFileName; // 파일 이름
-	private String fileUploadPath = "C:\\Users\\호준\\Desktop\\git\\3T\\3T\\WebContent\\upload\\"; // 업로드 경로.
+	private String fileUploadPath = "C:\\Users\\호준\\Desktop\\git\\3TT\\3T\\WebContent\\upload\\"; // 업로드 경로.
 
 	private int REV_ref;
 	private int REV_re_step;

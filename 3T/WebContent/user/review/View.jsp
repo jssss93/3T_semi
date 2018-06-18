@@ -47,7 +47,28 @@
 			<td height="20"></td>
 		</tr>
 	</table>
-
+<table width="600" border="0" cellspacing="0" cellpadding="0" height="120" background="/3T/upload/QA_BG.png">
+			<tr >
+				<td colspan="2" height="1"></td>
+			</tr>
+			
+			<s:url id="viewURL" action="GoodsView">
+				<s:param name="goods_no">
+					<s:property value="goods_resultClass.goods_no" />
+			 	</s:param>
+				<s:param name="currentPage">
+			 		<s:property value="currentPage" />
+				</s:param>
+			</s:url>
+			<tr>                                             
+					<td align="center" width="120"><img src="/3T/upload/<s:property value="goods_resultClass.goods_file_savname.split(',')[0]"/>" width="80" height="100"></td>
+				
+					<td colspan="2"> <s:property value="goods_resultClass.goods_name" /><br>KRW <s:property value="goods_resultClass.goods_price" />
+					<hr align="center" width="470" color="#8C8C8C"  ><br>
+						<s:a href="%{viewURL}"><input type="button" name="button" value="상품 상세보기 ▶"/></s:a>
+					</td>
+			</tr>
+		</table>
 	<table width="600" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td align="right" colspan="2"></td>
