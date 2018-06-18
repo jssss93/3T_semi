@@ -46,7 +46,13 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	private List<BasketVO> B_List = new ArrayList<BasketVO>();
 	private List basket_List=new ArrayList();
 
-	private int totalCount;
+	private int basket_Pay_List;
+	private int basket_PayTotal_List;
+	private int basket_PayGOODS_COUNT;
+	
+	private static int PayList_price;
+	private static int PayList_Total;
+	private static int PayList_totalCount;
 
 	private String ORDER_NAME;
 	private String ORDER_ZIPCODE;
@@ -80,7 +86,9 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	Calendar today = Calendar.getInstance();
 	
 	private Integer PayTotal_List;
-	private Integer Pay_List ;
+	private Integer Pay_List;
+	private Integer Pay_GOODS_COUNT;
+	
 	
 	private String[] chk;
 	private int basket_no;
@@ -90,14 +98,21 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	private BasketVO basket_paramClass = new BasketVO();
 	private BasketVO basket_resultClass = new BasketVO();
 	private int BASKET_NO; // 상품 번호
-	
+	private int a; //상품 가격
+	private int b; //총 가격
+	private int c; //수량
 	public WriteAction() throws IOException {
 
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 		reader.close();
 	}
-
+	public String paylist() throws Exception{
+		a=PayList_price;
+		b=PayList_Total;
+		c=PayList_totalCount;
+		return SUCCESS;
+	}
 	public String form() throws Exception {
 
 		System.out.println("!!!!!!!(getChk()!!!!!!!"+getChk());
@@ -105,15 +120,109 @@ public class WriteAction extends ActionSupport implements SessionAware {
 			for (int i = 0; i < this.getChk().length; i++) {
 				
 				String chkValue =this.getChk()[i];
+				System.out.println("!!!!!!!(chkValue()!!!!!!!"+chkValue);
 				B_List = sqlMapper.queryForList("basket-orderselect", Integer.parseInt(chkValue));
-				basket_List.add(B_List);
+				Pay_List = (int)sqlMapper.queryForObject("basket-pay_or",Integer.parseInt(chkValue));
+		  		PayTotal_List = (int) sqlMapper.queryForObject("basket-paytotal_or",Integer.parseInt(chkValue));
+		  		Pay_GOODS_COUNT = (int) sqlMapper.queryForObject("basket-paygoodscount",Integer.parseInt(chkValue));
+		  		
+				basket_List.addAll(B_List);
+				basket_Pay_List=Pay_List+basket_Pay_List;
+				basket_PayTotal_List=PayTotal_List+basket_PayTotal_List;
+				basket_PayGOODS_COUNT=Pay_GOODS_COUNT+basket_PayGOODS_COUNT;
 			}
-			System.out.println("basket_List"+basket_List);
-			
 		} else {
 			B_List = sqlMapper.queryForList("basket-orderselect", getBasket_no());
 		}
+		PayList_price=basket_Pay_List;
+		PayList_Total=basket_PayTotal_List;
+		PayList_totalCount=basket_PayGOODS_COUNT;
+		
+		m_paramClass.setM_id(ActionContext.getContext().getSession().get("M_ID").toString());
+		m_resultClass = (MemberVO) sqlMapper.queryForObject("AMselectOne_ID", m_paramClass);
+		
+	
 		return SUCCESS;
+	}
+	
+	public int getBasket_PayGOODS_COUNT() {
+		return basket_PayGOODS_COUNT;
+	}
+
+	public void setBasket_PayGOODS_COUNT(int basket_PayGOODS_COUNT) {
+		this.basket_PayGOODS_COUNT = basket_PayGOODS_COUNT;
+	}
+
+	public static int getPayList_totalCount() {
+		return PayList_totalCount;
+	}
+
+	public static void setPayList_totalCount(int payList_totalCount) {
+		PayList_totalCount = payList_totalCount;
+	}
+
+	public Integer getPay_GOODS_COUNT() {
+		return Pay_GOODS_COUNT;
+	}
+
+	public void setPay_GOODS_COUNT(Integer pay_GOODS_COUNT) {
+		Pay_GOODS_COUNT = pay_GOODS_COUNT;
+	}
+
+	public int getC() {
+		return c;
+	}
+
+	public void setC(int c) {
+		this.c = c;
+	}
+
+	public int getA() {
+		return a;
+	}
+
+	public void setA(int a) {
+		this.a = a;
+	}
+
+	public int getB() {
+		return b;
+	}
+
+	public void setB(int b) {
+		this.b = b;
+	}
+
+	public int getPayList_price() {
+		return PayList_price;
+	}
+
+	public void setPayList_price(int payList_price) {
+		PayList_price = payList_price;
+	}
+
+	public int getPayList_Total() {
+		return PayList_Total;
+	}
+
+	public void setPayList_Total(int payList_Total) {
+		PayList_Total = payList_Total;
+	}
+
+	public int getBasket_Pay_List() {
+		return basket_Pay_List;
+	}
+
+	public void setBasket_Pay_List(int basket_Pay_List) {
+		this.basket_Pay_List = basket_Pay_List;
+	}
+
+	public int getBasket_PayTotal_List() {
+		return basket_PayTotal_List;
+	}
+
+	public void setBasket_PayTotal_List(int basket_PayTotal_List) {
+		this.basket_PayTotal_List = basket_PayTotal_List;
 	}
 
 	public List getBasket_List() {
@@ -420,14 +529,6 @@ public class WriteAction extends ActionSupport implements SessionAware {
 
 	public void setResultClass(OrderVO resultClass) {
 		this.resultClass = resultClass;
-	}
-
-	public int getTotalCount() {
-		return totalCount;
-	}
-
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
 	}
 
 	public String getORDER_ADDRESS1() {

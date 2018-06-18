@@ -51,16 +51,17 @@ public class SearchGoods extends ActionSupport{
 	}
 	public String execute() throws Exception{
 		
-			if(getSearchKeyword() != null)
-			{
-				return search();
-			}
-			
-		list2 = sqlMapper.queryForList("goods-selectall1");
+		if(searchNum == 0){
+			list2 = sqlMapper.queryForList("selectSearchQ", "%"+getSearchKeyword()+"%");
+		}
+		totalCount = list2.size();
+		
+		
+		
 		 
-		totalCount = list2.size(); // 전체 글 갯수를 구한다.
+		
 		// pagingAction 객체 생성.
-		page = new PagingAction2(currentPage, totalCount, blockCount, blockPage, num, "");
+		page = new PagingAction2(currentPage, totalCount, blockCount, blockPage, searchNum, getSearchKeyword());
 		pagingHtml = page.getPagingHtml().toString(); // 페이지 HTML 생성.
 
 		// 현재 페이지에서 보여줄 마지막 글의 번호 설정.
@@ -71,37 +72,16 @@ public class SearchGoods extends ActionSupport{
 		if (page.getEndCount() < totalCount)
 			lastCount = page.getEndCount() + 1;
 
+		list2 = list2.subList(page.getStartCount(), lastCount);
 		
 		paramClass.setGoods_no(getGoods_no());
-		resultClass = (GoodsVO) sqlMapper.queryForObject("goods-selectOne", getGoods_no());
+		resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", getGoods_no());
 		// 전체 리스트에서 현재 페이지만큼의 리스트만 가져온다.
-		list2 = list2.subList(page.getStartCount(), lastCount);
 		
-		
+
 		return SUCCESS;
 	}
-public String search() throws Exception {
-		
-		//searchKeyword = new String(searchKeyword.getBytes("iso-8859-1"),"euc-kr") ;
-		//System.out.println(searchKeyword);
-		//System.out.println(searchNum);
-		if(searchNum == 0){
-			list2 = sqlMapper.queryForList("selectSearchQ", "%"+getSearchKeyword()+"%");
-		}
-		
-		
-		totalCount = list2.size();
-		page = new PagingAction2(currentPage, totalCount, blockCount, blockPage, searchNum, getSearchKeyword());
-		pagingHtml = page.getPagingHtml().toString();
-		
-		int lastCount = totalCount;
-		
-		if(page.getEndCount() < totalCount)
-			lastCount = page.getEndCount() + 1;
-		
-		list2 = list2.subList(page.getStartCount(), lastCount);
-		return SUCCESS;
-	}
+
 	
 	public List<GoodsVO> getList2() {
 		return list2;

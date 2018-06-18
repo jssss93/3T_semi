@@ -7,18 +7,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 	<title>비밀번호 확인</title> <script type="text/javascript">
-		function locationURL() {
-			if (window.name == 'write')
-				
-				window.opener.parent.location.href = 'ReviewWriteForm.action?currentPage=<s:property value="currentPage"/>&Goods_no=<s:property value="resultClass.Goods_no"/>';
+	
 		
-			window.close();
-		}
+		function MovePage() { 
+	        window.opener.top.location.href='ReviewWriteForm1.action?goods_no=<s:property value="goods_no" />&currentPage=<s:property value="currentPage" />'; 
+	        window.close(); 
+	} 
 	</script>
 </head>
 <body>
 	<script>
-		locationURL()
+	MovePage()
 	</script>
 </body>
 </html>
