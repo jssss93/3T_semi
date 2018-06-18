@@ -25,7 +25,7 @@ public class DeleteAction extends ActionSupport {
 
 	private int currentPage; // 현재 페이지
 
-	private String fileUploadPath = "C:\\Users\\호준\\Desktop\\git\\3TT\\3T\\WebContent\\upload\\";
+	private String fileUploadPath = "C:\\Users\\호준\\Desktop\\git\\3T\\3T\\WebContent\\upload\\";
 
 	private int REV_no;
 

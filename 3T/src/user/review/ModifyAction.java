@@ -30,7 +30,7 @@ public class ModifyAction extends ActionSupport {
 	private File upload; // 파일 객체
 	private String uploadContentType; // 컨텐츠 타입
 	private String uploadFileName; // 파일 이름
-	private String fileUploadPath = "C:\\Users\\호준\\Desktop\\git\\3TT\\3T\\WebContent\\upload\\"; // 업로드 경로.
+	private String fileUploadPath = "C:\\upload\\"; // 업로드 경로.
 
 	// 생성자
 	public ModifyAction() throws IOException {
@@ -61,7 +61,7 @@ public class ModifyAction extends ActionSupport {
 		if (getUpload() != null) {
 
 			// 실제 서버에 저장될 파일 이름과 확장자 설정.
-			String file_name = "review_" + getREV_no();
+			String file_name = "file_" + getREV_no();
 			String file_ext = getUploadFileName().substring(getUploadFileName().lastIndexOf('.') + 1,
 					getUploadFileName().length());
 
