@@ -1,23 +1,22 @@
 package user.review;
 
-import java.io.Reader;
-
-import com.opensymphony.xwork2.ActionSupport;
-import com.ibatis.common.resources.Resources;
-import com.ibatis.sqlmap.client.SqlMapClient;
-import com.ibatis.sqlmap.client.SqlMapClientBuilder;
-
-import java.util.*;
-import java.io.Reader;
-import java.io.IOException;
-
 import java.io.File;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Map;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.interceptor.SessionAware;
 
-import java.util.Map;
+import com.ibatis.common.resources.Resources;
+import com.ibatis.sqlmap.client.SqlMapClient;
+import com.ibatis.sqlmap.client.SqlMapClientBuilder;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
 
-import user.review.ReviewVO;
+import admin.goods.VO.GoodsVO;
 
 public class WriteAction extends ActionSupport implements SessionAware {
 
@@ -35,11 +34,16 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	private ReviewVO paramClass; // 파라미터를 저장할 객체
 	private ReviewVO resultClass; // 쿼리 결과 값을 저장할 객체
 
+	private GoodsVO G_paramClass = new GoodsVO();
+	private GoodsVO G_resultClass = new GoodsVO();
+
 	public Map session;
 
 	private int currentPage; // 현재 페이지
 
-	private int REV_no;
+	private int goods_no;
+	private int REV_readcnt;
+	private int REV_NO;
 	private String REV_subject;
 	private String REV_name;
 	private String REV_passwd;
@@ -48,9 +52,8 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	private String REV_file_savname; // 서버에 저장할 업로드 파일의 이름. 고유 번호로 구분한다.
 	Calendar today = Calendar.getInstance();
 	private Date REV_regdate;
-
 	private String REV_member_id;
-	private int REV_goods_no = 1;
+	private int REV_goods_no;
 
 	private File upload; // 파일 객체
 	private String uploadContentType; // 컨텐츠 타입
@@ -60,6 +63,7 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	private int REV_ref;
 	private int REV_re_step;
 	private int REV_re_level;
+	private String m_id;
 
 	boolean reply = false;
 
@@ -73,6 +77,7 @@ public class WriteAction extends ActionSupport implements SessionAware {
 
 	public String form() throws Exception {
 		// 등록 폼.
+
 		return SUCCESS;
 	}
 
@@ -80,7 +85,7 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		reply = true;
 		resultClass = new ReviewVO();
 
-		resultClass = (ReviewVO) sqlMapper.queryForObject("review-selectOne", getREV_no());
+		resultClass = (ReviewVO) sqlMapper.queryForObject("review-selectOne", getREV_NO());
 		resultClass.setREV_subject("[답변] " + resultClass.getREV_subject());
 		resultClass.setREV_passwd("");
 		resultClass.setREV_name("");
@@ -98,7 +103,12 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		System.out.println(getREV_passwd());
 		paramClass = new ReviewVO();
 		resultClass = new ReviewVO();
+		G_paramClass.setGoods_no(getGoods_no());
+		System.out.println("getGoods_no="+getGoods_no());
+		System.out.println("G_resultClass.getGoods_no()="+G_resultClass.getGoods_no());
+		G_resultClass = (GoodsVO) sqlMapper.queryForObject("goods-selectOne", getGoods_no());
 
+		// 댓글
 		if (REV_ref == 0) {
 			paramClass.setREV_re_step(0);
 			paramClass.setREV_re_level(0);
@@ -111,18 +121,23 @@ public class WriteAction extends ActionSupport implements SessionAware {
 			paramClass.setREV_re_step(getREV_re_step() + 1);
 			paramClass.setREV_re_level(getREV_re_level() + 1);
 			paramClass.setREV_ref(getREV_ref());
+			paramClass.setREV_file_orgname(getREV_file_orgname());
+			paramClass.setREV_file_savname(getREV_file_savname());
+			paramClass.setREV_readcnt(getREV_readcnt());
 		}
 
 		// 등록할 항목 설정.
+
 		paramClass.setREV_subject(getREV_subject());
 		paramClass.setREV_name(getREV_name());
 		paramClass.setREV_passwd(getREV_passwd());
 		paramClass.setREV_content(getREV_content());
 		paramClass.setREV_regdate(today.getTime());
 
-		paramClass.setREV_member_id(getREV_member_id()); // 아이디
-		paramClass.setREV_goods_no(getREV_goods_no()); // 상품 번호
-
+		paramClass.setREV_member_id(ActionContext.getContext().getSession().get("M_ID").toString()); // 아이디
+		System.out.println("G_resultClass.getGoods_no()" + G_resultClass.getGoods_no());
+		paramClass.setREV_goods_no(G_resultClass.getGoods_no()); // 상품 번호
+		
 		// 등록 쿼리 수행.
 
 		if (REV_ref == 0)
@@ -149,9 +164,8 @@ public class WriteAction extends ActionSupport implements SessionAware {
 			paramClass.setREV_no(resultClass.getREV_no());
 			paramClass.setREV_file_orgname(getUploadFileName()); // 원래 파일 이름
 			paramClass.setREV_file_savname(file_name + "." + file_ext); // 서버에 저장한 파일 이름
-
 			// 파일 정보 업데이트.
-			sqlMapper.update("review-updateFile", paramClass);
+			/*sqlMapper.update("review-updateFile", paramClass);*/
 		}
 
 		return SUCCESS;
@@ -163,14 +177,6 @@ public class WriteAction extends ActionSupport implements SessionAware {
 
 	public void setToday(Calendar today) {
 		this.today = today;
-	}
-
-	public int getREV_no() {
-		return REV_no;
-	}
-
-	public void setREV_no(int REV_no) {
-		this.REV_no = REV_no;
 	}
 
 	public String getREV_subject() {
@@ -347,6 +353,54 @@ public class WriteAction extends ActionSupport implements SessionAware {
 
 	public void setReply(boolean reply) {
 		this.reply = reply;
+	}
+
+	public int getREV_readcnt() {
+		return REV_readcnt;
+	}
+
+	public void setREV_readcnt(int rEV_readcnt) {
+		REV_readcnt = rEV_readcnt;
+	}
+
+	public int getGoods_no() {
+		return goods_no;
+	}
+
+	public void setGoods_no(int goods_no) {
+		this.goods_no = goods_no;
+	}
+
+	public int getREV_NO() {
+		return REV_NO;
+	}
+
+	public void setREV_NO(int rEV_NO) {
+		REV_NO = rEV_NO;
+	}
+
+	public GoodsVO getG_paramClass() {
+		return G_paramClass;
+	}
+
+	public void setG_paramClass(GoodsVO g_paramClass) {
+		G_paramClass = g_paramClass;
+	}
+
+	public GoodsVO getG_resultClass() {
+		return G_resultClass;
+	}
+
+	public void setG_resultClass(GoodsVO g_resultClass) {
+		G_resultClass = g_resultClass;
+	}
+
+	public String getM_id() {
+		return m_id;
+	}
+
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
 	}
 
 }

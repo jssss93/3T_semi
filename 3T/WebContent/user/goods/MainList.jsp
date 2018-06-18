@@ -59,9 +59,9 @@ function showDivs(n) {
 </div>
 
 <div class="w3-content w3-display-container" style="max-width:1500px">
-  <s:a href="listouter.action"><img id="myimg2" class="mySlides" src="/3T/upload/mainslide1.PNG" width="100%" height="600" style="display:block;"></s:a>
-  <s:a href="GoodsView.action?goods_no=496"><img id="myimg2" class="mySlides" src="/3T/upload/mainline3.JPG" width=100% height=600></s:a>
-  <s:a href="listsuit.action"><img id="myimg2" class="mySlides" src="/3T/upload/mainslide2.PNG" width=100% height=600></s:a>
+  <s:a href="GoodsView.action?goods_no=961"><img id="myimg2" class="mySlides" src="/3T/upload/mainslide1.PNG" width="100%" height="600" style="display:block;"></s:a>
+  <s:a href="GoodsView.action?goods_no=762"><img id="myimg2" class="mySlides" src="/3T/upload/mainline3.JPG" width=100% height=600></s:a>
+  <s:a href="GoodsView.action?goods_no=823"><img id="myimg2" class="mySlides" src="/3T/upload/mainslide2.PNG" width=100% height=600></s:a>
   <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
     <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
     <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
@@ -163,7 +163,7 @@ function showDivs(n) {
 	<table width="80%" border="0" height="300" align="center"
 		cellpadding="0" cellspacing="25">
 		<tr>
-			<td colspan=3 align="center"><img src="/3T/upload/mainline5."/></td>
+			<td colspan=3 align="center"><img src="/3T/upload/mainline5.png"/></td>
 		</tr>
 
 		<tr>
