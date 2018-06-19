@@ -53,7 +53,7 @@
         		<td align="center"> &nbsp;<s:a href="%{viewURL}"><s:property value="REV_subject" />
         		</td>
         		
-        		<td align="left">&nbsp;<s:property value="REV_regdate" /></s:a></td>
+        		<td align="center">&nbsp;<s:property value="REV_regdate" /></s:a></td>
 		<td align="center" ><s:property value="REV_name" /></td>
         		
       	      </tr>
