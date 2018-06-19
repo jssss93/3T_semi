@@ -44,7 +44,7 @@ public class BoardPagingAction {
 		if (currentPage > blockPage) {
 			pagingHtml.append("<a href=MyboardAction.action?currentPage="
 					+ (startPage - 1) + ">");
-			pagingHtml.append("?ï¿½ï¿½?ï¿½ï¿½");
+			pagingHtml.append("´ÙÀ½");
 			pagingHtml.append("</a>");
 		}
 
@@ -75,7 +75,7 @@ public class BoardPagingAction {
 		if (totalPage - startPage >= blockPage) {
 			pagingHtml.append("<a href=MyboardAction.action?currentPage="
 					+ (endPage + 1) + ">");
-			pagingHtml.append("?ï¿½ï¿½?ï¿½ï¿½");
+			pagingHtml.append("´ÙÀ½");
 			pagingHtml.append("</a>");
 		}
 	}

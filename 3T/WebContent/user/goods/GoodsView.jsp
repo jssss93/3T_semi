@@ -422,7 +422,7 @@
          <tr>
                <td align="right" colspan="5">
                 <!-- 작성버튼 -->
-                        <a href="ReviewWriteForm1.action?goods_no=<s:property value="goods_no" />">
+                        <a href="ReviewWriteForm.action?goods_no=<s:property value="goods_no" />">
                            <img src="/3T/upload/WRITE A REIVEW.JPG" border="0" />
                         </a>
                </td>
