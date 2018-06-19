@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>비밀번호 확인</title>
+<title>��й�ȣ Ȯ��</title>
 <link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -31,7 +31,7 @@
 		<table width="400" border="0" cellspacing="0" cellpadding="1">
 
 			<tr>
-				<td align="left" width="130" >댓글 등록 시 비밀번호를 입력하여 주십시오</td>
+				<td align="left" width="130" >��� ��� �� ��й�ȣ�� �Է��Ͽ� �ֽʽÿ�</td>
 				
 			</tr>
 				<tr>
@@ -41,7 +41,7 @@
 
 						name="REV_C_passwd" theme="simple" cssStyle="width:100px"
 						maxlength="20" /> &nbsp;&nbsp; <input name="submit" type="submit"
-					value="확인" class="submit">
+					value="Ȯ��" class="submit">
 				</td>
 
 					<tr>

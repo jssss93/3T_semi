@@ -177,7 +177,7 @@
     }
 </script>
 </head>
-<body onload="itemSum(this.form)">
+<body >
 
 	<table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
@@ -270,8 +270,8 @@
 				<td align="left"><input name="submit" type="submit"
 					value="삭제하기" style="background-color: #B8B8B8;" onclick="sele(0);" /></td>
 				<td colspan="6"><input name="Main" type="button"
-					value="주문페이지 ▶"
-					onClick="javascript:location.href='OrderMain.action'"></td>
+					value="메인페이지 ▶"
+					onClick="javascript:location.href='main.action'"></td>
 			</tr>
 			<tr>
 				<td height="20"></td>
@@ -295,10 +295,10 @@
 
 					
 					<tr bgcolor="#F9F9F9" align="center">
-						<td width="50"><input type="checkbox" onClick="itemSum(this.form)" onload="itemSum(this.form)"
+						<td width="50"><input type="checkbox"
 						name="chk" value="<s:property value="BASKET_NO"/>" /></td>
 						<td><img src="/3T/upload/${BASKET_GOODS_IMG}" width="50"></td>
-						<td align="center">&nbsp;<s:a href="%{viewURL}"><s:property value="BASKET_NAME" /></s:a></td>
+						<td align="center">&nbsp;<s:a href="%{viewURL}"><s:property value="BASKET_NAME"/></s:a></td>
 						<td align="center"><s:property value="BASKET_GOODS_AMOUNT" /></td>
 						<td align="center"><s:property value="BASKET_QUANTITY" /></td>
 						<td><s:property value="BASKET_GOODS_AMOUNT*BASKET_QUANTITY" /></td>
@@ -309,8 +309,8 @@
 				
 				<tr bgcolor="#F9F9F9">
 				<td colspan="2">&nbsp;&nbsp;&nbsp;[기본배송]</td>
-				<td align="right" colspan="6">상품구매금액 <s:property value="Pay_List" /> 
-					+배송비 0=합계 :<font color="#FF0000"><s:property value="PayTotal_List" />
+				<td align="right" colspan="6">상품구매금액 <s:property value="basket_Pay_List" /> 
+					+배송비 0=합계!!! :<font color="#FF0000"><s:property value="basket_PayTotal_List" />
 				</font>
 				</td>
 
@@ -323,12 +323,12 @@
 				</tr>
 
 				<tr align="right">
-					<td width="80">선택한상품을</td>
+					<!-- <td width="80">선택한상품을</td>
 					<td align="left"><input name="submit" type="submit"
-						value="삭제하기" style="background-color: #B8B8B8;" onclick="sele(0);" /></td>
+						value="삭제하기" style="background-color: #B8B8B8;" onclick="sele(0);" /></td> -->
 					<td colspan="6"><input name="Main" type="button"
-						value="이전페이지 ▶"
-						onClick="javascript:location.href='OrderMain.action'"></td>
+						value="메인페이지 ▶"
+						onClick="javascript:location.href='main.action'"></td>
 				</tr>
 				<tr>
 					<td height="20"></td>
@@ -531,7 +531,7 @@
 					<td align="center" height="60" width="340"><font
 						color="#5D5D5D">총 주문 금액 </font> <input type="button"
 						value=" 내역보기 >"
-						OnClick="window.open('Orderpaylist.action?goods_no=<s:property value="goods_no" />&sgoods_cnt=<s:property value="sgoods_cnt" />','window_name','width=300,height=320,location=no,status=no,toolbar=no,scrollbars=no');" /></td>
+						OnClick="window.open('Orderpaylist_Write.action','window_name','width=300,height=320,location=no,status=no,toolbar=no,scrollbars=no');" /></td>
 					<td align="center" width="340"><font color="#5D5D5D">총
 							할인 + 부가결제 금액</font></td>
 					<td align="center" width="340"><font color="#5D5D5D">총
@@ -540,12 +540,12 @@
 				
 				<tr>
 					<td width="340" align="center"><font style="font-weight: bold;"><h3>KRW
-								<s:property value="PayTotal_List" /></h3></font></td>
+								<s:property value="basket_PayTotal_List" /></h3></font></td>
 					<td width="340" align="center"><font style="font-weight: bold;"><h3>-
 								KRW 0</h3></font></td>
 					<td align="center"><font style="font-weight: bold;"
 						color="#FF0000"><h3>= KRW
-								<s:property value="PayTotal_List" /></h3></font></td>
+								<s:property value="basket_PayTotal_List" /></h3></font></td>
 								
 				</tr>
 			</table>

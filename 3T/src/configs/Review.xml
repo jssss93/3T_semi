@@ -25,7 +25,9 @@
 			method="form">
 			<result type="tiles">Review_WriteForm</result>
 		</action>
-
+		<action name="ReviewWriteForm1" class="user.review.WriteAction" method="form1">
+			<result type="tiles">Review_WriteForm1</result>
+		</action>
 		<action name="Review_Write" class="user.review.WriteAction">
 			<result type="redirect-action">
 				<param name="actionName">Review_list</param>
@@ -112,10 +114,10 @@
 		<action name="Review_SearchGoodsForm" class="user.review.SearchGoods" method="checkForm3">
 			<result>/user/review/SearchGoods.jsp</result>
 		</action>
-		<action name="Review_SearchGoods" class="user.review.SearchGoods" method="search">
+		<action name="Review_SearchGoods" class="user.review.SearchGoods" >
 			<result>/user/review/SearchGoods.jsp</result>
 		</action>
-<action name="SearchGoodsSuccess" class="user.review.SearchGoods" method="search">
+<action name="Review_SearchGoodsSuccess" class="user.review.SearchGoods">
 			<result>/user/review/SearchGoodsSuccess.jsp</result>
 		</action>
 		

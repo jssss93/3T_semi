@@ -44,7 +44,6 @@ public class ListAction extends ActionSupport implements SessionAware {
 		paramClass.setBasket_member_id(ActionContext.getContext().getSession().get("M_ID").toString());
 		// 모든 글을 가져와 list에 넣는다.
 		B_List = sqlMapper.queryForList("basket-selectM",paramClass);
-		
 		//장바구니 계산 
 		Pay_List = (Integer)sqlMapper.queryForObject("basket-pay",paramClass.getBasket_member_id());
 		PayTotal_List = (Integer) sqlMapper.queryForObject("basket-paytotal",paramClass.getBasket_member_id());

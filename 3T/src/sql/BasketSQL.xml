@@ -38,8 +38,17 @@
 		<select id="basket-paytotal" resultClass="int" parameterClass="String">
 		select sum(basket_goods_amount*BASKET_QUANTITY) from basket where BASKET_MEMBER_ID=#BASKET_MEMBER_ID#
 		</select>
-
 		
+		<select id="basket-pay_or"  resultClass="int" parameterClass="int">
+		select sum(BASKET_GOODS_AMOUNT) from BASKET where  BASKET_NO=#BASKET_NO#
+		</select>
+		
+		<select id="basket-paytotal_or" resultClass="int" parameterClass="int">
+		select sum(basket_goods_amount*BASKET_QUANTITY) from basket where  BASKET_NO=#BASKET_NO#
+		</select>
+		<select id="basket-paygoodscount" resultClass="int" parameterClass="int">
+			select sum(BASKET_QUANTITY) from basket where  BASKET_NO=#BASKET_NO#
+		</select>
 		<!-- 선택삭제  -->
 		<delete id="basketdelete" parameterClass="int">
 			delete from BASKET where BASKET_NO=#BASKET_NO#

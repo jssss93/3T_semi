@@ -19,6 +19,8 @@
 		<result property="REV_re_level" column="REV_re_level" />
 		<result property="REV_member_id" column="REV_member_id" />
 		<result property="REV_goods_no" column="REV_goods_no" />
+		<result property="REV_goods_name" column="REV_goods_name"/>
+		<result property="REV_goods_img" column="REV_goods_img"/>
 	</resultMap>
 
 	<resultMap id="commentRes" class="comment">
@@ -83,10 +85,14 @@
 
 		REV_member_id,
 		REV_goods_no,
-
+		REV_goods_name,
+		REV_goods_img,
+		
 		REV_re_step,
 		REV_re_level,
 		REV_ref
+		
+		
 
 		)
 		VALUES (REV_NO_SEQ.NEXTVAL,
@@ -101,7 +107,11 @@
 
 		#REV_member_id#,
 		#REV_goods_no#,
-        
+
+		#REV_goods_name#,
+		#REV_goods_img#,
+
+
 		#REV_re_step#,
 		#REV_re_level#,
 		#REV_ref#
@@ -121,6 +131,8 @@
 
 		REV_member_id,
 		REV_goods_no,
+		REV_goods_name,
+		REV_goods_img,
 
 		REV_re_step,
 		REV_re_level,
@@ -136,6 +148,8 @@
 
 		#REV_member_id#,
 		#REV_goods_no#,
+		#REV_goods_name#,
+		#REV_goods_img#,
 
 		#REV_re_step#,
 		#REV_re_level#,

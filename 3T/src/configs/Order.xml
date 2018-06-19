@@ -33,6 +33,9 @@
 		<action name="Orderpaylist" class="user.goods.BuyAction">
 			<result>/user/order/PayList.jsp</result>
 		</action>
+		<action name="Orderpaylist_Write" class="user.order.WriteAction" method="paylist">
+			<result>/user/order/PayList.jsp</result>
+		</action>
 		
 		<!-- 주문 완료후 주문내역 보기 -->
 		<action name="Ordergoodslist" class="user.order.ListAction" >
