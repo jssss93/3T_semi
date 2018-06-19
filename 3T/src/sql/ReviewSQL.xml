@@ -47,7 +47,7 @@
 	<!-- select 쿼리문 정의 -->
 	<select id="review-selectAll" resultMap="reviewRes" parameterClass="int">
 		<include refid="review-select-all" />
-		ORDER BY REV_ref DESC, REV_re_step ASC
+		order by rev_no DESC
 	</select>
 
 	<select id="review-selectOne" resultMap="reviewRes"

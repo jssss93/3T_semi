@@ -1,22 +1,23 @@
 package user.review;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.Reader;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.struts2.interceptor.SessionAware;
-
+import com.opensymphony.xwork2.ActionSupport;
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 
+import java.util.*;
+import java.io.Reader;
+import java.io.IOException;
 
+import java.io.File;
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.interceptor.SessionAware;
+
+import java.util.Map;
+
+import user.review.ReviewVO;
 import admin.goods.VO.GoodsVO;
 
 public class WriteAction extends ActionSupport implements SessionAware {
@@ -29,61 +30,57 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		this.session = session;
 	}
 
-	public static Reader reader; // íŒŒì¼ ìŠ¤íŠ¸ë¦¼ì„ ìœ„í•œ reader.
-	public static SqlMapClient sqlMapper; // SqlMapClient APIë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•œ sqlMapper ê°ì²´.
+	public static Reader reader; // ÆÄÀÏ ½ºÆ®¸²À» À§ÇÑ reader.
+	public static SqlMapClient sqlMapper; // SqlMapClient API¸¦ »ç¿ëÇÏ±â À§ÇÑ sqlMapper °´Ã¼.
 
-	private ReviewVO paramClass; // íŒŒë¼ë¯¸í„°ë¥¼ ì €ì¥í•  ê°ì²´
-	private ReviewVO resultClass; // ì¿¼ë¦¬ ê²°ê³¼ ê°’ì„ ì €ì¥í•  ê°ì²´
+	private ReviewVO paramClass; // ÆÄ¶ó¹ÌÅÍ¸¦ ÀúÀåÇÒ °´Ã¼
+	private ReviewVO resultClass; // Äõ¸® °á°ú °ªÀ» ÀúÀåÇÒ °´Ã¼
 
-
-	private GoodsVO G_paramClass = new GoodsVO();
-	private GoodsVO G_resultClass = new GoodsVO();
-
-
+	private GoodsVO goods_paramClass =new GoodsVO();
+	private GoodsVO goods_resultClass=new GoodsVO();
+	
 	public Map session;
 
-	private int currentPage; // í˜„ì¬ í˜ì´ì§€
+	private int currentPage; // ÇöÀç ÆäÀÌÁö
 
-	private int goods_no;
-	private int REV_readcnt;
-	private int REV_NO;
+	private int REV_no;
 	private String REV_subject;
 	private String REV_name;
 	private String REV_passwd;
 	private String REV_content;
-	private String REV_file_orgname; // ì—…ë¡œë“œ íŒŒì¼ì˜ ì›ë˜ ì´ë¦„
-	private String REV_file_savname; // ì„œë²„ì— ì €ì¥í•  ì—…ë¡œë“œ íŒŒì¼ì˜ ì´ë¦„. ê³ ìœ  ë²ˆí˜¸ë¡œ êµ¬ë¶„í•œë‹¤.
+	private String REV_file_orgname; // ¾÷·Îµå ÆÄÀÏÀÇ ¿ø·¡ ÀÌ¸§
+	private String REV_file_savname; // ¼­¹ö¿¡ ÀúÀåÇÒ ¾÷·Îµå ÆÄÀÏÀÇ ÀÌ¸§. °íÀ¯ ¹øÈ£·Î ±¸ºĞÇÑ´Ù.
 	
 	Calendar today = Calendar.getInstance();
 	private Date REV_regdate;
+
 	private String REV_member_id;
+	private int REV_goods_no ;
+	private String REV_goods_name;
+	private String REV_goods_img;
+	private int goods_no;
 
-	private int REV_goods_no;
-
-
-	private File upload; // íŒŒì¼ ê°ì²´
-	private String uploadContentType; // ì»¨í…ì¸  íƒ€ì…
-	private String uploadFileName; // íŒŒì¼ ì´ë¦„
-	private String fileUploadPath = "C:\\Users\\í˜¸ì¤€\\Desktop\\git\\3TT\\3T\\WebContent\\upload\\"; // ì—…ë¡œë“œ ê²½ë¡œ.
+	private File upload; // ÆÄÀÏ °´Ã¼
+	private String uploadContentType; // ÄÁÅÙÃ÷ Å¸ÀÔ
+	private String uploadFileName; // ÆÄÀÏ ÀÌ¸§
+	private String fileUploadPath = "C:\\Users\\È£ÁØ\\Desktop\\git\\3TT\\3T\\WebContent\\upload\\"; // ¾÷·Îµå °æ·Î.
 
 	private int REV_ref;
 	private int REV_re_step;
 	private int REV_re_level;
-	private String m_id;
 
 	boolean reply = false;
 
-	// ìƒì„±ì
+	// »ı¼ºÀÚ
 	public WriteAction() throws IOException {
 
-		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); // sqlMapConfig.xml íŒŒì¼ì˜ ì„¤ì •ë‚´ìš©ì„ ê°€ì ¸ì˜¨ë‹¤.
-		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader); // sqlMapConfig.xmlì˜ ë‚´ìš©ì„ ì ìš©í•œ sqlMapper ê°ì²´ ìƒì„±.
+		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); // sqlMapConfig.xml ÆÄÀÏÀÇ ¼³Á¤³»¿ëÀ» °¡Á®¿Â´Ù.
+		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader); // sqlMapConfig.xmlÀÇ ³»¿ëÀ» Àû¿ëÇÑ sqlMapper °´Ã¼ »ı¼º.
 		reader.close();
 	}
 
 	public String form() throws Exception {
-		// ë“±ë¡ í¼.
-
+		// µî·Ï Æû.
 		return SUCCESS;
 	}
 	public String form1() throws Exception
@@ -101,8 +98,8 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		reply = true;
 		resultClass = new ReviewVO();
 
-		resultClass = (ReviewVO) sqlMapper.queryForObject("review-selectOne", getREV_NO());
-		resultClass.setREV_subject("[ë‹µë³€] " + resultClass.getREV_subject());
+		resultClass = (ReviewVO) sqlMapper.queryForObject("review-selectOne", getREV_no());
+		resultClass.setREV_subject("[´äº¯] " + resultClass.getREV_subject());
 		resultClass.setREV_passwd("");
 		resultClass.setREV_name("");
 		resultClass.setREV_content("");
@@ -114,17 +111,12 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	}
 
 	public String execute() throws Exception {
-		// íŒŒë¼ë¯¸í„°ì™€ ë¦¬ì ˆíŠ¸ ê°ì²´ ìƒì„±.
+		// ÆÄ¶ó¹ÌÅÍ¿Í ¸®ÀıÆ® °´Ã¼ »ı¼º.
 		session.get("M_ID");
 		System.out.println(getREV_passwd());
 		paramClass = new ReviewVO();
 		resultClass = new ReviewVO();
-		G_paramClass.setGoods_no(getGoods_no());
-		System.out.println("getGoods_no="+getGoods_no());
-		System.out.println("G_resultClass.getGoods_no()="+G_resultClass.getGoods_no());
-		G_resultClass = (GoodsVO) sqlMapper.queryForObject("goods-selectOne", getGoods_no());
 
-		// ëŒ“ê¸€
 		if (REV_ref == 0) {
 			paramClass.setREV_re_step(0);
 			paramClass.setREV_re_level(0);
@@ -137,53 +129,56 @@ public class WriteAction extends ActionSupport implements SessionAware {
 			paramClass.setREV_re_step(getREV_re_step() + 1);
 			paramClass.setREV_re_level(getREV_re_level() + 1);
 			paramClass.setREV_ref(getREV_ref());
-			paramClass.setREV_file_orgname(getREV_file_orgname());
-			paramClass.setREV_file_savname(getREV_file_savname());
-			paramClass.setREV_readcnt(getREV_readcnt());
 		}
 
-		// ë“±ë¡í•  í•­ëª© ì„¤ì •.
-
+		// µî·ÏÇÒ Ç×¸ñ ¼³Á¤.
 		paramClass.setREV_subject(getREV_subject());
 		paramClass.setREV_name(getREV_name());
 		paramClass.setREV_passwd(getREV_passwd());
 		paramClass.setREV_content(getREV_content());
 		paramClass.setREV_regdate(today.getTime());
 
+		paramClass.setREV_member_id(getREV_member_id()); // ¾ÆÀÌµğ
+		goods_paramClass.setGoods_no(getGoods_no());
+		System.out.println("getGoods_no())s"+getGoods_no());
+		System.out.println("goods_paramClass"+goods_paramClass);
+		goods_resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", getGoods_no());
+		System.out.println("goods_resultClass.goods"+goods_resultClass);
+		System.out.println("goods_resultClass.getGoods_no()"+goods_resultClass.getGoods_no());
+		paramClass.setREV_goods_no(goods_resultClass.getGoods_no());
+		System.out.println("paramClass"+paramClass);
+		paramClass.setREV_goods_name(goods_resultClass.getGoods_name());
+		paramClass.setREV_goods_img(goods_resultClass.getGoods_file_savname().split(",")[0]);
 
-		paramClass.setREV_member_id(ActionContext.getContext().getSession().get("M_ID").toString()); // ì•„ì´ë””
-		System.out.println("G_resultClass.getGoods_no()" + G_resultClass.getGoods_no());
-		paramClass.setREV_goods_no(G_resultClass.getGoods_no()); // ìƒí’ˆ ë²ˆí˜¸
-		
-
-		// ë“±ë¡ ì¿¼ë¦¬ ìˆ˜í–‰.
+		// µî·Ï Äõ¸® ¼öÇà.
 
 		if (REV_ref == 0)
 			sqlMapper.insert("review-insertReview", paramClass);
 		else
 			sqlMapper.insert("review-insertReviewReply", paramClass);
 
-		// ì²¨ë¶€íŒŒì¼ì„ ì„ íƒí–ˆë‹¤ë©´ íŒŒì¼ì„ ì—…ë¡œë“œí•œë‹¤.
+		// Ã·ºÎÆÄÀÏÀ» ¼±ÅÃÇß´Ù¸é ÆÄÀÏÀ» ¾÷·ÎµåÇÑ´Ù.
 		if (getUpload() != null) {
 
-			// ë“±ë¡í•œ ê¸€ ë²ˆí˜¸ ê°€ì ¸ì˜¤ê¸°.
+			// µî·ÏÇÑ ±Û ¹øÈ£ °¡Á®¿À±â.
 			resultClass = (ReviewVO) sqlMapper.queryForObject("review-selectLastNo");
 
-			// ì‹¤ì œ ì„œë²„ì— ì €ì¥ë  íŒŒì¼ ì´ë¦„ê³¼ í™•ì¥ì ì„¤ì •.
+			// ½ÇÁ¦ ¼­¹ö¿¡ ÀúÀåµÉ ÆÄÀÏ ÀÌ¸§°ú È®ÀåÀÚ ¼³Á¤.
 			String file_name = "file_" + resultClass.getREV_no();
 			String file_ext = getUploadFileName().substring(getUploadFileName().lastIndexOf('.') + 1,
 					getUploadFileName().length());
 
-			// ì„œë²„ì— íŒŒì¼ ì €ì¥.
+			// ¼­¹ö¿¡ ÆÄÀÏ ÀúÀå.
 			File destFile = new File(fileUploadPath + file_name + "." + file_ext);
 			FileUtils.copyFile(getUpload(), destFile);
 
-			// íŒŒì¼ ì •ë³´ íŒŒë¼ë¯¸í„° ì„¤ì •.
+			// ÆÄÀÏ Á¤º¸ ÆÄ¶ó¹ÌÅÍ ¼³Á¤.
 			paramClass.setREV_no(resultClass.getREV_no());
-			paramClass.setREV_file_orgname(getUploadFileName()); // ì›ë˜ íŒŒì¼ ì´ë¦„
-			paramClass.setREV_file_savname(file_name + "." + file_ext); // ì„œë²„ì— ì €ì¥í•œ íŒŒì¼ ì´ë¦„
-			// íŒŒì¼ ì •ë³´ ì—…ë°ì´íŠ¸.
-			/*sqlMapper.update("review-updateFile", paramClass);*/
+			paramClass.setREV_file_orgname(getUploadFileName()); // ¿ø·¡ ÆÄÀÏ ÀÌ¸§
+			paramClass.setREV_file_savname(file_name + "." + file_ext); // ¼­¹ö¿¡ ÀúÀåÇÑ ÆÄÀÏ ÀÌ¸§
+
+			// ÆÄÀÏ Á¤º¸ ¾÷µ¥ÀÌÆ®.
+			sqlMapper.update("review-updateFile", paramClass);
 		}
 
 		return SUCCESS;
@@ -195,6 +190,14 @@ public class WriteAction extends ActionSupport implements SessionAware {
 
 	public void setToday(Calendar today) {
 		this.today = today;
+	}
+
+	public int getREV_no() {
+		return REV_no;
+	}
+
+	public void setREV_no(int REV_no) {
+		this.REV_no = REV_no;
 	}
 
 	public String getREV_subject() {
@@ -373,13 +376,36 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		this.reply = reply;
 	}
 
-
-	public int getREV_readcnt() {
-		return REV_readcnt;
+	public GoodsVO getGoods_paramClass() {
+		return goods_paramClass;
 	}
 
-	public void setREV_readcnt(int rEV_readcnt) {
-		REV_readcnt = rEV_readcnt;
+	public void setGoods_paramClass(GoodsVO goods_paramClass) {
+		this.goods_paramClass = goods_paramClass;
+	}
+
+	public GoodsVO getGoods_resultClass() {
+		return goods_resultClass;
+	}
+
+	public void setGoods_resultClass(GoodsVO goods_resultClass) {
+		this.goods_resultClass = goods_resultClass;
+	}
+
+	public String getREV_goods_name() {
+		return REV_goods_name;
+	}
+
+	public void setREV_goods_name(String REV_goods_name) {
+		this.REV_goods_name = REV_goods_name;
+	}
+
+	public String getREV_goods_img() {
+		return REV_goods_img;
+	}
+
+	public void setREV_goods_img(String REV_goods_img) {
+		this.REV_goods_img = REV_goods_img;
 	}
 
 	public int getGoods_no() {
@@ -389,38 +415,6 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	public void setGoods_no(int goods_no) {
 		this.goods_no = goods_no;
 	}
-
-	public int getREV_NO() {
-		return REV_NO;
-	}
-
-	public void setREV_NO(int rEV_NO) {
-		REV_NO = rEV_NO;
-	}
-
-	public GoodsVO getG_paramClass() {
-		return G_paramClass;
-	}
-
-	public void setG_paramClass(GoodsVO g_paramClass) {
-		G_paramClass = g_paramClass;
-	}
-
-	public GoodsVO getG_resultClass() {
-		return G_resultClass;
-	}
-
-	public void setG_resultClass(GoodsVO g_resultClass) {
-		G_resultClass = g_resultClass;
-	}
-
-	public String getM_id() {
-		return m_id;
-	}
-
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
-	}
-
+	
 
 }
