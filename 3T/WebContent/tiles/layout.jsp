@@ -16,7 +16,7 @@
 	
 <tr>
 	
-	<td colspan="1" height="10%" align="center" bgcolor="EBF5FF">
+	<td colspan="1" height="10%" align="center" bgcolor="FFFFFF">
 	<tiles:insertAttribute name="footer" />
 	</td>
 	

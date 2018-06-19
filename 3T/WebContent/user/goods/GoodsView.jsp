@@ -27,9 +27,11 @@
 			document.form.action = 'AddCart.action?goods_no=${resultClass.goods_no}';
 		}
 		if (index == 3) {
+			alert('로그인 후 이용해주세요.');
 			document.form.action = 'loginAction.action';
 		}
 		if (index == 4) {
+			alert('관심상품으로 등록되었습니다.');
 			document.form.action = 'AddWish.action?goods_no=${resultClass.goods_no}';
 		}
 		document.form.submit();
@@ -41,13 +43,12 @@
 	  { 
 	      var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
 	    
-	      $( id ).stop().animate({top:position+"px"}, 1); //해당 오브젝트 위치값 재설정
+	      $( id ).stop().animate({top:position+"px"}, 300); //해당 오브젝트 위치값 재설정
 	   });
 	}
 	 scroll_follow( "#scroll" );
 		 //스크롤이 생기도록 
-
-	
+		 
 </script>
 </head>
 
@@ -349,11 +350,26 @@
 </table>
 <!-- 리뷰 게시판 -->
 <br><br><br>
-<table>
+<table >
          <strong>리뷰 목록</strong>
          <br />
-         <s:if test="">
-            등록된 리뷰가 없습니다.
+         <tr>
+         <br />
+         <s:if test="list.size() <= 0"> 
+         <tr align="center" bgcolor="#D5D5D5">
+               <td width="100" height="30" valign="middle" class="body_grey"><strong>리뷰글번호</strong></td>
+               <td width="300" height="30" valign="middle" class="body_grey"><strong>리뷰제목</strong></td>
+               <td width="100" height="30" valign="middle" class="body_grey"><strong>글쓴이</strong></td>
+               <td width="200" height="30" valign="middle" class="body_grey"><strong>등록일시</strong></td>
+               <td width="50" height="30" valign="middle" class="body_grey"><strong>관리</strong></td>
+            </tr>
+        <tr bgcolor="#FFFFFF"  align="center">
+		   	  	<td colspan="7
+		   	  	">등록된 게시물이 없습니다.</td>
+              </tr>						
+	      	  <tr bgcolor="#777777">
+      			<td height="1" colspan="7"></td>
+    	      </tr>
       </s:if>
          <s:else>
             <tr align="center" bgcolor="#D5D5D5">
@@ -361,7 +377,7 @@
                <td width="300" height="30" valign="middle" class="body_grey"><strong>리뷰제목</strong></td>
                <td width="100" height="30" valign="middle" class="body_grey"><strong>글쓴이</strong></td>
                <td width="200" height="30" valign="middle" class="body_grey"><strong>등록일시</strong></td>
-               <td width="50" height="30" valign="middle" class="body_grey"><strong>관리</strong></td>
+               <td width="50" height="30" valign="middle" class="body_grey"><strong>조회수</strong></td>
             </tr>
 
 
@@ -381,44 +397,27 @@
                         value="REV_member_id" /></td>
                   <td width="100" height="30" align="center"><s:property
                         value="REV_regdate" /></td>
-
-
-                  <td width="50" valign="middle">
-                  <s:if
-                        test='%{session.id == M_ID}'>
-                        <p align="center">
-                             <!-- 작성버튼 -->
-                        <a href="ReviewWriteForm.action?REV_goods_no=<s:property value="REV_goods_no" />&currentPage=<s:property value="currentPage" />">
-                           <img src="/3T/upload/write.JPG" border="0" />
-                        </a>
-                        
-                              <!-- 수정 버튼 -->
-                        <a href="Review_ModifyAction.action?REV_goods_no=<s:property value="REV_goods_no" />&currentPage=<s:property value="currentPage" />">
-                           <img src="/3T/upload/modify.JPG" border="0" />
-                        </a>
-                         
-                           <!-- 삭제 버튼 -->
-                           <a
-                              href="Review_DeleteAction.action?REV_goods_no=<s:property value="REV_goods_no" />&no=<s:property value="no" />">
-                              <img src="/3T/upload/delete.JPG" border="0" />
-                           </a>
-                        </p>
-                     </s:if> 
-                     <s:if test='%{session.id == "M_ID"}'>
-                        <a
-                           href="Review_DeleteAction.action?REV_goods_no=<s:property value="REV_goods_no" />&no=<s:property value="no" />">
-                           <img src="/3T/upload/delete.JPG" border="0" />
-                        </a>
-                     </s:if></td>
+                  <td width="100" height="30" align="center"><s:property
+                        value="REV_readcnt" /></td>
 
                </tr>
+               
+              
 
             </s:iterator>
-
             <tr>
                <td height="1" colspan="100%" bgcolor="#000000"></td>
             </tr>
+
          </s:else>
+         <tr>
+               <td align="middle" colspan="5">
+                <!-- 작성버튼 -->
+                        <a href="ReviewWriteForm.action?goods_no=<s:property value="goods_no" />">
+                           <img src="/3T/upload/WRITE A REIVEW.JPG" border="0" />
+                        </a>
+               </td>
+            </tr>
       </table>
    
    <br></br>
@@ -427,14 +426,27 @@
 <br>
 <br>
 <br>
-
+        <tr>
 		<td colspan=1 align="center"><h2 id="QNA">Q & A</h2></td>
 
- <table>
-         <strong>q&a 목록</strong>
+ <table align="center">
+       <tr>
          <br />
-         <s:if test="">
-            등록된 q&a가 없습니다.
+         <s:if test="qaList.size() <= 0"> 
+         <tr align="center" bgcolor="#D5D5D5">
+               <td width="100" height="30" valign="middle" class="body_grey"><strong>q&a글번호</strong></td>
+               <td width="300" height="30" valign="middle" class="body_grey"><strong>q&a제목</strong></td>
+               <td width="100" height="30" valign="middle" class="body_grey"><strong>ID</strong></td>
+               <td width="200" height="30" valign="middle" class="body_grey"><strong>등록일시</strong></td>
+               <td width="50" height="30" valign="middle" class="body_grey"><strong>관리</strong></td>
+            </tr>
+        <tr bgcolor="#FFFFFF"  align="center">
+		   	  	<td colspan="7
+		   	  	">등록된 게시물이 없습니다.</td>
+              </tr>						
+	      	  <tr bgcolor="#777777">
+      			<td height="1" colspan="7"></td>
+    	      </tr>
       </s:if>
          <s:else>
             <tr align="center" bgcolor="#D5D5D5">
@@ -442,7 +454,7 @@
                <td width="300" height="30" valign="middle" class="body_grey"><strong>q&a제목</strong></td>
                <td width="100" height="30" valign="middle" class="body_grey"><strong>ID</strong></td>
                <td width="200" height="30" valign="middle" class="body_grey"><strong>등록일시</strong></td>
-               <td width="50" height="30" valign="middle" class="body_grey"><strong>관리</strong></td>
+               <td width="50" height="30" valign="middle" class="body_grey"><strong>조회수</strong></td>
             </tr>
 
 
@@ -452,64 +464,53 @@
 
             <s:iterator value="qaList" status="stat">
                <s:param name="no">
-                  <s:property value="QA_no" />
+                  <s:property value="QA_NO" />
                </s:param>
                <s:param name="id">
-                  <s:property value="QA_member_id" />
+                  <s:property value="QA_MEMBER_ID" />
                </s:param>
                <tr align="center" bgcolor="#F3F3F3">
                   <td width="100" height="30" align="center"><s:property
-                        value="QA_no" /></td>
+                        value="QA_NO" /></td>
                   <td width="300" height="30" align="left"><s:property
-                        value="QA_subject" /> <details> <summary>내용보기</summary>
+                        value="QA_SUBJECT" /> <details> <summary>내용보기</summary>
                      <s:property value="QA_content" /></details></td>
                   <td width="100" height="30" align="center"><s:property
-                        value="QA_member_id" /></td>
+                        value="QA_MEMBER_ID" /></td>
                   <td width="100" height="30" align="center"><s:property
-                        value="QA_regdate" /></td>
-
-
-                  <td width="50" valign="middle"><s:if
-                        test='%{session.id == M_ID}'>
-                        `````````````````````````````````````<p align="center">
-                              <!-- 수정 버튼 -->
-                        <a href="qa_modifyAction.action?QA_goods_no=<s:property value="QA_goods_no" />&currentPage=<s:property value="currentPage" />">
-                           <img src="/3T/upload/modify.JPG" border="0" />
-                        </a>
-                        
-                           <!-- 삭제 버튼 -->
-                           <a
-                              href="qa_deleteAction1.action?QA_goods_no=<s:property value="QA_goods_no" />&no=<s:property value="no" />">
-                              <img src="/3T/upload/delete.JPG" border="0" />
-                           </a>
-                        </p>
-                     </s:if> <s:if test='%{session.id == "M_ID"}'>
-                        <a
-                           href="qa_deleteAction1.action?QA_goods_no=<s:property value="QA_goods_no" />&no=<s:property value="no" />">
-                           <img src="/3T/upload/delete.JPG" border="0" />
-                        </a>
-                     </s:if></td>
-
+                        value="QA_REGDATE" /></td>
+                  <td width="100" height="30" align="center"><s:property
+                        value="QA_READCNT" /></td>
                </tr>
 
             </s:iterator>
 
             <tr>
                <td height="1" colspan="100%" bgcolor="#000000"></td>
+                </tr>
+			
             </tr>
          </s:else>
+         <tr>
+               <td align="middle" colspan="5">
+                <!-- 작성버튼 -->
+                        <a href="qa_writeForm1.action?goods_no=<s:property value="goods_no" />&currentPage=<s:property value="currentPage" />">
+                           <img src="/3T/upload/WRITE A Q&A.JPG" border="0" />
+                        </a>
+               </td>
+            </tr>
 
 	</center>
+</tr>
 
 </table>
 <!-- 컨트롤러  -->
-<div id="scroll" style="position:absolute; top: 400px; left: 10px;"> 
+<div id="scroll" style="position:absolute;top: 10px; left: 10px;"> 
 <ul>
-<a href="#REVIEW"><h1>REVIEW</h1></a>
-<a href="#QNA"><h1>QnA</h1></a>
+<li><a href="#REVIEW"><h3>REVIEW</h3></a>
+<li><a href="#QNA"><h3>QnA</h3></a>
 </ul>
 </div>
-
 
 </body>
 </html>

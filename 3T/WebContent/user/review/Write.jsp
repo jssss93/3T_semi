@@ -57,7 +57,7 @@
 
 	<table width="600" border="0" cellspacing="0" cellpadding="2" align="center">
 		<tr>
-			<td align="center" class="text01 formbar">REVIEW</td>
+			<td align="center" class="text01 formbar">REVIEW&nbsp;|&nbsp;</td>
 
 		</tr>
 		<tr>
@@ -77,8 +77,9 @@
 	<s:elseif test="resultClass == NULL">
 		<form action="Review_Write.action?goods_no=${goods_no }" method="post"
 			enctype="multipart/form-data" onsubmit="return validation();">
-			<s:param name="REV_goods_no">
-				<s:property value="REV_goods_no" />
+			<s:hidden name="goods_no" value="%{goods_no}" />
+			<s:param name="goods_no">
+				<s:property value="goods_no" />
 			</s:param>
 	</s:elseif>
 
