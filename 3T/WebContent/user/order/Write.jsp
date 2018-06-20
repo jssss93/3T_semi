@@ -575,12 +575,23 @@
 							<td align="right" valign="top" width="500" colspan="2"><font
 								style="font-weight: bold;"><h4>무통장 입금 최종결제 금액</h4></font></td>
 						</tr>
+						<s:if test="g_resultClass.goods_no != 0">
 						<tr>
 							<td align="center" width="40"><font
 								style="font-weight: bold;" color="#FF0000"><h4>KRW</h4></font></td>
 							<td align="right"><font style="font-weight: bold;"
 								color="#FF0000"><h2>${g_resultClass.goods_price*sgoods_cnt}</h2></font></td>
 						</tr>
+						</s:if>
+						<s:else>
+						<tr>
+							<td align="center" width="40"><font
+								style="font-weight: bold;" color="#FF0000"><h4>KRW</h4></font></td>
+							<td align="right"><font style="font-weight: bold;"
+								color="#FF0000"><h2><s:property value="basket_PayTotal_List" /></h2></font></td>
+						</tr>
+						</s:else>
+						
 						<tr>
 							<td align="center"><input type="checkbox" name="checkbox_agree" id="checkbox_agree" /></td>
 							<td align="left"><font style="font-weight: bold;"><h4>결제정보를

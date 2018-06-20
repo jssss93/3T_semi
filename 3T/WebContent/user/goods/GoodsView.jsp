@@ -317,7 +317,7 @@
 <table width="200" border="0" height="0" align="center" cellpadding="10"
 	cellspacing="10">
 	<tr>
-		<td colspan=1 align="center"><h2 id="REVIEW" >review</h2></td>
+		<td colspan=1 align="center"><h2>review</h2></td>
 	</tr>
 
 		<s:iterator value="rplist" status="stat">
@@ -517,13 +517,6 @@
 
 	</center>
 </table>
-<!-- 컨트롤러  -->
-<div id="scroll" style="position:absolute;top: 10px; left: 10px;"> 
-<ul>
-<li><a href="#REVIEW"><h3>REVIEW</h3></a>
-<li><a href="#QNA"><h3>QnA</h3></a>
-</ul>
-</div>
 
 </body>
 </html>

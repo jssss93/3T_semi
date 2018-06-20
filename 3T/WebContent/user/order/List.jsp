@@ -39,6 +39,10 @@
       	   </tr>
 
 	      <s:iterator value="list" status="stat1">
+			<s:if test="ORDER_GOODS_NO==null">
+			
+			</s:if>
+			<s:else>
 			<!-- http://localhost:8080/StrutsBoard/viewAction.action?no=2&currentPage=1 -->
      	      <tr bgcolor="#FFFFFF"  align="center">
         		<td><s:property value="ORDER_REGDATE" /><br>[<s:property value="ORDER_NO" />]</td>
@@ -92,6 +96,7 @@
         		<td height="1" colspan="7"></td>
       	      </tr>
     		 
+			</s:else>
 	      </s:iterator>
 			
 	      <s:if test="list.size() <= 0">

@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -6,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<title>비밀번호 확인</title> <script type="text/javascript">
+	<title>��й�ȣ Ȯ��</title> <script type="text/javascript">
 	
 		
 		function MovePage() { 

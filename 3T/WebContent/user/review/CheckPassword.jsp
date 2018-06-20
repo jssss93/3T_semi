@@ -1,11 +1,12 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>비밀번호 확인</title>
+<title>��й�ȣ Ȯ��</title>
 <link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -32,7 +33,7 @@
 		<table width="400" border="0" cellspacing="0" cellpadding="1">
 
 			<tr>
-				<td align="left" width="130" >리뷰 등록 시 비밀번호를 입력하여 주십시오</td>
+				<td align="left" width="130" >���� ��� �� ��й�ȣ�� �Է��Ͽ� �ֽʽÿ�</td>
 				
 			</tr>
 				<tr>
@@ -43,7 +44,7 @@
 			<td align="left" width="200" bgcolor="#FFFFFF">&nbsp;&nbsp;PASSWORD <s:textfield
 						name="REV_passwd" theme="simple" cssStyle="width:160px"
 						maxlength="20" /> &nbsp;&nbsp; <input name="submit" type="submit"
-					value="확인" class="inputb">
+					value="Ȯ��" class="inputb">
 				</td>
 				<tr>
 			<td height="20"></td>

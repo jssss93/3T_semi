@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="UTF-8"%>
+	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -29,19 +29,19 @@
 		var frm = document.forms[0];
 
 		if (frm.REV_subject.value == "") {
-			alert("ì œëª©ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”.");
+			alert("Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 			return false;
 		} else if (frm.REV_name.value == "") {
-			alert("ì´ë¦„ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”.");
+			alert("ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 			return false;
 		} else if (frm.REV_passwd.value == "") {
-					alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”.");
+					alert("ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 					return false;
 				} else if (frm.REV_content.value == "") {
-			alert("ë‚´ìš©ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”.");
+			alert("³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 			return false;
 		}/*  else if (frm.objChkBox.value == "") {
-					alert("ê°œì¸ì •ë³´ ìˆ˜ì§‘ ë° ì´ìš©ì— ë™ì˜í•´ì£¼ì„¸ìš”.");
+					alert("°³ÀÎÁ¤º¸ ¼öÁý ¹× ÀÌ¿ë¿¡ µ¿ÀÇÇØÁÖ¼¼¿ä.");
 					return false;
 				} */
 
@@ -90,13 +90,13 @@
 			<s:hidden name="currentPage" value="%{currentPage}" />
 			<s:hidden name="old_file" value="%{resultClass.REV_file_savname}" />
 	</s:else>
-<table width="600" border="0" cellspacing="0" height="120">
+<table width="600" border="0" cellspacing="0" height="120" background="/3T/upload/QA_BG.png">
 <s:if test="goods_no <=0">
 <input type="hidden" name="REV_goods_no" value="goods_no"/>
 <tr>
 <td align="center" width="120"><img src="/3T/upload/QA.PNG" width="80" height="100"></td>
 	<td colspan="2"><hr align="center" width="470" color="#8C8C8C"  ><br>
-	<input type="button" name="button" value="ìƒí’ˆì •ë³´ì„ íƒ â–¶"
+	<input type="button" name="button" value="»óÇ°Á¤º¸¼±ÅÃ ¢º"
 					class="inputb"
 					onClick="javascript:open_win_noresizable('Review_SearchGoodsForm.action?currentPage=<s:property value="currentPage" />', write)">
 					</td>
@@ -119,8 +119,8 @@
 				
 					<td colspan="2"> <s:property value="goods_resultClass.goods_name" /><br>KRW <s:property value="goods_resultClass.goods_price" />
 					<hr align="center" width="470" color="#8C8C8C"  ><br>
-						<s:a href="%{viewURL}"><input type="button" name="button" value="ìƒí’ˆ ìƒì„¸ë³´ê¸° â–¶"/></s:a>
-						<input type="button" name="button" value="ìƒí’ˆì •ë³´ ì„ íƒ â–¶"  onclick="javascript:open_win_noresizable('Review_SearchGoodsForm.action?currentPage=<s:property value="currentPage" />', write)"/>
+						<s:a href="%{viewURL}"><input type="button" name="button" value="»óÇ° »ó¼¼º¸±â ¢º"/></s:a>
+						<input type="button" name="button" value="»óÇ°Á¤º¸ ¼±ÅÃ ¢º"  onclick="javascript:open_win_noresizable('Review_SearchGoodsForm.action?currentPage=<s:property value="currentPage" />', write)"/>
 					</td>
 				</tr>
 			</s:else>
@@ -166,7 +166,7 @@
 					<td class="tdstyle2"><b>FILE</b></td>
 					<td class="tdstyle2"><s:file name="upload" theme="simple" />
 						<s:if test="resultClass.REV_file_orgname != NULL">
-        	&nbsp; * <s:property value="resultClass.REV_file_orgname" />íŒŒì¼ì´ ë“±ë¡ ë˜ì–´ ìžˆìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì—…ë¡œë“œí•˜ë©´ ê¸°ì¡´ì˜ íŒŒì¼ì€ ì‚­ì œë©ë‹ˆë‹¤.
+        	&nbsp; * <s:property value="resultClass.REV_file_orgname" />ÆÄÀÏÀÌ µî·Ï µÇ¾î ÀÖ½À´Ï´Ù. ´Ù½Ã ¾÷·ÎµåÇÏ¸é ±âÁ¸ÀÇ ÆÄÀÏÀº »èÁ¦µË´Ï´Ù.
         	</s:if></td>
 				</tr>
 					 <tr>
@@ -176,22 +176,22 @@
 					cssStyle="width:100px" maxlength="20" /></td>
 				</tr>  
 				<%-- <tr>
-			<td bgcolor="#FFFFF">ê°œì¸ì •ë³´ ìˆ˜ì§‘ ë° ì´ìš© ë™ì˜</td>
+			<td bgcolor="#FFFFF">°³ÀÎÁ¤º¸ ¼öÁý ¹× ÀÌ¿ë µ¿ÀÇ</td>
 			<td bgcolor="#FFFFF"><s:textarea name="content" theme="simple"
-					value="â–  ê°œì¸ì •ë³´ì˜ ìˆ˜ì§‘Â·ì´ìš© ëª©ì 
-ì„œë¹„ìŠ¤ ì œê³µ ë° ê³„ì•½ì˜ ì´í–‰, êµ¬ë§¤ ë° ëŒ€ê¸ˆê²°ì œ, ë¬¼í’ˆë°°ì†¡ ë˜ëŠ” ì²­êµ¬ì§€ ë°œì†¡, íšŒì›ê´€ë¦¬ ë“±ì„ ìœ„í•œ ëª©ì 
-â–  ìˆ˜ì§‘í•˜ë ¤ëŠ” ê°œì¸ì •ë³´ì˜ í•­ëª©
-ì´ë¦„, ì£¼ì†Œ, ì—°ë½ì²˜ ë“±
-â–  ê°œì¸ì •ë³´ì˜ ë³´ìœ  ë° ì´ìš© ê¸°ê°„
-íšŒì‚¬ëŠ” ê°œì¸ì •ë³´ ìˆ˜ì§‘ ë° ì´ìš©ëª©ì ì´ ë‹¬ì„±ëœ í›„ì—ëŠ” ì˜ˆì™¸ì—†ì´ í•´ë‹¹ì •ë³´ë¥¼ íŒŒê¸°í•©ë‹ˆë‹¤.
-#ê°œì¸ì •ë³´ì˜ ìœ„íƒ ì²˜ë¦¬ì• ì¦ˆí´ë¡œëŠ” ì„œë¹„ìŠ¤ í–¥ìƒì„ ìœ„í•´ ê´€ê³„ë²•ë ¹ì— ë”°ë¼ íšŒì›ì˜ ë™ì˜ë¥¼ ì–»ê±°ë‚˜ ê´€ë ¨ ì‚¬í•­ì„ ê³µê°œ ë˜ëŠ” ê³ ì§€ í›„ íšŒì›ì˜ ê°œì¸ì •ë³´ë¥¼ ì™¸ë¶€ì— ìœ„íƒí•˜ì—¬ ì²˜ë¦¬í•˜ê³  ìžˆìŠµë‹ˆë‹¤. ì• ì¦ˆí´ë¡œì˜ ê°œì¸ì •ë³´ì²˜ë¦¬ ìˆ˜íƒìžì™€ ê·¸ ì—…ë¬´ì˜ ë‚´ìš©ì€ ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤. - ìˆ˜íƒìž : (ì£¼)ë£¨ë‚˜ì†Œí”„íŠ¸- ìœ„íƒ ì—…ë¬´ ë‚´ìš© : ì¹´ì¹´ì˜¤ ì•Œë¦¼í†¡ ë°œì†¡ ì—…ë¬´ ì§ì†¡ ë“± ì¼ë¶€ ë°°ì†¡í˜•íƒœì— ë”°ë¼, ì „ìžìƒê±°ëž˜ì†Œë¹„ìžë³´í˜¸ë²• ì œ 21ì¡°ì— ì˜ê±° í˜‘ë ¥ì‚¬ì— ë°°ì†¡ì •ë³´ê°€ ì œê³µ ë©ë‹ˆë‹¤."
+					value="¡á °³ÀÎÁ¤º¸ÀÇ ¼öÁý¡¤ÀÌ¿ë ¸ñÀû
+¼­ºñ½º Á¦°ø ¹× °è¾àÀÇ ÀÌÇà, ±¸¸Å ¹× ´ë±Ý°áÁ¦, ¹°Ç°¹è¼Û ¶Ç´Â Ã»±¸Áö ¹ß¼Û, È¸¿ø°ü¸® µîÀ» À§ÇÑ ¸ñÀû
+¡á ¼öÁýÇÏ·Á´Â °³ÀÎÁ¤º¸ÀÇ Ç×¸ñ
+ÀÌ¸§, ÁÖ¼Ò, ¿¬¶ôÃ³ µî
+¡á °³ÀÎÁ¤º¸ÀÇ º¸À¯ ¹× ÀÌ¿ë ±â°£
+È¸»ç´Â °³ÀÎÁ¤º¸ ¼öÁý ¹× ÀÌ¿ë¸ñÀûÀÌ ´Þ¼ºµÈ ÈÄ¿¡´Â ¿¹¿Ü¾øÀÌ ÇØ´çÁ¤º¸¸¦ ÆÄ±âÇÕ´Ï´Ù.
+#°³ÀÎÁ¤º¸ÀÇ À§Å¹ Ã³¸®¾ÖÁîÅ¬·Î´Â ¼­ºñ½º Çâ»óÀ» À§ÇØ °ü°è¹ý·É¿¡ µû¶ó È¸¿øÀÇ µ¿ÀÇ¸¦ ¾ò°Å³ª °ü·Ã »çÇ×À» °ø°³ ¶Ç´Â °íÁö ÈÄ È¸¿øÀÇ °³ÀÎÁ¤º¸¸¦ ¿ÜºÎ¿¡ À§Å¹ÇÏ¿© Ã³¸®ÇÏ°í ÀÖ½À´Ï´Ù. ¾ÖÁîÅ¬·ÎÀÇ °³ÀÎÁ¤º¸Ã³¸® ¼öÅ¹ÀÚ¿Í ±× ¾÷¹«ÀÇ ³»¿ëÀº ´ÙÀ½°ú °°½À´Ï´Ù. - ¼öÅ¹ÀÚ : (ÁÖ)·ç³ª¼ÒÇÁÆ®- À§Å¹ ¾÷¹« ³»¿ë : Ä«Ä«¿À ¾Ë¸²Åå ¹ß¼Û ¾÷¹« Á÷¼Û µî ÀÏºÎ ¹è¼ÛÇüÅÂ¿¡ µû¶ó, ÀüÀÚ»ó°Å·¡¼ÒºñÀÚº¸È£¹ý Á¦ 21Á¶¿¡ ÀÇ°Å Çù·Â»ç¿¡ ¹è¼ÛÁ¤º¸°¡ Á¦°ø µË´Ï´Ù."
 					cols="80" rows="10"></s:textarea></td>
 			<td colspan="2"></td>
 		</tr>
 		<tr>
-			<td colspan="2" bgcolor="#FFFFFF">ê°œì¸ì •ë³´ ìˆ˜ì§‘ ë° ì´ìš©ì— ë™ì˜í•˜ì‹­ë‹ˆê¹Œ? <input
-				type="radio" name="objChkBox" value="ë™ì˜">ë™ì˜</input> <input
-				type="radio" name="objChkBox" value="ë™ì˜ì•ˆí•¨">ë™ì˜ì•ˆí•¨</input>
+			<td colspan="2" bgcolor="#FFFFFF">°³ÀÎÁ¤º¸ ¼öÁý ¹× ÀÌ¿ë¿¡ µ¿ÀÇÇÏ½Ê´Ï±î? <input
+				type="radio" name="objChkBox" value="µ¿ÀÇ">µ¿ÀÇ</input> <input
+				type="radio" name="objChkBox" value="µ¿ÀÇ¾ÈÇÔ">µ¿ÀÇ¾ÈÇÔ</input>
 			</td>
 		</tr> --%>
 				
@@ -207,7 +207,7 @@
 			</c:when>
 			<c:when test="${session.M_ID == NULL }">
 				<tr>
-					<td><h4>íšŒì›ì—ê²Œë§Œ ë¦¬ë·° ìž‘ì„± ê¶Œí•œì´ ìžˆìŠµë‹ˆë‹¤.</h4></td>
+					<td><h4>È¸¿ø¿¡°Ô¸¸ ¸®ºä ÀÛ¼º ±ÇÇÑÀÌ ÀÖ½À´Ï´Ù.</h4></td>
 					
 
 				</tr>

@@ -87,7 +87,7 @@ public class PagingAction2 {
 
 		// 다음 block 페이지
 		if (totalPage - startPage >= blockPage) {
-			pagingHtml.append("&nbsp;<a href=Review_SearchGoods.action?currentPage=");
+			pagingHtml.append("&nbsp;<a href='Review_SearchGoods.action?currentPage=");
 			pagingHtml.append((endPage + 1));
 			if (isSearch != "")
 				pagingHtml.append("&searchKeyword=" + isSearch);

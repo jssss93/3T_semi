@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -6,15 +7,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<title>ë¹„ë°€ë²ˆí˜¸ í™•ì¸</title> <script type="text/javascript">
+	<title>ºñ¹Ğ¹øÈ£ È®ÀÎ</title> <script type="text/javascript">
 		function locationURL() {
 			if (window.name == 'modify')
 				window.opener.parent.location.href = 'Review_ModifyForm.action?REV_no=<s:property value="REV_no"/>&currentPage=<s:property value="currentPage"/>';
 			else if (window.name == 'delete') {
-				alert('ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.');
+				alert('»èÁ¦µÇ¾ú½À´Ï´Ù.');
 				window.opener.parent.location.href = 'Review_DeleteAction.action?REV_no=<s:property value="REV_no" />&currentPage=<s:property value="currentPage" />';
 			} else if (window.name == 'cdelete') {
-				alert('ì½”ë©˜íŠ¸ê°€ ì‚­ì œ ë˜ì—ˆìŠµë‹ˆë‹¤.');
+				alert('ÄÚ¸àÆ®°¡ »èÁ¦ µÇ¾ú½À´Ï´Ù.');
 				window.opener.parent.location.href = "Review_DeleteAction2.action?REV_C_no=<s:property value="REV_C_no" />&REV_C_originno=<s:property value="REV_C_originno" />&currentPage=<s:property value="currentPage" />";
 			}
 			window.close();
