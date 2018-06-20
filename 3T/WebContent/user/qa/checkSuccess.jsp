@@ -11,7 +11,7 @@
 	function locationURL()
 	{
 		if(window.name == 'modify'){
-			window.opener.parent.location.href="qa_modifyForm.action?QA_NO=<s:property value="QA_NO" />&currentPage=<s:property value="currentPage" />";			
+			window.opener.parent.location.href="qa_modifyForm.action?goods_no=<s:property value="goods_no" />&QA_NO=<s:property value="QA_NO" />&currentPage=<s:property value="currentPage" />";			
 		}else if(window.name == 'delete'){
 			alert('삭제 되었습니다.');
 			window.opener.parent.location.href="qa_deleteAction.action?QA_NO=<s:property value="QA_NO" />&currentPage=<s:property value="currentPage" />";

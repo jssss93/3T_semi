@@ -13,7 +13,7 @@
 	<form action="qa_checkAction.action" method="post">
 		<s:hidden name="QA_NO" value="%{QA_NO}" />
 		<s:hidden name="currentPage" value="%{currentPage}" />
-		
+		<s:hidden name="goods_no" value="%{goods_no}" />
 		<table width="250" border="0" cellspacing="0" cellpadding="0">
 			<tr bgcolor="#777777">
 				<td height="1" colspan="2"></td>
@@ -21,6 +21,7 @@
 			<tr>
 				<td width="100" bgcolor="#F4F4F4"> 비밀번호 입력</td>
 				<td width="150" bgcolor="#FFFFFF">
+					
 					&nbsp;&nbsp; <s:textfield name="QA_PASSWD" theme="simple" cssStyle="width:100px" maxlength="20" />
 					&nbsp;&nbsp; <input name="submit" type="submit" value="확인" class="inputb">
 				</td>

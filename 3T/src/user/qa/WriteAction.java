@@ -96,7 +96,7 @@ public class WriteAction extends ActionSupport implements SessionAware{
 		resultClass.setQA_CONTENT("");
 		resultClass.setQA_FILE_ORGNAME(null);
 		resultClass.setQA_FILE_SAVNAME(null);
-		
+		resultClass.setQA_GOODS_NO(getGoods_no());
 		
 		return SUCCESS;
 		
@@ -139,7 +139,7 @@ public class WriteAction extends ActionSupport implements SessionAware{
 			paramClass.setQA_RE_STEP(getQA_RE_STEP() + 1);
 			paramClass.setQA_RE_LEVEL(getQA_RE_LEVEL() + 1);
 			paramClass.setQA_REF(getQA_REF());
-			
+			System.out.println("#########"+getGoods_no());
 			paramClass.setQA_SUBJECT(getQA_SUBJECT());
 			paramClass.setQA_CATEGORY_NO(getQA_CATEGORY_NO());
 			paramClass.setQA_NAME(getQA_NAME());
@@ -147,6 +147,7 @@ public class WriteAction extends ActionSupport implements SessionAware{
 			paramClass.setQA_CONTENT(getQA_CONTENT());
 			paramClass.setQA_REGDATE(today.getTime());
 			paramClass.setQA_MEMBER_ID(ActionContext.getContext().getSession().get("M_ID").toString());
+			paramClass.setQA_GOODS_NO(getGoods_no());
 			
 			goods_paramClass.setGoods_no(getGoods_no());
 			goods_resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", getGoods_no());
