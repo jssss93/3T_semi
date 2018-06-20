@@ -19,6 +19,8 @@
 		<result property="REV_re_level" column="REV_re_level" />
 		<result property="REV_member_id" column="REV_member_id" />
 		<result property="REV_goods_no" column="REV_goods_no" />
+		<result property="REV_goods_name" column="REV_goods_name"/>
+		<result property="REV_goods_img" column="REV_goods_img"/>
 	</resultMap>
 
 	<resultMap id="commentRes" class="comment">
@@ -45,7 +47,7 @@
 	<!-- select 쿼리문 정의 -->
 	<select id="review-selectAll" resultMap="reviewRes" parameterClass="int">
 		<include refid="review-select-all" />
-		ORDER BY REV_ref DESC, REV_re_step ASC
+		order by rev_no DESC
 	</select>
 
 	<select id="review-selectOne" resultMap="reviewRes"
@@ -77,13 +79,20 @@
 		REV_passwd,
 		REV_content,
 		REV_regdate,
+		REV_file_orgname,
+		REV_file_savname,
+		REV_readcnt,
 
 		REV_member_id,
 		REV_goods_no,
-
+		REV_goods_name,
+		REV_goods_img,
+		
 		REV_re_step,
 		REV_re_level,
 		REV_ref
+		
+		
 
 		)
 		VALUES (REV_NO_SEQ.NEXTVAL,
@@ -92,13 +101,21 @@
 		#REV_passwd#,
 		#REV_content#,
 		#REV_regdate#,
+		#REV_file_orgname#,
+		#REV_file_savname#,
+		#REV_readcnt#,
 
 		#REV_member_id#,
 		#REV_goods_no#,
 
+		#REV_goods_name#,
+		#REV_goods_img#,
+
+
 		#REV_re_step#,
 		#REV_re_level#,
-		REV_no_seq.CURRVAL
+		#REV_ref#
+
 
 		)
 	</insert>
@@ -114,6 +131,8 @@
 
 		REV_member_id,
 		REV_goods_no,
+		REV_goods_name,
+		REV_goods_img,
 
 		REV_re_step,
 		REV_re_level,
@@ -129,6 +148,8 @@
 
 		#REV_member_id#,
 		#REV_goods_no#,
+		#REV_goods_name#,
+		#REV_goods_img#,
 
 		#REV_re_step#,
 		#REV_re_level#,
@@ -154,6 +175,7 @@
 		,REV_FILE_SAVNAME = #REV_file_savname#
 		<include refid="review-where-no" />
 	</update>
+	
 
 	<update id="review-updateReadHit" parameterClass="review">
 		UPDATE REVIEW SET REV_READCNT = REV_readcnt + 1

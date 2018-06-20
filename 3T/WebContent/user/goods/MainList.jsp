@@ -12,28 +12,23 @@
 .mySlides {display:none}
 .w3-left, .w3-right, .w3-badge {cursor:pointer}
 .w3-badge {height:13px;width:13px;padding:0}
-
 #myImg {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
 }
-
 #myImg:hover {opacity: 0.7;}
 #myimg2:hover {opacity: 0.9;}
 </style>
 <script>
 var slideIndex = 1;
 showDivs(slideIndex);
-
 function plusDivs(n) {
   showDivs(slideIndex += n);
 }
-
 function currentDiv(n) {
   showDivs(slideIndex = n);
 }
-
 function showDivs(n) {
   var i;
   var x = document.getElementsByClassName("mySlides");
@@ -59,9 +54,9 @@ function showDivs(n) {
 </div>
 
 <div class="w3-content w3-display-container" style="max-width:1500px">
-  <s:a href="listouter.action"><img id="myimg2" class="mySlides" src="/3T/upload/mainslide1.PNG" width="100%" height="600" style="display:block;"></s:a>
-  <s:a href="GoodsView.action?goods_no=496"><img id="myimg2" class="mySlides" src="/3T/upload/mainline3.JPG" width=100% height=600></s:a>
-  <s:a href="listsuit.action"><img id="myimg2" class="mySlides" src="/3T/upload/mainslide2.PNG" width=100% height=600></s:a>
+  <s:a href="GoodsView.action?goods_no=961"><img id="myimg2" class="mySlides" src="/3T/upload/mainslide1.PNG" width="100%" height="600" style="display:block;"></s:a>
+  <s:a href="GoodsView.action?goods_no=762"><img id="myimg2" class="mySlides" src="/3T/upload/mainline3.JPG" width=100% height=600></s:a>
+  <s:a href="GoodsView.action?goods_no=823"><img id="myimg2" class="mySlides" src="/3T/upload/mainslide2.PNG" width=100% height=600></s:a>
   <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
     <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
     <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
@@ -106,8 +101,8 @@ function showDivs(n) {
 	</table>
 	<br>
 	<br>
-	<table width="1100" border="0" align="center" cellpadding="0"
-		cellspacing="30">
+	<table width="80%" border="0" align="center" cellpadding="0"
+		cellspacing="25">
 
 		<tr>
 			<td colspan="3" align="center"><img src="/3T/upload/mainline2.JPG"/></td>
@@ -150,20 +145,20 @@ function showDivs(n) {
 	<br>
 	<br>
 	<br>
-	<table width="1100" border="0" height="300" align="center"
-		cellpadding="0" cellspacing="10">
+	<table width="1300" border="0" height="300" align="center"
+		cellpadding="0" cellspacing="0">
 		<tr height="200">
-			<td colspan="3" align="center"><img src="/3T/upload/mainline3.JPG"/></td>
+			<td colspan="3" align="center"><a href="main.action"><img width="1350" src="/3T/upload/mainline4.png"/></td></a>
 		</tr>
 	</table>
 
 	<br>
 	<br>
 	<br>
-	<table width="1100" border="0" height="300" align="center"
-		cellpadding="0" cellspacing="30">
+	<table width="80%" border="0" height="300" align="center"
+		cellpadding="0" cellspacing="25">
 		<tr>
-			<td colspan=3 align="center"><h2>best</h2> <br>------------------------</td>
+			<td colspan=3 align="center"><img src="/3T/upload/mainline5.png"/></td>
 		</tr>
 
 		<tr>
