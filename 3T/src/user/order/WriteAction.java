@@ -298,6 +298,7 @@ public class WriteAction extends ActionSupport implements SessionAware {
 				paramClass.setORDER_STATE(getORDER_STATE());
 
 				sqlMapper.insert("order-insertBoard", paramClass);
+				writechk=null;
 	} 
 		paramClass.setORDER_NAME(getORDER_NAME());
 		paramClass.setORDER_ZIPCODE(getORDER_ZIPCODE());

@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.HashMap"%>
@@ -54,7 +55,7 @@
 			</tr>
 
 			<s:iterator value="list" status="stat">
-				<!-- listActionì—ì„œì˜ Arraylistì— ë„£ì–´ë…¼ê±¸ forë¬¸ì„ ëŒë ¤ í•œì¤„í•œì¤„ êº¼ë‚¸ë‹¤ -->
+				<!-- listAction¿¡¼­ÀÇ Arraylist¿¡ ³Ö¾î³í°É for¹®À» µ¹·Á ÇÑÁÙÇÑÁÙ ²¨³½´Ù -->
 
 				<s:url id="viewURL" action="Review_View">
 					<s:param name="REV_no">
@@ -74,7 +75,7 @@
 
 
 					<td align="center">&nbsp; <s:if test="REV_re_level != 0">
-							<c:forEach var="i" begin="${REV_re_level}" end="0">&nbsp;</c:forEach>â†’
+							<c:forEach var="i" begin="${REV_re_level}" end="0">&nbsp;</c:forEach>¡æ
             </s:if> <s:a href="%{viewURL}">
 							<s:property value="REV_goods_name" />
 							<br>
@@ -93,10 +94,10 @@
 
 
 			<s:if test="list.size() <= 0">
-				<!-- listì— ë“¤ì–´ìžˆëŠ”ê²Œ ì—†ë‹¤ë©´ -->
+				<!-- list¿¡ µé¾îÀÖ´Â°Ô ¾ø´Ù¸é -->
 
 				<tr bgcolor="#FFFFFF" align="center">
-					<td colspan="5">ë“±ë¡ëœ ê²Œì‹œë¬¼ì´ ì—†ìŠµë‹ˆë‹¤.</td>
+					<td colspan="5">µî·ÏµÈ °Ô½Ã¹°ÀÌ ¾ø½À´Ï´Ù.</td>
 				</tr>
 				<tr bgcolor="#777777">
 					<td height="1" colspan="5"></td>
@@ -111,8 +112,8 @@
 				<td colspan="5">
 					<form>
 						<select name="searchNum" style="width: 100px; height: 30px;">
-							<option value="0">ìž‘ì„±ìž</option>
-							<option value="1">ì œëª©</option>
+							<option value="0">ÀÛ¼ºÀÚ</option>
+							<option value="1">Á¦¸ñ</option>
 
 						</select>
 						<s:textfield name="searchKeyword" theme="simple" value=""

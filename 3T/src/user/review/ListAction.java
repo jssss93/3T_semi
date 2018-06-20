@@ -39,7 +39,7 @@ public class ListAction extends ActionSupport implements SessionAware{
 	private String searchKeyword;
 
 	private int searchNum;
-	private int num;
+	private int num = 0;
 	
 	public Map session;
 

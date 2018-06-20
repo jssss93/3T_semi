@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="UTF-8"%>
+	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -10,7 +10,7 @@
 <head>
 <title>REVIEW</title>
 <script type="text/javascript">
-	//ìƒˆì°½ì´ ì—´ë¦¬ëŠ” í•¨ìˆ˜ë¥¼ ë§Œë“¤ì–´ì¤Œ
+	//»õÃ¢ÀÌ ¿­¸®´Â ÇÔ¼ö¸¦ ¸¸µé¾îÁÜ
 	function open_win_noresizable(url, name) {
 		var oWin = window.open(url, name,
 				"scrollbars=no,status=no,resizable=no,width=420,height=190");
@@ -22,13 +22,13 @@
 		var frm = document.forms[0];
 
 		if (frm.REV_name.value == "") {
-			alert("ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+			alert("ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 			return false;
 		} else if (frm.REV_C_passwd.value == "") {
-			alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+			alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 			return false;
 		} else if (frm.REV_C_content.value == "") {
-			alert("ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+			alert("³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 			return false;
 		}
 
@@ -65,7 +65,7 @@
 				
 					<td colspan="2"> <s:property value="goods_resultClass.goods_name" /><br>KRW <s:property value="goods_resultClass.goods_price" />
 					<hr align="center" width="470" color="#8C8C8C"  ><br>
-						<s:a href="%{viewURL}"><input type="button" name="button" value="ìƒí’ˆ ìƒì„¸ë³´ê¸° â–¶"/></s:a>
+						<s:a href="%{viewURL}"><input type="button" name="button" value="»óÇ° »ó¼¼º¸±â ¢º"/></s:a>
 					</td>
 			</tr>
 		</table>
@@ -104,7 +104,7 @@
 		<tr>
 
 			<td colspan="2" bgcolor="#FFFFFF">
-				<!-- ì˜¬ë¦°íŒŒì¼ ì‚¬ì§„ --> <img
+				<!-- ¿Ã¸°ÆÄÀÏ »çÁø --> <img
 				src="/3T/upload/<s:property value="resultClass.REV_file_savname"/>"
 				width"="300" height="300"> <br><br> <s:property
 								value="resultClass.REV_content" />
@@ -126,7 +126,7 @@
 				</s:a></td>
 		</tr>
 
-		<!-- ëŒ“ê¸€ -->
+		<!-- ´ñ±Û -->
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>
 		</tr>
@@ -143,8 +143,8 @@
 								<tr>
 									<tr>
 										<h3>COMMENTS</h3>
-										<td width="170">ì´&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ë¦„&nbsp;&nbsp;
-											${session.M_ID } <br> ë¹„ë°€ë²ˆí˜¸ <s:textfield
+										<td width="170">ÀÌ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;¸§&nbsp;&nbsp;
+											${session.M_ID } <br> ºñ¹Ğ¹øÈ£ <s:textfield
 										name="REV_C_passwd" theme="simple" value=""
 										cssStyle="width:100px" maxlength="20" />
 										</td>
@@ -153,10 +153,10 @@
 										
 
 										<s:hidden name="REV_C_originno" value="%{resultClass.REV_no}" />
-										<!-- !!!!!!!!!!!!!!!!!!!!!!!!ìˆ˜ì •!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+										<!-- !!!!!!!!!!!!!!!!!!!!!!!!¼öÁ¤!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 										<s:hidden name="REV_no" value="%{resultClass.REV_no}" />
 										<s:hidden name="currentPage" value="%{currentPage}" />
-										<!-- !!!!!!!!!!!!!!!!!!!!!!!!ìˆ˜ì •!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+										<!-- !!!!!!!!!!!!!!!!!!!!!!!!¼öÁ¤!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 									</tr>
 									<tr>
 										<td align="left"><s:textarea name="REV_C_content"
@@ -171,29 +171,29 @@
 							</c:when>
 							<c:when test="${session.M_ID == NULL }">
 								<tr>
-									<td><h4>íšŒì›ì—ê²Œë§Œ ëŒ“ê¸€ ì‘ì„± ê¶Œí•œì´ ìˆìŠµë‹ˆë‹¤.</h4></td>
+									<td><h4>È¸¿ø¿¡°Ô¸¸ ´ñ±Û ÀÛ¼º ±ÇÇÑÀÌ ÀÖ½À´Ï´Ù.</h4></td>
 
 								</tr>
 
 								<%-- <tr>
-							<td width="170">ì´&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ë¦„ <s:textfield
+							<td width="170">ÀÌ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;¸§ <s:textfield
 									name="REV_C_name" theme="simple" value=""
-									cssStyle="width:100px" maxlength="20" /><br> ë¹„ë°€ë²ˆí˜¸ <s:textfield
+									cssStyle="width:100px" maxlength="20" /><br> ºñ¹Ğ¹øÈ£ <s:textfield
 										name="REV_C_passwd" theme="simple" value=""
 										cssStyle="width:100px" maxlength="20" /></td>
 									
 							<s:hidden name="REV_C_originno" value="%{resultClass.REV_no}" />
-							<!-- !!!!!!!!!!!!!!!!!!!!!!!!ìˆ˜ì •!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+							<!-- !!!!!!!!!!!!!!!!!!!!!!!!¼öÁ¤!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 							<s:hidden name="REV_no" value="%{resultClass.REV_no}" />
 							<s:hidden name="currentPage" value="%{currentPage}" />
-							<!-- !!!!!!!!!!!!!!!!!!!!!!!!ìˆ˜ì •!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+							<!-- !!!!!!!!!!!!!!!!!!!!!!!!¼öÁ¤!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 							<td align="left"><s:textarea name="REV_C_content"
 									theme="simple" value="" cols="60" rows="3" /></td>
 						</tr>
 						
 						<tr>
 							<td colspan="2" align="right"><input name="submit"
-								type="submit" value="ì‘ì„±ì™„ë£Œ" class="inputb"></td>
+								type="submit" value="ÀÛ¼º¿Ï·á" class="inputb"></td>
 							</tr> --%>
 							</c:when>
 						</c:choose>
@@ -212,7 +212,7 @@
 				<td height="10" width="130" align="center"><s:property
 						value="REV_C_name" /><br> <s:property value="REV_C_date" /><br><br></td>
 				<td>
-					<!-- @@@@@@@@@@@@ì½”ë©˜íŠ¸ ì‚­ì œ@@@@@@@@@@@@ --> <s:property
+					<!-- @@@@@@@@@@@@ÄÚ¸àÆ® »èÁ¦@@@@@@@@@@@@ --> <s:property
 						value="REV_C_content" /> <a
 					href="javascript:open_win_noresizable('Review_CheckForm2.action?REV_C_no=<s:property value="REV_C_no" />
 					&REV_C_originno=<s:property value="REV_C_originno" />&currentPage=<s:property value="currentPage" />','cdelete')">[delete]</a>
@@ -224,12 +224,12 @@
 		</s:iterator>
 		<tr>
 			<td colspan="2" height="10"><s:if test="commentlist.size() <= 0">
-				ëŒ“ê¸€ì—†ìŒ
+				´ñ±Û¾øÀ½
 			</td>
 		</tr>
 		</s:if>
 
-		<!-- ëŒ“ê¸€ -->
+		<!-- ´ñ±Û -->
 
 
 
@@ -244,8 +244,8 @@
 						<s:property value="REV_no" />
 					</s:param>
 
-				</s:url> <input name="list" type="button" value="ë‹µë³€ë‹¬ê¸°" class="submit"
-				onClick="javascript:location.href='Review_ReplyForm.action?REV_no=<s:property value="REV_no" />&currentPage=<s:property value="currentPage" />'">
+				</s:url> <%-- <input name="list" type="button" value="´äº¯´Ş±â" class="submit"
+				onClick="javascript:location.href='Review_ReplyForm.action?REV_no=<s:property value="REV_no" />&currentPage=<s:property value="currentPage" />'"> --%>
 					<input name="list" type="button" value="modify" class="hreflink"
 
 					onClick="javascript:open_win_noresizable('Review_CheckForm.action?REV_no=<s:property value="resultClass.REV_no" />&currentPage=<s:property value="currentPage" />','modify')">
