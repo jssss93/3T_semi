@@ -8,12 +8,14 @@
 </head>
 <body>
 <table width="100%" height="950" border="0" cellpadding="0" cellspacing="0">
-<tr colspan="1" height="100" align="center" bgcolor="#FFFFFF">
+<tr colspan="1" height="10%" align="center" bgcolor="#FFFFFF">
 <td><tiles:insertAttribute name="header"/></td>
 </tr>
 <tr>
 	<td valign="top" align="center" bgcolor="#FFFFFF"><tiles:insertAttribute name="body" /></td>
-	
+</tr>
+<tr height="40">
+</tr>
 <tr>
 	
 	<td colspan="1" height="10%" align="center" bgcolor="FFFFFF">

@@ -30,7 +30,7 @@
 			<td width="100"><strong>이미지</strong></td>
         	<td width="400"><strong>주문정보</strong></td>
         	<td width="80"><strong>주문수량</strong></td>
-			<%-- <td width="80"><strong>상품구매<br>금액</br></strong></td> --%>
+			<td width="80"><strong>상품구매<br>금액</br></strong></td> 
 			<td width="120"><strong>주문처리상태</strong></td>
 			<td width="120"><strong>주문내역</strong></td>
       	  </tr>
@@ -70,14 +70,13 @@
         		</td>
 				<td align="center">${test+1}</td>
 				
-        		<%-- <td>
+        		 <td>
         		
-        		<s:property value="ORDER_TOTAL.split(',')[0]" /><br/><br/>
+        		<s:property value="ORDER_TOTAL" /><br/><br/>
         		
-        		</td> --%>
-        		
-        		<s:if test="ORDER_STATE==1">
+        		</td>
         		<td>
+        		<s:if test="ORDER_STATE==1">
 					<input type="text" value="         입금확인중" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
 				</s:if>
 				<s:if test="ORDER_STATE==2">
