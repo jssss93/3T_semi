@@ -14,6 +14,7 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+import user.basket.BasketVO;
 import user.wishlist.WishlistVO;
 
 public class ListAction extends ActionSupport implements SessionAware{
@@ -51,7 +52,7 @@ public class ListAction extends ActionSupport implements SessionAware{
 		// 모든 글을 가져와 list에 넣는다.
 		list = sqlMapper.queryForList("selectOrder",paramClass);
 		list1 = sqlMapper.queryForList("selectOrder1", getORDER_NO());
-		System.out.println("testtest" + list);
+
 		totalCount = list.size(); // 전체 글 갯수를 구한다.
 		// pagingAction 객체 생성.
 		page = new PagingAction(currentPage, totalCount, blockCount, blockPage);

@@ -1,12 +1,13 @@
-
-<%@ page contentType="text/html; charset=utf-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@ page language="java" contentType="text/html; charset=euc-kr"
+    pageEncoding="euc-kr"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import = "java.util.HashMap" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-<title>상품 검색</title>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>��ǰ �˻�</title>
 
 </head>
 
@@ -15,7 +16,7 @@
 
 	<table width="500" border="0" cellspacing="0" cellpadding="1">
 		<tr>
-			<td align="left"><h3>상품 검색</h3></td>
+			<td align="left"><h3>��ǰ �˻�</h3></td>
 		</tr>
 		<tr>
 			<td height="20"></td>
@@ -23,14 +24,13 @@
 			
 		  <tr align="left">
 		<td colspan="5" align="left">
-			<form action="qa_SearchGoods.action" method="post"
-					onsubmit="return validation();" >
+			<form action="qa_SearchGoods.action" method="post" >
 				<select name="searchNum" >
-					<option value="0"> 상품명 </option>
+					<option value="0"> ��ǰ�� </option>
 					
 				</select>
 				<s:textfield name="searchKeyword" theme="simple" value="" cssStyle="width:120px" maxlength="20" />
-				<input name="submit" type="submit" value="검색" class="inputb">
+				<input name="submit" type="submit" value="�˻�" class="inputb">
 				<s:hidden name="currentPage" value="%{currentPage}" />
 				
 			</form>
@@ -47,9 +47,9 @@
 	
 	<table width="500" border="0" cellspacing="0" cellpadding="1">
 				<tr align="center">
-					<td width="90"><strong>상품이미지</strong></td>
-					<td width="130"><strong>상품정보</strong></td>
-					<td width="50"><strong>선택</strong></td>
+					<td width="90"><strong>��ǰ�̹���</strong></td>
+					<td width="130"><strong>��ǰ����</strong></td>
+					<td width="50"><strong>����</strong></td>
 				</tr>
 				<tr bgcolor="#777777">
 					<td height="1" colspan="3"></td>
@@ -82,7 +82,7 @@
 						<s:hidden name="goods_no" value="%{goods_no}" />
 						
 						
-							<s:a href="%{viewURL}"><input name="button" type="button" value="선택" class="inputb" /></s:a>
+							<s:a href="%{viewURL}"><input name="button" type="button" value="����" class="inputb" /></s:a>
 						
 						</td>
 				</tr>
@@ -90,10 +90,10 @@
 				</s:iterator>
 				
 				<s:if test="list2.size() <= 0">
-					<!-- list에 들어있는게 없다면 -->
+					<!-- list�� ����ִ°� ���ٸ� -->
 	
 					<tr bgcolor="#FFFFFF" align="center">
-						<td colspan="5">검색을 검색 하세요.</td>
+						<td colspan="5">�˻��� �˻� �ϼ���.</td>
 					</tr>
 					<tr bgcolor="#777777">
 						<td height="1" colspan="5"></td>

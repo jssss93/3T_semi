@@ -18,17 +18,17 @@ import admin.goods.VO.GoodsVO;
 
 
 public class SearchGoods extends ActionSupport{
-	public static Reader reader; // ÆÄÀÏ ½ºÆ®¸²À» À§ÇÑ reader.
-	public static SqlMapClient sqlMapper; // SqlMapClient API¸¦ »ç¿ëÇÏ±â À§ÇÑ sqlMapper °´Ã¼.
+	public static Reader reader; // íŒŒì¼ ìŠ¤íŠ¸ë¦¼ì„ ìœ„í•œ reader.
+	public static SqlMapClient sqlMapper; // SqlMapClient APIë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•œ sqlMapper ê°ì²´.
 
 	private List<GoodsVO> list2 = new ArrayList<GoodsVO>();
 	
-	private int currentPage = 1; // ÇöÀç ÆäÀÌÁö
-	private int totalCount; // ÃÑ °Ô½Ã¹°ÀÇ ¼ö
-	private int blockCount = 10; // ÇÑ ÆäÀÌÁöÀÇ °Ô½Ã¹°ÀÇ ¼ö
-	private int blockPage = 5; // ÇÑ È­¸é¿¡ º¸¿©ÁÙ ÆäÀÌÁö ¼ö
-	private String pagingHtml; // ÆäÀÌÂ¡À» ±¸ÇöÇÑ HTML
-	private PagingAction2 page; // ÆäÀÌÂ¡ Å¬·¡½º
+	private int currentPage = 1; // í˜„ì¬ í˜ì´ì§€
+	private int totalCount; // ì´ ê²Œì‹œë¬¼ì˜ ìˆ˜
+	private int blockCount = 10; // í•œ í˜ì´ì§€ì˜ ê²Œì‹œë¬¼ì˜ ìˆ˜
+	private int blockPage = 5; // í•œ í™”ë©´ì— ë³´ì—¬ì¤„ í˜ì´ì§€ ìˆ˜
+	private String pagingHtml; // í˜ì´ì§•ì„ êµ¬í˜„í•œ HTML
+	private PagingAction2 page; // í˜ì´ì§• í´ë˜ìŠ¤
 	
 	private String searchKeyword;
 
@@ -41,8 +41,8 @@ public class SearchGoods extends ActionSupport{
 	
 	public SearchGoods() throws IOException {
 
-		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); // sqlMapConfig.xml ÆÄÀÏÀÇ ¼³Á¤³»¿ëÀ» °¡Á®¿Â´Ù.
-		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader); // sqlMapConfig.xmlÀÇ ³»¿ëÀ» Àû¿ëÇÑ sqlMapper °´Ã¼ »ı¼º.
+		reader = Resources.getResourceAsReader("sqlMapConfig.xml"); // sqlMapConfig.xml íŒŒì¼ì˜ ì„¤ì •ë‚´ìš©ì„ ê°€ì ¸ì˜¨ë‹¤.
+		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader); // sqlMapConfig.xmlì˜ ë‚´ìš©ì„ ì ìš©í•œ sqlMapper ê°ì²´ ìƒì„±.
 		reader.close();
 	}
 	public String form() throws Exception {
@@ -51,8 +51,39 @@ public class SearchGoods extends ActionSupport{
 	}
 	public String execute() throws Exception{
 
-		//searchKeyword = new String(searchKeyword.getBytes("iso-8859-1"),"euc-kr") ;
-		//System.out.println(searchKeyword);
+		if(getSearchKeyword() != null)
+		{
+			return search();
+		}
+		
+	list2 = sqlMapper.queryForList("goods-selectall1");
+	 
+	totalCount = list2.size(); // ì „ì²´ ê¸€ ê°¯ìˆ˜ë¥¼ êµ¬í•œë‹¤.
+	// pagingAction ê°ì²´ ìƒì„±.
+	page = new PagingAction2(currentPage, totalCount, blockCount, blockPage, num, "");
+	pagingHtml = page.getPagingHtml().toString(); // í˜ì´ì§€ HTML ìƒì„±.
+
+	// í˜„ì¬ í˜ì´ì§€ì—ì„œ ë³´ì—¬ì¤„ ë§ˆì§€ë§‰ ê¸€ì˜ ë²ˆí˜¸ ì„¤ì •.
+	int lastCount = totalCount;
+
+	// í˜„ì¬ í˜ì´ì§€ì˜ ë§ˆì§€ë§‰ ê¸€ì˜ ë²ˆí˜¸ê°€ ì „ì²´ì˜ ë§ˆì§€ë§‰ ê¸€ ë²ˆí˜¸ë³´ë‹¤ ì‘ìœ¼ë©´
+	// lastCountë¥¼ +1 ë²ˆí˜¸ë¡œ ì„¤ì •.
+	if (page.getEndCount() < totalCount)
+		lastCount = page.getEndCount() + 1;
+
+	
+	paramClass.setGoods_no(getGoods_no());
+	resultClass = (GoodsVO) sqlMapper.queryForObject("goods-selectOne", getGoods_no());
+	// ì „ì²´ ë¦¬ìŠ¤íŠ¸ì—ì„œ í˜„ì¬ í˜ì´ì§€ë§Œí¼ì˜ ë¦¬ìŠ¤íŠ¸ë§Œ ê°€ì ¸ì˜¨ë‹¤.
+	list2 = list2.subList(page.getStartCount(), lastCount);
+	
+	
+	return SUCCESS;
+	}
+	public String search() throws Exception {
+		
+		searchKeyword = new String(searchKeyword.getBytes("iso-8859-1"),"euc-kr") ;
+		System.out.println(searchKeyword);
 		//System.out.println(searchNum);
 		if(searchNum == 0){
 			list2 = sqlMapper.queryForList("selectSearchQ", "%"+getSearchKeyword()+"%");
@@ -60,18 +91,15 @@ public class SearchGoods extends ActionSupport{
 		
 		
 		totalCount = list2.size();
-		page = new PagingAction2(currentPage, totalCount, blockCount, blockPage, num, "");
+		page = new PagingAction2(currentPage, totalCount, blockCount, blockPage, searchNum, getSearchKeyword());
 		pagingHtml = page.getPagingHtml().toString();
-		System.out.println("pagingHtml"+pagingHtml);
+		
 		int lastCount = totalCount;
 		
 		if(page.getEndCount() < totalCount)
 			lastCount = page.getEndCount() + 1;
 		
 		list2 = list2.subList(page.getStartCount(), lastCount);
-
-		paramClass.setGoods_no(getGoods_no());
-		resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", getGoods_no());
 		return SUCCESS;
 	}
 	

@@ -1,12 +1,12 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page contentType="text/html; charset=euc-kr"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="euc-kr" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<title>ë¹„ë°€ë²ˆí˜¸ í™•ì¸</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+	<title>ºñ¹Ğ¹øÈ£ È®ÀÎ</title> 
 	<script language="javascript"> 
 	function MovePage() { 
         window.opener.top.location.href='qa_writeForm1.action?goods_no=<s:property value="goods_no" />&currentPage=<s:property value="currentPage" />'; 

@@ -29,12 +29,12 @@ public class OrderVO {
 	private Date ORDER_REGDATE;
 	private String ORDER_IMG;
 	private String ORDER_STATE;
-	private int ORDER_TOTAL;
+	private String ORDER_TOTAL;
 	private int ORDER_PRICE;
 	private String ORDER_MEMBER_ID;
 	private String ORDER_GOODS_NO;
 	private String ORDER_GOODS_NAME;
-	private int ORDER_GOODS_COUNT;
+	private String ORDER_GOODS_COUNT;
 	
 
 	public int getORDER_NO() {
@@ -106,10 +106,11 @@ public class OrderVO {
 	public void setORDER_STATE(String oRDER_STATE) {
 		ORDER_STATE = oRDER_STATE;
 	}
-	public int getORDER_TOTAL() {
+
+	public String getORDER_TOTAL() {
 		return ORDER_TOTAL;
 	}
-	public void setORDER_TOTAL(int oRDER_TOTAL) {
+	public void setORDER_TOTAL(String oRDER_TOTAL) {
 		ORDER_TOTAL = oRDER_TOTAL;
 	}
 	public int getORDER_PRICE() {
@@ -203,10 +204,11 @@ public class OrderVO {
 	public void setORDER_GOODS_NAME(String oRDER_GOODS_NAME) {
 		ORDER_GOODS_NAME = oRDER_GOODS_NAME;
 	}
-	public int getORDER_GOODS_COUNT() {
+
+	public String getORDER_GOODS_COUNT() {
 		return ORDER_GOODS_COUNT;
 	}
-	public void setORDER_GOODS_COUNT(int oRDER_GOODS_COUNT) {
+	public void setORDER_GOODS_COUNT(String oRDER_GOODS_COUNT) {
 		ORDER_GOODS_COUNT = oRDER_GOODS_COUNT;
 	}
 	public String getORDER_GOODS_NO() {

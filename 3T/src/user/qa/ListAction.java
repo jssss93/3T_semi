@@ -78,7 +78,7 @@ public class ListAction extends ActionSupport implements SessionAware{
 	
 	public String search() throws Exception {
 		
-		//searchKeyword = new String(searchKeyword.getBytes("iso-8859-1"),"euc-kr") ;
+		searchKeyword = new String(searchKeyword.getBytes("iso-8859-1"),"euc-kr") ;
 		//System.out.println(searchKeyword);
 		//System.out.println(searchNum);
 		if(searchNum == 0){

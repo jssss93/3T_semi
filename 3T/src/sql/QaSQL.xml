@@ -70,17 +70,17 @@
 	<!-- 검색로직 추가시작 -->
 	<select id="qa_selectSearchW" resultMap="qaRes" parameterClass="string">
 		<include refid="qa_select-all" />
-		 WHERE name like #searchKeyword#
+		 WHERE QA_NAME like #searchKeyword#
 		 ORDER BY QA_NO DESC
 	</select>
 	<select id="qa_selectSearchS" resultMap="qaRes" parameterClass="string">
 		<include refid="qa_select-all" />
-		 WHERE subject like #searchKeyword#
+		 WHERE QA_SUBJECT like #searchKeyword#
 		 ORDER BY QA_NO DESC
 	</select>
 	<select id="qa_selectSearchC" resultMap="qaRes" parameterClass="string">
 		<include refid="qa_select-all" />
-		 WHERE content like #searchKeyword#
+		 WHERE QA_CONTENT like #searchKeyword#
 		 ORDER BY QA_NO DESC
 	</select>
 	<!-- 검색로직 끝 -->
