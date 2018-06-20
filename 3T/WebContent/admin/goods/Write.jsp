@@ -41,7 +41,7 @@
 
 
 	<s:if test="resultClass == NULL">
-		<table width="600" border="0" cellspacing="0" cellpadding="2">
+		<table width="80%" border="0" cellspacing="0" cellpadding="2">
 			<tr>
 				<td align="center" class="text01 formbar"><h2>상품 등록</h2></td>
 			</tr>
@@ -51,7 +51,7 @@
 	</s:if>
 
 	<s:else>
-		<table width="600" border="0" cellspacing="0" cellpadding="2">
+		<table width="60%" border="0" cellspacing="0" cellpadding="2">
 			<tr>
 				<td align="center" class="text01 formbar"><h2>상품 수정</h2></td>
 			</tr>
@@ -141,30 +141,30 @@
 		</tr>
 
 		<tr>
-			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 첨부파일1</td>
+			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 메인사진</td>
 			<td class="tdstyle2"><s:file label="File1" name="uploads"
 					theme="simple" /> <s:if test="resultClass.goods_org_file != NULL">
 				&nbsp; * 파일이 등록되어 있습니다. 다시 업로드하면 기존의 파일은 삭제됩니다.
 			</s:if></td>
 		</tr>
 		<tr>
-			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 첨부파일2</td>
+			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 상세사진1</td>
 			<td class="tdstyle2"><s:file label="File2" name="uploads"
 					theme="simple" /></td>
 
 		</tr>
 		<tr>
-			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 첨부파일3</td>
+			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 상세사진2</td>
 			<td class="tdstyle2"><s:file label="File3" name="uploads"
 					theme="simple" /> 
 		</tr>
 			<tr>
-			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 첨부파일4</td>
+			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 상세사진3</td>
 			<td class="tdstyle2"><s:file label="File4" name="uploads"
 					theme="simple" /> 
 		</tr>
 			<tr>
-			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 첨부파일5</td>
+			<td bgcolor="#F4F4F4"><font color="#FF0000">*</font> 상세사진4</td>
 			<td class="tdstyle2"><s:file label="File5" name="uploads"
 					theme="simple" /> 
 		</tr>

@@ -43,6 +43,7 @@ public class ListAction extends ActionSupport implements SessionAware {
 	private PagingAction page;
 	private int num = 0;
 
+	private int index;
 	public ListAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
@@ -57,6 +58,29 @@ public class ListAction extends ActionSupport implements SessionAware {
 		}
 
 		list = sqlMapper.queryForList("AMselectAll");
+
+		totalCount = list.size();
+		page = new PagingAction(currentPage, totalCount, blockCount, blockPage, num, "");
+		pagingHtml = page.getPagingHtml().toString();
+
+		int lastCount = totalCount;
+
+		if (page.getEndCount() < totalCount)
+			lastCount = page.getEndCount() + 1;
+
+		list = list.subList(page.getStartCount(), lastCount);
+		return SUCCESS;
+	}
+	
+	public String VIP() throws Exception {
+		
+		index=3;
+		
+		if (getSearchKeyword() != null) {
+			return search();
+		}
+
+		list = sqlMapper.queryForList("AMselectAll_VIP");
 
 		totalCount = list.size();
 		page = new PagingAction(currentPage, totalCount, blockCount, blockPage, num, "");
@@ -94,6 +118,14 @@ public class ListAction extends ActionSupport implements SessionAware {
 
 		list = list.subList(page.getStartCount(), lastCount);
 		return SUCCESS;
+	}
+	
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
 	}
 
 	public List<MemberVO> getList() {

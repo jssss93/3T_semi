@@ -24,25 +24,35 @@
 
 <body>
 	<table width="80%" border="0" cellspacing="0" cellpadding="2">
+	
 		<tr>
-			<td align="center" class="text01 formbar"><h1>상품 리스트</h1></td>
+			<td height="30"></td>
+		</tr>
+		<tr>
+			<td align="center" class="text01 formbar"><h2>Goods List.</h2></td>
+		</tr>
+		</tr>
+		<tr>
+			<td height="50"></td>
 		</tr>
 	</table>
 
 	<table width="80%" border="0" cellspacing="0" cellpadding="2">
-		<tr align="center" bgcolor="#f3f3f3">
-			<td width="50"><strong>번호</strong></td>
-			<td width="50"><strong>이미지</strong></td>
-			<td width="150"><strong>상품명</strong></td>
-			<td width="100"><strong>색상</strong></td>
-			<td width="100"><strong>가격</strong></td>
-			<td width="100"><strong>카테고리</strong></td>
-			<td width="100"><strong>총 개수</strong></td>
-			<td width="80"><strong>날짜</strong></td>
-			<td width="50"><strong>조회</strong></td>
+		<tr align="center" >
+			<td width="70"><strong>NO.</strong></td>
+			<td width="100"><strong> </strong></td>
+			<td width="150"><strong>NAME</strong></td>
+			<td width="100"><strong>COLOR</strong></td>
+			<td width="100"><strong>PRICE</strong></td>
+			<td width="100"><strong>CATEGORY</strong></td>
+			<td width="100"><strong>TOTALCOUNT</strong></td>
+			<td width="80"><strong>DATE</strong></td>
+			<td width="50"><strong>READCOUNT</strong></td>
 
 		</tr>
-
+		<tr>
+			<td height="10"></td>
+		</tr>
 		<tr bgcolor="#777777">
 			<td height="1" colspan="9"></td>
 		</tr>
@@ -86,7 +96,7 @@
 		</s:if>
 
 		<tr align="center">
-			<td colspan="5"><s:property value="pagingHtml" escape="false" /></td>
+			<td colspan="8"><s:property value="pagingHtml" escape="false" /></td>
 		</tr>
 
 		<tr align="right">
@@ -96,10 +106,10 @@
 		</tr>
 
 		<tr align="center">
-			<td colspan="5">
+			<td colspan="8">
 				<form action="AG_List.action" method="search">
 					<select name="searchNum" style="width: 100px; height: 30px;">
-						<option value="0">이름</option>
+						<option value="0">상품명</option>
 						<option value="1">카테고리</option>
 						<option value="2">사이즈</option>
 					</select>

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
+import org.eclipse.jdt.internal.compiler.ast.ThrowStatement;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -42,6 +43,7 @@ public class ListAction extends ActionSupport implements SessionAware {
 	private PagingAction page;
 	private int num = 0;
 
+	private int notice_no;
 	public ListAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
@@ -70,6 +72,20 @@ public class ListAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 
+	public String update0to1() throws Exception{
+		
+		sqlMapper.update("ANupdate0to1",getNotice_no());
+		
+		return SUCCESS;
+	}
+	
+	public String update1to0() throws Exception{
+		
+		sqlMapper.update("ANupdate1to0",getNotice_no());
+		
+		return SUCCESS;
+	}
+
 	public String search() throws Exception {
 
 		// searchKeyword = new String(searchKeyword.getBytes("iso-8859-1"),"euc-kr") ;
@@ -92,6 +108,14 @@ public class ListAction extends ActionSupport implements SessionAware {
 
 		list = list.subList(page.getStartCount(), lastCount);
 		return SUCCESS;
+	}
+
+	public int getNotice_no() {
+		return notice_no;
+	}
+
+	public void setNotice_no(int notice_no) {
+		this.notice_no = notice_no;
 	}
 
 	public List<NoticeVO> getList() {

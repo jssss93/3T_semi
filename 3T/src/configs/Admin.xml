@@ -18,7 +18,9 @@
 		</result-types>
 
 		<!-- main -->
-		<action name="AD_main" class="admin.member.ListAction">
+	
+		
+		<action name="AD_main" class="admin.MainAction">
 			<result name="success" type="tiles">
 				AD_main
 			</result>
@@ -26,6 +28,11 @@
 
 		<action name="AM_List" class="admin.member.ListAction">
 			<result name="success" type="tiles">
+				AM_List
+			</result>
+		</action>
+		<action name="AM_List_VIP" class="admin.member.ListAction" method="VIP">
+			<result name="success" type="tiles" >
 				AM_List
 			</result>
 		</action>
@@ -148,7 +155,17 @@
 			</result>
 		</action>
 
-
+		<action name="AN_List_0to1" class="admin.notice.ListAction" method="update0to1">
+			<result name="success" type="redirect-action">
+				<param name="actionName">AN_List</param>
+			</result>
+		</action>
+		
+		<action name="AN_List_1to0" class="admin.notice.ListAction" method="update1to0">
+			<result name="success" type="redirect-action">
+				<param name="actionName">AN_List</param>
+			</result>
+		</action>
 
 
 
@@ -203,20 +220,64 @@
 			</result>
 		</action>
 		
+		<action name="AQ_View" class="admin.qa.ViewAction">
+			<result name="success" type="tiles">
+				AQ_View
+			</result>
+		</action>
+		
+		
+		
+		
 		<action name="AO_View" class="admin.order.ViewAction">
 			<result name="success" type="tiles">
 				AO_View
 			</result>
 		</action>
 		
-		
-		
-
 		<action name="AO_List" class="admin.order.ListAction">
 			<result name="success" type="tiles">
 				AO_List
 			</result>
 		</action>
+		
+		<action name="AO_List_1" class="admin.order.ListAction" method="execute1">
+			<result name="success" type="tiles">
+				AO_List
+			</result>
+		</action>
+		
+		<action name="AO_List_2" class="admin.order.ListAction" method="execute2">
+			<result name="success" type="tiles">
+				AO_List
+			</result>
+		</action>
+		
+		<action name="AO_List_3" class="admin.order.ListAction" method="execute3">
+			<result name="success" type="tiles">
+				AO_List
+			</result>
+		</action>
+		
+		<action name="AO_List_1to2" class="admin.order.ListAction" method="update1to2">
+			<result name="success" type="redirect-action">
+				<param name="actionName">AO_List</param>
+			</result>
+		</action>
+		
+		<action name="AO_List_2to3" class="admin.order.ListAction" method="update2to3">
+			<result name="success" type="redirect-action">
+				<param name="actionName">AO_List</param>
+			</result>
+		</action>
+		
+		 <action name="AS_List" class="admin.sales.ListAction">
+			<result name="success" type="tiles">
+				AS_List
+			</result>
+		</action> 
+		
+		
 
 		<action name="AD_logout" class="user.member.login.LoginAction"
 			method="logout">
@@ -411,4 +472,6 @@
 			<result>/admin/qa/List.jsp</result>
 		</action>
 	</package>
+	
+	
 </struts> 

@@ -1,8 +1,9 @@
-package admin;
+package admin.sales;
 
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,8 +16,9 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import admin.goods.VO.GoodsVO;
 import admin.member.VO.MemberVO;
+import admin.order.VO.OrderVO;
 
-public class MainAction extends ActionSupport implements SessionAware {
+public class ListAction extends ActionSupport implements SessionAware {
 
 	private Map session;
 
@@ -36,7 +38,10 @@ public class MainAction extends ActionSupport implements SessionAware {
 	private List<MemberVO> list_member_best = new ArrayList<MemberVO>();
 	private List<MemberVO> list_member_new = new ArrayList<MemberVO>();
 
-	public MainAction() throws IOException {
+	private  List<OrderVO> list_order = new ArrayList<OrderVO>();
+	private  Map list_order2 ;
+	
+	public ListAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 		reader.close();
@@ -48,8 +53,42 @@ public class MainAction extends ActionSupport implements SessionAware {
 		list_goods_new = sqlMapper.queryForList("AGselectAll_new");
 		list_member_best = sqlMapper.queryForList("AMselectAll_best");
 		list_member_new = sqlMapper.queryForList("AMselectAll_new");
+		list_order = sqlMapper.queryForList("AOselectDT");
+		
+		
+		list_order2 = (Map) sqlMapper.queryForMap("AOselectDT_2","a","ORDER_NAME","ORDER_TOTAL");
+		System.out.println(list_order2.size());
+		System.out.println(list_order2.get("최종수"));
+		System.out.println(list_order2.get(0));
+		System.out.println(list_order2);
+
+				
+		
+		
+		for (OrderVO date : list_order) {
+			System.out.println(date);
+		}
+		System.out.println(list_order);
+		System.out.println(list_order.toString());
+		System.out.println(list_order.size());
 
 		return SUCCESS;
+	}
+
+	public Map getList_order2() {
+		return list_order2;
+	}
+
+	public void setList_order2(Map list_order2) {
+		this.list_order2 = list_order2;
+	}
+
+	public List getList_order() {
+		return list_order;
+	}
+
+	public void setList_order(List<OrderVO> list_order) {
+		this.list_order = list_order;
 	}
 
 	public List<GoodsVO> getList_goods_new() {

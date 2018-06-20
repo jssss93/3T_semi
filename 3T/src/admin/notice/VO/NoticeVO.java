@@ -1,5 +1,7 @@
 package admin.notice.VO;
 
+import java.util.Date;
+
 public class NoticeVO {
 	private int notice_no;
 	private String notice_state;
@@ -8,9 +10,18 @@ public class NoticeVO {
 	private String notice_content;
 	private String notice_file_orgname;
 	private String notice_file_savname;
-
+	private Date notice_regdate;
+	
 	public int getNotice_no() {
 		return notice_no;
+	}
+
+	public Date getNotice_regdate() {
+		return notice_regdate;
+	}
+
+	public void setNotice_regdate(Date notice_regdate) {
+		this.notice_regdate = notice_regdate;
 	}
 
 	public void setNotice_no(int notice_no) {

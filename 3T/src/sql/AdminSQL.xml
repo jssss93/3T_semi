@@ -26,6 +26,7 @@
 		<result property="m_name_bank" column="m_name_bank" />
 		<result property="account_no" column="account_no" />
 		<result property="m_admin" column="m_admin" />
+		<result property="m_total" column="m_total"/>
 	</resultMap>
 
 	<sql id="AMselect-all">
@@ -41,17 +42,24 @@
 		<include refid="AMselect-all" />
 		order by m_no desc
 	</select>
+	
+	<select id="AMselectAll_VIP" resultMap="MemberRes" parameterClass="int">
+		<include refid="AMselect-all" />
+		where m_admin=3
+		order by m_no desc
+	</select>
 
 	<select id="AMselectOne" resultMap="MemberRes" parameterClass="int">
 		<include refid="AMselect-all" />
 		<include refid="AMwhere-no" />
 	</select>
-	<select id="AMselectOne_ID" resultMap="MemberRes">
-		select * from
-		member
-		where
-		m_id=#m_id#
+	
+	<select id="AMselectOne_ID" resultMap="MemberRes" >
+		<include refid="AMselect-all" />
+		where m_id=#m_id#
 	</select>
+	
+
 
 	<delete id="deleteMember" parameterClass="ad_member">
 		DELETE FROM MEMBER
@@ -120,7 +128,22 @@
 		(#m_id#,#m_msg_content#,M_MSG_NO_SEQ.NEXTVAL)
 	</insert>
 
-
+	<update id="AMupdate_total" parameterClass="ad_member">
+		UPDATE MEMBER SET m_total=m_total + #m_total#
+		where m_id=#m_id#
+	</update>
+	
+	<select id="AMselectAll_best" resultMap="MemberRes" parameterClass="int">
+      select * from member 
+      where rownum <![CDATA[<]]>=5
+      order by m_total desc 
+   </select>
+   
+   <select id="AMselectAll_new" resultMap="MemberRes" parameterClass="int">
+      select * from member 
+      where rownum <![CDATA[<]]>=5
+      order by m_regdate desc 
+   </select>
 
 
 
@@ -231,7 +254,20 @@
 		<include refid="AGwhere-no" />
 	</delete>
 
-
+	<select id="AGselectAll_best" resultMap="GoodsRes"
+      parameterClass="int">
+      select * from goods 
+      where rownum <![CDATA[<]]>=4
+      order by goods_recommend desc 
+   </select>
+   
+   <select id="AGselectAll_new" resultMap="GoodsRes"
+      parameterClass="int">
+      select * from goods 
+      where rownum <![CDATA[<]]>=4
+      order by goods_regdate desc 
+   </select>
+   
 
 
 
@@ -249,6 +285,7 @@
 		<result property="notice_content" column="notice_content" />
 		<result property="notice_file_orgname" column="notice_file_orgname" />
 		<result property="notice_file_savname" column="notice_file_savname" />
+		<result property="notice_regdate" column="notice_regdate" />
 	</resultMap>
 
 	<sql id="ANselect-all">
@@ -315,7 +352,15 @@
 		<include refid="ANwhere-no" />
 	</delete>
 
-
+	<update id="ANupdate0to1" >
+		UPDATE NOTICE SET NOTICE_STATE=1
+		<include refid="ANwhere-no" />
+	</update>
+	
+	<update id="ANupdate1to0" >
+		UPDATE NOTICE SET NOTICE_STATE=0
+		<include refid="ANwhere-no" />
+	</update>
 
 
 
@@ -329,6 +374,7 @@
 		<result property="faq_writer" column="faq_writer" />
 		<result property="faq_content" column="faq_content" />
 		<result property="faq_member_id" column="faq_member_id" />
+		<result property="faq_regdate" column="faq_regdate" />	
 	</resultMap>
 
 	<sql id="AFselect-all">
@@ -359,9 +405,9 @@
 
 	<insert id="insertFaq" parameterClass="AFFaq">
 		INSERT INTO
-		FAQ(faq_no,faq_subject,faq_writer,faq_content,faq_member_id) VALUES
+		FAQ(faq_no,faq_subject,faq_writer,faq_content,faq_member_id,faq_regdate) VALUES
 		(FAQ_NO_SEQ.NEXTVAL,
-		#faq_subject#,#faq_writer#,#faq_content#,#faq_member_id#)
+		#faq_subject#,#faq_writer#,#faq_content#,#faq_member_id#,#faq_regdate#)
 	</insert>
 
 	<update id="updateFaq" parameterClass="AFFaq">
@@ -380,11 +426,11 @@
 	<typeAlias alias="AOorder" type="admin.order.VO.OrderVO" />
 	<!-- 리절트 맵 정의 -->
 	<resultMap id="OrderRes" class="AOorder">
-		<result property="order_no" column="ORDER_NO" />
-		<result property="order_name" column="ORDER_NAME" />
-		<result property="order_zipcode" column="ORDER_ZIPCODE" />
-		<result property="order_address1" column="ORDER_ADDRESS1" />
-		<result property="order_address2" column="ORDER_ADDRESS2" />
+		<result property="order_no" column="order_no" javaType="int" />
+		<result property="order_name" column="order_name" />
+		<result property="order_zipcode" column="order_zipcode" />
+		<result property="order_address1" column="order_address1" />
+		<result property="order_address2" column="order_address2" />
 		<result property="order_phone1" column="order_phone1" />
 		<result property="order_phone2" column="order_phone2" />
 		<result property="order_phone3" column="order_phone3" />
@@ -429,6 +475,34 @@
 		SELECT * FROM ORDER_3T ORDER
 		BY ORDER_NO DESC
 	</select>
+	
+	<select id="AOselectAll1" resultMap="OrderRes">
+		SELECT * FROM ORDER_3T WHERE ORDER_STATE='1'
+		ORDER BY ORDER_NO DESC
+	</select>
+	
+	<select id="AOselectAll2" resultMap="OrderRes">
+		SELECT * FROM ORDER_3T WHERE ORDER_STATE='2'
+		ORDER BY ORDER_NO DESC
+	</select>
+	
+	<select id="AOselectAll3" resultMap="OrderRes">
+		SELECT * FROM ORDER_3T WHERE ORDER_STATE='3'
+		ORDER BY ORDER_NO DESC
+	</select>
+	
+	<update id="AOupdate1to2" >
+		UPDATE ORDER_3T SET ORDER_STATE='2'
+		<include refid="AOwhere-no" />
+	</update>
+	
+	<update id="AOupdate2to3" >
+		UPDATE ORDER_3T SET ORDER_STATE='3'
+		<include refid="AOwhere-no" />
+	</update>
+	
+	
+	
 
 	<select id="AOselectOne" resultMap="OrderRes">
 		SELECT * FROM ORDER_3T where
@@ -449,6 +523,15 @@
 		ORDER
 		BY ORDER_NO DESC
 	</select>
+	
+	<select id="AOselectDT" resultClass="AOorder"  >
+		select order_regdate ,order_total from order_3t where order_state='3'
+	</select>
+	
+	<select id="AOselectDT_2" resultClass="java.util.HashMap"  >
+		select order_name ,order_total from order_3t where order_state='3'
+	</select>
+	
 
 
 	<!-- 사용자 BASKET SQL ********************************************************************************************************************** -->

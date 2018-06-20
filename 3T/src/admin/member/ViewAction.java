@@ -2,6 +2,8 @@ package admin.member;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -13,6 +15,9 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import admin.goods.VO.GoodsVO;
 import admin.member.VO.MemberVO;
+import admin.member.coupon.CouponVO;
+import admin.member.coupon.PagingAction;
+import admin.member.msg.MsgVO;
 
 public class ViewAction extends ActionSupport implements SessionAware {
 	private Map session;
@@ -35,6 +40,11 @@ public class ViewAction extends ActionSupport implements SessionAware {
 
 	private int m_no;
 
+	
+	private List<CouponVO> list = new ArrayList<CouponVO>();
+	private List<MsgVO> list2 = new ArrayList<MsgVO>();
+	
+	
 	public ViewAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
@@ -45,6 +55,11 @@ public class ViewAction extends ActionSupport implements SessionAware {
 		paramClass.setM_no(getM_no());
 
 		resultClass = (MemberVO) sqlMapper.queryForObject("AMselectOne", getM_no());
+		
+		list = sqlMapper.queryForList("AM_COUPONselectAll");
+		list2 = sqlMapper.queryForList("AM_MSGselectAll");
+
+		
 
 		return SUCCESS;
 	}
@@ -80,4 +95,23 @@ public class ViewAction extends ActionSupport implements SessionAware {
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
 	}
+
+	public List<CouponVO> getList() {
+		return list;
+	}
+
+	public void setList(List<CouponVO> list) {
+		this.list = list;
+	}
+
+	public List<MsgVO> getList2() {
+		return list2;
+	}
+
+	public void setList2(List<MsgVO> list2) {
+		this.list2 = list2;
+	}
+
+	
+	
 }

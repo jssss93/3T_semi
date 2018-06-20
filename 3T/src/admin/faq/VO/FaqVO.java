@@ -9,6 +9,18 @@ public class FaqVO {
 	private String faq_subject;
 	private String faq_content;
 	private String faq_member_id;
+	private Date faq_regdate;
+	
+
+
+
+	public Date getFaq_regdate() {
+		return faq_regdate;
+	}
+
+	public void setFaq_regdate(Date faq_regdate) {
+		this.faq_regdate = faq_regdate;
+	}
 
 	public int getFaq_no() {
 		return faq_no;

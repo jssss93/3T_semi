@@ -12,35 +12,45 @@
 	function open_win_noresizable(url, name)
 	{
 		var oWin = window.open(url, name, "scrollbars=no, status=no, resizable=no, width=600, height=500");
-		
+		 
 	}
 </script>
 </head>
 
 <body>
-	<table width="600" border="0" cellspacing="0" cellpadding="2">
+	<table width="80%" border="0" cellspacing="0" cellpadding="2">
+	<tr>
+			<td height="30"></td>
+		</tr>
 	<tr>
 		<td align="center" class="text01 formbar"><h2>공지사항 상세보기</h2></td>
 	</tr>
+	
+		<tr>
+			<td height="50"></td>
+		</tr>
 	</table>
 
-	<table width="600" border="0" cellspacing="0" cellpadding="0">
+	<table width="60%" border="0" cellspacing="0" cellpadding="0">
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>
 		</tr>
 		
 		
 		<tr>
-			<td width="100">제목</td>
-			<td width="500">
+			<td width="100" align="center">제목</td>
+			<td width="500" >
 			<!-- 이렇게도 쓸수 있다는거다 이자식들아 -->
 				${resultClass.notice_subject }
 			</td>
 		</tr>
+		<tr>
+			<td height="10"></td>
+		</tr>
 		
 		<tr>
-			<td width="100">내용</td>
-			<td width="500">
+			<td width="100" align="center">내용</td>
+			<td width="500" >
 			<!-- 이렇게도 쓸수 있다는거다 이자식들아 -->
 				${resultClass.notice_content }
 			</td>
@@ -52,13 +62,9 @@
 			<td colspan="2" height="1"></td>
 		</tr>
 		<tr>
-			<td colspan="2" height="10"></td>
+			<td colspan="2" height="20"></td>
 		</tr>
-		<tr>
-			<td colspan="2" height="10">
-				
-			</td>
-		</tr>
+		
 	
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>

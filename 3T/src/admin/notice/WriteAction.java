@@ -3,6 +3,8 @@ package admin.notice;
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
@@ -42,7 +44,8 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	private String notice_content;
 	private String notice_file_orgname;
 	private String notice_file_savname;
-
+	private Date notice_regdate;
+	Calendar today = Calendar.getInstance();
 	private File upload;
 	private String uploadContentType;
 	private String uploadFileName;
@@ -78,7 +81,7 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		paramClass.setNotice_content(getNotice_content());
 		paramClass.setNotice_file_orgname(getNotice_file_orgname());
 		paramClass.setNotice_file_savname(getNotice_file_savname());
-
+		paramClass.setNotice_regdate(today.getTime());
 		sqlMapper.insert("insertNotice", paramClass);
 
 		if (getUpload() != null) {
