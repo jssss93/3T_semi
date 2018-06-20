@@ -50,7 +50,7 @@ public class MainAction extends ActionSupport implements SessionAware{
 		list = sqlMapper.queryForList("goods-selectAll");
 		list1 = sqlMapper.queryForList("goods-selectNew");
 		list2 = sqlMapper.queryForList("goods-selectBest");
-
+		
 		totalCount = list.size();
 		totalCount1 = list1.size();
 		

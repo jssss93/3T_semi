@@ -20,7 +20,7 @@
 					name="body" /></td>
 		<tr>
 
-			<td colspan="1" height="10%" align="center" ><tiles:insertAttribute
+			<td colspan="1" height="300" align="center" ><tiles:insertAttribute
 					name="footer" /></td>
 
 		</tr>

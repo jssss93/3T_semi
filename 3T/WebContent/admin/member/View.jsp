@@ -32,55 +32,61 @@
 		</tr>
 	</table>
 
-	<table width="80%" border="0" cellspacing="0" cellpadding="0"  id="form">
+	<table width="60%" border="0" cellspacing="0" cellpadding="0"  id="form">
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>
 		</tr>
 
 		<tr>
-			<td width="100" class="tdstyle1">회원번호</td>
+			<td width="80" class="tdstyle1">회원번호</td>
 			<td width="500"><s:property value="resultClass.m_no" /></td>
 		</tr>
 
 		<tr>
-			<td width="100" class="tdstyle1">이름</td>
+			<td width="80" class="tdstyle1">이름</td>
 			<td width="500"><s:property value="resultClass.m_name" /></td>
 		</tr>
 		<tr>
-			<td width="100" class="tdstyle1">id</td>
-			<td width="500"><s:property value="resultClass.m_id" /></td>
+			<td width="80" class="tdstyle1">id [회원등급]</td>
+			<td width="500"><s:property value="resultClass.m_id" /> [
+				<s:if test="resultClass.m_admin==0">ADMIN</s:if>
+				<s:elseif test="resultClass.m_admin==1">SILVER</s:elseif>
+				<s:elseif test="resultClass.m_admin==2">GOLD</s:elseif>
+				<s:elseif test="resultClass.m_admin==3">VIP</s:elseif>
+
+			]</td>
 		</tr>
 
 		<tr>
-			<td width="100" class="tdstyle1">passwd</td>
+			<td width="80" class="tdstyle1">passwd</td>
 			<td width="500">
 				<!-- 이렇게도 쓸수 있다는거다 이자식들아 --> ${resultClass.m_passwd }
 			</td>
 		</tr>
 
 		<tr>
-			<td width="100" class="tdstyle1">주민등록번호</td>
+			<td width="80" class="tdstyle1">주민등록번호</td>
 			<td width="500"><s:property value="resultClass.m_jumin1" />-<s:property
 					value="resultClass.m_jumin2" /></td>
 		</tr>
 		<tr>
-			<td width="100" class="tdstyle1">TEL</td>
+			<td width="80" class="tdstyle1">TEL</td>
 			<td width="500"><s:property value="resultClass.m_phone" /></td>
 		</tr>
 		<tr>
-			<td width="100" class="tdstyle1">email</td>
+			<td width="80" class="tdstyle1">email</td>
 			<td width="500"><s:property value="resultClass.m_email1" />@<s:property
 					value="resultClass.m_email2" /></td>
 		</tr>
 		<tr>
-			<td width="100" class="tdstyle1">주소</td>
+			<td width="80" class="tdstyle1">주소</td>
 			<td width="500">( <s:property value="resultClass.m_zipcode" />)
 				<s:property value="resultClass.m_addr1" /> <s:property
 					value="resultClass.m_addr1" />
 			</td>
 		</tr>
 		<tr>
-			<td width="100" class="tdstyle1">가입날짜</td>
+			<td width="80" class="tdstyle1">가입날짜</td>
 			<td width="500"><s:property value="resultClass.m_regdate" /></td>
 		</tr>
 		<tr>
@@ -136,6 +142,8 @@
 		</tr>
 
 	</table>
+	
+	
 </body>
 </html>
 

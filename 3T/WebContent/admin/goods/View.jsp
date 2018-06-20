@@ -76,7 +76,7 @@
 		</tr>
 		<tr>
 			<td width="100" class="tdstyle1"><b>등록날짜</b></td>
-			<td width="500"><s:property value="resultClass.goods_reg_date" />
+			<td width="500"><s:property value="resultClass.goods_regdate" />
 			</td>
 		</tr>
 		<tr>
@@ -133,7 +133,7 @@
 		</tr>
 
 
-		<tr>
+		<%-- <tr>
 			<td colspan="2" align="right"><s:url id="modifyURL"
 					action="AG_ModifyForm">
 					<s:param name="goods_no">
@@ -150,7 +150,7 @@
 				<input name="list_b" type="button" value="목록" class="submit"
 				onClick="javascript:location.href='AG_List.action?currentPage=<s:property value="currentPage" />'">
 			</td>
-		</tr>
+		</tr> --%>
 
 	</table>
 </body>

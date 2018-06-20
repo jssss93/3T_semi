@@ -19,13 +19,13 @@
 </head>
 
 <body>
-	<table width="600" border="0" cellspacing="0" cellpadding="2">
+	<table width="80%" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td align="center" class="text01 formbar"><h2>주문 상세보기</h2></td>
 		</tr>
 	</table>
 
-	<table width="600" border="0" cellspacing="0" cellpadding="0"  id="form">
+	<table width="50%" border="0" cellspacing="0" cellpadding="0"  id="form">
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>
 		</tr>

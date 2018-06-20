@@ -125,9 +125,12 @@
 	<definition name="AD_main" template="/admin/tiles/layout.jsp">
 		<put-attribute name="title" value="test" />
 		<put-attribute name="header" value="/admin/tiles/header.jsp" />
-		<put-attribute name="body" value="/admin/member/List.jsp" />
+		<put-attribute name="body" value="/admin/Main.jsp" />
 		<put-attribute name="footer" value="/admin/tiles/footer.jsp" />
 	</definition>
+	
+	
+	
 	<definition name="AM_List" extends="AD_main">
 		<put-attribute name="body" value="/admin/member/List.jsp" />
 	</definition>
@@ -211,17 +214,26 @@
 	<definition name="AQ_List" extends="AD_main">
 		<put-attribute name="body" value="/admin/qa/List.jsp" />
 	</definition>
+	
+	<definition name="AQ_View" extends="AD_main">
+		<put-attribute name="body" value="/admin/qa/View.jsp" />
+	</definition>
+	
 
+
+	<definition name="AO_List" extends="AD_main">
+		<put-attribute name="body" value="/admin/order/List.jsp" />
+	</definition>
+	
 	<definition name="AO_View" extends="AD_main">
 		<put-attribute name="body" value="/admin/order/View.jsp" />
 	</definition>
 
 
 
-	<definition name="AO_List" extends="AD_main">
-		<put-attribute name="body" value="/admin/order/List.jsp" />
+	<definition name="AS_List" extends="AD_main">
+		<put-attribute name="body" value="/admin/sales/Graph_day.jsp" />
 	</definition>
-
 
 
 

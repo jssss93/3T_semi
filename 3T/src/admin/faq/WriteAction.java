@@ -42,7 +42,9 @@ public class WriteAction extends ActionSupport implements SessionAware{
 	private String faq_writer;
 	private String faq_content;
 	private String faq_member_id;
-
+	private Date faq_regdate;
+	Calendar today = Calendar.getInstance();
+	
 	public WriteAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
@@ -72,10 +74,27 @@ public class WriteAction extends ActionSupport implements SessionAware{
 		paramClass.setFaq_writer(getFaq_writer());
 		paramClass.setFaq_content(getFaq_content());
 		paramClass.setFaq_member_id(getFaq_member_id());
-
+		paramClass.setFaq_regdate(today.getTime());
 		sqlMapper.insert("insertFaq", paramClass);
 
 		return SUCCESS;
+	}
+
+
+	public Date getFaq_regdate() {
+		return faq_regdate;
+	}
+
+	public void setFaq_regdate(Date faq_regdate) {
+		this.faq_regdate = faq_regdate;
+	}
+
+	public Calendar getToday() {
+		return today;
+	}
+
+	public void setToday(Calendar today) {
+		this.today = today;
 	}
 
 	public String getFaq_member_id() {

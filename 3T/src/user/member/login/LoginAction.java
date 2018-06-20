@@ -64,18 +64,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
 				session = context.getSession();
 				session.put("M_ID", resultClass.getM_ID());
 				context.setSession(session);
-				if (resultClass.getM_ADMIN() == 1) {
-					
-					
-					
-					
-					
-					
-					return LOGIN;
-					
-					
-					
-					
+				if (resultClass.getM_ADMIN() == 0) {
+					return LOGIN;	
 				}
 				return SUCCESS;
 			}

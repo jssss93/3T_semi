@@ -21,6 +21,15 @@ public class MemberVO {
 	private String m_name_bank;
 	private String account_no;
 	private int m_admin;
+	private int m_total;
+
+	public int getM_total() {
+		return m_total;
+	}
+
+	public void setM_total(int m_total) {
+		this.m_total = m_total;
+	}
 
 	public int getM_no() {
 		return m_no;

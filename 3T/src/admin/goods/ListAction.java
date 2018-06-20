@@ -31,6 +31,7 @@ public class ListAction extends ActionSupport implements SessionAware {
 	public static SqlMapClient sqlMapper;
 
 	private List<GoodsVO> list = new ArrayList<GoodsVO>();
+	private List<GoodsVO> list_best = new ArrayList<GoodsVO>();
 
 	private String searchKeyword;
 	private int searchNum;
@@ -54,9 +55,10 @@ public class ListAction extends ActionSupport implements SessionAware {
 		if (getSearchKeyword() != null) {
 			return search();
 		}
-
+		
 		list = sqlMapper.queryForList("AGselectAll");
-
+		list_best = sqlMapper.queryForList("AGselectAll_best");
+		
 		totalCount = list.size();
 		page = new PagingAction(currentPage, totalCount, blockCount, blockPage, num, "");
 		pagingHtml = page.getPagingHtml().toString();
@@ -95,6 +97,14 @@ public class ListAction extends ActionSupport implements SessionAware {
 
 		list = list.subList(page.getStartCount(), lastCount);
 		return SUCCESS;
+	}
+
+	public List<GoodsVO> getList_best() {
+		return list_best;
+	}
+
+	public void setList_best(List<GoodsVO> list_best) {
+		this.list_best = list_best;
 	}
 
 	public List<GoodsVO> getList() {

@@ -6,34 +6,39 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>스트럿츠2 게시판</title>
+
 <link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-	<table width="1000" border="0" cellspacing="0" cellpadding="2">
+	<table width="80%" border="0" cellspacing="0" cellpadding="2">
 		<tr>
-			<td align="center" class="text01 formbar"><h1>QA리스트 </h1></td>
+			<td height="30"></td>
+		</tr>
+		<tr>
+			<td align="center" class="text01 formbar"><h2>QA List.</h2></td>
+		</tr>
+		<tr>
+			<td height="50"></td>
 		</tr>
 	</table>
 	
-	<table width="1000" border="0" cellspacing="0" cellpadding="2">
-		<tr align="center" bgcolor="#f3f3f3">
-			<td width="50"><strong>번호</strong></td>
-			<td width="50"><strong>ID</strong></td>
-			
-			<td width="50"><strong>제목</strong></td>
-			<td width="50"><strong>name</strong></td>
-			<td width="50"><strong>date</strong></td>
+	<table width="60%" border="0" cellspacing="0" cellpadding="2">
+		<tr align="center" >
+			<td width="100"><strong>DATE<br>[NO]</br></strong></td>
+			<td width="500"><strong>SUBJECT</strong></td>
+			<td width="150"><strong>ID[NAME]</strong></td>
 			
 		</tr>
-
+			<tr>
+			<td height="10"></td>
+		</tr>
 		<tr bgcolor="#777777">
 			<td height="1" colspan="8"></td>
 		</tr>
 
 	<s:iterator value="list" status="stat">
-		<s:url id="viewURL" action="AF_View">
+		<s:url id="viewURL" action="AQ_View">
 			<s:param name="qa_no">
 				<s:property value="qa_no" />
 			</s:param>
@@ -43,12 +48,12 @@
 		</s:url>
 	
 		<tr>
-			<td align="center"><s:property value="qa_no" /></td>
-			<td align="center"><s:property value="qa_member_id" /></td>
+			<td align="center"><s:property value="qa_regdate" /><br>[<s:property
+							value="qa_no" />]</br></td>
 			
 			<td align="center"><s:a href="%{viewURL}"><s:property value="qa_subject" /></s:a></td>
-			<td align="center"><s:property value="qa_name" /></td>
-			<td align="center"><s:property value="qa_regdate" /></td>
+			<td align="center"><s:property value="qa_member_id" /><br>[<s:property
+							value="qa_name" />]</br></td>
 		</tr>
 
 		<tr bgcolor="#777777">
