@@ -262,8 +262,8 @@
 
 	<!-- 상품 상세 이미지 -->
 	<br> <br> <br>
-	<table width="200" border="0" height="0"
-		cellpadding="0" cellspacing="-300">
+	<table width="0" border="0" height="0"
+		cellpadding="0" cellspacing="0">
 
 		<tr>
 			<td colspan="0" align="center"><img
@@ -277,13 +277,13 @@
 		<br><br><br>
 			 <img
 				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[2]"/> "
-				width"="850" height="850"></td>
+				width"="1000" height="1000"></td>
 
 		</tr>
 	</table>
 	<br><br><br>
 	<br><br><br>
-	<table width="200" border="0" height="0" align="CENTER"
+	<table width="" border="0" height="0" align="CENTER"
 		cellpadding="0" cellspacing="0">
 
 		<tr>
@@ -294,7 +294,7 @@
 		</tr>
 	</table>
 
-	<table width="200" border="0" height="0" align="CENTER"
+	<table width="0" border="0" height="0" align="CENTER"
 		cellpadding="0" cellspacing="0">
 
 		<tr>
@@ -346,22 +346,27 @@
 
 			</s:iterator>
 			
-	</tr>
 </table>
 <!-- 리뷰 게시판 -->
 <br><br><br>
-<table >
-         <strong>리뷰 목록</strong>
-         <br />
-         <tr>
-         <br />
+ <table width="1000" border="0" cellspacing="0" cellpadding="2">
+ <tr>
+			<td height="50"></td>
+		</tr>
+		<tr>
+        <td align="center" class="text01 formbar"><h2>Review</h2></td>
+		<tr>
+			<td height="50"></td>
+		</tr>
+		</table>
+		<table width="1000" border="0" cellspacing="0" cellpadding="1">
          <s:if test="list.size() <= 0"> 
-         <tr align="center" bgcolor="#D5D5D5">
-               <td width="100" height="30" valign="middle" class="body_grey"><strong>리뷰글번호</strong></td>
-               <td width="300" height="30" valign="middle" class="body_grey"><strong>리뷰제목</strong></td>
-               <td width="100" height="30" valign="middle" class="body_grey"><strong>글쓴이</strong></td>
-               <td width="200" height="30" valign="middle" class="body_grey"><strong>등록일시</strong></td>
-               <td width="50" height="30" valign="middle" class="body_grey"><strong>관리</strong></td>
+         <tr align="center">
+               <td width="70" valign="middle"><strong>리뷰글번호</strong></td>
+               <td width="70" valign="middle"><strong>리뷰제목</strong></td>
+               <td width="70" valign="middle"><strong>글쓴이</strong></td>
+               <td width="70" valign="middle"><strong>등록일시</strong></td>
+               <td width="70" valign="middle"><strong>관리</strong></td>
             </tr>
         <tr bgcolor="#FFFFFF"  align="center">
 		   	  	<td colspan="7
@@ -372,48 +377,52 @@
     	      </tr>
       </s:if>
          <s:else>
-            <tr align="center" bgcolor="#D5D5D5">
-               <td width="100" height="30" valign="middle" class="body_grey"><strong>리뷰글번호</strong></td>
-               <td width="300" height="30" valign="middle" class="body_grey"><strong>리뷰제목</strong></td>
-               <td width="100" height="30" valign="middle" class="body_grey"><strong>글쓴이</strong></td>
-               <td width="200" height="30" valign="middle" class="body_grey"><strong>등록일시</strong></td>
-               <td width="50" height="30" valign="middle" class="body_grey"><strong>조회수</strong></td>
+            <tr align="center">
+               <td width="70" valign="middle"><strong>리뷰글번호</strong></td>
+               <td width="70" valign="middle"><strong>리뷰제목</strong></td>
+               <td width="70" valign="middle"><strong>글쓴이</strong></td>
+               <td width="70" valign="middle"><strong>등록일시</strong></td>
+               <td width="70" valign="middle"><strong>조회수</strong></td>
             </tr>
 
 
-            <tr>
-               <td height="1" colspan="100%" bgcolor="#000000"></td>
-            </tr>
+             <tr bgcolor="#777777">
+			<td height="1" colspan="7"></td>
+		</tr>
 
             <s:iterator value="list" status="stat">
-            
-               <tr align="center" bgcolor="#F3F3F3">
-                  <td width="100" height="30" align="center"><s:property
+               <s:param name="no">
+                  <s:property value="REV_no" />
+               </s:param>
+               <s:param name="id">
+                  <s:property value="REV_member_id" />
+               </s:param>
+               <tr align="center">
+                  <td align="center"><s:property
                         value="REV_no" /></td>
-                  <td width="300" height="30" align="left"><s:property
+                  <td align="center"><s:property
                         value="REV_subject" /> <details> <summary>내용보기</summary>
                      <s:property value="REV_content" /></details></td>
-                  <td width="100" height="30" align="center"><s:property
-                        value="REV_member_id" /></td>
-                  <td width="100" height="30" align="center"><s:property
+                  <td align="center"><s:property
+                        value="REV_name" /></td>
+                  <td align="center"><s:property
                         value="REV_regdate" /></td>
-                  <td width="100" height="30" align="center"><s:property
+                  <td align="center"><s:property
                         value="REV_readcnt" /></td>
 
                </tr>
                
+               <tr bgcolor="#777777">
+			<td height="1" colspan="7"></td>
+		</tr>
               
 
             </s:iterator>
-            <tr>
-               <td height="1" colspan="100%" bgcolor="#000000"></td>
-            </tr>
-
          </s:else>
          <tr>
-               <td align="middle" colspan="5">
+               <td align="right" colspan="5">
                 <!-- 작성버튼 -->
-                        <a href="ReviewWriteForm1.action?goods_no=<s:property value="goods_no" />">
+                        <a href="ReviewWriteForm.action?goods_no=<s:property value="goods_no" />">
                            <img src="/3T/upload/WRITE A REIVEW.JPG" border="0" />
                         </a>
                </td>
@@ -421,46 +430,51 @@
       </table>
    
    <br></br>
-   <hr></hr>
 <!-- Q & A 게시판 -->
 <br>
 <br>
 <br>
-        <tr>
-		<td colspan=1 align="center"><h2 id="QNA">Q & A</h2></td>
+        <table width="1000" border="0" cellspacing="0" cellpadding="2">
+		<tr>
+			<td height="50"></td>
+		</tr>
+		<tr>
+		 <td align="center" class="text01 formbar"><h2>Q&A</h2></td>
+		 </tr>
+		<tr>
+			<td height="50"></td>
+		</tr>
+		</table>
 
- <table align="center">
-       <tr>
-         <br />
+         <table width="1000" border="0" cellspacing="0" cellpadding="1">
          <s:if test="qaList.size() <= 0"> 
-         <tr align="center" bgcolor="#D5D5D5">
-               <td width="100" height="30" valign="middle" class="body_grey"><strong>q&a글번호</strong></td>
-               <td width="300" height="30" valign="middle" class="body_grey"><strong>q&a제목</strong></td>
-               <td width="100" height="30" valign="middle" class="body_grey"><strong>ID</strong></td>
-               <td width="200" height="30" valign="middle" class="body_grey"><strong>등록일시</strong></td>
-               <td width="50" height="30" valign="middle" class="body_grey"><strong>관리</strong></td>
+         <tr align="center">
+               <td width="70" valign="middle"><strong>q&a글번호</strong></td>
+               <td width="70" valign="middle"><strong>q&a제목</strong></td>
+               <td width="70" valign="middle"><strong>ID</strong></td>
+               <td width="70" valign="middle"><strong>등록일시</strong></td>
+               <td width="70" valign="middle"><strong>관리</strong></td>
             </tr>
-        <tr bgcolor="#FFFFFF"  align="center">
-		   	  	<td colspan="7
+            <tr bgcolor="#FFFFFF"  align="center">
+		   	  	<td colspan="5
 		   	  	">등록된 게시물이 없습니다.</td>
               </tr>						
 	      	  <tr bgcolor="#777777">
-      			<td height="1" colspan="7"></td>
+      			<td height="1" colspan="5"></td>
     	      </tr>
       </s:if>
          <s:else>
-            <tr align="center" bgcolor="#D5D5D5">
-               <td width="100" height="30" valign="middle" class="body_grey"><strong>q&a글번호</strong></td>
-               <td width="300" height="30" valign="middle" class="body_grey"><strong>q&a제목</strong></td>
-               <td width="100" height="30" valign="middle" class="body_grey"><strong>ID</strong></td>
-               <td width="200" height="30" valign="middle" class="body_grey"><strong>등록일시</strong></td>
-               <td width="50" height="30" valign="middle" class="body_grey"><strong>조회수</strong></td>
+            <tr align="center">
+               <td width="70" valign="middle"><strong>q&a글번호</strong></td>
+               <td width="70" valign="middle"><strong>q&a제목</strong></td>
+               <td width="70" valign="middle"><strong>글쓴이</strong></td>
+               <td width="70" valign="middle"><strong>등록일시</strong></td>
+               <td width="70" valign="middle"><strong>조회수</strong></td>
             </tr>
-
-
-            <tr>
-               <td height="1" colspan="100%" bgcolor="#000000"></td>
-            </tr>
+            
+                    <tr bgcolor="#777777">
+			<td height="1" colspan="5"></td>
+		</tr>
 
             <s:iterator value="qaList" status="stat">
                <s:param name="no">
@@ -469,30 +483,31 @@
                <s:param name="id">
                   <s:property value="QA_MEMBER_ID" />
                </s:param>
-               <tr align="center" bgcolor="#F3F3F3">
-                  <td width="100" height="30" align="center"><s:property
+               <tr align="center">
+                  <td align="center"><s:property
                         value="QA_NO" /></td>
-                  <td width="300" height="30" align="left"><s:property
+                  <td align="center"><s:property
                         value="QA_SUBJECT" /> <details> <summary>내용보기</summary>
-                     <s:property value="QA_content" /></details></td>
-                  <td width="100" height="30" align="center"><s:property
-                        value="QA_MEMBER_ID" /></td>
-                  <td width="100" height="30" align="center"><s:property
+                     <s:property value="QA_CONTENT" /></details></td>
+                  <td align="center"><s:property
+                        value="QA_NAME" /></td>
+                  <td align="center"><s:property
                         value="QA_REGDATE" /></td>
-                  <td width="100" height="30" align="center"><s:property
+                  <td align="center"><s:property
                         value="QA_READCNT" /></td>
                </tr>
 
-            </s:iterator>
-
-            <tr>
-               <td height="1" colspan="100%" bgcolor="#000000"></td>
-                </tr>
-			
-            </tr>
+           <tr bgcolor="#777777">
+			<td height="1" colspan="5"></td>
+		</tr>
+		
+		</s:iterator>
+		
+		
+		
          </s:else>
          <tr>
-               <td align="middle" colspan="5">
+               <td align="right" colspan="5">
                 <!-- 작성버튼 -->
                         <a href="qa_writeForm1.action?goods_no=<s:property value="goods_no" />&currentPage=<s:property value="currentPage" />">
                            <img src="/3T/upload/WRITE A Q&A.JPG" border="0" />
@@ -501,8 +516,6 @@
             </tr>
 
 	</center>
-</tr>
-
 </table>
 <!-- 컨트롤러  -->
 <div id="scroll" style="position:absolute;top: 10px; left: 10px;"> 

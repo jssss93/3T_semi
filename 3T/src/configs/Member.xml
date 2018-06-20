@@ -38,7 +38,7 @@
 				<param name="actionName">AD_main</param>
 			</result>
 
-			<result name="error">/user/login/LoginError.jsp</result>
+			<result name="error">/user/member/login/LoginError.jsp</result>
 		</action>
 
 		<action name="logout" class="user.member.login.LoginAction"

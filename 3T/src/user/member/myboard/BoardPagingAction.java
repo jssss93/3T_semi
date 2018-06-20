@@ -42,9 +42,9 @@ public class BoardPagingAction {
 
 		pagingHtml = new StringBuffer();
 		if (currentPage > blockPage) {
-			pagingHtml.append("<a href=listouter.action?currentPage="
+			pagingHtml.append("<a href=MyboardAction.action?currentPage="
 					+ (startPage - 1) + ">");
-			pagingHtml.append("?ï¿½ï¿½?ï¿½ï¿½");
+			pagingHtml.append("´ÙÀ½");
 			pagingHtml.append("</a>");
 		}
 
@@ -60,7 +60,7 @@ public class BoardPagingAction {
 				pagingHtml.append("</font></b>");
 			} else {
 				pagingHtml
-						.append("&nbsp;<a href='listouter.action?currentPage=");
+						.append("&nbsp;<a href='MyboardAction.action?currentPage=");
 				pagingHtml.append(i);
 				pagingHtml.append("'>");
 				pagingHtml.append(i);
@@ -73,9 +73,9 @@ public class BoardPagingAction {
 		pagingHtml.append("&nbsp;&nbsp;|&nbsp;&nbsp;");
 
 		if (totalPage - startPage >= blockPage) {
-			pagingHtml.append("<a href=listouter.action?currentPage="
+			pagingHtml.append("<a href=MyboardAction.action?currentPage="
 					+ (endPage + 1) + ">");
-			pagingHtml.append("?ï¿½ï¿½?ï¿½ï¿½");
+			pagingHtml.append("´ÙÀ½");
 			pagingHtml.append("</a>");
 		}
 	}

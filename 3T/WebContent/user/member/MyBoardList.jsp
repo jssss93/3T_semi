@@ -24,7 +24,7 @@
 	<table width="700" border="0" cellspacing="0" cellpadding="2" id="form" >
 	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;${session.M_ID}님 환영합니다.<br/>
 	
-	      <tr align="center">
+	      <tr align="left">
       		<td width="50" class="tdstyle1"><strong>NO</strong></td>
         		<td width="400" class="tdstyle1"><strong>SUBJECT</strong></td>
        			<td width="80" class="tdstyle1"><strong>DATE</strong></td>
@@ -48,13 +48,13 @@
 		</s:url>
 		
 			
-     	      <tr  align="center">
+     	      <tr  align="left">
         		<td ><s:property value="REV_no"/></td> 
-        		<td align="center"> &nbsp;<s:a href="%{viewURL}"><s:property value="REV_subject" />
+        		<td align="left"> &nbsp;<s:a href="%{viewURL}"><s:property value="REV_subject" />
         		</td>
         		
         		<td align="left">&nbsp;<s:property value="REV_regdate" /></s:a></td>
-		<td align="center" ><s:property value="REV_name" /></td>
+		<td align="left" ><s:property value="REV_name" /></td>
         		
       	      </tr>
       	 
@@ -75,16 +75,16 @@
       </s:url>
    
       <tr>
-         <td align="center"><s:property value="QA_NO" /></td>
-         <td align="center" >
+         <td align="left"><s:property value="QA_NO" /></td>
+         <td align="left" >
             <s:if test="QA_RE_LEVEL != 0">
                <c:forEach var = "i" begin = "${QA_RE_LEVEL}" end = "0">&nbsp;</c:forEach>→
             </s:if>   
              <s:a href="%{viewURL}"><s:property value="QA_SUBJECT" /></s:a>
           </td>
-          <td align="center" ><s:property value="QA_REGDATE" /></td>
+          <td align="left" ><s:property value="QA_REGDATE" /></td>
           
-         <td align="center" ><s:property value="QA_NAME" /></td>
+         <td align="left" ><s:property value="QA_NAME" /></td>
          
       </tr>
 
@@ -95,7 +95,7 @@
 			
 	      <s:if test="list.size() <= 0"><!-- list에 들어있는게 없다면 -->
 				
-	      <tr align="center">
+	      <tr align="left">
 		<td colspan="5" >등록된 게시물이 없습니다.</td>
                   </tr>						
 	
