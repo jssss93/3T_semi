@@ -21,12 +21,12 @@
 </head>
 
 <body>
-	<table width="1000" border="0" cellspacing="0" cellpadding="2">
+	<table width="80%" border="0" cellspacing="0" cellpadding="2">
 		<tr>
-			<td height="30"></td>
+			<td height="50"></td>
 		</tr>
 		<tr>
-			<td align="center" class="text01 formbar">FAQ_NO</td>
+			<td align="center" class="text01 formbar"><b>FAQ_NO</b></td>
 		</tr>
 		<tr>
 			<td height="50"></td>
@@ -34,7 +34,7 @@
 	</table>
 
 
-	<table width="1000" border="0" cellspacing="0" cellpadding="2" id="form">
+	<table width="60%" border="0" cellspacing="0" cellpadding="2" id="form">
 		<tr align="center">
 			<td width="50" align="center"><strong>NO</strong></td>
 			<td width="850" align="center"><strong></strong></td>

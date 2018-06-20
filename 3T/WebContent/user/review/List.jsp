@@ -25,7 +25,7 @@
 <body>
 
 
-	<table width="600" border="0" cellspacing="0" cellpadding="1">
+	<table width="80%" border="0" cellspacing="0" cellpadding="1">
 		<tr>
 			<td height="50"></td>
 		</tr>
@@ -41,7 +41,7 @@
 
 
 
-		<table width="600" border="0" cellspacing="0" cellpadding="1">
+		<table border="0" width="60%" border="0" cellspacing="0" cellpadding="1">
 			<tr align="center">
 				<td width="50"><strong>NO</strong></td>
 				<td width="80"><strong>ITEM </strong></td>
@@ -67,7 +67,7 @@
 				</s:url>
 
 
-				<tr align="center">
+				<tr align="center" height="50">
 					<td class="tdstyle2"><s:property value="REV_no" /></td>
 					<td align="center"><img src="/3T/upload/${REV_goods_img}"
 						width="50"></td>
@@ -86,7 +86,7 @@
 
 				</tr>
 				<tr bgcolor="#777777">
-					<td height="0" colspan="5"></td>
+					<td height="1" colspan="4"></td>
 				</tr>
 
 			</s:iterator>
@@ -104,10 +104,23 @@
 				</tr>
 
 			</s:if>
+			<tr height="20"></tr>
 			<tr align="center">
 				<td colspan="6"><s:property value="pagingHtml" escape="false" /></td>
 			</tr>
+			
+			
+			<tr>
 
+
+				<td colspan="5" align="right"><input class="hreflink"
+					type="button" value="WRITE"
+					onClick="javascript:location.href='ReviewWriteForm.action?currentPage=<s:property value="currentPage" />';"></td>
+
+			</tr>
+			
+			
+			
 			<tr align="center">
 				<td colspan="5">
 					<form>
@@ -122,15 +135,7 @@
 					</form>
 				</td>
 			</tr>
-			<tr>
-
-
-				<td colspan="5" align="center"><input class="hreflink"
-					type="button" value="WRITE"
-					onClick="javascript:location.href='ReviewWriteForm.action?currentPage=<s:property value="currentPage" />';"></td>
-
-			</tr>
-
+			
 
 
 
