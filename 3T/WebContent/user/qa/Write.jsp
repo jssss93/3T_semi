@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=euc-kr"
+    pageEncoding="euc-kr"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <title>Q&A</title>
 <link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 <style type="text/css">
@@ -50,41 +50,57 @@
 			<s:hidden name="currentPage" value="%{currentPage}" />
 			<s:hidden name="old_file" value="%{resultClass.QA_FILE_SAVNAME}" />
 	</s:else>
+	<s:if test="reply">
+		답변 작성
+	</s:if>
+	<s:else>
+	<table width="600" border="0" cellspacing="0" cellpadding="0" height="120" background="/3T/upload/QA_BG.png">
+         <s:if test="goods_no <=0">
+            <input type="hidden" name="QA_GOODS_NO" value="goods_no"/>
+            <tr>
+               <td align="center" width="120"><img src="/3T/upload/QA.PNG" width="80" height="100"></td>
+               
+               <td colspan="2"><hr align="center" width="470" color="#8C8C8C"  ><br>
+                  <input type="button" name="button" value="상품정보 선택 ▶"  onclick="javascript:open_win_noresizable('qa_SearchGoodsForm.action?currentPage=<s:property value="currentPage" />', write)"/>
+               </td>
+            </tr>
+         </s:if>
+         <s:else>
+               <s:url id="viewURL" action="GoodsView">
+                     <s:param name="goods_no">
+                        <s:property value="goods_no" />
+                     </s:param>
+                     <s:param name="currentPage">
+                        <s:property value="currentPage" />
+                     </s:param>
+                  </s:url>
+            <s:if test="currentPage==0">
+            <tr>                                             
+               <td align="center" width="120"><img src="/3T/upload/<s:property value="goods_resultClass.goods_file_savname.split(',')[0]"/>" width="80" height="100"></td>
+            
+               <td colspan="2"> <s:property value="goods_resultClass.goods_name" /><br>KRW <s:property value="goods_resultClass.goods_price" />
+               <hr align="center" width="470" color="#8C8C8C"  ><br>
+                  <s:a href="%{viewURL}"><input type="button" name="button" value="상품 상세보기 ▶"/></s:a>
+               </td>
+            </tr>
+            </s:if>
+            <s:else>
+            <tr>                                             
+               <td align="center" width="120"><img src="/3T/upload/<s:property value="goods_resultClass.goods_file_savname.split(',')[0]"/>" width="80" height="100"></td>
+            
+               <td colspan="2"> <s:property value="goods_resultClass.goods_name" /><br>KRW <s:property value="goods_resultClass.goods_price" />
+               <hr align="center" width="470" color="#8C8C8C"  ><br>
+                  <s:a href="%{viewURL}"><input type="button" name="button" value="상품 상세보기 ▶"/></s:a>
+                  <%-- <input type="button" name="button" value="상품정보 선택 ▶"  onclick="javascript:open_win_noresizable('qa_SearchGoodsForm.action?currentPage=<s:property value="currentPage" />', write)"/>
+               </td> --%>
+            </tr>
+            
+            </s:else>
+            
+         </s:else>
+      </table>
 	
-
-		<table width="600" border="0" cellspacing="0" cellpadding="0" height="120" background="/3T/upload/QA_BG.png">
-			<s:if test="goods_no <=0">
-				<input type="hidden" name="QA_GOODS_NO" value="goods_no"/>
-				<tr>
-					<td align="center" width="120"><img src="/3T/upload/QA.PNG" width="80" height="100"></td>
-					
-					<td colspan="2"><hr align="center" width="470" color="#8C8C8C"  ><br>
-						<input type="button" name="button" value="상품정보 선택 ▶"  onclick="javascript:open_win_noresizable('qa_SearchGoodsForm.action?currentPage=<s:property value="currentPage" />', write)"/>
-					</td>
-				</tr>
-			</s:if>
-			<s:else>
-					<s:url id="viewURL" action="GoodsView">
-							<s:param name="goods_no">
-								<s:property value="goods_no" />
-							</s:param>
-							<s:param name="currentPage">
-								<s:property value="currentPage" />
-							</s:param>
-						</s:url>
-				<tr>                                             
-					<td align="center" width="120"><img src="/3T/upload/<s:property value="goods_resultClass.goods_file_savname.split(',')[0]"/>" width="80" height="100"></td>
-				
-					<td colspan="2"> <s:property value="goods_resultClass.goods_name" /><br>KRW <s:property value="goods_resultClass.goods_price" />
-					<hr align="center" width="470" color="#8C8C8C"  ><br>
-						<s:a href="%{viewURL}"><input type="button" name="button" value="상품 상세보기 ▶"/></s:a>
-						<input type="button" name="button" value="상품정보 선택 ▶"  onclick="javascript:open_win_noresizable('qa_SearchGoodsForm.action?currentPage=<s:property value="currentPage" />', write)"/>
-					</td>
-				</tr>
-			</s:else>
-		</table>
-
-	
+	</s:else>
 	<table width="600" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 		

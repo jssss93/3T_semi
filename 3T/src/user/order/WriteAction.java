@@ -75,12 +75,12 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	private String DEPOSIT_NAME;
 	private String DEPOSIT_BANK;
 	private Date ORDER_REGDATE;
-	private int ORDER_TOTAL;
+	private String ORDER_TOTAL;
 	private int ORDER_PRICE;
 	private String ORDER_MEMBER_ID;
 	private String ORDER_GOODS_NO;
 	private String ORDER_GOODS_NAME;
-	private int ORDER_GOODS_COUNT;
+	private String ORDER_GOODS_COUNT;
 	private String ORDER_IMG;
 	private String ORDER_STATE;
 	Calendar today = Calendar.getInstance();
@@ -91,6 +91,8 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	
 	
 	private String[] chk;
+	private static String[] writechk;
+	
 	private int basket_no;
 	private GoodsVO goods_paramClass =new GoodsVO();
 	private GoodsVO goods_resultClass=new GoodsVO();
@@ -116,11 +118,12 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	public String form() throws Exception {
 
 		System.out.println("!!!!!!!(getChk()!!!!!!!"+getChk());
+		
+		writechk=getChk();
 		if (getChk() != null) {
 			for (int i = 0; i < this.getChk().length; i++) {
 				
 				String chkValue =this.getChk()[i];
-				System.out.println("!!!!!!!(chkValue()!!!!!!!"+chkValue);
 				B_List = sqlMapper.queryForList("basket-orderselect", Integer.parseInt(chkValue));
 				Pay_List = (int)sqlMapper.queryForObject("basket-pay_or",Integer.parseInt(chkValue));
 		  		PayTotal_List = (int) sqlMapper.queryForObject("basket-paytotal_or",Integer.parseInt(chkValue));
@@ -242,12 +245,60 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	}
 
 	public String execute() throws Exception {
-
 		paramClass = new OrderVO();
 		resultClass = new OrderVO();
+		String write_goods_name = "";
+		String write_goods_no = "";
+		String write_goods_count = "";
+		String write_goods_img = "";
+		String write_goods_total = "";
+		System.out.println("writechk!!!" + writechk);
+		if (writechk != null) {
+				for (int i = 0; i < this.writechk.length; i++) {
+					
+					String chkValue1 =this.writechk[i];
+					System.out.println("!!!!!!!(chkValue1@@@@@@@@@2"+chkValue1);
+					B_List = sqlMapper.queryForList("basket-orderselect", Integer.parseInt(chkValue1));
+					System.out.println("!!!!!!!!"+B_List.size());
+										
+						BasketVO test=(BasketVO) B_List.get(0);
+						write_goods_name= write_goods_name+test.getBASKET_NAME()+",";
+						write_goods_no= write_goods_no+test.getBASKET_GOODS_NO()+",";
+						write_goods_count=write_goods_count+test.getBASKET_QUANTITY()+",";
+						write_goods_img=write_goods_img+test.getBASKET_GOODS_IMG()+",";
+						write_goods_total=write_goods_total+test.getBASKET_GOODS_AMOUNT()*test.getBASKET_QUANTITY()+",";
+				}
+				paramClass.setORDER_NAME(getORDER_NAME());
+				paramClass.setORDER_ZIPCODE(getORDER_ZIPCODE());
+				paramClass.setORDER_ADDRESS1(getORDER_ADDRESS1());
+				paramClass.setORDER_ADDRESS2(getORDER_ADDRESS2());
+				paramClass.setORDER_PHONE1(getORDER_PHONE1());
+				paramClass.setORDER_PHONE2(getORDER_PHONE2());
+				paramClass.setORDER_PHONE3(getORDER_PHONE3());
+				paramClass.setORDER_EMAIL1(getORDER_EMAIL1());
+				paramClass.setORDER_EMAIL2(getORDER_EMAIL2());
 
-		System.out.println("getORDER_IMG" + getORDER_IMG());
+				paramClass.setRECIPIENT_NAME(getRECIPIENT_NAME());
+				paramClass.setRECIPIENT_ZIPCODE(getRECIPIENT_ZIPCODE());
+				paramClass.setRECIPIENT_ADDRESS1(getRECIPIENT_ADDRESS1());
+				paramClass.setRECIPIENT_ADDRESS2(getRECIPIENT_ADDRESS2());
+				paramClass.setRECIPIENT_PHONE1(getRECIPIENT_PHONE1());
+				paramClass.setRECIPIENT_PHONE2(getRECIPIENT_PHONE2());
+				paramClass.setRECIPIENT_PHONE3(getRECIPIENT_PHONE3());
+				paramClass.setPAYMENT(getPAYMENT());
+				paramClass.setDEPOSIT_NAME(getDEPOSIT_NAME());
+				paramClass.setDEPOSIT_BANK(getDEPOSIT_BANK());
+				paramClass.setORDER_REGDATE(today.getTime());
+				paramClass.setORDER_TOTAL(write_goods_total);
+				paramClass.setORDER_MEMBER_ID(getORDER_MEMBER_ID());
+				paramClass.setORDER_GOODS_NO(write_goods_no);
+				paramClass.setORDER_GOODS_NAME(write_goods_name);
+				paramClass.setORDER_GOODS_COUNT(write_goods_count);
+				paramClass.setORDER_IMG(write_goods_img);
+				paramClass.setORDER_STATE(getORDER_STATE());
 
+				sqlMapper.insert("order-insertBoard", paramClass);
+	} 
 		paramClass.setORDER_NAME(getORDER_NAME());
 		paramClass.setORDER_ZIPCODE(getORDER_ZIPCODE());
 		paramClass.setORDER_ADDRESS1(getORDER_ADDRESS1());
@@ -278,8 +329,17 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		paramClass.setORDER_STATE(getORDER_STATE());
 
 		sqlMapper.insert("order-insertBoard", paramClass);
+		
 
 		return SUCCESS;
+	}
+
+	public static String[] getWritechk() {
+		return writechk;
+	}
+
+	public static void setWritechk(String[] writechk) {
+		WriteAction.writechk = writechk;
 	}
 
 	public BasketVO getBasket_paramClass() {
@@ -458,11 +518,11 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		ORDER_REGDATE = oRDER_REGDATE;
 	}
 
-	public int getORDER_TOTAL() {
+	public String getORDER_TOTAL() {
 		return ORDER_TOTAL;
 	}
 
-	public void setORDER_TOTAL(int oRDER_TOTAL) {
+	public void setORDER_TOTAL(String oRDER_TOTAL) {
 		ORDER_TOTAL = oRDER_TOTAL;
 	}
 
@@ -635,12 +695,13 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		ORDER_GOODS_NAME = oRDER_GOODS_NAME;
 	}
 
-	public int getORDER_GOODS_COUNT() {
+	public String getORDER_GOODS_COUNT() {
 		return ORDER_GOODS_COUNT;
 	}
 
-	public void setORDER_GOODS_COUNT(int oRDER_GOODS_COUNT) {
+	public void setORDER_GOODS_COUNT(String oRDER_GOODS_COUNT) {
 		ORDER_GOODS_COUNT = oRDER_GOODS_COUNT;
 	}
+
 
 }

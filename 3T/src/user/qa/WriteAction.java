@@ -114,6 +114,20 @@ public class WriteAction extends ActionSupport implements SessionAware{
 		{
 			paramClass.setQA_RE_STEP(0);
 			paramClass.setQA_RE_LEVEL(0);
+			
+			paramClass.setQA_SUBJECT(getQA_SUBJECT());
+			paramClass.setQA_CATEGORY_NO(getQA_CATEGORY_NO());
+			paramClass.setQA_NAME(getQA_NAME());
+			paramClass.setQA_PASSWD(getQA_PASSWD());
+			paramClass.setQA_CONTENT(getQA_CONTENT());
+			paramClass.setQA_REGDATE(today.getTime());
+			paramClass.setQA_MEMBER_ID(ActionContext.getContext().getSession().get("M_ID").toString());
+			
+			goods_paramClass.setGoods_no(getGoods_no());
+			goods_resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", getGoods_no());
+			paramClass.setQA_GOODS_NO(goods_resultClass.getGoods_no());
+			paramClass.setQA_GOODS_NAME(goods_resultClass.getGoods_name());
+			paramClass.setQA_GOODS_IMG(goods_resultClass.getGoods_file_savname().split(",")[0]);
 		}
 		else
 		{
@@ -125,21 +139,21 @@ public class WriteAction extends ActionSupport implements SessionAware{
 			paramClass.setQA_RE_STEP(getQA_RE_STEP() + 1);
 			paramClass.setQA_RE_LEVEL(getQA_RE_LEVEL() + 1);
 			paramClass.setQA_REF(getQA_REF());
+			
+			paramClass.setQA_SUBJECT(getQA_SUBJECT());
+			paramClass.setQA_CATEGORY_NO(getQA_CATEGORY_NO());
+			paramClass.setQA_NAME(getQA_NAME());
+			paramClass.setQA_PASSWD(getQA_PASSWD());
+			paramClass.setQA_CONTENT(getQA_CONTENT());
+			paramClass.setQA_REGDATE(today.getTime());
+			paramClass.setQA_MEMBER_ID(ActionContext.getContext().getSession().get("M_ID").toString());
+			
+			goods_paramClass.setGoods_no(getGoods_no());
+			goods_resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", getGoods_no());
+			
 		}
 		
-		paramClass.setQA_SUBJECT(getQA_SUBJECT());
-		paramClass.setQA_CATEGORY_NO(getQA_CATEGORY_NO());
-		paramClass.setQA_NAME(getQA_NAME());
-		paramClass.setQA_PASSWD(getQA_PASSWD());
-		paramClass.setQA_CONTENT(getQA_CONTENT());
-		paramClass.setQA_REGDATE(today.getTime());
-		paramClass.setQA_MEMBER_ID(ActionContext.getContext().getSession().get("M_ID").toString());
 		
-		goods_paramClass.setGoods_no(getGoods_no());
-		goods_resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", getGoods_no());
-		paramClass.setQA_GOODS_NO(goods_resultClass.getGoods_no());
-		paramClass.setQA_GOODS_NAME(goods_resultClass.getGoods_name());
-		paramClass.setQA_GOODS_IMG(goods_resultClass.getGoods_file_savname().split(",")[0]);
 		
 		if(QA_REF == 0)
 			sqlMapper.insert("qa_insertBoard", paramClass);

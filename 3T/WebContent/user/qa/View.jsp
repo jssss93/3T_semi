@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=euc-kr"
+	pageEncoding="euc-kr"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <title>Q&A</title>
 <link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 <style type="text/css">
@@ -49,7 +49,7 @@
 				
 					<td colspan="2"> <s:property value="goods_resultClass.goods_name" /><br>KRW <s:property value="goods_resultClass.goods_price" />
 					<hr align="center" width="470" color="#8C8C8C"  ><br>
-						<s:a href="%{viewURL}"><input type="button" name="button" value="ìƒí’ˆ ìƒì„¸ë³´ê¸° â–¶"/></s:a>
+						<s:a href="%{viewURL}"><input type="button" name="button" value="»óÇ° »ó¼¼º¸±â ¢º"/></s:a>
 					</td>
 			</tr>
 		</table>
@@ -64,15 +64,15 @@
 			<td height="20" colspan="2"></td>
 		</tr>
 		<tr>
-			<td width="100" class="tdstyle1">ë²ˆí˜¸</td>
+			<td width="100" class="tdstyle1">¹øÈ£</td>
 			<td width="500"><s:property value="resultClass.QA_NO" /></td>
 		</tr>
 		<tr>
-			<td width="100" class="tdstyle1">ì œëª©</td>
+			<td width="100" class="tdstyle1">Á¦¸ñ</td>
 			<td width="500"><s:property value="resultClass.QA_SUBJECT" /></td>
 		</tr>
 		<tr>
-			<td width="100">ì´ë¦„</td>
+			<td width="100">ÀÌ¸§</td>
 			<td width="500"><s:property value="resultClass.QA_NAME" /></td>
 		</tr>
 		<tr>
@@ -85,7 +85,7 @@
 			<td height="20" colspan="2"></td>
 		</tr>
 		<tr>
-			<td width="100">ë‚´ìš©</td>
+			<td width="100">³»¿ë</td>
 			<td width="500">${resultClass.QA_CONTENT}<br><br>
 			<s:if test="resultClass.QA_FILE_SAVNAME !=null">
 					<img
@@ -109,15 +109,15 @@
 			<td height="20" colspan="2"></td>
 		</tr>
 		<tr>
-			<td width="100">ì¡°íšŒìˆ˜</td>
+			<td width="100">Á¶È¸¼ö</td>
 			<td width="500"><s:property value="resultClass.QA_READCNT" /></td>
 		</tr>
 		<tr>
-			<td width="100">ë“±ë¡ë‚ ì§œ</td>
+			<td width="100">µî·Ï³¯Â¥</td>
 			<td width="500"><s:property value="resultClass.QA_REGDATE" /></td>
 		</tr>
 		<tr>
-			<td width="100">ì²¨ë¶€íŒŒì¼</td>
+			<td width="100">Ã·ºÎÆÄÀÏ</td>
 			<td width="500">&nbsp;&nbsp; <s:url id="download"
 					action="qa_fileDownloadAction">
 					<s:param name="QA_NO">
@@ -142,22 +142,22 @@
 				<form action="qa_writeCommentAction.action" method="post">
 					<table>
 						<tr>
-							<td width="170">ì´&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ë¦„ <s:textfield
+							<td width="170">ÀÌ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;¸§ <s:textfield
 									name="QA_NAME" theme="simple" value="" cssStyle="width:100px"
-									maxlength="20" /><br> ë¹„ë°€ë²ˆí˜¸ <s:textfield name="QA_PASSWD"
+									maxlength="20" /><br> ºñ¹Ğ¹øÈ£ <s:textfield name="QA_PASSWD"
 									theme="simple" value="" cssStyle="width:100px" maxlength="20" />
 							</td>
 							<s:hidden name="QA_ORIGINNO" value="%{resultClass.QA_NO}" />
-							<!-- !!!!!!!!!!!!!!!!!!!!!!!!ìˆ˜ì •!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+							<!-- !!!!!!!!!!!!!!!!!!!!!!!!¼öÁ¤!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 							<s:hidden name="QA_NO" value="%{resultClass.QA_NO}" />
 							<s:hidden name="currentPage" value="%{currentPage}" />
-							<!-- !!!!!!!!!!!!!!!!!!!!!!!!ìˆ˜ì •!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+							<!-- !!!!!!!!!!!!!!!!!!!!!!!!¼öÁ¤!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 							<td align="left"><s:textarea name="QA_CONTENT"
 									theme="simple" value="" cols="60" rows="3" /></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="right"><input name="submit"
-								type="submit" value="ì‘ì„±ì™„ë£Œ" class="inputb"></td>
+								type="submit" value="ÀÛ¼º¿Ï·á" class="inputb"></td>
 						</tr>
 					</table>
 				</form>
@@ -184,9 +184,9 @@
 						value="QA_NAME" /><br> <s:property value="QA_REGDATE" /><br>
 				<br></td>
 				<td>
-					<!-- @@@@@@@@@@@@ì½”ë©˜íŠ¸ ì‚­ì œ@@@@@@@@@@@@ --> <s:property
+					<!-- @@@@@@@@@@@@ÄÚ¸àÆ® »èÁ¦@@@@@@@@@@@@ --> <s:property
 						value="QA_CONTENT" /> <a
-					href="javascript:open_win_noresizable('qa_checkForm2.action?QA_NO=<s:property value="QA_NO" />&QA_ORIGINNO=<s:property value="QA_ORIGINNO" />&currentPage=<s:property value="currentPage" />','cdelete')">ì‚­ì œ</a>
+					href="javascript:open_win_noresizable('qa_checkForm2.action?QA_NO=<s:property value="QA_NO" />&QA_ORIGINNO=<s:property value="QA_ORIGINNO" />&currentPage=<s:property value="currentPage" />','cdelete')">»èÁ¦</a>
 				</td>
 			</tr>
 			<tr bgcolor="#777777">
@@ -195,7 +195,7 @@
 		</s:iterator>
 		<tr>
 			<td colspan="2" height="10"><s:if test="commentlist.size() <= 0">
-				ëŒ“ê¸€ì—†ìŒ
+				´ñ±Û¾øÀ½
 			</td>
 		</tr>
 		</s:if>
@@ -218,13 +218,13 @@
 					<s:param name="QA_NO">
 						<s:property value="QA_NO" />
 					</s:param>
-				</s:url> <input name="list" type="button" value="ë‹µë³€ë‹¬ê¸°" class="inputb"
+				</s:url> <input name="list" type="button" value="´äº¯´Ş±â" class="inputb"
 				onClick="javascript:location.href='qa_replyForm.action?QA_NO=<s:property value="QA_NO" />&currentPage=<s:property value="currentPage" />'">
-				<input name="list" type="button" value="ìˆ˜ì •" class="inputb"
+				<input name="list" type="button" value="¼öÁ¤" class="inputb"
 				onClick="javascript:open_win_noresizable('qa_checkForm.action?QA_NO=<s:property value="QA_NO" />&currentPage=<s:property value="currentPage" />','modify')">
-				<input name="list" type="button" value="ì‚­ì œ" class="inputb"
+				<input name="list" type="button" value="»èÁ¦" class="inputb"
 				onClick="javascript:open_win_noresizable('qa_checkForm.action?QA_NO=<s:property value="QA_NO" />&currentPage=<s:property value="currentPage" />','delete')">
-				<input name="list" type="button" value="ëª©ë¡" class="inputb"
+				<input name="list" type="button" value="¸ñ·Ï" class="inputb"
 				onClick="javascript:location.href='qa_listAction.action?currentPage=<s:property value="currentPage" />'">
 			</td>
 		</tr>

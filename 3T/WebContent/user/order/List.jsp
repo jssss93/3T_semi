@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html >
@@ -25,11 +26,11 @@
   
 	<table width="900" border="0" cellspacing="0" cellpadding="2">
 	      <tr align="center" >
-      		<td width="130"><strong>주문일자<br>[상품번호]</br></strong></td>
+      		<td width="130"><strong>주문일자<br>[주문번호]</br></strong></td>
 			<td width="100"><strong>이미지</strong></td>
-        	<td width="400"><strong>상품정보</strong></td>
-        	<td width="80"><strong>수량</strong></td>
-			<td width="80"><strong>상품구매<br>금액</br></strong></td>
+        	<td width="400"><strong>주문정보</strong></td>
+        	<td width="80"><strong>주문수량</strong></td>
+			<%-- <td width="80"><strong>상품구매<br>금액</br></strong></td> --%>
 			<td width="120"><strong>주문처리상태</strong></td>
 			<td width="120"><strong>주문내역</strong></td>
       	  </tr>
@@ -37,37 +38,52 @@
         	<td height="1" colspan="7"></td>
       	   </tr>
 
-	      <s:iterator value="list" status="stat">
+	      <s:iterator value="list" status="stat1">
 			<!-- http://localhost:8080/StrutsBoard/viewAction.action?no=2&currentPage=1 -->
-			<s:url id="viewURL" action="GoodsView" >
-				<s:param name="goods_no">
-					<s:property value="ORDER_GOODS_NO" />
-				</s:param>
-				<s:param name="currentPage">
-					<s:property value="currentPage" />
-				</s:param>
-			</s:url>
-			
      	      <tr bgcolor="#FFFFFF"  align="center">
-        		<td><s:property value="ORDER_REGDATE" /><br>[<s:property value="ORDER_GOODS_NO" />]</br></td>
-        		<td align="center"><img src="/3T/upload/${ORDER_IMG}" width="50"></td>
-        		<td align="center">&nbsp;<s:a href="%{viewURL}"><s:property value="ORDER_GOODS_NAME" /></s:a></td>
-				<td align="center"><s:property value="ORDER_GOODS_COUNT" /></td>
-        		<td><s:property value="ORDER_TOTAL" /></td>
+        		<td><s:property value="ORDER_REGDATE" /><br>[<s:property value="ORDER_NO" />]</td>
+        		<td align="center">
+   
+        		<c:forTokens var="order_goods_img"
+            			 items="${ORDER_IMG}"
+            			 delims=",">
+						<img src="/3T/upload/${order_goods_img}" width="50">
 
-        		<td>
+				</c:forTokens>
+				</td>
+        		<td align="center">
+        		<% int i=-1;%>
+        		<c:forTokens var="order_goods_name"
+            			 items="${ORDER_GOODS_NAME}"
+            			 delims=",">
+						<%
+								i=i+1;
+						
+						%>
+				<c:set var="test" value="<%= i %>"/>
+				&nbsp;<a href="GoodsView.action?goods_no=${fn:split(ORDER_GOODS_NO,',')[test]}">${order_goods_name} </a><br/><br/>
+				</c:forTokens>
+        		</td>
+				<td align="center">${test+1}</td>
+				
+        		<%-- <td>
+        		
+        		<s:property value="ORDER_TOTAL.split(',')[0]" /><br/><br/>
+        		
+        		</td> --%>
+        		
         		<s:if test="ORDER_STATE==1">
-					<input type="text" value="입금확인중" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
+        		<td>
+					<input type="text" value="         입금확인중" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
 				</s:if>
 				<s:if test="ORDER_STATE==2">
-					<input type="text" value="배송중" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
+					<input type="text" value="         배송중" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
 				</s:if>
 				<s:if test="ORDER_STATE==3">
-					<input type="text" value="배송완료" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
+					<input type="text" value="         배송완료" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
 				</s:if>
         		</td>
         		<td><input type="button"value="내역보기 " 
-
         		OnClick="window.open('Ordergoodslist.action?ORDER_NO=<s:property value="ORDER_NO" />','window_name','width=700,height=600,location=no,status=no,toolbar=no,scrollbars=no');" /></td></td>
         		   
         		
@@ -75,7 +91,7 @@
       	      <tr bgcolor="#777777">
         		<td height="1" colspan="7"></td>
       	      </tr>
-      
+    		 
 	      </s:iterator>
 			
 	      <s:if test="list.size() <= 0">

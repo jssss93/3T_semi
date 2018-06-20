@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=euc-kr"
+    pageEncoding="euc-kr"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import = "java.util.HashMap" %>
@@ -42,6 +42,7 @@
 		</tr>
 
 	<s:iterator value="list" status="stat">
+	<s:if test="QA_RE_LEVEL == 0">
 		<s:url id="viewURL" action="qa_viewAction">
 			<s:param name="QA_NO">
 				<s:property value="QA_NO" />
@@ -56,22 +57,20 @@
 			<td align="center"><img src="/3T/upload/${QA_GOODS_IMG}" width="50"></td>
 			<td align="center">
 				<s:if test="QA_CATEGORY_NO==1">
-					<input type="text" value="ìƒí’ˆë¬¸ì˜" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
+					<input type="text" value="       »óÇ°¹®ÀÇ" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
 				</s:if>
 				<s:if test="QA_CATEGORY_NO==2">
-					<input type="text" value="ë°°ì†¡ë¬¸ì˜" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
+					<input type="text" value="       ¹è¼Û¹®ÀÇ" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
 				</s:if>
 				<s:if test="QA_CATEGORY_NO==3">
-					<input type="text" value="ìž…ê¸ˆí™•ì¸ë¬¸ì˜" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
+					<input type="text" value="       ÀÔ±ÝÈ®ÀÎ¹®ÀÇ" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
 				</s:if>
 				<s:if test="QA_CATEGORY_NO==4">
-					<input type="text" value="ê¸°íƒ€ë¬¸ì˜" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" />
+					<input type="text" value="       ±âÅ¸¹®ÀÇ" readonly style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" />
 				</s:if>
 			</td>				
 			<td align="center">
-				<s:if test="QA_RE_LEVEL != 0">
-					<c:forEach var = "i" begin = "${QA_RE_LEVEL}" end = "0">&nbsp;</c:forEach>â†’
-				</s:if>	
+				
  				<s:a href="%{viewURL}"><s:property value="QA_GOODS_NAME" /><br><s:property value="QA_SUBJECT"/></s:a>
  			</td>
 			<td align="center"><s:property value="QA_NAME" /></td>
@@ -82,12 +81,38 @@
 		<tr bgcolor="#777777">
 			<td height="1" colspan="6"></td>
 		</tr>
+	</s:if>
+	<s:else>
+		<s:url id="viewURL" action="qa_viewAction">
+			<s:param name="QA_NO">
+				<s:property value="QA_NO" />
+			</s:param>
+			<s:param name="currentPage">
+				<s:property value="currentPage" />
+			</s:param>
+		</s:url>
+	
+		<tr align="center">
+			<td align="center"><s:property value="QA_NO" /></td>
+			<td align="center"><img src="/3T/upload/reply.png" width="50"></td>
+			<td align="center">´äº¯</td>				
+			<td align="center">
+ 				<s:a href="%{viewURL}"><s:property value="QA_SUBJECT"/></s:a>
+ 			</td>
+			<td align="center"><s:property value="QA_NAME" /></td>
+			<td align="center"><s:property value="QA_REGDATE" /></td>
+			
+		</tr>
 
+		<tr bgcolor="#777777">
+			<td height="1" colspan="6"></td>
+		</tr>
+	</s:else>
 	</s:iterator>
 
 	<s:if test="list.size() <= 0">
 		<tr>
-			<td colspan="6" align="center">ë“±ë¡ëœ ê²Œì‹œë¬¼ì´ ì—†ìŠµë‹ˆë‹¤</td>
+			<td colspan="6" align="center">µî·ÏµÈ °Ô½Ã¹°ÀÌ ¾ø½À´Ï´Ù</td>
 		</tr>
 	</s:if>
 
@@ -97,7 +122,7 @@
 
 	<tr align="right">
 		<td colspan="6">
-			<input type="button" value="ê¸€ì“°ê¸°" class="hreflink" onClick="javascript:location.href='qa_writeForm.action?currentPage=<s:property value="currentPage" />';" />
+			<input type="button" value="±Û¾²±â" class="hreflink" onClick="javascript:location.href='qa_writeForm.action?currentPage=<s:property value="currentPage" />';" />
 		</td>
 	</tr>
 
@@ -105,9 +130,9 @@
 		<td colspan="6">
 			<form>
 				<select name="searchNum" style="width: 100px; height: 30px;" >
-					<option value="0">ìž‘ì„±ìž</option>
-					<option value="1">ì œëª©</option>
-					<option value="2">ë‚´ìš©</option>
+					<option value="0">ÀÛ¼ºÀÚ</option>
+					<option value="1">Á¦¸ñ</option>
+					<option value="2">³»¿ë</option>
 				</select>
 				<s:textfield name="searchKeyword" theme="simple" value="" cssStyle="width:200px; height:30px;" maxlength="20" />
 				<input name="submit" type="submit" value="SEARCH" class="submit" >
