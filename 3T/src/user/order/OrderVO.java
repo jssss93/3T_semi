@@ -29,7 +29,7 @@ public class OrderVO {
 	private Date ORDER_REGDATE;
 	private String ORDER_IMG;
 	private String ORDER_STATE;
-	private String ORDER_TOTAL;
+	private int ORDER_TOTAL;
 	private int ORDER_PRICE;
 	private String ORDER_MEMBER_ID;
 	private String ORDER_GOODS_NO;
@@ -107,10 +107,10 @@ public class OrderVO {
 		ORDER_STATE = oRDER_STATE;
 	}
 
-	public String getORDER_TOTAL() {
+	public int getORDER_TOTAL() {
 		return ORDER_TOTAL;
 	}
-	public void setORDER_TOTAL(String oRDER_TOTAL) {
+	public void setORDER_TOTAL(int oRDER_TOTAL) {
 		ORDER_TOTAL = oRDER_TOTAL;
 	}
 	public int getORDER_PRICE() {

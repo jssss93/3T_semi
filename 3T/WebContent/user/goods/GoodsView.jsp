@@ -317,7 +317,7 @@
 <table width="200" border="0" height="0" align="center" cellpadding="10"
 	cellspacing="10">
 	<tr>
-		<td colspan=1 align="center"><h2>review</h2></td>
+		<td colspan=1 align="center"><h2 id="REVIEW" ></td>
 	</tr>
 
 		<s:iterator value="rplist" status="stat">
@@ -422,7 +422,7 @@
          <tr>
                <td align="right" colspan="5">
                 <!-- 작성버튼 -->
-                        <a href="ReviewWriteForm.action?goods_no=<s:property value="goods_no" />">
+                        <a href="ReviewWriteForm1.action?goods_no=<s:property value="goods_no" />&currentPage=1<s:property value="currentPage" />">
                            <img src="/3T/upload/WRITE A REIVEW.JPG" border="0" />
                         </a>
                </td>
@@ -509,7 +509,7 @@
          <tr>
                <td align="right" colspan="5">
                 <!-- 작성버튼 -->
-                        <a href="qa_writeForm1.action?goods_no=<s:property value="goods_no" />&currentPage=<s:property value="currentPage" />">
+                        <a href="qa_writeForm1.action?goods_no=<s:property value="goods_no" />&currentPage=0<s:property value="currentPage" />">
                            <img src="/3T/upload/WRITE A Q&A.JPG" border="0" />
                         </a>
                </td>
@@ -517,6 +517,13 @@
 
 	</center>
 </table>
+<!-- 컨트롤러  -->
+<div id="scroll" style="position:absolute;top: 10px; left: 10px;"> 
+<ul>
+<li><a href="#REVIEW"><h3>REVIEW</h3></a>
+<li><a href="#QNA"><h3>QnA</h3></a>
+</ul>
+</div>
 
 </body>
 </html>

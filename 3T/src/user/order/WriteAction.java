@@ -75,7 +75,7 @@ public class WriteAction extends ActionSupport implements SessionAware {
 	private String DEPOSIT_NAME;
 	private String DEPOSIT_BANK;
 	private Date ORDER_REGDATE;
-	private String ORDER_TOTAL;
+	private int ORDER_TOTAL;
 	private int ORDER_PRICE;
 	private String ORDER_MEMBER_ID;
 	private String ORDER_GOODS_NO;
@@ -251,7 +251,7 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		String write_goods_no = "";
 		String write_goods_count = "";
 		String write_goods_img = "";
-		String write_goods_total = "";
+		int write_goods_total=0;
 		System.out.println("writechk!!!" + writechk);
 		if (writechk != null) {
 				for (int i = 0; i < this.writechk.length; i++) {
@@ -266,7 +266,7 @@ public class WriteAction extends ActionSupport implements SessionAware {
 						write_goods_no= write_goods_no+test.getBASKET_GOODS_NO()+",";
 						write_goods_count=write_goods_count+test.getBASKET_QUANTITY()+",";
 						write_goods_img=write_goods_img+test.getBASKET_GOODS_IMG()+",";
-						write_goods_total=write_goods_total+test.getBASKET_GOODS_AMOUNT()*test.getBASKET_QUANTITY()+",";
+						write_goods_total=write_goods_total+test.getBASKET_GOODS_AMOUNT()*test.getBASKET_QUANTITY();
 				}
 				paramClass.setORDER_NAME(getORDER_NAME());
 				paramClass.setORDER_ZIPCODE(getORDER_ZIPCODE());
@@ -519,11 +519,13 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		ORDER_REGDATE = oRDER_REGDATE;
 	}
 
-	public String getORDER_TOTAL() {
+
+
+	public int getORDER_TOTAL() {
 		return ORDER_TOTAL;
 	}
 
-	public void setORDER_TOTAL(String oRDER_TOTAL) {
+	public void setORDER_TOTAL(int oRDER_TOTAL) {
 		ORDER_TOTAL = oRDER_TOTAL;
 	}
 

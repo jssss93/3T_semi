@@ -3,6 +3,7 @@ package user.goods;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +37,10 @@ public class AddCartAction extends ActionSupport implements SessionAware {
 	private BasketVO b_paramClass = new BasketVO();
 
 	private List<BasketVO> B_List = new ArrayList<BasketVO>();
-
+	
+	private int PayTotal_List;
+	private int Pay_List ;
+	
 	private int sgoods_cnt;
 	private String sgoods_size;
 	private String m_id;
@@ -77,10 +81,33 @@ public class AddCartAction extends ActionSupport implements SessionAware {
 
 
 		B_List = sqlMapper.queryForList("basket-selectM", b_paramClass);
-
-
+       
+        //장바구니 계산 
+      		Pay_List = (int)sqlMapper.queryForObject("basket-pay",b_paramClass.getBasket_member_id());
+      		PayTotal_List = (int) sqlMapper.queryForObject("basket-paytotal",b_paramClass.getBasket_member_id());
+		
 		return SUCCESS;
 
+	}
+
+
+
+
+
+	public int getPayTotal_List() {
+		return PayTotal_List;
+	}
+
+	public void setPayTotal_List(int payTotal_List) {
+		PayTotal_List = payTotal_List;
+	}
+
+	public int getPay_List() {
+		return Pay_List;
+	}
+
+	public void setPay_List(int pay_List) {
+		Pay_List = pay_List;
 	}
 
 	public List<BasketVO> getB_List() {

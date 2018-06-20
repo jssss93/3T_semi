@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=euc-kr"
-    pageEncoding="euc-kr"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Q&A</title>
 <link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 <style type="text/css">
@@ -50,64 +50,62 @@
 			<s:hidden name="currentPage" value="%{currentPage}" />
 			<s:hidden name="old_file" value="%{resultClass.QA_FILE_SAVNAME}" />
 	</s:else>
-	<s:if test="reply">
-		´äº¯ ÀÛ¼º
-	</s:if>
-	<s:else>
-	<table width="600" border="0" cellspacing="0" cellpadding="0" height="120" background="/3T/upload/QA_BG.png">
-         <s:if test="goods_no <=0">
-            <input type="hidden" name="QA_GOODS_NO" value="goods_no"/>
-            <tr>
-               <td align="center" width="120"><img src="/3T/upload/QA.PNG" width="80" height="100"></td>
-               
-               <td colspan="2"><hr align="center" width="470" color="#8C8C8C"  ><br>
-                  <input type="button" name="button" value="»óÇ°Á¤º¸ ¼±ÅÃ ¢º"  onclick="javascript:open_win_noresizable('qa_SearchGoodsForm.action?currentPage=<s:property value="currentPage" />', write)"/>
-               </td>
-            </tr>
-         </s:if>
-         <s:else>
-               <s:url id="viewURL" action="GoodsView">
-                     <s:param name="goods_no">
-                        <s:property value="goods_no" />
-                     </s:param>
-                     <s:param name="currentPage">
-                        <s:property value="currentPage" />
-                     </s:param>
-                  </s:url>
-            <s:if test="currentPage==0">
-            <tr>                                             
-               <td align="center" width="120"><img src="/3T/upload/<s:property value="goods_resultClass.goods_file_savname.split(',')[0]"/>" width="80" height="100"></td>
-            
-               <td colspan="2"> <s:property value="goods_resultClass.goods_name" /><br>KRW <s:property value="goods_resultClass.goods_price" />
-               <hr align="center" width="470" color="#8C8C8C"  ><br>
-                  <s:a href="%{viewURL}"><input type="button" name="button" value="»óÇ° »ó¼¼º¸±â ¢º"/></s:a>
-               </td>
-            </tr>
-            </s:if>
-            <s:else>
-            <tr>                                             
-               <td align="center" width="120"><img src="/3T/upload/<s:property value="goods_resultClass.goods_file_savname.split(',')[0]"/>" width="80" height="100"></td>
-            
-               <td colspan="2"> <s:property value="goods_resultClass.goods_name" /><br>KRW <s:property value="goods_resultClass.goods_price" />
-               <hr align="center" width="470" color="#8C8C8C"  ><br>
-                  <s:a href="%{viewURL}"><input type="button" name="button" value="»óÇ° »ó¼¼º¸±â ¢º"/></s:a>
-                  <%-- <input type="button" name="button" value="»óÇ°Á¤º¸ ¼±ÅÃ ¢º"  onclick="javascript:open_win_noresizable('qa_SearchGoodsForm.action?currentPage=<s:property value="currentPage" />', write)"/>
-               </td> --%>
-            </tr>
-            
-            </s:else>
-            
-         </s:else>
-      </table>
 	
-	</s:else>
+
+		<table width="600" border="0" cellspacing="0" cellpadding="0" height="120" background="/3T/upload/QA_BG.png">
+			<s:if test="goods_no <=0">
+				<input type="hidden" name="QA_GOODS_NO" value="goods_no"/>
+				<tr>
+					<td align="center" width="120"><img src="/3T/upload/QA.PNG" width="80" height="100"></td>
+					
+					<td colspan="2"><hr align="center" width="470" color="#8C8C8C"  ><br>
+						<input type="button" name="button" value="ìƒí’ˆì •ë³´ ì„ íƒ â–¶"  onclick="javascript:open_win_noresizable('qa_SearchGoodsForm.action?currentPage=<s:property value="currentPage" />', write)"/>
+					</td>
+				</tr>
+			</s:if>
+			<s:else>
+					<s:url id="viewURL" action="GoodsView">
+							<s:param name="goods_no">
+								<s:property value="goods_no" />
+							</s:param>
+							<s:param name="currentPage">
+								<s:property value="currentPage" />
+							</s:param>
+						</s:url>
+				<s:if test="currentPage==0">
+				<tr>                                             
+					<td align="center" width="120"><img src="/3T/upload/<s:property value="goods_resultClass.goods_file_savname.split(',')[0]"/>" width="80" height="100"></td>
+				
+					<td colspan="2"> <s:property value="goods_resultClass.goods_name" /><br>KRW <s:property value="goods_resultClass.goods_price" />
+					<hr align="center" width="470" color="#8C8C8C"  ><br>
+						<s:a href="%{viewURL}"><input type="button" name="button" value="ìƒí’ˆ ìƒì„¸ë³´ê¸° â–¶"/></s:a>
+					</td>
+				</tr>
+				</s:if>
+				<s:else>
+				<tr>                                             
+					<td align="center" width="120"><img src="/3T/upload/<s:property value="goods_resultClass.goods_file_savname.split(',')[0]"/>" width="80" height="100"></td>
+				
+					<td colspan="2"> <s:property value="goods_resultClass.goods_name" /><br>KRW <s:property value="goods_resultClass.goods_price" />
+					<hr align="center" width="470" color="#8C8C8C"  ><br>
+						<s:a href="%{viewURL}"><input type="button" name="button" value="ìƒí’ˆ ìƒì„¸ë³´ê¸° â–¶"/></s:a>
+						<%-- <input type="button" name="button" value="ìƒí’ˆì •ë³´ ì„ íƒ â–¶"  onclick="javascript:open_win_noresizable('qa_SearchGoodsForm.action?currentPage=<s:property value="currentPage" />', write)"/>
+					</td> --%>
+				</tr>
+				
+				</s:else>
+				
+			</s:else>
+		</table>
+
+	
 	<table width="600" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 		
           <td height="20" colspan="2"></td>
         </tr>
         <tr>
-          <td align="right" colspan="2"><font color="#FF0000">*</font>´Â ÇÊ¼ö ÀÔ·Â»çÇ×ÀÔ´Ï´Ù.</td>
+          <td align="right" colspan="2"><font color="#FF0000">*</font>ëŠ” í•„ìˆ˜ ìž…ë ¥ì‚¬í•­ìž…ë‹ˆë‹¤.</td>
         </tr>
         
         <tr bgcolor="#777777">
@@ -115,13 +113,13 @@
         </tr>
 				
         <tr>
-          <td width="100" class="tdstyle2"><font color="#FF0000">*</font>  Á¦¸ñ</td>
+          <td width="100" class="tdstyle2"><font color="#FF0000">*</font>  ì œëª©</td>
           <td width="500" class="tdstyle2"><select name="QA_CATEGORY_NO" 
 					 id="QA_CATEGORY_NO">
-						<option value="1">»óÇ°¹®ÀÇ</option>
-						<option value="2">¹è¼Û¹®ÀÇ</option>
-						<option value="3">ÀÔ±ÝÈ®ÀÎ¹®ÀÇ</option>
-						<option value="4">±âÅ¸¹®ÀÇ</option>					
+						<option value="1">ìƒí’ˆë¬¸ì˜</option>
+						<option value="2">ë°°ì†¡ë¬¸ì˜</option>
+						<option value="3">ìž…ê¸ˆí™•ì¸ë¬¸ì˜</option>
+						<option value="4">ê¸°íƒ€ë¬¸ì˜</option>					
 				</select>
             <s:textfield name="QA_SUBJECT" theme="simple" value="%{resultClass.QA_SUBJECT}" cssStyle="width:370px" maxlength="30"/>
           </td>
@@ -132,7 +130,7 @@
         </tr>
 
         <tr>
-          <td class="tdstyle2"><font color="#FF0000">*</font>  ÀÌ¸§ </td>
+          <td class="tdstyle2"><font color="#FF0000">*</font>  ì´ë¦„ </td>
           <td class="tdstyle2">
             <s:textfield name="QA_NAME" theme="simple" value="%{resultClass.QA_NAME}" cssStyle="width:100px" maxlength="20"/>
           </td>
@@ -142,7 +140,7 @@
         </tr>
  
         <tr>
-          <td class="tdstyle2"><font color="#FF0000">*</font>  ºñ¹Ð¹øÈ£ </td>
+          <td class="tdstyle2"><font color="#FF0000">*</font>  ë¹„ë°€ë²ˆí˜¸ </td>
           <td class="tdstyle2">
             <s:textfield name="QA_PASSWD" theme="simple" value="%{resultClass.QA_PASSWD}" cssStyle="width:100px" maxlength="20"/>
           </td>
@@ -152,7 +150,7 @@
         </tr>
         
 	<tr>
-          <td class="tdstyle2"><font color="#FF0000">*</font>  ³»¿ë </td>
+          <td class="tdstyle2"><font color="#FF0000">*</font>  ë‚´ìš© </td>
           <td class="tdstyle2">
             <s:textarea name="QA_CONTENT" theme="simple" value="%{resultClass.QA_CONTENT}" cols="50" rows="10" />
           </td>
@@ -162,12 +160,12 @@
         </tr>
         
        <tr>
-          <td class="tdstyle2">  Ã·ºÎÆÄÀÏ </td>
+          <td class="tdstyle2">  ì²¨ë¶€íŒŒì¼ </td>
           <td class="tdstyle2">
             <s:file name="upload" theme="simple"/>
             
             <s:if test="resultClass.QA_FILE_ORGNAME != NULL">
-		&nbsp; * <s:property value="resultClass.QA_FILE_ORGNAME" /> ÆÄÀÏÀÌ µî·ÏµÇ¾î ÀÖ½À´Ï´Ù. ´Ù½Ã ¾÷·ÎµåÇÏ¸é ±âÁ¸ÀÇ ÆÄÀÏÀº »èÁ¦µË´Ï´Ù.
+		&nbsp; * <s:property value="resultClass.QA_FILE_ORGNAME" /> íŒŒì¼ì´ ë“±ë¡ë˜ì–´ ìžˆìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì—…ë¡œë“œí•˜ë©´ ê¸°ì¡´ì˜ íŒŒì¼ì€ ì‚­ì œë©ë‹ˆë‹¤.
 	</s:if>
 						
           </td>
@@ -183,8 +181,8 @@
         
         <tr>
           <td align="right" colspan="2">
-          	<input name="submit" type="submit" value="ÀÛ¼º¿Ï·á" class="submit">
-            <input name="list" type="button" value="¸ñ·Ï" class="submit" onClick="javascript:location.href='qa_listAction.action?currentPage=<s:property value="currentPage" />'">
+          	<input name="submit" type="submit" value="ìž‘ì„±ì™„ë£Œ" class="submit">
+            <input name="list" type="button" value="ëª©ë¡" class="submit" onClick="javascript:location.href='qa_listAction.action?currentPage=<s:property value="currentPage" />'">
           </td>
         </tr>
 
