@@ -14,12 +14,12 @@
 </head>
 
 <body>
-	<table width="80%" border="0" cellspacing="0" cellpadding="2">
+	<table width="1000" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
-			<td align="center" class="text01 formbar">Notice</td>
+			<td align="center" class="text01 formbar"><h2>NOTICE</h2></td>
 		</tr>
 		<tr>
 			<td height="50"></td>

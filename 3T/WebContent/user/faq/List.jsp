@@ -8,31 +8,23 @@
 <title>FAQ</title>
 <link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 	<style type="text/css">
-#form td.tdstyle2 {
-	background-color: #000000;
-	border: #ccc 1px solid;
-	width: 400px;
-	padding: 20px;
-	font-size: 14px;
-	font-weight: bold;
-	color: #000;
-}
+#form td.tdstyle2 {background-color :#000000; border:#ccc 1px solid; width:400px; padding:20px; font-size:14px; font-weight:bold; color:#000;}
+
 </style>
 </head>
 
 <body>
-	<table width="80%" border="0" cellspacing="0" cellpadding="2">
+	<table width="1000" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
-			<td align="center" class="text01 formbar"><b>FAQ_NO</b></td>
+			<td align="center" class="text01 formbar"><h2>FAQ</h2></td>
 		</tr>
 		<tr>
 			<td height="50"></td>
 		</tr>
 	</table>
-
 
 	<table width="60%" border="0" cellspacing="0" cellpadding="2" id="form">
 		<tr align="center">
