@@ -82,6 +82,8 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		paramClass.setNotice_file_orgname(getNotice_file_orgname());
 		paramClass.setNotice_file_savname(getNotice_file_savname());
 		paramClass.setNotice_regdate(today.getTime());
+		
+
 		sqlMapper.insert("insertNotice", paramClass);
 
 		if (getUpload() != null) {
@@ -102,6 +104,30 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		}
 
 		return SUCCESS;
+	}
+
+	public Date getNotice_regdate() {
+		return notice_regdate;
+	}
+
+	public void setNotice_regdate(Date notice_regdate) {
+		this.notice_regdate = notice_regdate;
+	}
+
+	public Calendar getToday() {
+		return today;
+	}
+
+	public void setToday(Calendar today) {
+		this.today = today;
+	}
+
+	public String getFileUploadPath() {
+		return fileUploadPath;
+	}
+
+	public void setFileUploadPath(String fileUploadPath) {
+		this.fileUploadPath = fileUploadPath;
 	}
 
 	public int getNotice_no() {
