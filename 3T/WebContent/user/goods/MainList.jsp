@@ -55,6 +55,7 @@ to {
 #myimg2:hover {
 	opacity: 0.9;
 }
+.abc {  font-size: 24px; color: #000000;}
 </style>
 
 </head>
@@ -179,8 +180,8 @@ to {
 	<table width="1100" border="0" height="300" align="center"
 		cellpadding="0" cellspacing="6">
 		<tr>
-			<td colspan=3 align="center"><h2>New Item</h2> <img
-				src="/3T/upload/mainline.PNG" /></td>
+			<td colspan=3 align="center"> <img
+				src="/3T/upload/mainline2.JPG" /></td>
 		</tr>
 		<tr>
 			<s:iterator value="list1" status="stat1">
@@ -217,8 +218,8 @@ to {
 		cellspacing="25">
 
 		<tr>
-			<td colspan="3" align="center"><img
-				src="/3T/upload/mainline2.JPG" /></td>
+			<td colspan="3" align="center"><h1 class="abc">3T</h1><img
+				src="/3T/upload/mainline.PNG" /></td>
 		</tr>
 		<tr>
 
