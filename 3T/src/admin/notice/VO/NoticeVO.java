@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class NoticeVO {
 	private int notice_no;
-	private String notice_state;
+	private int notice_state;
 	private String notice_writer;
 	private String notice_subject;
 	private String notice_content;
@@ -28,11 +28,12 @@ public class NoticeVO {
 		this.notice_no = notice_no;
 	}
 
-	public String getNotice_state() {
+
+	public int getNotice_state() {
 		return notice_state;
 	}
 
-	public void setNotice_state(String notice_state) {
+	public void setNotice_state(int notice_state) {
 		this.notice_state = notice_state;
 	}
 

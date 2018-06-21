@@ -329,9 +329,9 @@
 
 	<insert id="insertNotice" parameterClass="ANnotice">
 		INSERT INTO
-		NOTICE(notice_no,notice_state,notice_writer,notice_subject,notice_content,notice_file_orgname,notice_file_savname)
+		NOTICE(notice_no,notice_state,notice_writer,notice_subject,notice_content,notice_file_orgname,notice_file_savname,notice_regdate)
 		VALUES
-		(notice_NO_SEQ.NEXTVAL,#notice_state#,#notice_writer#,#notice_subject#,#notice_content#,#notice_file_orgname#,#notice_file_savname#)
+		(notice_NO_SEQ.NEXTVAL,0,#notice_writer#,#notice_subject#,#notice_content#,#notice_file_orgname#,#notice_file_savname#,#notice_regdate#)
 	</insert>
 
 
