@@ -17,17 +17,22 @@
 }
 
 #myImg:hover {opacity: 0.7;}
+
+.abc {  font-size: 17px; color: #000000;}
 </style>
 </head>
 
 <body>
-	<table width="1100" border="0" height="300" align="center"
+	<table width="80%" border="0" height="300" align="center"
 		cellpadding="0" cellspacing="10">
+	
 		<tr>
-			<td colspan=4 align="center">BEST</td>
+		
+			<td width="80%" colspan=6 align="center"><h1 class="abc">BEST</h1></td>
 		</tr>
 	
 		<tr>
+		<td width="50"></td>
 			<s:iterator value="list1" status="stat1">
 
 				<s:if test="#stat1.index 4 eq 0">
@@ -55,7 +60,7 @@
 						value="goods_price" /></td>
 
 			</s:iterator>
-			
+			<td width="50"></td>
 		</tr>
 	</table>
 	<br>
