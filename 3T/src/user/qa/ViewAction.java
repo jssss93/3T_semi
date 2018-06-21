@@ -64,14 +64,11 @@ public class ViewAction extends ActionSupport implements SessionAware{
 		
 		paramClass.setQA_NO(getQA_NO());
 		sqlMapper.update("qa_updateReadHit",paramClass);
-		System.out.println("getQA_NO "+paramClass.getQA_NO());
 		resultClass = (QaVO) sqlMapper.queryForObject("qa_selectOne", getQA_NO());
 		
 		commentlist = sqlMapper.queryForList("qa_commentSelectAll", getQA_NO());
 		
-		
 		goods_paramClass.setGoods_no(resultClass.getQA_GOODS_NO());
-		
 		goods_resultClass = (GoodsVO) sqlMapper.queryForObject("AGselectOne", resultClass.getQA_GOODS_NO());
 		return SUCCESS;
 	}
@@ -82,7 +79,6 @@ public class ViewAction extends ActionSupport implements SessionAware{
 		
 		File fileInfo = new File(fileUploadPath + resultClass.getQA_FILE_SAVNAME());
 		
-		System.out.print(resultClass.getQA_FILE_SAVNAME());
 		
 		setContentLength(fileInfo.length());
 		setContentDisposition("attachment; filename=" + URLEncoder.encode(resultClass.getQA_FILE_ORGNAME(),"UTF-8"));
@@ -154,14 +150,9 @@ public class ViewAction extends ActionSupport implements SessionAware{
 	{
 		paramClass.setQA_NO(getQA_NO());
 		paramClass.setQA_PASSWD(getQA_PASSWD());
-		System.out.println("getQA_NO" +getQA_NO());
-		System.out.println("getQA_PASSWD " +getQA_NO());
-		
+	
 		resultClass = (QaVO) sqlMapper.queryForObject("qa_selectPassword", paramClass);
-		System.out.println("2");
-		System.out.println("resultClass" +resultClass);
 		if(resultClass == null) {
-			System.out.println("3");
 			return ERROR;
 			
 		}

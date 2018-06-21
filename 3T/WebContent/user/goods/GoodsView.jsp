@@ -37,7 +37,7 @@
 		document.form.submit();
 	}
 	
-	function scroll_follow( id )
+/* 	function scroll_follow( id )
 	{
 	  $(window).scroll(function( ) //스크롤이 움직일때마다 이벤트 발생
 	  { 
@@ -47,7 +47,7 @@
 	   });
 	}
 	 scroll_follow( "#scroll" );
-		 //스크롤이 생기도록 
+		 //스크롤이 생기도록  */
 		 
 </script>
 </head>
@@ -422,7 +422,7 @@
          <tr>
                <td align="right" colspan="5">
                 <!-- 작성버튼 -->
-                        <a href="ReviewWriteForm1.action?goods_no=<s:property value="goods_no" />&currentPage=1<s:property value="currentPage" />">
+                        <a href="ReviewWriteForm1.action?goods_no=<s:property value="goods_no" />&currentPage=0<s:property value="currentPage" />">
                            <img src="/3T/upload/WRITE A REIVEW.JPG" border="0" />
                         </a>
                </td>
@@ -509,7 +509,7 @@
          <tr>
                <td align="right" colspan="5">
                 <!-- 작성버튼 -->
-                        <a href="qa_writeForm1.action?goods_no=<s:property value="goods_no" />&currentPage=0<s:property value="currentPage" />">
+                        <a href="qa_writeForm1.action?goods_no=<s:property value="goods_no" />&currentPage=<s:property value="currentPage" />">
                            <img src="/3T/upload/WRITE A Q&A.JPG" border="0" />
                         </a>
                </td>
@@ -518,12 +518,12 @@
 	</center>
 </table>
 <!-- 컨트롤러  -->
-<div id="scroll" style="position:absolute;top: 10px; left: 10px;"> 
+<!-- <div id="scroll" style="position:absolute;top: 10px; left: 10px;"> 
 <ul>
 <li><a href="#REVIEW"><h3>REVIEW</h3></a>
 <li><a href="#QNA"><h3>QnA</h3></a>
 </ul>
-</div>
+</div> -->
 
 </body>
 </html>

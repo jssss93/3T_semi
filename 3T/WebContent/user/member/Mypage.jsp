@@ -11,7 +11,7 @@
 <body>
    <form name="mypage">
 
-      <TABLE BORDER=0 width=700 height=100 align=center cellspacing="10">
+      <TABLE width="50%" BORDER=0 width=700 height=100 align=center cellspacing="10">
 
          <tr>
             <td align="center" class="text01 formbar" colspan="2"><h2>
@@ -22,7 +22,7 @@
       <br>
       <br>
 
-      <TABLE BORDER=0 wsidth=700 height=150 align=center cellspacing="10">
+      <TABLE width="50%" BORDER=0 wsidth=700 height=150 align=center cellspacing="10">
 
          <tr>
 
