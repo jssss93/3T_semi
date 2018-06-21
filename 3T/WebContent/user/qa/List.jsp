@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-	<table width="1000" border="0" cellspacing="0" cellpadding="2">
+	<table width="60%" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td height="50"></td>
 		</tr>
@@ -27,7 +27,7 @@
 		</tr>
 	</table>
 	<form name="inputForm">
-	<table width="1000" border="0" cellspacing="0" cellpadding="2">
+	<table width="60%" border="0" cellspacing="0" cellpadding="2">
 		<tr align="center" >
 			<td width="70"><strong>NO</strong></td>
 			<td width="70"><strong>ITEM</strong></td>

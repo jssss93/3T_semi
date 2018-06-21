@@ -18,7 +18,7 @@
 
 <body>
 
-	<table width="600" border="0" cellspacing="0" cellpadding="2">
+	<table width="65%" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td height="30"></td>
 		</tr>
@@ -29,7 +29,7 @@
 			<td height="50"></td>
 		</tr>
 	</table>
-	<table width="600" border="0" cellspacing="0" cellpadding="0">
+	<table width="65%" border="0" cellspacing="0" cellpadding="0">
 
 		<tr bgcolor="#777777">
 			<td height="1" colspan="2"></td>
