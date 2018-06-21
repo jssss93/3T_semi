@@ -25,9 +25,11 @@
 	
 	<table width="60%" border="0" cellspacing="0" cellpadding="2">
 		<tr align="center" >
-			<td width="100"><strong>DATE<br>[NO]</br></strong></td>
-			<td width="500"><strong>SUBJECT</strong></td>
-			<td width="150"><strong>ID[NAME]</strong></td>
+			<td width="200" ><strong>DATE<br>[NO]</br></strong></td>
+			<td width="100"><strong>ID[NAME]</strong></td>
+			<td width="700"><strong>SUBJECT</strong></td>
+			<td width="100"><strong>REPLY</strong></td>
+			
 			
 		</tr>
 			<tr>
@@ -48,12 +50,21 @@
 		</s:url>
 	
 		<tr>
+		
 			<td align="center"><s:property value="qa_regdate" /><br>[<s:property
 							value="qa_no" />]</br></td>
-			
-			<td align="center"><s:a href="%{viewURL}"><s:property value="qa_subject" /></s:a></td>
-			<td align="center"><s:property value="qa_member_id" /><br>[<s:property
-							value="qa_name" />]</br></td>
+			<td align="center"><s:property value="qa_member_id" />[<s:property
+							value="qa_name" />]</td>
+			<td align="center"><s:a href="%{viewURL}"><s:property value="qa_subject" /></s:a></td>	
+						
+			<s:if test="qa_re_step==0">
+				<td align="center"><input type="button"  value=">>  답변달기" class="submit"
+					onClick="javascript:location.href='qa_replyForm.action?QA_NO=<s:property value="qa_no" />&currentPage=<s:property value="currentPage" />';" />
+			</s:if>
+			<s:else>
+				<td align="center"></td>
+			</s:else>
+				
 		</tr>
 
 		<tr bgcolor="#777777">

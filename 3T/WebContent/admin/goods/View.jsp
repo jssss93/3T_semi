@@ -80,51 +80,56 @@
 			</td>
 		</tr>
 		<tr>
-			<td width="100" class="tdstyle1"><b>사진</b></td>
-			<td width="500"">이미지 삽입해야지</td>
+			<td height="100"></td>
 		</tr>
 
 
-		<table width="200" border="0" height="0" cellpadding="0"
-			cellspacing="-300">
-			<tr>
-				<td colspan="0" align="center"><img
-					src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[0]"/> "
-					width"="1000" height="1000"></td>
+	<!-- 상품 상세 이미지 -->
+	
+	<table width="0" border="0" height="0"
+		cellpadding="0" cellspacing="0">
 
-			</tr>
-			<tr>
-				<td colspan="0" align="center"><img
-					src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[1]"/> "
-					width"="1000" height="1000"></td>
+		<tr>
+			<td colspan="0" align="center"><img
+				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[1]"/> "
+				width"="1000" height="1000"></td>
 
-			</tr>
-			<tr>
-				<td><img
-					src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[2]"/> "
-					width"="850" height="850"></td>
+		</tr>
+		<tr>
+		<td>
+		<br><br><br>
+		<br><br><br>
+			 <img
+				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[2]"/> "
+				width"="1000" height="1000"></td>
 
-			</tr>
+		</tr>
+	</table>
+	<br><br><br>
+	<br><br><br>
+	<table width="" border="0" height="0" align="CENTER"
+		cellpadding="0" cellspacing="0">
 
+		<tr>
+			<td colspan="0" align="center"><img
+				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[3]"/> "
+				width"="1000" height="1000"></td>
 
+		</tr>
+	</table>
 
-			<tr>
-				<td colspan="0" align="center"><img
-					src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[3]"/> "
-					width"="1000" height="1000"></td>
+	<table width="0" border="0" height="0" align="CENTER"
+		cellpadding="0" cellspacing="0">
 
-			</tr>
+		<tr>
+			<td colspan="0" align="center"><img
+				src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[4]"/> "
+				width"="1000" height="1000"></td>
 
-
-
-
-			<tr>
-				<td colspan="0" align="center"><img
-					src="/3T/upload/<s:property value="resultClass.goods_file_savname.split(',')[4]"/> "
-					width"="1000" height="1000"></td>
-
-			</tr>
-		</table>
+		</tr>
+	
+</center>
+<br><br><br>
 		<tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>
 		</tr>

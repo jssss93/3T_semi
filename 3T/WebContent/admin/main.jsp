@@ -117,8 +117,8 @@
 				<table border="0" align="center">
 
 					<tr>
-						<td width="200" align="center">ID[이름]</td>
-						<td width="200" align="center">회원 등급</td>
+						<td width="200" align="center">ID[등급]</td>
+						<td width="200" align="center">회원 이름</td>
 						<td width="200" align="center">구매금액(누적)</td>
 					</tr>
 					<tr bgcolor="#777777">
@@ -162,8 +162,8 @@
 				<table border="0" align="center">
 
 					<tr>
-						<td width="200" align="center">ID[이름]</td>
-						<td width="200" align="center">회원 등급</td>
+						<td width="200" align="center">ID[등급]</td>
+						<td width="200" align="center">회원 이름</td>
 						<td width="200" align="center">구매금액(누적)</td>
 					</tr>
 					<tr bgcolor="#777777">
@@ -213,67 +213,74 @@
 </body>
 <script language="JavaScript">
 
+	
+	$(document).ready(function() {
+		
+		// 태그써서 json 객체 가져오기 
+		var jsonData = ${jsonData};
+		console.log(jsonData);
+		
+		
+		var datearr=[]
+		var totalarr=[]
+		
+		for(key in jsonData) {
+		    datearr.push(jsonData[key].date);
+		}
+		datearr.sort()
+		
+		for(key2 in jsonData) {
+			totalarr.push(jsonData[key2].total);
+		}		
+		
+		var title = {
+			text : ''
+		};
 
-	$(document).ready(
-			function() {
-				var title = {
-					text : '일별 매출'
-				};
+		var xAxis = {
+			categories : datearr	
+		};
+		
+		var yAxis = {
+			title : {
+				text : ' Won'
+			},
+			plotLines : [ {
+				value : 0,
+				width : 1,
+				color : '#808080'
+				
+			} ]
+		};
 
-				var xAxis = {
-					categories : [ '1', '2', '3', '4', '5', '6', '7', '8', '9',
-							'10' ]
-				};
-				var yAxis = {
-					title : {
-						text : 'Won'
-					},
-					plotLines : [ {
-						value : 0,
-						width : 1,
-						color : '#808080'
-					} ]
-				};
+		var tooltip = {
+			valueSuffix : 'WON'
+		}
 
-				var tooltip = {
-					valueSuffix : '\xB0C'
-				}
+		var legend = {
+			layout : 'vertical',
+			align : 'right',
+			verticalAlign : 'middle',
+			borderWidth : 0
+		};
 
-				var legend = {
-					layout : 'vertical',
-					align : 'right',
-					verticalAlign : 'middle',
-					borderWidth : 0
-				};
+		var series = [
+				{
+					name : '총 매출',
+					data : totalarr
+				} ];
 
-				var series = [
-						{
-							name : 'Tokyo',
-							data : [ 7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,
-									26.5, 23.3, 18.3, 13.9, 9.6 ]
-						},
-						{
-							name : 'New York',
-							data : [ -0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8,
-									24.1, 20.1, 14.1, 8.6, 2.5 ]
-						},
-						{
-							name : 'London',
-							data : [ 3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0,
-									16.6, 14.2, 10.3, 6.6, 4.8 ]
-						} ];
+		var json = {};
 
-				var json = {};
+		json.title = title;
+		json.xAxis = xAxis;
+		json.yAxis = yAxis;
+		json.tooltip = tooltip;
+		json.legend = legend;
+		json.series = series;
 
-				json.title = title;
-				json.xAxis = xAxis;
-				json.yAxis = yAxis;
-				json.tooltip = tooltip;
-				json.legend = legend;
-				json.series = series;
-
-				$('#container').highcharts(json);
-			});
+		$('#container').highcharts(json);
+	});
 </script>
 
 </html>

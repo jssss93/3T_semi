@@ -67,7 +67,7 @@
 		</tr>
 		<tr>
 			<td width="100" class="tdstyle1">林巩磊 捞皋老林家</td>
-			<td width="500"><s:property value="resultClass.order_email1" />
+			<td width="500"><s:property value="resultClass.order_email1" />@
 				<s:property value="resultClass.order_email2" /></td>
 		</tr>
 		<tr>

@@ -115,7 +115,9 @@
 			<td colspan="6" align="center">등록된 게시물이 없습니다</td>
 		</tr>
 	</s:if>
-
+	<tr>
+	<td height="10"></td>
+	</tr>
 	<tr align="center">
 		<td colspan="6"><s:property value="pagingHtml" escape="false" /></td>
 	</tr>

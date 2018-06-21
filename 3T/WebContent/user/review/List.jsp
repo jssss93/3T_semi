@@ -85,9 +85,9 @@
 					<td align="center"><s:property value="REV_name" /></td>
 
 				</tr>
-				<tr bgcolor="#777777">
-					<td height="0" colspan="5"></td>
-				</tr>
+			<tr bgcolor="#777777">
+				<td height="1" colspan="4"></td>
+			</tr>
 
 			</s:iterator>
 

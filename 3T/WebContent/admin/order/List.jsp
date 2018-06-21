@@ -44,6 +44,10 @@
 		</tr>
 
 		<s:iterator value="list" status="stat">
+		<s:if test="order_goods_no==null">
+			
+			</s:if>
+			<s:else>
 			<s:url id="viewURL" action="AO_View.action">
 				<s:param name="order_no">
 					<s:property value="order_no" />
@@ -58,7 +62,7 @@
 							value="order_no" />]</br></td>
 				<td><s:property value="order_member_id" /></td>
 				<td align="center"><img
-					src="/3T/upload/<s:property value="order_img"/>"width="50" height="50" /></td>
+					src="/3T/upload/<s:property value="order_img.split(',')[0]"/>"width="50" height="50" /></td>
 				<td align="center">&nbsp;<s:a href="%{viewURL}">
 						<s:property value="order_goods_name" />
 					</s:a></td>
@@ -80,7 +84,7 @@
 			<tr bgcolor="#777777">
 				<td height="1" colspan="8"></td>
 			</tr>
-
+			</s:else>
 		</s:iterator>
 
 		<s:if test="list.size() <= 0">

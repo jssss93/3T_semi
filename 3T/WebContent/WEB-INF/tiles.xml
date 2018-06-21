@@ -234,6 +234,9 @@
 	<definition name="AS_List" extends="AD_main">
 		<put-attribute name="body" value="/admin/sales/Graph_day.jsp" />
 	</definition>
+	<definition name="AS2_List" extends="AD_main">
+		<put-attribute name="body" value="/admin/sales/Graph_recentSday.jsp" />
+	</definition>
 
 
 

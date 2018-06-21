@@ -140,9 +140,7 @@ function hide_submenu(obj) {
 <tr>
 <td height='20' onClick="self.location='AG_Writeform.action?currentPage=<s:property value="currentPage" />'" class="diz_popmenu" onMouseOver="this.className='diz_popmenu_over'" onMouseOut="this.className='diz_popmenu'">상품 등록</td>
 </tr>
-<tr>
-<td height='20' onClick="self.location='링크주소'" class="diz_popmenu" onMouseOver="this.className='diz_popmenu_over'" onMouseOut="this.className='diz_popmenu'">재고 관리</a></td>
-</tr>
+
 
 </table>
 </td>
@@ -178,14 +176,12 @@ function hide_submenu(obj) {
 <tr><td bgcolor="#FFFFFF">
 <table border="0" cellpadding="1" cellspacing="0" bgcolor="white" width="100%">
 <tr>
-<td height='20' onClick="self.location='AS_List.action'" class="diz_popmenu" onMouseOver="this.className='diz_popmenu_over'" onMouseOut="this.className='diz_popmenu'">매출 목록-(Day)</td>
+<td height='20' onClick="self.location='AS_List.action'" class="diz_popmenu" onMouseOver="this.className='diz_popmenu_over'" onMouseOut="this.className='diz_popmenu'">매출 그래프-(Day)</td>
 </tr>
 <tr>
-<td height='20' onClick="self.location='링크주소'" class="diz_popmenu" onMouseOver="this.className='diz_popmenu_over'" onMouseOut="this.className='diz_popmenu'">매출 목록-(Week)</td>
+<td height='20' onClick="self.location='AS2_List.action'" class="diz_popmenu" onMouseOver="this.className='diz_popmenu_over'" onMouseOut="this.className='diz_popmenu'">매출 그래프-(7Day)</td>
 </tr>
-<tr>
-<td height='20' onClick="self.location='링크주소'" class="diz_popmenu" onMouseOver="this.className='diz_popmenu_over'" onMouseOut="this.className='diz_popmenu'">매출 목록-(Month)</a></td>
-</tr>
+
 
 </table>
 </td>
@@ -201,7 +197,7 @@ function hide_submenu(obj) {
 <td height='20' onClick="self.location='AN_List.action'" class="diz_popmenu" onMouseOver="this.className='diz_popmenu_over'" onMouseOut="this.className='diz_popmenu'">공지사항 목록</td>
 </tr>
 <tr>
-<td height='20' onClick="self.location='AN_Writeform.action?currentPage=<s:property value="currentPage" />;'" class="diz_popmenu" onMouseOver="this.className='diz_popmenu_over'" onMouseOut="this.className='diz_popmenu'">공지사항 등록</td>
+<td height='20' onClick="self.location='AN_Writeform.action?currentPage=<s:property value="currentPage" />'" class="diz_popmenu" onMouseOver="this.className='diz_popmenu_over'" onMouseOut="this.className='diz_popmenu'">공지사항 등록</td>
 </tr>
 
 </table>

@@ -3,6 +3,7 @@ package admin.sales;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import admin.goods.VO.GoodsVO;
 import admin.member.VO.MemberVO;
+import admin.order.GraphUtil;
 import admin.order.VO.OrderVO;
 
 public class ListAction extends ActionSupport implements SessionAware {
@@ -37,9 +39,9 @@ public class ListAction extends ActionSupport implements SessionAware {
 	private List<GoodsVO> list_goods_new = new ArrayList<GoodsVO>();
 	private List<MemberVO> list_member_best = new ArrayList<MemberVO>();
 	private List<MemberVO> list_member_new = new ArrayList<MemberVO>();
-
 	private  List<OrderVO> list_order = new ArrayList<OrderVO>();
-	private  Map list_order2 ;
+	private Map<Date,Integer> MapOrder= new HashMap<Date, Integer>();
+	private String jsonData = "";
 	
 	public ListAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
@@ -49,39 +51,32 @@ public class ListAction extends ActionSupport implements SessionAware {
 
 	public String execute() throws Exception {
 
-		list_goods_best = sqlMapper.queryForList("AGselectAll_best");
-		list_goods_new = sqlMapper.queryForList("AGselectAll_new");
-		list_member_best = sqlMapper.queryForList("AMselectAll_best");
-		list_member_new = sqlMapper.queryForList("AMselectAll_new");
-		list_order = sqlMapper.queryForList("AOselectDT");
 		
+		MapOrder=(HashMap)sqlMapper.queryForMap("AOselectDT_3",null, "ORDER_REGDATE", "SUM(ORDER_TOTAL)");
+		jsonData = GraphUtil.getJsonData(MapOrder);
 		
-		list_order2 = (Map) sqlMapper.queryForMap("AOselectDT_2","a","ORDER_NAME","ORDER_TOTAL");
-		System.out.println(list_order2.size());
-		System.out.println(list_order2.get("최종수"));
-		System.out.println(list_order2.get(0));
-		System.out.println(list_order2);
-
-				
-		
-		
-		for (OrderVO date : list_order) {
-			System.out.println(date);
-		}
-		System.out.println(list_order);
-		System.out.println(list_order.toString());
-		System.out.println(list_order.size());
-
 		return SUCCESS;
 	}
 
-	public Map getList_order2() {
-		return list_order2;
+
+
+	public String getJsonData() {
+		return jsonData;
 	}
 
-	public void setList_order2(Map list_order2) {
-		this.list_order2 = list_order2;
+	public void setJsonData(String jsonData) {
+		this.jsonData = jsonData;
 	}
+
+	public Map<Date, Integer> getMapOrder() {
+		return MapOrder;
+	}
+
+	public void setMapOrder(Map<Date, Integer> mapOrder) {
+		MapOrder = mapOrder;
+	}
+
+	
 
 	public List getList_order() {
 		return list_order;
