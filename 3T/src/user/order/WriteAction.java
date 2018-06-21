@@ -303,7 +303,8 @@ public class WriteAction extends ActionSupport implements SessionAware {
 				sqlMapper.insert("order-insertBoard", paramClass);
 				writechk=null;
 				
-	} 
+	} else {
+
 		paramClass.setORDER_NAME(getORDER_NAME());
 		paramClass.setORDER_ZIPCODE(getORDER_ZIPCODE());
 		paramClass.setORDER_ADDRESS1(getORDER_ADDRESS1());
@@ -336,6 +337,7 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		sqlMapper.insert("order-insertBoard", paramClass);
 		B_List = sqlMapper.queryForList("basket-orderselect", getBasket_no());
 
+	}
 		return SUCCESS;
 	}
 

@@ -11,6 +11,7 @@
 <tr colspan="1" height="10%" align="center" bgcolor="#FFFFFF">
 <td><tiles:insertAttribute name="header"/></td>
 </tr>
+<tr height="20"></tr>
 <tr>
 	<td valign="top" align="center" bgcolor="#FFFFFF"><tiles:insertAttribute name="body" /></td>
 </tr>
