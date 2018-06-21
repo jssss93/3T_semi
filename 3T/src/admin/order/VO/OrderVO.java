@@ -36,7 +36,7 @@ public class OrderVO {
 	private String order_member_id;
 	private String order_goods_no;
 	private String order_goods_name;
-	private int order_goods_count;
+	private String order_goods_count;
 
 	public String getRecipient_email1() {
 		return recipient_email1;
@@ -238,13 +238,7 @@ public class OrderVO {
 		this.order_state = order_state;
 	}
 
-	public int getOrder_total() {
-		return order_total;
-	}
-
-	public void setOrder_total(int order_total) {
-		this.order_total = order_total;
-	}
+	
 
 	public int getOrder_price() {
 		return order_price;
@@ -278,12 +272,23 @@ public class OrderVO {
 		this.order_goods_name = order_goods_name;
 	}
 
-	public int getOrder_goods_count() {
+	
+	public int getOrder_total() {
+		return order_total;
+	}
+
+	public void setOrder_total(int order_total) {
+		this.order_total = order_total;
+	}
+
+	public String getOrder_goods_count() {
 		return order_goods_count;
 	}
 
-	public void setOrder_goods_count(int order_goods_count) {
+	public void setOrder_goods_count(String order_goods_count) {
 		this.order_goods_count = order_goods_count;
 	}
+
+
 
 }

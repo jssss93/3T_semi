@@ -55,7 +55,7 @@
 			</tr>
 
 			<s:iterator value="list" status="stat">
-				<!-- listAction¿¡¼­ÀÇ Arraylist¿¡ ³Ö¾î³í°É for¹®À» µ¹·Á ÇÑÁÙÇÑÁÙ ²¨³½´Ù -->
+				<!-- listActionì—ì„œì˜ Arraylistì— ë„£ì–´ë…¼ê±¸ forë¬¸ì„ ëŒë ¤ í•œì¤„í•œì¤„ êº¼ë‚¸ë‹¤ -->
 
 				<s:url id="viewURL" action="Review_View">
 					<s:param name="REV_no">
@@ -75,7 +75,7 @@
 
 
 					<td align="center">&nbsp; <s:if test="REV_re_level != 0">
-							<c:forEach var="i" begin="${REV_re_level}" end="0">&nbsp;</c:forEach>¡æ
+							<c:forEach var="i" begin="${REV_re_level}" end="0">&nbsp;</c:forEach>â†’
             </s:if> <s:a href="%{viewURL}">
 							<s:property value="REV_goods_name" />
 							<br>
@@ -85,19 +85,21 @@
 					<td align="center"><s:property value="REV_name" /></td>
 
 				</tr>
-				<tr bgcolor="#777777">
-					<td height="1" colspan="4"></td>
-				</tr>
+
+			<tr bgcolor="#777777">
+				<td height="1" colspan="4"></td>
+			</tr>
+
 
 			</s:iterator>
 
 
 
 			<s:if test="list.size() <= 0">
-				<!-- list¿¡ µé¾îÀÖ´Â°Ô ¾ø´Ù¸é -->
+				<!-- listì— ë“¤ì–´ìžˆëŠ”ê²Œ ì—†ë‹¤ë©´ -->
 
 				<tr bgcolor="#FFFFFF" align="center">
-					<td colspan="5">µî·ÏµÈ °Ô½Ã¹°ÀÌ ¾ø½À´Ï´Ù.</td>
+					<td colspan="5">ë“±ë¡ëœ ê²Œì‹œë¬¼ì´ ì—†ìŠµë‹ˆë‹¤.</td>
 				</tr>
 				<tr bgcolor="#777777">
 					<td height="1" colspan="5"></td>
@@ -125,8 +127,8 @@
 				<td colspan="5">
 					<form>
 						<select name="searchNum" style="width: 100px; height: 30px;">
-							<option value="0">ÀÛ¼ºÀÚ</option>
-							<option value="1">Á¦¸ñ</option>
+							<option value="0">ìž‘ì„±ìž</option>
+							<option value="1">ì œëª©</option>
 
 						</select>
 						<s:textfield name="searchKeyword" theme="simple" value=""

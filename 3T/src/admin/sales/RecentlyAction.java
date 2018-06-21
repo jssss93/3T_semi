@@ -1,4 +1,4 @@
-package admin;
+package admin.sales;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -18,8 +18,9 @@ import com.opensymphony.xwork2.ActionSupport;
 import admin.goods.VO.GoodsVO;
 import admin.member.VO.MemberVO;
 import admin.order.GraphUtil;
+import admin.order.VO.OrderVO;
 
-public class MainAction extends ActionSupport implements SessionAware {
+public class RecentlyAction extends ActionSupport implements SessionAware {
 
 	private Map session;
 
@@ -38,11 +39,11 @@ public class MainAction extends ActionSupport implements SessionAware {
 	private List<GoodsVO> list_goods_new = new ArrayList<GoodsVO>();
 	private List<MemberVO> list_member_best = new ArrayList<MemberVO>();
 	private List<MemberVO> list_member_new = new ArrayList<MemberVO>();
-	private Map<Date,Integer> MapOrder=new HashMap<Date,Integer>();
-	
+	private  List<OrderVO> list_order = new ArrayList<OrderVO>();
+	private Map<Date,Integer> MapOrder= new HashMap<Date, Integer>();
 	private String jsonData = "";
-
-	public MainAction() throws IOException {
+	
+	public RecentlyAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
 		sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 		reader.close();
@@ -50,13 +51,39 @@ public class MainAction extends ActionSupport implements SessionAware {
 
 	public String execute() throws Exception {
 
-		list_goods_best = sqlMapper.queryForList("AGselectAll_best");
-		list_goods_new = sqlMapper.queryForList("AGselectAll_new");
-		list_member_best = sqlMapper.queryForList("AMselectAll_best");
-		list_member_new = sqlMapper.queryForList("AMselectAll_new");
-		MapOrder=(Map)sqlMapper.queryForMap("AOselectDT_3",null, "ORDER_REGDATE", "SUM(ORDER_TOTAL)");
+		
+		MapOrder=(HashMap)sqlMapper.queryForMap("AOselectDT_recentSday",null, "ORDER_REGDATE", "SUM(ORDER_TOTAL)");
 		jsonData = GraphUtil.getJsonData(MapOrder);
+		
 		return SUCCESS;
+	}
+
+
+
+	public String getJsonData() {
+		return jsonData;
+	}
+
+	public void setJsonData(String jsonData) {
+		this.jsonData = jsonData;
+	}
+
+	public Map<Date, Integer> getMapOrder() {
+		return MapOrder;
+	}
+
+	public void setMapOrder(Map<Date, Integer> mapOrder) {
+		MapOrder = mapOrder;
+	}
+
+	
+
+	public List getList_order() {
+		return list_order;
+	}
+
+	public void setList_order(List<OrderVO> list_order) {
+		this.list_order = list_order;
 	}
 
 	public List<GoodsVO> getList_goods_new() {
@@ -89,12 +116,5 @@ public class MainAction extends ActionSupport implements SessionAware {
 
 	public void setList_member_best(List<MemberVO> list_member_best) {
 		this.list_member_best = list_member_best;
-	}
-	
-	public String getJsonData() {
-		return jsonData;
-	}
-	public void setJsonData(String jsonData) {
-		this.jsonData = jsonData;
 	}
 }

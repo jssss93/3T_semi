@@ -276,6 +276,11 @@
 				AS_List
 			</result>
 		</action> 
+		 <action name="AS2_List" class="admin.sales.RecentlyAction">
+			<result name="success" type="tiles">
+				AS2_List
+			</result>
+		</action> 
 		
 		
 

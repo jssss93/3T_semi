@@ -175,6 +175,13 @@ public class ListAction extends ActionSupport implements SessionAware {
 		
 		sqlMapper.update("AMupdate_total",paramClass);
 		
+		resultClass_M=(MemberVO) sqlMapper.queryForObject("AMselectOne_ID",paramClass);
+		if(resultClass_M.getM_total()>100000) {
+			sqlMapper.update("AMupdate_1to2",paramClass);
+			if(resultClass_M.getM_total()>200000) {
+				sqlMapper.update("AMupdate_2to3",paramClass);
+			}
+		}
 		return SUCCESS;
 	}
 

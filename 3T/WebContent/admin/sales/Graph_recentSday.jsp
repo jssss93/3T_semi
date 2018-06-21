@@ -14,8 +14,7 @@
 			<td colspan="4" height="50"></td>
 		</tr>
 		<tr>
-			<td colspan="4" height="100" align="left"><h2>Day of Month
-					</h2></td>
+			<td colspan="4" height="100"align="left"><h2>Recently 7 Day.</h2></td>
 		</tr>
 		<tr>
 			<td colspan="4" height="15"></td>
