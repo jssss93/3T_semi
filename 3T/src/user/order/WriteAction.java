@@ -133,9 +133,11 @@ public class WriteAction extends ActionSupport implements SessionAware {
 				basket_Pay_List=Pay_List+basket_Pay_List;
 				basket_PayTotal_List=PayTotal_List+basket_PayTotal_List;
 				basket_PayGOODS_COUNT=Pay_GOODS_COUNT+basket_PayGOODS_COUNT;
+				
 			}
 		} else {
 			B_List = sqlMapper.queryForList("basket-orderselect", getBasket_no());
+			
 		}
 		PayList_price=basket_Pay_List;
 		PayList_Total=basket_PayTotal_List;
@@ -267,6 +269,7 @@ public class WriteAction extends ActionSupport implements SessionAware {
 						write_goods_count=write_goods_count+test.getBASKET_QUANTITY()+",";
 						write_goods_img=write_goods_img+test.getBASKET_GOODS_IMG()+",";
 						write_goods_total=write_goods_total+test.getBASKET_GOODS_AMOUNT()*test.getBASKET_QUANTITY();
+						sqlMapper.delete("basketdelete", Integer.parseInt(chkValue1));
 				}
 				paramClass.setORDER_NAME(getORDER_NAME());
 				paramClass.setORDER_ZIPCODE(getORDER_ZIPCODE());
@@ -299,7 +302,9 @@ public class WriteAction extends ActionSupport implements SessionAware {
 
 				sqlMapper.insert("order-insertBoard", paramClass);
 				writechk=null;
-	} 
+				
+	} else {
+
 		paramClass.setORDER_NAME(getORDER_NAME());
 		paramClass.setORDER_ZIPCODE(getORDER_ZIPCODE());
 		paramClass.setORDER_ADDRESS1(getORDER_ADDRESS1());
@@ -330,8 +335,9 @@ public class WriteAction extends ActionSupport implements SessionAware {
 		paramClass.setORDER_STATE(getORDER_STATE());
 
 		sqlMapper.insert("order-insertBoard", paramClass);
-		
+		B_List = sqlMapper.queryForList("basket-orderselect", getBasket_no());
 
+	}
 		return SUCCESS;
 	}
 

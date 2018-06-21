@@ -126,15 +126,25 @@
 	</select>
 	
 	<!-- 상세보기 Qa -->
+
+	<!-- qa 리스트 -->
+	<select id="qaList" resultMap="qaRes">
+		select * from QA order by QA_NO
+	</select>
 	
 	<!-- qa 상품별 리스트 -->
 	<select id="qaView-selectAll2" resultMap="qaRes" parameterClass="int">
-		select * from QA where QA_Goods_no =
-		#QA_Goods_no# ORDER BY QA_NO
+		select * from QA where QA_GOODS_NO=#QA_GOODS_NO# ORDER BY QA_NO
 	</select>
-	
-	<!-- qa 상품 작성 -->
-	<insert id="qaWrite1" parameterClass="qa">
+
+	<!-- qa 상세보기 -->
+	<select id="qaView" resultMap="qaRes" parameterClass="int">
+		select *
+		from QA where QA_NO=#QA_NO#
+	</select>
+
+	<!-- qa 작성 -->
+	<insert id="qaWrite" parameterClass="qa">
 		insert into QA(QA_NO,
 		QA_SUBJECT, QA_NAME, QA_PASSWD, QA_CONTENT,
 		QA_REGDATE,QA_RE_STEP,QA_RE_LEVEL,QA_REF,QA_CATEGORY_NO)
@@ -143,6 +153,19 @@
 		#QA_CONTENT#, #QA_REGDATE#, #QA_RE_STEP#,
 		#QA_RE_LEVEL#,QA_no_seq.CURRVAL,#QA_CATEGORY_NO#)
 	</insert>
+
+	<!-- qa 수정 -->
+	<update id="qaModify" parameterClass="qa">
+		update QA set
+		QA_SUBJECT=#QA_SUBJECT#,QA_CONTENT=#QA_CONTENT# where QA_NO=#QA_NO#
+	</update>
+	
+	<!-- qa 삭제 -->
+	<delete id="qaDelete" parameterClass="int">
+		delete from QA where QA_NO=#QA_NO#
+	</delete>
+	
+	<!-- 상세보기 리뷰,qa 하이퍼링크 -->
    
    <!-- ===============================위시 리스트로 insert================================== -->
    
@@ -186,7 +209,7 @@
       parameterClass="int">
       select * from (select * from goods order by goods_recommend desc)
       where rownum <![CDATA[<]]>=
-      6
+      9
    </select>
 
 
@@ -315,5 +338,8 @@
       'perfectline' order by goods_recommend desc) where rownum <![CDATA[<]]>=
       4
    </select>
-
+    
+   <update id="updategoods_recommend" parameterClass="goods">
+    	UPDATE goods SET goods_recommend = goods_recommend + 1 where goods_no=#goods_no#
+   </update>
 </sqlMap>

@@ -6,27 +6,20 @@
 <html>
 <head>
 <title>Notice</title>
+
 <link href="/3T/user/member/style.css" rel="stylesheet" type="text/css">
 	<style type="text/css">
-#form td.tdstyle2 {
-	background-color: #000000;
-	border: #ccc 1px solid;
-	width: 400px;
-	padding: 20px;
-	font-size: 14px;
-	font-weight: bold;
-	color: #000;
-}
+#form td.tdstyle2 {background-color :#000000; border:#ccc 1px solid; width:400px; padding:20px; font-size:14px; font-weight:bold; color:#000;}
 </style>
 </head>
 
 <body>
-	<table width="1000" border="0" cellspacing="0" cellpadding="2">
+	<table width="60%" border="0" cellspacing="0" cellpadding="2">
 		<tr>
-			<td height="30"></td>
+			<td height="50"></td>
 		</tr>
 		<tr>
-			<td align="center" class="text01 formbar">Notice</td>
+			<td align="center" class="text01 formbar"><h2>NOTICE</h2></td>
 		</tr>
 		<tr>
 			<td height="50"></td>
@@ -34,11 +27,11 @@
 	</table>
 
 
-	<table width="1000" border="0" cellspacing="0" cellpadding="2" id="form">
+	<table width="60%" border="0" cellspacing="0" cellpadding="2" id="form">
 		<tr align="center">
-			<td width="50" align="center"><strong><h2>NO</h2></strong></td>
+			<td width="50" align="center"><strong>NO</strong></td>
 			<td width="850"><strong></strong></td>
-			<td width="50" align="center"><strong><h2>작성자</h2></strong></td>
+			<td width="60" align="center"><strong>작성자</strong></td>
 		</tr>
 		<tr bgcolor="#777777">
 			<td height="1" colspan="3"></td>

@@ -219,9 +219,9 @@
 						<s:property value="QA_NO" />
 					</s:param>
 				</s:url> <input name="list" type="button" value="답변달기" class="inputb"
-				onClick="javascript:location.href='qa_replyForm.action?QA_NO=<s:property value="QA_NO" />&currentPage=<s:property value="currentPage" />'">
+				onClick="javascript:location.href='qa_replyForm.action?goods_no=<s:property value="goods_resultClass.goods_no" />&QA_NO=<s:property value="QA_NO" />&currentPage=<s:property value="currentPage" />'">
 				<input name="list" type="button" value="수정" class="inputb"
-				onClick="javascript:open_win_noresizable('qa_checkForm.action?QA_NO=<s:property value="QA_NO" />&currentPage=<s:property value="currentPage" />','modify')">
+				onClick="javascript:open_win_noresizable('qa_checkForm.action?goods_no=<s:property value="goods_resultClass.goods_no" />&QA_NO=<s:property value="QA_NO" />&currentPage=<s:property value="currentPage" />','modify')">
 				<input name="list" type="button" value="삭제" class="inputb"
 				onClick="javascript:open_win_noresizable('qa_checkForm.action?QA_NO=<s:property value="QA_NO" />&currentPage=<s:property value="currentPage" />','delete')">
 				<input name="list" type="button" value="목록" class="inputb"

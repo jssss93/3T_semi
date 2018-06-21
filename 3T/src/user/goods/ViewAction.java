@@ -35,7 +35,9 @@ public class ViewAction extends ActionSupport implements SessionAware {
 	private ReviewVO reviewClass = new ReviewVO();
 	private QaVO qaClass = new QaVO();
 
-	private int currentPage;
+
+	private int currentPage = 0;
+
 	private Map session;
 
 	public Map getSession() {
@@ -48,7 +50,7 @@ public class ViewAction extends ActionSupport implements SessionAware {
 
 	private int Goods_no;
 
-	// ¹Ş¾Æ¿Ã ¸®ºä Á¤º¸
+	// ë°›ì•„ì˜¬ ë¦¬ë·° ì •ë³´
 	private int REV_no;
 	private String REV_subject;
 	private String REV_name;
@@ -65,7 +67,7 @@ public class ViewAction extends ActionSupport implements SessionAware {
 	private int REV_goods_no;
 	Calendar today = Calendar.getInstance();
 
-	// ¹Ş¾Æ¿Ã qna Á¤º¸
+	// ë°›ì•„ì˜¬ qna ì •ë³´
 	private int qa_no;
 	private String qa_special_no;
 	private String qa_subject;
@@ -93,7 +95,7 @@ public class ViewAction extends ActionSupport implements SessionAware {
 		reader.close();
 	}
 
-	// ï¿½ó¼¼ºï¿½ï¿½ï¿½
+	// å ì¢ì„¸ë¸ì˜™å ì™ì˜™
 	public String execute() throws Exception {
 
 		paramClass.setGoods_no(getGoods_no());
@@ -142,11 +144,11 @@ public class ViewAction extends ActionSupport implements SessionAware {
 	public String DeleteAction() throws Exception {
 
 		System.out.println("~~" + getREV_no());
-		// ÇØ´ç ¹øÈ£ÀÇ ±ÛÀ» °¡Á®¿Â´Ù
+		// í•´ë‹¹ ë²ˆí˜¸ì˜ ê¸€ì„ ê°€ì ¸ì˜¨ë‹¤
 		reviewClass = (ReviewVO) sqlMapper.queryForObject("review-selectOne", getREV_no());
-		// »èÁ¦ÇÒ Ç×¸ñ ¼³Á¤
+		// ì‚­ì œí•  í•­ëª© ì„¤ì •
 		reviewClass.setREV_no(getREV_no());
-		// »èÁ¦ Äõ¸® ¼öÇà
+		// ì‚­ì œ ì¿¼ë¦¬ ìˆ˜í–‰
 		sqlMapper.update("user.review.Review_DeleteAction", reviewClass);
 		return SUCCESS;
 	}
@@ -172,11 +174,11 @@ public class ViewAction extends ActionSupport implements SessionAware {
 	public String DeleteAction1() throws Exception {
 
 		System.out.println("~~" + getQa_no());
-		// ÇØ´ç ¹øÈ£ÀÇ ±ÛÀ» °¡Á®¿Â´Ù
+		// í•´ë‹¹ ë²ˆí˜¸ì˜ ê¸€ì„ ê°€ì ¸ì˜¨ë‹¤
 		qaClass = (QaVO) sqlMapper.queryForObject("qa.qaView", getQa_no());
-		// »èÁ¦ÇÒ Ç×¸ñ ¼³Á¤
+		// ì‚­ì œí•  í•­ëª© ì„¤ì •
 		qaClass.setQA_NO(getQa_no());
-		// »èÁ¦ Äõ¸® ¼öÇà
+		// ì‚­ì œ ì¿¼ë¦¬ ìˆ˜í–‰
 		sqlMapper.update("user.qa.qa_deleteAction1", qaClass);
 		return SUCCESS;
 	}

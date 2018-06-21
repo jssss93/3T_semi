@@ -25,7 +25,7 @@
 <body>
 
 
-	<table width="600" border="0" cellspacing="0" cellpadding="1">
+	<table width="60%" border="0" cellspacing="0" cellpadding="1">
 		<tr>
 			<td height="50"></td>
 		</tr>
@@ -41,7 +41,7 @@
 
 
 
-		<table width="600" border="0" cellspacing="0" cellpadding="1">
+		<table width="60%" border="0" width="60%" border="0" cellspacing="0" cellpadding="1">
 			<tr align="center">
 				<td width="50"><strong>NO</strong></td>
 				<td width="80"><strong>ITEM </strong></td>
@@ -55,7 +55,7 @@
 			</tr>
 
 			<s:iterator value="list" status="stat">
-				<!-- listAction¿¡¼­ÀÇ Arraylist¿¡ ³Ö¾î³í°É for¹®À» µ¹·Á ÇÑÁÙÇÑÁÙ ²¨³½´Ù -->
+				<!-- listActionì—ì„œì˜ Arraylistì— ë„£ì–´ë…¼ê±¸ forë¬¸ì„ ëŒë ¤ í•œì¤„í•œì¤„ êº¼ë‚¸ë‹¤ -->
 
 				<s:url id="viewURL" action="Review_View">
 					<s:param name="REV_no">
@@ -67,7 +67,7 @@
 				</s:url>
 
 
-				<tr align="center">
+				<tr align="center" height="50">
 					<td class="tdstyle2"><s:property value="REV_no" /></td>
 					<td align="center"><img src="/3T/upload/${REV_goods_img}"
 						width="50"></td>
@@ -75,7 +75,7 @@
 
 
 					<td align="center">&nbsp; <s:if test="REV_re_level != 0">
-							<c:forEach var="i" begin="${REV_re_level}" end="0">&nbsp;</c:forEach>¡æ
+							<c:forEach var="i" begin="${REV_re_level}" end="0">&nbsp;</c:forEach>â†’
             </s:if> <s:a href="%{viewURL}">
 							<s:property value="REV_goods_name" />
 							<br>
@@ -85,35 +85,50 @@
 					<td align="center"><s:property value="REV_name" /></td>
 
 				</tr>
+
 			<tr bgcolor="#777777">
 				<td height="1" colspan="4"></td>
 			</tr>
+
 
 			</s:iterator>
 
 
 
 			<s:if test="list.size() <= 0">
-				<!-- list¿¡ µé¾îÀÖ´Â°Ô ¾ø´Ù¸é -->
+				<!-- listì— ë“¤ì–´ìžˆëŠ”ê²Œ ì—†ë‹¤ë©´ -->
 
 				<tr bgcolor="#FFFFFF" align="center">
-					<td colspan="5">µî·ÏµÈ °Ô½Ã¹°ÀÌ ¾ø½À´Ï´Ù.</td>
+					<td colspan="5">ë“±ë¡ëœ ê²Œì‹œë¬¼ì´ ì—†ìŠµë‹ˆë‹¤.</td>
 				</tr>
 				<tr bgcolor="#777777">
 					<td height="1" colspan="5"></td>
 				</tr>
 
 			</s:if>
+			<tr height="20"></tr>
 			<tr align="center">
 				<td colspan="6"><s:property value="pagingHtml" escape="false" /></td>
 			</tr>
+			
+			
+			<tr>
 
+
+				<td colspan="5" align="right"><input class="hreflink"
+					type="button" value="WRITE"
+					onClick="javascript:location.href='ReviewWriteForm.action?currentPage=<s:property value="currentPage" />';"></td>
+
+			</tr>
+			
+			
+			
 			<tr align="center">
 				<td colspan="5">
 					<form>
 						<select name="searchNum" style="width: 100px; height: 30px;">
-							<option value="0">ÀÛ¼ºÀÚ</option>
-							<option value="1">Á¦¸ñ</option>
+							<option value="0">ìž‘ì„±ìž</option>
+							<option value="1">ì œëª©</option>
 
 						</select>
 						<s:textfield name="searchKeyword" theme="simple" value=""
@@ -122,15 +137,7 @@
 					</form>
 				</td>
 			</tr>
-			<tr>
-
-
-				<td colspan="5" align="center"><input class="hreflink"
-					type="button" value="WRITE"
-					onClick="javascript:location.href='ReviewWriteForm.action?currentPage=<s:property value="currentPage" />';"></td>
-
-			</tr>
-
+			
 
 
 

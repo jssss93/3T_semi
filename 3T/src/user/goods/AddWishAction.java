@@ -52,8 +52,8 @@ public class AddWishAction extends ActionSupport implements SessionAware{
 		w_paramClass.setW_GOODS_SIZE(getSgoods_size());
 		w_paramClass.setW_GOODS_COLOR(getSgoods_color());
 		
-		sqlMapper.insert("insertWmishList", w_paramClass);
-		
+		sqlMapper.insert("insertWishList", w_paramClass);
+		sqlMapper.update("updategoods_recommend", g_paramClass);
 		return SUCCESS;
 	}
 
