@@ -82,7 +82,7 @@ to {
 			<img id="myimg2" class="mySlides w3-animate-opacit"
 				src="/3T/upload/slide4.PNG" width=1500 height=600>
 		</s:a>
-		<s:a href="GoodsView.action?goods_no=1121">
+		<s:a href="GoodsView.action?goods_no=945">
 			<img id="myimg2" class="mySlides w3-animate-opacit"
 				src="/3T/upload/slide5.PNG" width=1500 height=600>
 		</s:a>
